@@ -1,0 +1,402 @@
+[gd_scene format=3 uid="uid://dhdf5yb63opyf"]
+
+[ext_resource type="Script" uid="uid://445w12fdycr0" path="res://Scripts/Parts/dialogueScene.gd" id="1_782r4"]
+[ext_resource type="Texture2D" uid="uid://bak3mdotyate4" path="res://Assets/Sprites/Entities/Player/Placeholder/portrait.png" id="2_gf8rw"]
+[ext_resource type="Texture2D" uid="uid://cvvp1umdhm8pp" path="res://Assets/Sprites/Entities/NPC/placeholderNPC/portrait.png" id="3_x2xnc"]
+
+[sub_resource type="Animation" id="Animation_6vjog"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PortraitRight:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(944, 363)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PortraitLeft:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-294, 354)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DialogueBox/Polygon2D:polygon")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(14, 223, 605, 161, 615, 451, 13, 406)]
+}
+
+[sub_resource type="Animation" id="Animation_en345"]
+resource_name = "enterLeft"
+length = 0.6333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PortraitRight:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(944, 363), Vector2(1280, 363)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PortraitLeft:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(-294, 354), Vector2(0, 354)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DialogueBox/Polygon2D:polygon")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [PackedVector2Array(14, 223, 605, 161, 615, 451, 13, 406), PackedVector2Array(17, 177, 605, 218, 605, 406, 9, 449)]
+}
+
+[sub_resource type="Animation" id="Animation_4lf7m"]
+resource_name = "enterRight"
+length = 0.6333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PortraitRight:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.5, 2),
+"update": 0,
+"values": [Vector2(1280, 363), Vector2(944, 363)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PortraitLeft:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(2, 0.5),
+"update": 0,
+"values": [Vector2(0, 354), Vector2(-294, 354)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DialogueBox/Polygon2D:polygon")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [PackedVector2Array(17, 177, 605, 218, 605, 406, 9, 449), PackedVector2Array(14, 223, 605, 161, 615, 451, 13, 406)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e4olt"]
+_data = {
+&"RESET": SubResource("Animation_6vjog"),
+&"enterLeft": SubResource("Animation_en345"),
+&"enterRight": SubResource("Animation_4lf7m")
+}
+
+[sub_resource type="Animation" id="Animation_782r4"]
+resource_name = "enter"
+length = 0.6333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PortraitLeft:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(-294, 354), Vector2(0, 354)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DialogueBox/Polygon2D:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [PackedVector2Array(14, 223, 605, 161, 615, 451, 13, 406), PackedVector2Array(17, 177, 605, 218, 605, 406, 9, 449)]
+}
+
+[sub_resource type="Animation" id="Animation_gf8rw"]
+resource_name = "exit"
+length = 0.6333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PortraitLeft:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(2, 0.5),
+"update": 0,
+"values": [Vector2(0, 354), Vector2(-294, 354)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x2xnc"]
+_data = {
+&"enter": SubResource("Animation_782r4"),
+&"exit": SubResource("Animation_gf8rw")
+}
+
+[sub_resource type="Animation" id="Animation_rpc8b"]
+resource_name = "enter"
+length = 0.6333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PortraitRight:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.5, 2),
+"update": 0,
+"values": [Vector2(1280, 363), Vector2(944, 363)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DialogueBox/Polygon2D:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [PackedVector2Array(17, 177, 605, 218, 605, 406, 9, 449), PackedVector2Array(14, 223, 605, 161, 615, 451, 13, 406)]
+}
+
+[sub_resource type="Animation" id="Animation_hp7ab"]
+resource_name = "exit"
+length = 0.6333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PortraitRight:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(944, 363), Vector2(1280, 363)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hwakd"]
+_data = {
+&"enter": SubResource("Animation_rpc8b"),
+&"exit": SubResource("Animation_hp7ab")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j8qvl"]
+atlas = ExtResource("2_gf8rw")
+region = Rect2(0, 0, 208, 357)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u248v"]
+atlas = ExtResource("2_gf8rw")
+region = Rect2(416, 0, 208, 357)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cyctn"]
+atlas = ExtResource("2_gf8rw")
+region = Rect2(208, 0, 208, 357)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dutmy"]
+atlas = ExtResource("2_gf8rw")
+region = Rect2(0, 0, 208, 357)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ma3ox"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j8qvl")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u248v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cyctn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dutmy")
+}],
+"loop": true,
+"name": &"talk",
+"speed": 12.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0xt4"]
+atlas = ExtResource("3_x2xnc")
+region = Rect2(0, 0, 174, 357)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5i7h"]
+atlas = ExtResource("3_x2xnc")
+region = Rect2(348, 0, 174, 357)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_in4g1"]
+atlas = ExtResource("3_x2xnc")
+region = Rect2(174, 0, 174, 357)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3uee"]
+atlas = ExtResource("3_x2xnc")
+region = Rect2(0, 0, 174, 357)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qujit"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w0xt4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5i7h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_in4g1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u3uee")
+}],
+"loop": true,
+"name": &"talk",
+"speed": 5.0
+}]
+
+[node name="DialogueScene" type="Control" unique_id=1957221761]
+visible = false
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_782r4")
+metadata/_edit_lock_ = true
+
+[node name="PortraitLeft" type="Control" parent="." unique_id=1827717220]
+custom_minimum_size = Vector2(300, 0)
+anchors_preset = 0
+offset_left = -294.0
+offset_top = 354.0
+offset_right = 6.0
+offset_bottom = 766.0
+size_flags_horizontal = 4
+metadata/_edit_group_ = true
+
+[node name="AnimationPlayerLeft" type="AnimationPlayer" parent="PortraitLeft" unique_id=1099173158]
+unique_name_in_owner = true
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_e4olt")
+libraries/leftPortrait = SubResource("AnimationLibrary_x2xnc")
+libraries/rightPortrait = SubResource("AnimationLibrary_hwakd")
+
+[node name="LeftSprite" type="AnimatedSprite2D" parent="PortraitLeft" unique_id=1455681998]
+unique_name_in_owner = true
+position = Vector2(150, 216)
+sprite_frames = SubResource("SpriteFrames_ma3ox")
+animation = &"idle"
+frame_progress = 0.5243318
+
+[node name="DialogueBox" type="Control" parent="." unique_id=2113207184]
+anchors_preset = 0
+offset_left = 261.0
+offset_top = 344.0
+offset_right = 981.0
+offset_bottom = 824.0
+size_flags_horizontal = 3
+
+[node name="Polygon2D" type="Polygon2D" parent="DialogueBox" unique_id=927533101]
+position = Vector2(69, -87)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(14, 223, 605, 161, 615, 451, 13, 406)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="DialogueBox/Polygon2D" unique_id=204034336]
+unique_name_in_owner = true
+offset_left = 30.0
+offset_top = 241.0
+offset_right = 597.0
+offset_bottom = 400.0
+theme_override_font_sizes/normal_font_size = 34
+bbcode_enabled = true
+text = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+visible_characters_behavior = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="PortraitRight" type="Control" parent="." unique_id=1156131778]
+custom_minimum_size = Vector2(300, 0)
+anchors_preset = 0
+offset_left = 944.0
+offset_top = 363.0
+offset_right = 1244.0005
+offset_bottom = 843.0
+metadata/_edit_group_ = true
+
+[node name="AnimationPlayerRight" type="AnimationPlayer" parent="PortraitRight" unique_id=298532525]
+unique_name_in_owner = true
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_e4olt")
+libraries/leftPortrait = SubResource("AnimationLibrary_x2xnc")
+libraries/rightPortrait = SubResource("AnimationLibrary_hwakd")
+
+[node name="RightSprite" type="AnimatedSprite2D" parent="PortraitRight" unique_id=1060759009]
+unique_name_in_owner = true
+position = Vector2(161, 230)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_qujit")
+animation = &"idle"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=894061398]
+
+[connection signal="animation_finished" from="PortraitLeft/AnimationPlayerLeft" to="." method="_on_animation_player_left_animation_finished"]
+[connection signal="animation_finished" from="PortraitRight/AnimationPlayerRight" to="." method="_on_right_animation_finished"]

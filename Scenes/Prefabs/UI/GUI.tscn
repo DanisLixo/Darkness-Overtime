@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://bfkc7meaemb0v"]
+
+[ext_resource type="Script" uid="uid://dgn8r8svimgb0" path="res://Scripts/UI/GUI.gd" id="1_t2qg4"]
+[ext_resource type="Texture2D" uid="uid://ddmsbgu22n5bk" path="res://Assets/Sprites/GUI/Ref.png" id="2_hyofi"]
+[ext_resource type="StyleBox" uid="uid://c0pop2juuvpqf" path="res://PanelScrollDefault.tres" id="3_hyofi"]
+[ext_resource type="PackedScene" uid="uid://bgswjpfie1utn" path="res://Scenes/Prefabs/UI/InventoryGrid.tscn" id="3_r2i0t"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_t2qg4"]
+content_margin_top = 48.0
+color = Color(1, 1, 1, 1)
+thickness = 3
+
+[node name="GUI" type="Control" unique_id=262914432 node_paths=PackedStringArray("containers")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 760.0
+offset_bottom = 720.0
+script = ExtResource("1_t2qg4")
+containers = [NodePath("Panel/MarginContainer/VBoxContainer/Grid")]
+
+[node name="Control" type="Control" parent="." unique_id=697820685]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -7.0
+offset_top = -5.0
+offset_right = -7.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Ref" type="Sprite2D" parent="Control" unique_id=1995146657]
+texture = ExtResource("2_hyofi")
+centered = false
+
+[node name="Panel" type="PanelContainer" parent="." unique_id=1970962021]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 77.0
+offset_right = 613.0
+offset_bottom = 372.0
+theme_override_styles/panel = ExtResource("3_hyofi")
+metadata/_edit_group_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=1715975723]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=727894667]
+layout_mode = 2
+alignment = 1
+
+[node name="CategorySelect" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=910714741]
+layout_mode = 2
+alignment = 1
+
+[node name="LeftArrow" type="Label" parent="Panel/MarginContainer/VBoxContainer/CategorySelect" unique_id=341864229]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "◄"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Category" type="Label" parent="Panel/MarginContainer/VBoxContainer/CategorySelect" unique_id=1471396626]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "KEYS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightArrow" type="Label" parent="Panel/MarginContainer/VBoxContainer/CategorySelect" unique_id=1853905739]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "►"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer" unique_id=936101402]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_t2qg4")
+
+[node name="Grid" parent="Panel/MarginContainer/VBoxContainer" unique_id=207924224 instance=ExtResource("3_r2i0t")]
+unique_name_in_owner = true
+layout_mode = 2

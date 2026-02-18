@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cynboa75mgw1o"]
+
+[ext_resource type="Script" uid="uid://ce6qp508j3ej6" path="res://Scripts/Parts/dialogueArea.gd" id="1_3jflk"]
+
+[node name="DialogueArea" type="Area2D" unique_id=1873816562]
+script = ExtResource("1_3jflk")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

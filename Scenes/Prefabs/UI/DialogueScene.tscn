@@ -1,0 +1,330 @@
+[gd_scene format=3 uid="uid://dhdf5yb63opyf"]
+
+[ext_resource type="Script" uid="uid://445w12fdycr0" path="res://Scripts/Parts/dialogueScene.gd" id="1_782r4"]
+[ext_resource type="Texture2D" uid="uid://bak3mdotyate4" path="res://Assets/Sprites/Entities/Player/Placeholder/portrait.png" id="2_gf8rw"]
+[ext_resource type="Texture2D" uid="uid://ph0xios0mth" path="res://Assets/Sprites/Mario/image.png" id="2_hwakd"]
+[ext_resource type="Texture2D" uid="uid://cmvhrcf1h8tfv" path="res://addons/EasyBlend/Blends/overlay.png" id="3_eabwu"]
+[ext_resource type="Shader" uid="uid://ckcleaebmnjgv" path="res://addons/EasyBlend/EasyBlend.gdshader" id="3_rpc8b"]
+[ext_resource type="Texture2D" uid="uid://cvvp1umdhm8pp" path="res://Assets/Sprites/Entities/NPC/placeholderNPC/portrait.png" id="3_x2xnc"]
+[ext_resource type="Texture2D" uid="uid://cv4aulre111wh" path="res://Assets/Sprites/Mario/DialogueBox.png" id="4_nvmde"]
+[ext_resource type="FontFile" uid="uid://eeyl5ctvfhuv" path="res://Assets/ByteBounce.ttf" id="5_7qleg"]
+[ext_resource type="Texture2D" uid="uid://cflnl5h6ejo3n" path="res://addons/EasyBlend/DialogueGradient.png" id="5_khwdy"]
+[ext_resource type="Texture2D" uid="uid://bkhlfbusau7td" path="res://Assets/Paint_Layer_1.PNG" id="6_eabwu"]
+[ext_resource type="Texture2D" uid="uid://dpja0a3jdrppo" path="res://Assets/Sprites/Entities/Player/Placeholder/icon.png" id="7_eabwu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yxloq"]
+shader = ExtResource("3_rpc8b")
+shader_parameter/enabled = true
+shader_parameter/Blend = ExtResource("3_eabwu")
+shader_parameter/Intensity = 1.0
+shader_parameter/Alpha = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7qleg"]
+bg_color = Color(0.02745098, 0.03137255, 0.09019608, 1)
+border_width_bottom = 4
+border_color = Color(0.41960785, 0.44705883, 0.5764706, 1)
+anti_aliasing_size = 10.0
+
+[sub_resource type="GDScript" id="GDScript_khwdy"]
+script/source = "extends RichTextLabel
+
+func _process(delta: float) -> void:
+	position.x -= 1
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j8qvl"]
+atlas = ExtResource("2_gf8rw")
+region = Rect2(0, 0, 208, 357)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u248v"]
+atlas = ExtResource("2_gf8rw")
+region = Rect2(416, 0, 208, 357)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cyctn"]
+atlas = ExtResource("2_gf8rw")
+region = Rect2(208, 0, 208, 357)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dutmy"]
+atlas = ExtResource("2_gf8rw")
+region = Rect2(0, 0, 208, 357)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ma3ox"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j8qvl")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u248v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cyctn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dutmy")
+}],
+"loop": true,
+"name": &"talk",
+"speed": 12.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0xt4"]
+atlas = ExtResource("3_x2xnc")
+region = Rect2(0, 0, 174, 357)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5i7h"]
+atlas = ExtResource("3_x2xnc")
+region = Rect2(348, 0, 174, 357)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_in4g1"]
+atlas = ExtResource("3_x2xnc")
+region = Rect2(174, 0, 174, 357)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3uee"]
+atlas = ExtResource("3_x2xnc")
+region = Rect2(0, 0, 174, 357)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qujit"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w0xt4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5i7h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_in4g1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u3uee")
+}],
+"loop": true,
+"name": &"talk",
+"speed": 5.0
+}]
+
+[node name="DialogueScene" type="Control" unique_id=1957221761]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_782r4")
+metadata/_edit_lock_ = true
+
+[node name="Background" type="Control" parent="." unique_id=2141691904]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Background" unique_id=1148401372]
+material = SubResource("ShaderMaterial_yxloq")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_eabwu")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Sprite2D" type="TextureRect" parent="Background" unique_id=1203001203]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_khwdy")
+expand_mode = 1
+
+[node name="ref" type="Control" parent="." unique_id=1172682414]
+visible = false
+custom_minimum_size = Vector2(1142, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Image" type="Sprite2D" parent="ref" unique_id=993182886]
+texture = ExtResource("2_hwakd")
+centered = false
+
+[node name="InfoPanel" type="PanelContainer" parent="." unique_id=1317508410]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 75.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7qleg")
+
+[node name="MarginContainer" type="MarginContainer" parent="InfoPanel" unique_id=418125307]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="InfoPanel/MarginContainer" unique_id=1557158515]
+layout_mode = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+
+[node name="Control" type="HBoxContainer" parent="InfoPanel/MarginContainer/ScrollContainer" unique_id=1995818142]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="RichTextLabel" parent="InfoPanel/MarginContainer/ScrollContainer/Control" unique_id=1253300380]
+self_modulate = Color(0.15294118, 0.15686275, 0.19215687, 0.7490196)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_font_sizes/bold_font_size = 36
+bbcode_enabled = true
+text = "[b]Linux boot sequence Zeis Jul 16th, 2015 4,102 0 NeverAddcomment Not a member of Pastebin yet? Sign Up, it unlocks many cool features![b]"
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 1
+visible_characters_behavior = 1
+script = SubResource("GDScript_khwdy")
+
+[node name="PortraitLeft" type="Control" parent="." unique_id=1827717220]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -473.0
+offset_right = 400.0
+grow_vertical = 0
+size_flags_horizontal = 4
+
+[node name="LeftSprite" type="AnimatedSprite2D" parent="PortraitLeft" unique_id=1455681998]
+unique_name_in_owner = true
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_ma3ox")
+animation = &"idle"
+centered = false
+
+[node name="DialogueBox" type="Control" parent="." unique_id=2113207184]
+custom_minimum_size = Vector2(717, 338)
+layout_mode = 1
+anchor_left = 0.26700002
+anchor_top = 1.0
+anchor_right = 0.91600007
+anchor_bottom = 1.0
+offset_left = -18.320007
+offset_top = -338.0
+offset_right = 75.63995
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 3
+
+[node name="Tablet" type="Sprite2D" parent="DialogueBox" unique_id=1708776814]
+scale = Vector2(0.2539039, 0.2539039)
+texture = ExtResource("4_nvmde")
+centered = false
+
+[node name="TabletText" type="VBoxContainer" parent="DialogueBox" unique_id=898508369]
+z_index = 1024
+custom_minimum_size = Vector2(596, 175)
+layout_mode = 0
+offset_left = 70.0
+offset_top = 154.0
+offset_right = 666.0
+offset_bottom = 329.0
+
+[node name="UpSlashes" type="Label" parent="DialogueBox/TabletText" unique_id=268781088]
+use_parent_material = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_7qleg")
+theme_override_font_sizes/font_size = 24
+text = "-------------------------------------------------------"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DialogueText" type="RichTextLabel" parent="DialogueBox/TabletText" unique_id=1158582117]
+use_parent_material = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("5_7qleg")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "* abnskjdbalfrbeqwiourhbjkbasdoiyfg 
+"
+visible_characters_behavior = 1
+
+[node name="DwonSlashes" type="Label" parent="DialogueBox/TabletText" unique_id=934965338]
+use_parent_material = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_7qleg")
+theme_override_font_sizes/font_size = 24
+text = "-------------------------------------------------------"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="DialogueBox/TabletText/DwonSlashes" unique_id=173120423]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.5
+offset_top = -28.0
+offset_right = 28.5
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("7_eabwu")
+
+[node name="PixelMask" type="PointLight2D" parent="DialogueBox" unique_id=1295378190]
+position = Vector2(368, 238.50002)
+scale = Vector2(0.52090585, 0.2736111)
+blend_mode = 2
+range_z_min = 1024
+range_layer_max = 1
+texture = ExtResource("6_eabwu")
+
+[node name="PortraitRight" type="Control" parent="." unique_id=1156131778]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -453.0
+offset_right = 400.0
+grow_horizontal = 0
+grow_vertical = 0
+metadata/_edit_group_ = true
+
+[node name="RightSprite" type="AnimatedSprite2D" parent="PortraitRight" unique_id=1060759009]
+unique_name_in_owner = true
+position = Vector2(400, 0)
+scale = Vector2(-1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_qujit")
+animation = &"idle"
+centered = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=894061398]

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://s6couxko0gev"]
+
+[ext_resource type="Script" uid="uid://c3l5qnoxsuhmv" path="res://Scripts/Parts/Resources/ItemData.gd" id="1_htjii"]
+[ext_resource type="Texture2D" uid="uid://cg5slg8p6uoq1" path="res://Assets/Sprites/Items/PlaceholderWhip/whip.png" id="2_ek53q"]
+
+[resource]
+script = ExtResource("1_htjii")
+itemType = 3
+itemName = "Placeholder Whip"
+itemDescription = "now watch me whip watch me nae nae"
+spriteTexture = ExtResource("2_ek53q")

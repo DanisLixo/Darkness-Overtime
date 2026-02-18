@@ -1,0 +1,44 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://7y7ha8iq7x7d"]
+
+[ext_resource type="Texture2D" uid="uid://cvvp1umdhm8pp" path="res://Assets/Sprites/Entities/NPC/placeholderNPC/portrait.png" id="1_o5qi2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yq5ds"]
+atlas = ExtResource("1_o5qi2")
+region = Rect2(0, 0, 175, 357)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j14df"]
+atlas = ExtResource("1_o5qi2")
+region = Rect2(350, 0, 175, 357)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aru2q"]
+atlas = ExtResource("1_o5qi2")
+region = Rect2(175, 0, 175, 357)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5j456"]
+atlas = ExtResource("1_o5qi2")
+region = Rect2(0, 0, 175, 357)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yq5ds")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j14df")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aru2q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5j456")
+}],
+"loop": true,
+"name": &"talk",
+"speed": 5.0
+}]

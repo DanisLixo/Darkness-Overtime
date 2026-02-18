@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DialogueText" format=3 uid="uid://cglm5p2bqc3mv"]
+
+[ext_resource type="SpriteFrames" uid="uid://7y7ha8iq7x7d" path="res://new_sprite_frames.tres" id="1_1ivwu"]
+[ext_resource type="Script" uid="uid://k1hia4rojl6b" path="res://Scripts/Parts/Resources/DialogueTextResource.gd" id="1_g5ko2"]
+
+[resource]
+script = ExtResource("1_g5ko2")
+characterName = "placeholder npc"
+portraitSpriteFrames = ExtResource("1_1ivwu")
+portraitRestAnim = "idle"
+portraitTalkAnim = "talk"
+portraitSide = "right"
+text = "voce parece
+bola, venha vo t encinar o jeito do cr7"
+metadata/_custom_type_script = "uid://k1hia4rojl6b"

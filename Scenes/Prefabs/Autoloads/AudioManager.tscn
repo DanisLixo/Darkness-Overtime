@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cb5v0hqgpooap"]
+
+[ext_resource type="Script" uid="uid://cmjnqmstp70bm" path="res://Scripts/Classes/Singletons/AudioManager.gd" id="1_tnwd7"]
+
+[node name="AudioManager" type="Node" unique_id=206454982]
+script = ExtResource("1_tnwd7")
+
+[node name="Music" type="Node" parent="." unique_id=445871491]
+
+[node name="Ambience" type="Node" parent="." unique_id=162995242]
+
+[node name="Sounds" type="Node" parent="." unique_id=1711717474]
+
+[node name="VoiceSounds" type="Node" parent="." unique_id=1232931997]

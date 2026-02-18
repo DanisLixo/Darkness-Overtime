@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://cwroflorm2hd0"]
+
+[ext_resource type="Script" uid="uid://c3l5qnoxsuhmv" path="res://Scripts/Parts/Resources/ItemData.gd" id="1_ie0lo"]
+[ext_resource type="Texture2D" uid="uid://c3uatow0lsfxw" path="res://Assets/Sprites/Items/PlaceholderBurger/burger.png" id="2_mf3b4"]
+
+[resource]
+script = ExtResource("1_ie0lo")
+itemType = 2
+itemName = "Placeholder Burger"
+itemDescription = "chesse burg"
+spriteTexture = ExtResource("2_mf3b4")

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cs50vpgckp73"]
+
+[ext_resource type="Script" uid="uid://cdnxryuvv3lkj" path="res://Scripts/Classes/Singletons/Global.gd" id="1_fyb7y"]
+[ext_resource type="PackedScene" uid="uid://cbk6gw3j7igtb" path="res://Scenes/Prefabs/UI/GameHUD.tscn" id="2_ohhm8"]
+
+[node name="Global" type="Node" unique_id=1103928318]
+script = ExtResource("1_fyb7y")
+
+[node name="GameHud" parent="." unique_id=1094812230 instance=ExtResource("2_ohhm8")]

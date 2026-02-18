@@ -1,0 +1,7 @@
+[gd_resource type="Theme" format=3 uid="uid://dk24wam7jlrr7"]
+
+[ext_resource type="FontFile" uid="uid://eeyl5ctvfhuv" path="res://Assets/ByteBounce.ttf" id="1_kpcpn"]
+
+[resource]
+default_font = ExtResource("1_kpcpn")
+default_font_size = 24
