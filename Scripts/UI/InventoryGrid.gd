@@ -1,4 +1,4 @@
-extends GridContainer
+extends AutoGridContainer
 
 var active := false
 

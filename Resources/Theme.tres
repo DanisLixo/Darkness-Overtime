@@ -1,7 +1,39 @@
 [gd_resource type="Theme" format=3 uid="uid://dk24wam7jlrr7"]
 
 [ext_resource type="FontFile" uid="uid://eeyl5ctvfhuv" path="res://Assets/ByteBounce.ttf" id="1_kpcpn"]
+[ext_resource type="Texture2D" uid="uid://curn8q8jj6r2l" path="res://Assets/Sprites/GUI/Inventory/ScrollIcon.png" id="1_twqg6"]
+[ext_resource type="Texture2D" uid="uid://fviw5vff2xbj" path="res://Assets/Sprites/GUI/Inventory/ScrollBar.png" id="2_vmxg5"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_vmxg5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rij67"]
+texture = ExtResource("1_twqg6")
+texture_margin_top = 12.0
+texture_margin_bottom = 13.0
+expand_margin_left = 9.0
+axis_stretch_horizontal = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f6qpy"]
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource("2_vmxg5")
+texture_margin_left = 10.0
+texture_margin_top = 14.0
+texture_margin_bottom = 14.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
 [resource]
 default_font = ExtResource("1_kpcpn")
 default_font_size = 24
+VScrollBar/icons/decrement = SubResource("ImageTexture_vmxg5")
+VScrollBar/icons/decrement_highlight = SubResource("ImageTexture_vmxg5")
+VScrollBar/icons/decrement_pressed = SubResource("ImageTexture_vmxg5")
+VScrollBar/icons/increment = SubResource("ImageTexture_vmxg5")
+VScrollBar/icons/increment_highlight = SubResource("ImageTexture_vmxg5")
+VScrollBar/icons/increment_pressed = SubResource("ImageTexture_vmxg5")
+VScrollBar/styles/grabber = SubResource("StyleBoxTexture_rij67")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_rij67")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_rij67")
+VScrollBar/styles/scroll = SubResource("StyleBoxTexture_f6qpy")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxTexture_f6qpy")

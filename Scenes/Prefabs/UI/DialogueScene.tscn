@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://445w12fdycr0" path="res://Scripts/Parts/dialogueScene.gd" id="1_782r4"]
 [ext_resource type="Texture2D" uid="uid://bak3mdotyate4" path="res://Assets/Sprites/Entities/Player/Placeholder/portrait.png" id="2_gf8rw"]
 [ext_resource type="Texture2D" uid="uid://ph0xios0mth" path="res://Assets/Sprites/Mario/image.png" id="2_hwakd"]
-[ext_resource type="Texture2D" uid="uid://cmvhrcf1h8tfv" path="res://addons/EasyBlend/Blends/overlay.png" id="3_eabwu"]
+[ext_resource type="Texture2D" uid="uid://jbj3bsld65i5" path="res://addons/EasyBlend/Blends/divide.png" id="3_eabwu"]
 [ext_resource type="Shader" uid="uid://ckcleaebmnjgv" path="res://addons/EasyBlend/EasyBlend.gdshader" id="3_rpc8b"]
 [ext_resource type="Texture2D" uid="uid://cvvp1umdhm8pp" path="res://Assets/Sprites/Entities/NPC/placeholderNPC/portrait.png" id="3_x2xnc"]
 [ext_resource type="Texture2D" uid="uid://cv4aulre111wh" path="res://Assets/Sprites/Mario/DialogueBox.png" id="4_nvmde"]
@@ -261,6 +261,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DialogueText" type="RichTextLabel" parent="DialogueBox/TabletText" unique_id=1158582117]
+unique_name_in_owner = true
 use_parent_material = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -298,8 +299,7 @@ scale = Vector2(0.8, 0.8)
 texture = ExtResource("7_eabwu")
 
 [node name="PixelMask" type="PointLight2D" parent="DialogueBox" unique_id=1295378190]
-position = Vector2(368, 238.50002)
-scale = Vector2(0.52090585, 0.2736111)
+position = Vector2(353, 208)
 blend_mode = 2
 range_z_min = 1024
 range_layer_max = 1
