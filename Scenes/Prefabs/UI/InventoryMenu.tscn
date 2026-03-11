@@ -1,0 +1,361 @@
+[gd_scene format=3 uid="uid://bfkc7meaemb0v"]
+
+[ext_resource type="Script" uid="uid://dgn8r8svimgb0" path="res://Scripts/Classes/UI/InventoryMenu.gd" id="1_cmag8"]
+[ext_resource type="FontFile" uid="uid://df5g7n562vj57" path="res://Assets/Fonts/times.ttf" id="2_lca7n"]
+[ext_resource type="Texture2D" uid="uid://d3xuf7ylx01dj" path="res://Assets/Sprites/UI/Inventory/Buttons/CloseButton.png" id="3_0uq7x"]
+[ext_resource type="Texture2D" uid="uid://dk8khtxf5m0dv" path="res://Assets/Sprites/UI/Inventory/Buttons/Tabs.png" id="4_bfqj1"]
+[ext_resource type="Script" uid="uid://dko5jr5l6equp" path="res://Scripts/UI/Inventory/SectionLabel.gd" id="5_bhx1o"]
+[ext_resource type="Script" uid="uid://bjdnumdvekmw1" path="res://Scripts/UI/Inventory/InventorySection.gd" id="6_rey8a"]
+[ext_resource type="Texture2D" uid="uid://dkltyy3stl1ts" path="res://Assets/Sprites/UI/Inventory/Elements/HPBar.png" id="7_semyp"]
+[ext_resource type="StyleBox" uid="uid://c0pop2juuvpqf" path="res://Resources/UI/Panels/PanelScrollDefault.tres" id="8_oyarv"]
+[ext_resource type="Script" uid="uid://dswphka2i04u" path="res://Scripts/UI/Inventory/InventoryGrid.gd" id="9_3me7l"]
+[ext_resource type="Texture2D" uid="uid://d1ubhebdqr6yp" path="res://Assets/Sprites/UI/Inventory/Panels/PanelDefault.png" id="10_fu2cn"]
+[ext_resource type="Texture2D" uid="uid://bqasmicqlshrs" path="res://Assets/Sprites/UI/Inventory/Panels/InfoBG.png" id="11_glwmw"]
+[ext_resource type="Texture2D" uid="uid://b1jkce2i8icfg" path="res://Assets/Sprites/UI/Inventory/Grid/Items/PlaceholderKey/Portrait.png" id="12_wd73n"]
+[ext_resource type="Script" uid="uid://b5dy67437fhiq" path="res://Scripts/UI/Inventory/WireframeInfo.gd" id="13_8hmr0"]
+[ext_resource type="Texture2D" uid="uid://nidna65o3afu" path="res://Assets/Sprites/UI/Inventory/Elements/Y_Wireframe.png" id="14_kxowu"]
+[ext_resource type="Texture2D" uid="uid://bo87kh25xtqne" path="res://Assets/Sprites/UI/Inventory/Grid/Items/PlaceholderKey/Wireframe.png" id="15_cnnjm"]
+
+[sub_resource type="GDScript" id="GDScript_uu3oj"]
+script/source = "extends Label
+
+func _process(delta: float) -> void:
+	if (visible_ratio < 1.0):
+		visible_ratio += 0.01 / delta
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jm5ca"]
+atlas = ExtResource("4_bfqj1")
+region = Rect2(0, 55, 192, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtu0h"]
+atlas = ExtResource("4_bfqj1")
+region = Rect2(0, 0, 192, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ooq2k"]
+atlas = ExtResource("4_bfqj1")
+region = Rect2(0, 165, 192, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uko4q"]
+atlas = ExtResource("4_bfqj1")
+region = Rect2(0, 110, 192, 55)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jm5ca"]
+texture = ExtResource("10_fu2cn")
+texture_margin_left = 25.0
+texture_margin_top = 36.0
+texture_margin_right = 33.0
+texture_margin_bottom = 36.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uko4q"]
+texture = ExtResource("11_glwmw")
+
+[node name="InventoryMenu" type="Control" unique_id=262914432 node_paths=PackedStringArray("containers", "sectionImages")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cmag8")
+containers = [NodePath("InvSection"), NodePath("ArmSection")]
+sectionImages = [NodePath("Sections/Inv"), NodePath("Sections/Arm")]
+
+[node name="BG" type="ColorRect" parent="." unique_id=1357715744]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12156863, 0.12941177, 0.20784314, 1)
+
+[node name="Label" type="Label" parent="BG" unique_id=746822587]
+self_modulate = Color(0.16470589, 0.1764706, 0.30588236, 0.9098039)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1)
+theme_override_fonts/font = ExtResource("2_lca7n")
+text = "import java.io.FileNotFoundException;
+	import java.io.PrintWriter;
+		public class GenerateDummyCode { 
+			public static void main(String[] args) {  
+				String className = \"Eben\";  
+				String newLine = \"\\n\";  
+				String tab = \"\\t\";  
+				String classStart = \"public class \" + className + \" {\";  String closeBracket = \"}\";  
+				String mainStart = \"public static void main(String[] args) {\";  String dummyContent = \"\";  
+				String temp = null;  
+				int size = 10000;  
+				for (int i = 1; i <= size; i++) {   
+					temp = String.format(\"System.out.println(\\\" %6d .ci satir\\\");\", i);   
+					dummyContent += tab + tab + temp + newLine;  
+				}  
+				String outputCode =   classStart + newLine + newLine +   tab + mainStart + newLine + newLine +  "
+vertical_alignment = 3
+autowrap_mode = 3
+script = SubResource("GDScript_uu3oj")
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=1695616361]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 76.0
+offset_bottom = 72.0
+size_flags_horizontal = 0
+texture_normal = ExtResource("3_0uq7x")
+
+[node name="Sections" type="HBoxContainer" parent="." unique_id=738749437]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 16.0
+offset_right = 512.0
+offset_bottom = 72.0
+theme_override_constants/separation = -4
+
+[node name="Inv" type="TextureRect" parent="Sections" unique_id=791457700]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jm5ca")
+script = ExtResource("5_bhx1o")
+selectedTexture = SubResource("AtlasTexture_jm5ca")
+disabledTexture = SubResource("AtlasTexture_vtu0h")
+
+[node name="Arm" type="TextureRect" parent="Sections" unique_id=100140581]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ooq2k")
+script = ExtResource("5_bhx1o")
+selectedTexture = SubResource("AtlasTexture_ooq2k")
+disabledTexture = SubResource("AtlasTexture_uko4q")
+
+[node name="InvSection" type="Control" parent="." unique_id=1775024125 node_paths=PackedStringArray("inventoryGrid", "itemPortrait", "itemComment", "itemMainInfo")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 11.0
+offset_right = -16.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_rey8a")
+inventoryGrid = NodePath("ItemsInfo/HBoxContainer/PanelInverntory/ScrollContainer/InvGrid")
+itemPortrait = NodePath("ItemsInfo/HBoxContainer/PanelDescription/VBoxContainer/PortraitRect/InvPortrait")
+itemComment = NodePath("ItemsInfo/HBoxContainer/PanelDescription/VBoxContainer/InvMain")
+itemMainInfo = NodePath("ItemsInfo/HBoxContainer/PanelDescription/VBoxContainer/InvDesc")
+metadata/_edit_group_ = true
+
+[node name="ItemsInfo" type="VBoxContainer" parent="InvSection" unique_id=1279785096]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="Control" type="Control" parent="InvSection/ItemsInfo" unique_id=1207325208]
+custom_minimum_size = Vector2(496, 56)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="InvSection/ItemsInfo/Control" unique_id=1985344125]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -295.0
+offset_right = -2.0
+offset_bottom = 5.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("7_semyp")
+stretch_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InvSection/ItemsInfo" unique_id=882902175]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PanelInverntory" type="PanelContainer" parent="InvSection/ItemsInfo/HBoxContainer" unique_id=1664208156]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("8_oyarv")
+metadata/_edit_group_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="InvSection/ItemsInfo/HBoxContainer/PanelInverntory" unique_id=378711091]
+layout_mode = 2
+follow_focus = true
+
+[node name="InvGrid" type="GridContainer" parent="InvSection/ItemsInfo/HBoxContainer/PanelInverntory/ScrollContainer" unique_id=2093114840]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 5
+script = ExtResource("9_3me7l")
+itemsAccepted = Array[int]([0, 2])
+
+[node name="PanelDescription" type="PanelContainer" parent="InvSection/ItemsInfo/HBoxContainer" unique_id=1189063012]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_jm5ca")
+metadata/_edit_group_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InvSection/ItemsInfo/HBoxContainer/PanelDescription" unique_id=2026058926]
+layout_mode = 2
+
+[node name="PortraitRect" type="PanelContainer" parent="InvSection/ItemsInfo/HBoxContainer/PanelDescription/VBoxContainer" unique_id=2137948607]
+custom_minimum_size = Vector2(238, 163)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_uko4q")
+
+[node name="InvPortrait" type="TextureRect" parent="InvSection/ItemsInfo/HBoxContainer/PanelDescription/VBoxContainer/PortraitRect" unique_id=559839326]
+layout_mode = 2
+texture = ExtResource("12_wd73n")
+stretch_mode = 3
+
+[node name="InvMain" type="Label" parent="InvSection/ItemsInfo/HBoxContainer/PanelDescription/VBoxContainer" unique_id=255170592]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 32
+autowrap_mode = 3
+
+[node name="InvDesc" type="Label" parent="InvSection/ItemsInfo/HBoxContainer/PanelDescription/VBoxContainer" unique_id=131677644]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 32
+autowrap_mode = 3
+
+[node name="ArmSection" type="Control" parent="." unique_id=655551880 node_paths=PackedStringArray("inventoryGrid", "itemPortrait", "itemComment", "itemMainInfo")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 11.0
+offset_right = -16.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_rey8a")
+inventoryGrid = NodePath("ItemsInfo/PanelInverntory/ScrollContainer/ArmGrid")
+itemPortrait = NodePath("ItemsInfo/PanelDescription/VBoxContainer/MainItemInfo/PortraitRect/ArmPortrait")
+itemComment = NodePath("ItemsInfo/PanelDescription/VBoxContainer/MainItemInfo/ArmMain")
+itemMainInfo = NodePath("ItemsInfo/PanelDescription/VBoxContainer/ArmDesc")
+metadata/_edit_group_ = true
+
+[node name="ItemsInfo" type="VBoxContainer" parent="ArmSection" unique_id=441416640]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 588.0
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="Control" type="Control" parent="ArmSection/ItemsInfo" unique_id=1754997967]
+custom_minimum_size = Vector2(496, 56)
+layout_mode = 2
+
+[node name="PanelInverntory" type="PanelContainer" parent="ArmSection/ItemsInfo" unique_id=1970962021]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("8_oyarv")
+metadata/_edit_group_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ArmSection/ItemsInfo/PanelInverntory" unique_id=2041070435]
+layout_mode = 2
+follow_focus = true
+
+[node name="ArmGrid" type="GridContainer" parent="ArmSection/ItemsInfo/PanelInverntory/ScrollContainer" unique_id=1656871664]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 3
+focus_behavior_recursive = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 5
+script = ExtResource("9_3me7l")
+itemsAccepted = Array[int]([1, 3])
+
+[node name="PanelDescription" type="PanelContainer" parent="ArmSection/ItemsInfo" unique_id=165375875]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_jm5ca")
+metadata/_edit_group_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ArmSection/ItemsInfo/PanelDescription" unique_id=1464144671]
+layout_mode = 2
+
+[node name="MainItemInfo" type="HBoxContainer" parent="ArmSection/ItemsInfo/PanelDescription/VBoxContainer" unique_id=300673600]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="PortraitRect" type="PanelContainer" parent="ArmSection/ItemsInfo/PanelDescription/VBoxContainer/MainItemInfo" unique_id=511436123]
+custom_minimum_size = Vector2(238, 163)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_uko4q")
+
+[node name="ArmPortrait" type="TextureRect" parent="ArmSection/ItemsInfo/PanelDescription/VBoxContainer/MainItemInfo/PortraitRect" unique_id=143728269]
+layout_mode = 2
+texture = ExtResource("12_wd73n")
+stretch_mode = 3
+
+[node name="ArmMain" type="Label" parent="ArmSection/ItemsInfo/PanelDescription/VBoxContainer/MainItemInfo" unique_id=1263801549]
+custom_minimum_size = Vector2(284, 163)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+autowrap_mode = 3
+
+[node name="ArmDesc" type="Label" parent="ArmSection/ItemsInfo/PanelDescription/VBoxContainer" unique_id=2056854060]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 32
+autowrap_mode = 3
+
+[node name="WireframeInfo" type="Control" parent="ArmSection" unique_id=347744575 node_paths=PackedStringArray("invSection")]
+custom_minimum_size = Vector2(295, 604)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("13_8hmr0")
+invSection = NodePath("..")
+
+[node name="Wireframe" type="TextureRect" parent="ArmSection/WireframeInfo" unique_id=936641841]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14_kxowu")
+stretch_mode = 3
+
+[node name="PlaceholderKey" type="TextureRect" parent="ArmSection/WireframeInfo/Wireframe" unique_id=1176977658]
+layout_mode = 0
+offset_left = -9.0
+offset_top = 188.0
+offset_right = 105.0
+offset_bottom = 226.0
+texture = ExtResource("15_cnnjm")
+
+[connection signal="button_up" from="TextureButton" to="." method="close"]
+[connection signal="pressed" from="TextureButton" to="." method="close"]

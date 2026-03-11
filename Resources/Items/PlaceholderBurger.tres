@@ -1,11 +1,15 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://cwroflorm2hd0"]
 
-[ext_resource type="Script" uid="uid://c3l5qnoxsuhmv" path="res://Scripts/Parts/Resources/ItemData.gd" id="1_ie0lo"]
-[ext_resource type="Texture2D" uid="uid://c3uatow0lsfxw" path="res://Assets/Sprites/Items/PlaceholderBurger/burger.png" id="2_mf3b4"]
+[ext_resource type="Script" uid="uid://c3l5qnoxsuhmv" path="res://Scripts/Parts/Items/ItemData.gd" id="1_ie0lo"]
+[ext_resource type="Texture2D" uid="uid://bhc6ohkoyqdk8" path="res://Assets/Sprites/UI/Inventory/Grid/Items/PlaceholderBurger/Portrait.png" id="2_1qp8e"]
+[ext_resource type="Texture2D" uid="uid://dy8ofnetytmfk" path="res://Assets/Sprites/UI/Inventory/Grid/Items/PlaceholderBurger/Icon.png" id="2_mf3b4"]
 
 [resource]
 script = ExtResource("1_ie0lo")
 itemType = 2
 itemName = "Placeholder Burger"
-itemDescription = "chesse burg"
+itemDescription = "chesse burg! Bad to eat, but better than nothing."
+itemComment = "\"Terrible to look at, terrible to smell, terrible to have. But even then, there will be someone to eat it.\""
+itemStats = Array[String](["+2 Stamina", "+2 Health"])
 spriteTexture = ExtResource("2_mf3b4")
+spritePortrait = ExtResource("2_1qp8e")

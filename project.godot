@@ -16,9 +16,10 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="RPG GAMES"
 config/tags=PackedStringArray("amigos")
-run/main_scene="uid://bmgniaenpud7h"
+run/main_scene="uid://dveck2oh8mngv"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+run/default_filters/use_nearest_mipmap_filter=false
 
 [autoload]
 
@@ -80,7 +81,6 @@ window/size/viewport_width=960
 window/size/viewport_height=720
 window/size/initial_position_type=4
 window/stretch/mode="viewport"
-window/stretch/aspect="expand"
 
 [global_group]
 
@@ -161,5 +161,6 @@ toggle_inventory={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/default_filters/use_nearest_mipmap_filter=true
 anti_aliasing/quality/msaa_2d=1
 anti_aliasing/quality/use_taa=true

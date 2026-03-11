@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://c11yowsdwbpe3"]
 
-[ext_resource type="Script" uid="uid://c55oergbnbj84" path="res://Scripts/Prefabs/Entities/NPC.gd" id="1_s21p0"]
+[ext_resource type="Script" uid="uid://c55oergbnbj84" path="res://Scripts/Classes/Entities/NPC.gd" id="1_s21p0"]
 [ext_resource type="Script" uid="uid://d3h5v51k4ds7" path="res://Scripts/Classes/States/StateMachine.gd" id="2_q181b"]
 [ext_resource type="Script" uid="uid://bxd23uucghluo" path="res://Scripts/Parts/States/State.gd" id="3_s21p0"]
-[ext_resource type="Texture2D" uid="uid://dl1yxec0krjlf" path="res://Assets/Sprites/Entities/NPC/placeholderNPC/front.png" id="4_t7phd"]
-[ext_resource type="Script" uid="uid://7qb8tawv0n5e" path="res://Scripts/Parts/NPCDialogueNode.gd" id="5_s21p0"]
+[ext_resource type="Texture2D" uid="uid://dl1yxec0krjlf" path="res://Assets/Sprites/Entities/Characters/NPCs/PlaceholderNPC/front.png" id="4_t7phd"]
+[ext_resource type="Script" uid="uid://7qb8tawv0n5e" path="res://Scripts/Parts/Dialogue/NPCDialogueNode.gd" id="5_s21p0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s21p0"]
 atlas = ExtResource("4_t7phd")

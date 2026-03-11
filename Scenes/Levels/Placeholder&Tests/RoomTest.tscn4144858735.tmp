@@ -1,0 +1,160 @@
+[gd_scene format=3 uid="uid://dveck2oh8mngv"]
+
+[ext_resource type="Script" uid="uid://c3884lbnyy7vs" path="res://Scripts/Classes/RoomClass.gd" id="1_ppfii"]
+[ext_resource type="Texture2D" uid="uid://c26bg7uljebfc" path="res://Assets/Sprites/Areas/PlaceholderAlley/BG.png" id="2_h3jov"]
+[ext_resource type="PackedScene" uid="uid://2eawxqo4hirj" path="res://Scenes/Prefabs/Entities/Player.tscn" id="3_5k3li"]
+[ext_resource type="Texture2D" uid="uid://duc7efujrf46x" path="res://Assets/Sprites/Areas/PlaceholderAlley/Elements/LightGlow.png" id="3_oj4wf"]
+[ext_resource type="Texture2D" uid="uid://bndonastfjphg" path="res://Assets/Sprites/Areas/PlaceholderAlley/Elements/players-shadow.png" id="4_4qnnl"]
+[ext_resource type="Shader" uid="uid://d2br60t128v5r" path="res://Resources/Shaders/rain_and_snow_shader.gdshader" id="5_5k3li"]
+[ext_resource type="Script" uid="uid://dt25ajgrpbigq" path="res://Scripts/Classes/Objects/PlayerSpawnPoint.gd" id="5_rik5d"]
+[ext_resource type="Texture2D" uid="uid://d0s12dlc3emeu" path="res://Assets/Sprites/Areas/PlaceholderAlley/Elements/overlay.png" id="6_lykwo"]
+[ext_resource type="Script" uid="uid://cot0kgpaifnry" path="res://Scripts/Classes/Objects/RoomArea2d.gd" id="6_oj4wf"]
+[ext_resource type="Texture2D" uid="uid://bu2nsejgf8ue6" path="res://Assets/Sprites/Areas/PlaceholderAlley/Parallax/CloudsBackdrop.png" id="8_ju0q8"]
+[ext_resource type="Texture2D" uid="uid://21m8n2guiugi" path="res://Assets/Sprites/Areas/PlaceholderAlley/Parallax/FogClouds.png" id="10_4qnnl"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ju0q8"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_824ii"]
+blend_mode = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ju0q8"]
+atlas = ExtResource("4_4qnnl")
+region = Rect2(0, 0, 381, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xdkoj"]
+atlas = ExtResource("4_4qnnl")
+region = Rect2(0, 222, 381, 222)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_16ags"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ju0q8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xdkoj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lykwo"]
+size = Vector2(1366, 51)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_oj4wf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jvrox"]
+shader = ExtResource("5_5k3li")
+shader_parameter/rain_amount = 200.0
+shader_parameter/near_rain_length = 0.09800000395648
+shader_parameter/far_rain_length = 0.21500000951398
+shader_parameter/near_rain_width = 0.58000002429012
+shader_parameter/far_rain_width = 0.32200001203511996
+shader_parameter/near_rain_transparency = 0.10000000149012
+shader_parameter/far_rain_transparency = 0.5
+shader_parameter/rain_color = Color(0.2784314, 0, 0.93333334, 0.2784314)
+shader_parameter/base_rain_speed = 0.66900002851762
+shader_parameter/additional_rain_speed = 1.0
+shader_parameter/slant = -0.2649999650875
+
+[node name="RoomTest" type="Node" unique_id=1223702011]
+script = ExtResource("1_ppfii")
+cameraLimits = Vector2i(1203, 854)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1663940655]
+texture = ExtResource("2_h3jov")
+centered = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D" unique_id=1521149481]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite2D/StaticBody2D" unique_id=1258501650]
+polygon = PackedVector2Array(163, 1002, 161, 676, 246, 670, 255, 536, 158, 536, 161, 383, 252, 311, 280, -44, -5, -37, -6, 1002)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Sprite2D/StaticBody2D" unique_id=510916246]
+polygon = PackedVector2Array(1008, -21, 962, 197, 1102, 215, 1104, 325, 996, 325, 996, 583, 1104, 587, 1101, 995, 1243, 995, 1258, -28)
+
+[node name="LightGlow" type="Sprite2D" parent="Sprite2D" unique_id=1335597495]
+material = SubResource("CanvasItemMaterial_ju0q8")
+position = Vector2(1013, 179)
+scale = Vector2(0.82, 0.82)
+texture = ExtResource("3_oj4wf")
+
+[node name="Player" parent="." unique_id=2027798040 instance=ExtResource("3_5k3li")]
+position = Vector2(606, 434)
+
+[node name="Shadow" type="AnimatedSprite2D" parent="Player" unique_id=2112155484]
+self_modulate = Color(1, 1, 1, 0.627451)
+material = SubResource("CanvasItemMaterial_824ii")
+position = Vector2(0, 52)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_16ags")
+autoplay = "default"
+offset = Vector2(-140, -94)
+
+[node name="AreaPoints" type="Node" parent="." unique_id=1327702808]
+
+[node name="RoomExit" type="Area2D" parent="AreaPoints" unique_id=235170919]
+position = Vector2(606, -160)
+collision_layer = 0
+script = ExtResource("6_oj4wf")
+roomToGo = "uid://dveck2oh8mngv"
+enterID = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaPoints/RoomExit" unique_id=570311332]
+shape = SubResource("RectangleShape2D_lykwo")
+
+[node name="RoomEnter" type="Area2D" parent="AreaPoints" unique_id=119438232]
+position = Vector2(606, 1007)
+collision_layer = 0
+script = ExtResource("6_oj4wf")
+roomToGo = "uid://bmgniaenpud7h"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaPoints/RoomEnter" unique_id=216640728]
+shape = SubResource("RectangleShape2D_lykwo")
+
+[node name="PlayerSpawnPointExiting" type="Node2D" parent="AreaPoints" unique_id=1111464597]
+position = Vector2(606, 52)
+script = ExtResource("5_rik5d")
+
+[node name="PlayerSpawnPointEntering" type="Node2D" parent="AreaPoints" unique_id=195003007]
+position = Vector2(606, 801)
+script = ExtResource("5_rik5d")
+pointID = 1
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1714613371]
+z_index = 11
+repeat_size = Vector2(3000, 50000)
+autoscroll = Vector2(16, 0)
+follow_viewport = false
+
+[node name="Fog" type="Sprite2D" parent="Parallax2D" unique_id=757945713]
+material = SubResource("CanvasItemMaterial_oj4wf")
+position = Vector2(552, 354)
+texture = ExtResource("10_4qnnl")
+
+[node name="BackDrop" type="Sprite2D" parent="Parallax2D/Fog" unique_id=1927079143]
+position = Vector2(0, 80)
+texture = ExtResource("8_ju0q8")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=691379720]
+layer = 127
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=2133990916]
+material = SubResource("ShaderMaterial_jvrox")
+offset_left = -358.0
+offset_top = -229.0
+offset_right = 1512.0
+offset_bottom = 938.0
+color = Color(1, 1, 1, 0)
+metadata/_edit_lock_ = true
+
+[node name="LevelOverlay" type="PointLight2D" parent="CanvasLayer" unique_id=1127308926]
+position = Vector2(606, 434)
+blend_mode = 2
+texture = ExtResource("6_lykwo")
+metadata/_edit_lock_ = true
+
+[connection signal="area_entered" from="AreaPoints/RoomExit" to="AreaPoints/RoomExit" method="on_player_pass"]
+[connection signal="area_entered" from="AreaPoints/RoomEnter" to="AreaPoints/RoomEnter" method="on_player_pass"]

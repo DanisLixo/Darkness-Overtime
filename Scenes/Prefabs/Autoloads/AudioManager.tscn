@@ -5,10 +5,10 @@
 [node name="AudioManager" type="Node" unique_id=206454982]
 script = ExtResource("1_tnwd7")
 
-[node name="Music" type="Node" parent="." unique_id=445871491]
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=2078002896]
+bus = &"Music"
 
-[node name="Ambience" type="Node" parent="." unique_id=162995242]
+[node name="Ambience" type="AudioStreamPlayer" parent="." unique_id=12331088]
+bus = &"Ambience"
 
 [node name="Sounds" type="Node" parent="." unique_id=1711717474]
-
-[node name="VoiceSounds" type="Node" parent="." unique_id=1232931997]

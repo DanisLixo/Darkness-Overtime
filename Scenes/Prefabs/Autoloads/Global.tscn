@@ -2,8 +2,28 @@
 
 [ext_resource type="Script" uid="uid://cdnxryuvv3lkj" path="res://Scripts/Classes/Singletons/Global.gd" id="1_fyb7y"]
 [ext_resource type="PackedScene" uid="uid://cbk6gw3j7igtb" path="res://Scenes/Prefabs/UI/GameHUD.tscn" id="2_ohhm8"]
+[ext_resource type="Texture2D" uid="uid://cyptratv0uyxe" path="res://Assets/Sprites/cursor.png" id="3_vr65f"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o00oc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_vr65f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Global" type="Node" unique_id=1103928318]
 script = ExtResource("1_fyb7y")
 
 [node name="GameHud" parent="." unique_id=1094812230 instance=ExtResource("2_ohhm8")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GameHud" unique_id=1602552091]
+sprite_frames = SubResource("SpriteFrames_o00oc")
+autoplay = "default"
+centered = false
+offset = Vector2(-3, -3)
+
+[editable path="GameHud"]

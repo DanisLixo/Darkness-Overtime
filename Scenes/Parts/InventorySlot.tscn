@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://061rs1djee2l"]
+
+[ext_resource type="Texture2D" uid="uid://brw46p53p5vw3" path="res://Assets/Sprites/UI/Inventory/Grid/GridTile.png" id="1_34vkq"]
+[ext_resource type="Script" uid="uid://bbaw8xivjr45r" path="res://Scripts/UI/Inventory/InventorySlot.gd" id="2_ae0wq"]
+[ext_resource type="Texture2D" uid="uid://qvt0hn45qehl" path="res://Assets/Sprites/UI/Inventory/Grid/Items/PlaceholderKey/Icon.png" id="3_ptt16"]
+[ext_resource type="Script" uid="uid://qms6siuk0cho" path="res://Scripts/UI/Inventory/SlotItem.gd" id="4_2kth7"]
+
+[node name="InventorySlot" type="TextureRect" unique_id=1595015124]
+offset_right = 91.0
+offset_bottom = 95.0
+texture = ExtResource("1_34vkq")
+script = ExtResource("2_ae0wq")
+
+[node name="ItemImage" type="TextureRect" parent="." unique_id=1208276064]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -7.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ptt16")
+stretch_mode = 3
+script = ExtResource("4_2kth7")
+metadata/_custom_type_script = "uid://qms6siuk0cho"
+
+[node name="Button" type="Button" parent="." unique_id=881039891]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

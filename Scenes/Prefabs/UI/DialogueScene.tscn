@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://dhdf5yb63opyf"]
 
-[ext_resource type="Script" uid="uid://445w12fdycr0" path="res://Scripts/Parts/dialogueScene.gd" id="1_782r4"]
-[ext_resource type="Texture2D" uid="uid://bak3mdotyate4" path="res://Assets/Sprites/Entities/Player/Placeholder/portrait.png" id="2_gf8rw"]
-[ext_resource type="Texture2D" uid="uid://ph0xios0mth" path="res://Assets/Sprites/Mario/image.png" id="2_hwakd"]
+[ext_resource type="Script" uid="uid://445w12fdycr0" path="res://Scripts/Classes/UI/DialogueSubScene.gd" id="1_782r4"]
+[ext_resource type="Texture2D" uid="uid://bak3mdotyate4" path="res://Assets/Sprites/Entities/Characters/Placeholder/portrait.png" id="2_gf8rw"]
 [ext_resource type="Texture2D" uid="uid://jbj3bsld65i5" path="res://addons/EasyBlend/Blends/divide.png" id="3_eabwu"]
 [ext_resource type="Shader" uid="uid://ckcleaebmnjgv" path="res://addons/EasyBlend/EasyBlend.gdshader" id="3_rpc8b"]
-[ext_resource type="Texture2D" uid="uid://cvvp1umdhm8pp" path="res://Assets/Sprites/Entities/NPC/placeholderNPC/portrait.png" id="3_x2xnc"]
-[ext_resource type="Texture2D" uid="uid://cv4aulre111wh" path="res://Assets/Sprites/Mario/DialogueBox.png" id="4_nvmde"]
-[ext_resource type="FontFile" uid="uid://eeyl5ctvfhuv" path="res://Assets/ByteBounce.ttf" id="5_7qleg"]
-[ext_resource type="Texture2D" uid="uid://cflnl5h6ejo3n" path="res://addons/EasyBlend/DialogueGradient.png" id="5_khwdy"]
-[ext_resource type="Texture2D" uid="uid://bkhlfbusau7td" path="res://Assets/Paint_Layer_1.PNG" id="6_eabwu"]
-[ext_resource type="Texture2D" uid="uid://dpja0a3jdrppo" path="res://Assets/Sprites/Entities/Player/Placeholder/icon.png" id="7_eabwu"]
+[ext_resource type="Texture2D" uid="uid://cvvp1umdhm8pp" path="res://Assets/Sprites/Entities/Characters/NPCs/PlaceholderNPC/portrait.png" id="3_x2xnc"]
+[ext_resource type="Texture2D" uid="uid://cv4aulre111wh" path="res://Assets/Sprites/UI/Dialogue/DialogueBox.png" id="4_nvmde"]
+[ext_resource type="FontFile" uid="uid://eeyl5ctvfhuv" path="res://Assets/Fonts/ByteBounce.ttf" id="5_7qleg"]
+[ext_resource type="Texture2D" uid="uid://csgxw0j6j5kjs" path="res://Assets/Sprites/UI/Dialogue/Gradient.png" id="5_khwdy"]
+[ext_resource type="Texture2D" uid="uid://0mrw0jwsg06j" path="res://Assets/Sprites/UI/Dialogue/FontOverlay.png" id="6_eabwu"]
+[ext_resource type="Texture2D" uid="uid://dpja0a3jdrppo" path="res://Assets/Sprites/Entities/Characters/Placeholder/icon.png" id="7_eabwu"]
+[ext_resource type="StyleBox" uid="uid://cb4c88dyjy3dj" path="res://Resources/UI/Panels/PanelDefault.tres" id="11_eabwu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yxloq"]
 shader = ExtResource("3_rpc8b")
@@ -114,7 +114,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="DialogueScene" type="Control" unique_id=1957221761]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_eabwu"]
+
+[node name="DialogueSubScene" type="Control" unique_id=1957221761]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -132,7 +134,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="Background" unique_id=1148401372]
+[node name="Difference" type="TextureRect" parent="Background" unique_id=1148401372]
 material = SubResource("ShaderMaterial_yxloq")
 layout_mode = 1
 anchors_preset = 15
@@ -144,7 +146,7 @@ texture = ExtResource("6_eabwu")
 expand_mode = 1
 stretch_mode = 1
 
-[node name="Sprite2D" type="TextureRect" parent="Background" unique_id=1203001203]
+[node name="Gradient" type="TextureRect" parent="Background" unique_id=1203001203]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -153,21 +155,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_khwdy")
 expand_mode = 1
-
-[node name="ref" type="Control" parent="." unique_id=1172682414]
-visible = false
-custom_minimum_size = Vector2(1142, 0)
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 0
-grow_vertical = 2
-
-[node name="Image" type="Sprite2D" parent="ref" unique_id=993182886]
-texture = ExtResource("2_hwakd")
-centered = false
 
 [node name="InfoPanel" type="PanelContainer" parent="." unique_id=1317508410]
 custom_minimum_size = Vector2(0, 75)
@@ -196,6 +183,7 @@ self_modulate = Color(0.15294118, 0.15686275, 0.19215687, 0.7490196)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
+theme_override_fonts/bold_font = ExtResource("5_7qleg")
 theme_override_font_sizes/bold_font_size = 36
 bbcode_enabled = true
 text = "[b]Linux boot sequence Zeis Jul 16th, 2015 4,102 0 NeverAddcomment Not a member of Pastebin yet? Sign Up, it unlocks many cool features![b]"
@@ -211,10 +199,12 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
+offset_left = -403.0
 offset_top = -473.0
-offset_right = 400.0
+offset_right = -3.0
 grow_vertical = 0
 size_flags_horizontal = 4
+metadata/_edit_group_ = true
 
 [node name="LeftSprite" type="AnimatedSprite2D" parent="PortraitLeft" unique_id=1455681998]
 unique_name_in_owner = true
@@ -223,19 +213,43 @@ sprite_frames = SubResource("SpriteFrames_ma3ox")
 animation = &"idle"
 centered = false
 
+[node name="PortraitRight" type="Control" parent="." unique_id=1156131778]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -453.0
+offset_right = 400.0
+grow_horizontal = 0
+grow_vertical = 0
+metadata/_edit_group_ = true
+
+[node name="RightSprite" type="AnimatedSprite2D" parent="PortraitRight" unique_id=1060759009]
+unique_name_in_owner = true
+position = Vector2(400, 0)
+scale = Vector2(-1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_qujit")
+animation = &"idle"
+centered = false
+
 [node name="DialogueBox" type="Control" parent="." unique_id=2113207184]
 custom_minimum_size = Vector2(717, 338)
 layout_mode = 1
-anchor_left = 0.26700002
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 0.91600007
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -18.320007
-offset_top = -338.0
-offset_right = 75.63995
-grow_horizontal = 0
+offset_left = -358.5
+offset_right = 358.5
+offset_bottom = 338.0
+grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 3
+metadata/_edit_group_ = true
 
 [node name="Tablet" type="Sprite2D" parent="DialogueBox" unique_id=1708776814]
 scale = Vector2(0.2539039, 0.2539039)
@@ -254,6 +268,7 @@ offset_bottom = 329.0
 [node name="UpSlashes" type="Label" parent="DialogueBox/TabletText" unique_id=268781088]
 use_parent_material = true
 layout_mode = 2
+theme_override_colors/font_color = Color(0.5743041, 0.5210461, 1, 1)
 theme_override_fonts/font = ExtResource("5_7qleg")
 theme_override_font_sizes/font_size = 24
 text = "-------------------------------------------------------"
@@ -265,8 +280,9 @@ unique_name_in_owner = true
 use_parent_material = true
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_fonts/normal_font = ExtResource("5_7qleg")
-theme_override_font_sizes/normal_font_size = 24
+theme_override_colors/default_color = Color(0.57254905, 0.52156866, 1, 1)
+theme_override_colors/font_outline_color = Color(0.05940468, 5.781105e-05, 0.1917651, 1)
+theme_override_constants/outline_size = 8
 bbcode_enabled = true
 text = "* abnskjdbalfrbeqwiourhbjkbasdoiyfg 
 "
@@ -275,6 +291,7 @@ visible_characters_behavior = 1
 [node name="DwonSlashes" type="Label" parent="DialogueBox/TabletText" unique_id=934965338]
 use_parent_material = true
 layout_mode = 2
+theme_override_colors/font_color = Color(0.5743041, 0.5210461, 1, 1)
 theme_override_fonts/font = ExtResource("5_7qleg")
 theme_override_font_sizes/font_size = 24
 text = "-------------------------------------------------------"
@@ -299,32 +316,39 @@ scale = Vector2(0.8, 0.8)
 texture = ExtResource("7_eabwu")
 
 [node name="PixelMask" type="PointLight2D" parent="DialogueBox" unique_id=1295378190]
-position = Vector2(353, 208)
-blend_mode = 2
+material = SubResource("CanvasItemMaterial_eabwu")
+position = Vector2(363.00003, 330.99997)
 range_z_min = 1024
 range_layer_max = 1
 texture = ExtResource("6_eabwu")
+texture_scale = 0.78
 
-[node name="PortraitRight" type="Control" parent="." unique_id=1156131778]
-custom_minimum_size = Vector2(400, 400)
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -453.0
-offset_right = 400.0
-grow_horizontal = 0
-grow_vertical = 0
-metadata/_edit_group_ = true
+[node name="ChoiceBox" type="PanelContainer" parent="." unique_id=230606284]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 185.0
+offset_right = 788.0
+offset_bottom = 452.0
+theme_override_styles/panel = ExtResource("11_eabwu")
 
-[node name="RightSprite" type="AnimatedSprite2D" parent="PortraitRight" unique_id=1060759009]
-unique_name_in_owner = true
-position = Vector2(400, 0)
-scale = Vector2(-1.5, 1.5)
-sprite_frames = SubResource("SpriteFrames_qujit")
-animation = &"idle"
-centered = false
+[node name="MarginContainer" type="MarginContainer" parent="ChoiceBox" unique_id=1528383468]
+layout_mode = 2
+theme_override_constants/margin_left = 128
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 128
+theme_override_constants/margin_bottom = 64
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=894061398]
+[node name="VBoxContainer" type="VBoxContainer" parent="ChoiceBox/MarginContainer" unique_id=425561455]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="ChoiceBox/MarginContainer/VBoxContainer" unique_id=627211063]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button2" type="Button" parent="ChoiceBox/MarginContainer/VBoxContainer" unique_id=2141508105]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DialogueSounds" type="AudioStreamPlayer" parent="." unique_id=894061398]
+bus = &"VoiceSounds"
