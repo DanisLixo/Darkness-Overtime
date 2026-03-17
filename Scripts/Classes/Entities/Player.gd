@@ -11,7 +11,7 @@ var RUN_ACCEL := 35.0
 var DECEL := 90.0
 #endregion
 
-@onready var sprite: AnimatedSprite2D = %Sprite
+@onready var sprite: AnimatedSprite2D = $SpriteJoint/Sprite
 @onready var stateMachine: StateMachine = $States
 
 var direction: Vector2i
@@ -65,12 +65,18 @@ func handle_animations() -> void:
 var sprName: String = "idle"
 var directionSprName: String = "front"
 func handle_animation_direction() -> void:
-	if (direction.y == 1):
-		directionSprName = "front"
-	if (direction.y == -1):
-		directionSprName = "back"
+	if (direction.y != 0):
+		sprite.offset.x = 0.0
+		
+		if (direction.y == 1):
+			directionSprName = "front"
+		if (direction.y == -1):
+			directionSprName = "back"
+		sprite.scale.x = direction.y
 	elif (direction.x != 0):
-		directionSprName = "side"
-		sprite.scale.x = -direction.x
-	else:
 		sprite.scale.x = 1
+		sprite.offset.x = 31.0 * (-direction.x)
+		if (direction.x == -1):
+			directionSprName = "left"
+		else:
+			directionSprName = "right"

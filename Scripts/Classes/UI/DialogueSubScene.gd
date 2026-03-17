@@ -83,8 +83,7 @@ func _process(_delta: float) -> void:
 			nextItem = true
 
 func text_resource(res: DialogueText) -> void:
-	var randInt := randi_range(0, res.characterTextSounds.size() - 1)
-	soundManager.stream = res.characterTextSounds[randInt]
+	soundManager.stream = res.characterTextSounds[0]
 	soundManager.volume_db = res.characterTextVolume_db
 
 	var currentPortrait = get(res.portraitSide + "PortraitControl")
@@ -109,6 +108,8 @@ func text_resource(res: DialogueText) -> void:
 			var character: String = textWoutSB[dialogueLabel.visible_characters]
 			dialogueLabel.visible_characters += 1
 			if (character != " "):
+				var randInt := randi_range(0, res.characterTextSounds.size() - 1)
+				soundManager.stream = res.characterTextSounds[randInt]
 				soundManager.pitch_scale = randf_range(res.characterTextPitchLimit[0], res.characterTextPitchLimit[1])
 				soundManager.play()
 			charTimer = 0.0

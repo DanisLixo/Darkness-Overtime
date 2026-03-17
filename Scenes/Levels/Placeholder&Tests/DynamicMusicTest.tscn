@@ -1,0 +1,150 @@
+[gd_scene format=4 uid="uid://wu3aoh3h176"]
+
+[ext_resource type="Script" uid="uid://c3884lbnyy7vs" path="res://Scripts/Classes/RoomClass.gd" id="1_f433h"]
+[ext_resource type="AudioStream" uid="uid://cib6pfvsvl851" path="res://Assets/Audios/BGMs/Tests/mus_star.mp3" id="2_2vgd7"]
+[ext_resource type="Texture2D" uid="uid://boyv1p0ockgvl" path="res://addons/TerrainExample/Terrain/Tileset/Water Background color.png" id="2_kkfpw"]
+[ext_resource type="PackedScene" uid="uid://2eawxqo4hirj" path="res://Scenes/Prefabs/Entities/Player.tscn" id="3_m8au4"]
+[ext_resource type="Script" uid="uid://ce6qp508j3ej6" path="res://Scripts/Classes/Objects/DialogueArea.gd" id="4_l2ob3"]
+[ext_resource type="Script" uid="uid://it8jrs2sdtkn" path="res://Scripts/Parts/Dialogue/Resources/DialogueExportResource.gd" id="5_2vgd7"]
+[ext_resource type="Script" uid="uid://b7c7yfuvorlf2" path="res://Scripts/Parts/Dialogue/Resources/DialogueFunctionResource.gd" id="6_kx477"]
+[ext_resource type="AudioStream" uid="uid://bpvkeo6cy4i6x" path="res://Assets/Audios/BGMs/Tests/mus_enemyApproaching.mp3" id="7_swjk1"]
+[ext_resource type="AudioStream" uid="uid://vywtu5sa2l8b" path="res://Assets/Audios/BGMs/Tests/mus_delugeApproaching.mp3" id="8_rru4e"]
+[ext_resource type="AudioStream" uid="uid://d4diyhyaj2nl5" path="res://Assets/Audios/BGMs/Tests/mus_eruptionApproaching.mp3" id="9_u0at3"]
+[ext_resource type="AudioStream" uid="uid://b240yua4pvown" path="res://Assets/Audios/BGMs/Tests/mus_specialApproaching.mp3" id="10_hj7rn"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4fqrm"]
+resource_name = "Water"
+texture = ExtResource("2_kkfpw")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_l2ob3"]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_4fqrm")
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_u0at3"]
+stream_count = 4
+stream_0/stream = ExtResource("7_swjk1")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("8_rru4e")
+stream_1/volume = 0.0
+stream_2/stream = ExtResource("9_u0at3")
+stream_2/volume = 0.0
+stream_3/stream = ExtResource("10_hj7rn")
+stream_3/volume = 0.0
+
+[sub_resource type="Resource" id="Resource_swjk1"]
+script = ExtResource("6_kx477")
+targetNodePath = NodePath("..")
+funcName = "set_music"
+funcArgs = [SubResource("AudioStreamSynchronized_u0at3")]
+hideDialogueScene = true
+metadata/_custom_type_script = "uid://b7c7yfuvorlf2"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_swjk1"]
+size = Vector2(212, 198)
+
+[sub_resource type="Resource" id="Resource_rru4e"]
+script = ExtResource("6_kx477")
+targetNodePath = NodePath("..")
+funcName = "set_current_sync"
+funcArgs = [0]
+hideDialogueScene = true
+metadata/_custom_type_script = "uid://b7c7yfuvorlf2"
+
+[sub_resource type="Resource" id="Resource_u0at3"]
+script = ExtResource("6_kx477")
+targetNodePath = NodePath("..")
+funcName = "set_current_sync"
+funcArgs = [1]
+hideDialogueScene = true
+metadata/_custom_type_script = "uid://b7c7yfuvorlf2"
+
+[sub_resource type="Resource" id="Resource_hj7rn"]
+script = ExtResource("6_kx477")
+targetNodePath = NodePath("..")
+funcName = "set_current_sync"
+funcArgs = [2]
+hideDialogueScene = true
+metadata/_custom_type_script = "uid://b7c7yfuvorlf2"
+
+[sub_resource type="Resource" id="Resource_818iu"]
+script = ExtResource("6_kx477")
+targetNodePath = NodePath("..")
+funcName = "set_current_sync"
+funcArgs = [3]
+hideDialogueScene = true
+metadata/_custom_type_script = "uid://b7c7yfuvorlf2"
+
+[node name="DynamicMusicTest" type="Node2D" unique_id=435351762]
+script = ExtResource("1_f433h")
+music = ExtResource("2_2vgd7")
+areaGroup = "Template"
+metadata/_custom_type_script = "uid://c3884lbnyy7vs"
+
+[node name="Stage" type="Node" parent="." unique_id=1068326416]
+
+[node name="Water" type="TileMapLayer" parent="Stage" unique_id=1379813905]
+z_index = -1
+tile_map_data = PackedByteArray("AAAZABsAAAAAAAAAAAAaABsAAAAAAAAAAAAbABsAAAAAAAAAAAAcABsAAAAAAAAAAAAdABsAAAAAAAAAAAAeABsAAAAAAAAAAAAfABsAAAAAAAAAAAAgABsAAAAAAAAAAAAhABsAAAAAAAAAAAAhABwAAAAAAAAAAAAgABwAAAAAAAAAAAAfABwAAAAAAAAAAAAeABwAAAAAAAAAAAAdABwAAAAAAAAAAAAcABwAAAAAAAAAAAAbABwAAAAAAAAAAAAaABwAAAAAAAAAAAAZABwAAAAAAAAAAAAYABwAAAAAAAAAAAAXABwAAAAAAAAAAAAWABwAAAAAAAAAAAAVABwAAAAAAAAAAAAUABwAAAAAAAAAAAAUABsAAAAAAAAAAAAVABsAAAAAAAAAAAAWABsAAAAAAAAAAAAXABsAAAAAAAAAAAAYABsAAAAAAAAAAAAiABsAAAAAAAAAAAAiABwAAAAAAAAAAAAjABsAAAAAAAAAAAAjABwAAAAAAAAAAAAkABsAAAAAAAAAAAAkABwAAAAAAAAAAAAlABsAAAAAAAAAAAAlABwAAAAAAAAAAAAmABsAAAAAAAAAAAAmABwAAAAAAAAAAAAnABsAAAAAAAAAAAAnABwAAAAAAAAAAAAoABsAAAAAAAAAAAAoABwAAAAAAAAAAAApABsAAAAAAAAAAAApABwAAAAAAAAAAAAqABsAAAAAAAAAAAAqABwAAAAAAAAAAAArABsAAAAAAAAAAAArABwAAAAAAAAAAAAsABsAAAAAAAAAAAAsABwAAAAAAAAAAAAtABsAAAAAAAAAAAAtABwAAAAAAAAAAAAuABsAAAAAAAAAAAAuABwAAAAAAAAAAAAvABsAAAAAAAAAAAAvABwAAAAAAAAAAAAwABsAAAAAAAAAAAAwABwAAAAAAAAAAAAxABsAAAAAAAAAAAAxABwAAAAAAAAAAAAyABsAAAAAAAAAAAAyABwAAAAAAAAAAAAzABsAAAAAAAAAAAAzABwAAAAAAAAAAAA0ABsAAAAAAAAAAAA0ABwAAAAAAAAAAAA1ABsAAAAAAAAAAAA1ABwAAAAAAAAAAAA2ABsAAAAAAAAAAAA2ABwAAAAAAAAAAAA3ABsAAAAAAAAAAAA3ABwAAAAAAAAAAAA4ABwAAAAAAAAAAAA5ABwAAAAAAAAAAAA4ABsAAAAAAAAAAAA5ABsAAAAAAAAAAAA6ABsAAAAAAAAAAAA6ABwAAAAAAAAAAAA7ABsAAAAAAAAAAAA7ABwAAAAAAAAAAAA8ABsAAAAAAAAAAAA8ABwAAAAAAAAAAAA9ABsAAAAAAAAAAAA9ABwAAAAAAAAAAAA+ABsAAAAAAAAAAAA+ABwAAAAAAAAAAAA/ABsAAAAAAAAAAAA/ABwAAAAAAAAAAABAABsAAAAAAAAAAABAABwAAAAAAAAAAABBABsAAAAAAAAAAABBABwAAAAAAAAAAABCABsAAAAAAAAAAABCABwAAAAAAAAAAABDABsAAAAAAAAAAABDABwAAAAAAAAAAABEABsAAAAAAAAAAABEABwAAAAAAAAAAABFABsAAAAAAAAAAABFABwAAAAAAAAAAABGABsAAAAAAAAAAABGABwAAAAAAAAAAABHABsAAAAAAAAAAABHABwAAAAAAAAAAABIABsAAAAAAAAAAABIABwAAAAAAAAAAABJABsAAAAAAAAAAABJABwAAAAAAAAAAABKABsAAAAAAAAAAABKABwAAAAAAAAAAABLABsAAAAAAAAAAABLABwAAAAAAAAAAAAvABQAAAAAAAAAAAAvABUAAAAAAAAAAAAvABYAAAAAAAAAAAAvABcAAAAAAAAAAAAvABgAAAAAAAAAAAAvABkAAAAAAAAAAAAvABoAAAAAAAAAAAAwABQAAAAAAAAAAAAwABUAAAAAAAAAAAAwABYAAAAAAAAAAAAwABcAAAAAAAAAAAAwABgAAAAAAAAAAAAwABkAAAAAAAAAAAAwABoAAAAAAAAAAAA+ABQAAAAAAAAAAAA+ABUAAAAAAAAAAAA+ABYAAAAAAAAAAAA+ABcAAAAAAAAAAAA+ABgAAAAAAAAAAAA+ABkAAAAAAAAAAAA+ABoAAAAAAAAAAAA/ABQAAAAAAAAAAAA/ABUAAAAAAAAAAAA/ABYAAAAAAAAAAAA/ABcAAAAAAAAAAAA/ABgAAAAAAAAAAAA/ABkAAAAAAAAAAAA/ABoAAAAAAAAAAABKABQAAAAAAAAAAABKABUAAAAAAAAAAABKABYAAAAAAAAAAABKABcAAAAAAAAAAABKABgAAAAAAAAAAABKABkAAAAAAAAAAABKABoAAAAAAAAAAABLABQAAAAAAAAAAABLABUAAAAAAAAAAABLABYAAAAAAAAAAABLABcAAAAAAAAAAABLABgAAAAAAAAAAABLABkAAAAAAAAAAABLABoAAAAAAAAAAAAtAA4AAAAAAAAAAAAtAA8AAAAAAAAAAAAtABAAAAAAAAAAAAAtABEAAAAAAAAAAAAtABIAAAAAAAAAAAAtABMAAAAAAAAAAAAuAA4AAAAAAAAAAAAuAA8AAAAAAAAAAAAuABAAAAAAAAAAAAAuABEAAAAAAAAAAAAuABIAAAAAAAAAAAAuABMAAAAAAAAAAAAvAA4AAAAAAAAAAAAvAA8AAAAAAAAAAAAvABAAAAAAAAAAAAAvABEAAAAAAAAAAAAvABIAAAAAAAAAAAAvABMAAAAAAAAAAAAwAA4AAAAAAAAAAAAwAA8AAAAAAAAAAAAwABAAAAAAAAAAAAAwABEAAAAAAAAAAAAwABIAAAAAAAAAAAAwABMAAAAAAAAAAAAxAA4AAAAAAAAAAAAxAA8AAAAAAAAAAAAxABAAAAAAAAAAAAAxABEAAAAAAAAAAAAxABIAAAAAAAAAAAAxABMAAAAAAAAAAAAyAA4AAAAAAAAAAAAyAA8AAAAAAAAAAAAyABAAAAAAAAAAAAAyABEAAAAAAAAAAAAyABIAAAAAAAAAAAAyABMAAAAAAAAAAAA8AA4AAAAAAAAAAAA8AA8AAAAAAAAAAAA8ABAAAAAAAAAAAAA8ABEAAAAAAAAAAAA8ABIAAAAAAAAAAAA8ABMAAAAAAAAAAAA9AA4AAAAAAAAAAAA9AA8AAAAAAAAAAAA9ABAAAAAAAAAAAAA9ABEAAAAAAAAAAAA9ABIAAAAAAAAAAAA9ABMAAAAAAAAAAAA+AA4AAAAAAAAAAAA+AA8AAAAAAAAAAAA+ABAAAAAAAAAAAAA+ABEAAAAAAAAAAAA+ABIAAAAAAAAAAAA+ABMAAAAAAAAAAAA/AA4AAAAAAAAAAAA/AA8AAAAAAAAAAAA/ABAAAAAAAAAAAAA/ABEAAAAAAAAAAAA/ABIAAAAAAAAAAAA/ABMAAAAAAAAAAABAAA4AAAAAAAAAAABAAA8AAAAAAAAAAABAABAAAAAAAAAAAABAABEAAAAAAAAAAABAABIAAAAAAAAAAABAABMAAAAAAAAAAABBAA4AAAAAAAAAAABBAA8AAAAAAAAAAABBABAAAAAAAAAAAABBABEAAAAAAAAAAABBABIAAAAAAAAAAABBABMAAAAAAAAAAABIAA4AAAAAAAAAAABIAA8AAAAAAAAAAABIABAAAAAAAAAAAABIABEAAAAAAAAAAABIABIAAAAAAAAAAABJAA4AAAAAAAAAAABJAA8AAAAAAAAAAABJABAAAAAAAAAAAABJABEAAAAAAAAAAABJABIAAAAAAAAAAABKAA4AAAAAAAAAAABKAA8AAAAAAAAAAABKABAAAAAAAAAAAABKABEAAAAAAAAAAABKABIAAAAAAAAAAABLAA4AAAAAAAAAAABLAA8AAAAAAAAAAABLABAAAAAAAAAAAABLABEAAAAAAAAAAABLABIAAAAAAAAAAABMAA4AAAAAAAAAAABMAA8AAAAAAAAAAABMABAAAAAAAAAAAABMABEAAAAAAAAAAABMABIAAAAAAAAAAABNAA4AAAAAAAAAAABNAA8AAAAAAAAAAABNABAAAAAAAAAAAABNABEAAAAAAAAAAABNABIAAAAAAAAAAABIABMAAAAAAAAAAABJABMAAAAAAAAAAABKABMAAAAAAAAAAABLABMAAAAAAAAAAABMABMAAAAAAAAAAABNABMAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_l2ob3")
+rendering_quadrant_size = 64
+
+[node name="Player" parent="." unique_id=2027798040 instance=ExtResource("3_m8au4")]
+position = Vector2(1546, 1716)
+
+[node name="SyncAudioSet" type="Area2D" parent="." unique_id=1845260818]
+position = Vector2(3064, 1086)
+script = ExtResource("4_l2ob3")
+activateInstant = true
+dialogue = Array[ExtResource("5_2vgd7")]([SubResource("Resource_swjk1")])
+metadata/_custom_type_script = "uid://ce6qp508j3ej6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SyncAudioSet" unique_id=1259327334]
+shape = SubResource("RectangleShape2D_swjk1")
+debug_color = Color(0.8627451, 0.10980392, 0.39215687, 1)
+
+[node name="SyncAudioSet2" type="Area2D" parent="." unique_id=856406126]
+position = Vector2(4031, 1086)
+script = ExtResource("4_l2ob3")
+activateInstant = true
+dialogue = Array[ExtResource("5_2vgd7")]([SubResource("Resource_rru4e")])
+metadata/_custom_type_script = "uid://ce6qp508j3ej6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SyncAudioSet2" unique_id=1979964061]
+shape = SubResource("RectangleShape2D_swjk1")
+debug_color = Color(0.8627451, 0.10980392, 0.39215687, 1)
+
+[node name="SyncAudioSet3" type="Area2D" parent="." unique_id=1823539751]
+position = Vector2(4806, 1086)
+script = ExtResource("4_l2ob3")
+activateInstant = true
+dialogue = Array[ExtResource("5_2vgd7")]([SubResource("Resource_u0at3")])
+metadata/_custom_type_script = "uid://ce6qp508j3ej6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SyncAudioSet3" unique_id=1661832840]
+shape = SubResource("RectangleShape2D_swjk1")
+debug_color = Color(0.8627451, 0.10980392, 0.39215687, 1)
+
+[node name="SyncAudioSet4" type="Area2D" parent="." unique_id=1722399176]
+position = Vector2(4417, 728)
+script = ExtResource("4_l2ob3")
+activateInstant = true
+dialogue = Array[ExtResource("5_2vgd7")]([SubResource("Resource_hj7rn")])
+metadata/_custom_type_script = "uid://ce6qp508j3ej6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SyncAudioSet4" unique_id=1575959034]
+shape = SubResource("RectangleShape2D_swjk1")
+debug_color = Color(0.8627451, 0.10980392, 0.39215687, 1)
+
+[node name="SyncAudioSet5" type="Area2D" parent="." unique_id=812793152]
+position = Vector2(5198, 728)
+script = ExtResource("4_l2ob3")
+activateInstant = true
+dialogue = Array[ExtResource("5_2vgd7")]([SubResource("Resource_818iu")])
+metadata/_custom_type_script = "uid://ce6qp508j3ej6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SyncAudioSet5" unique_id=230208671]
+shape = SubResource("RectangleShape2D_swjk1")
+debug_color = Color(0.8627451, 0.10980392, 0.39215687, 1)

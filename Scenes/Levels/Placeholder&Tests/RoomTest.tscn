@@ -3,19 +3,33 @@
 [ext_resource type="Script" uid="uid://c3884lbnyy7vs" path="res://Scripts/Classes/RoomClass.gd" id="1_ppfii"]
 [ext_resource type="Texture2D" uid="uid://c26bg7uljebfc" path="res://Assets/Sprites/Areas/PlaceholderAlley/BG.png" id="2_h3jov"]
 [ext_resource type="PackedScene" uid="uid://2eawxqo4hirj" path="res://Scenes/Prefabs/Entities/Player.tscn" id="3_5k3li"]
+[ext_resource type="AudioStream" uid="uid://cib6pfvsvl851" path="res://Assets/Audios/BGMs/Tests/mus_star.mp3" id="3_ju0q8"]
 [ext_resource type="Texture2D" uid="uid://duc7efujrf46x" path="res://Assets/Sprites/Areas/PlaceholderAlley/Elements/LightGlow.png" id="3_oj4wf"]
 [ext_resource type="Texture2D" uid="uid://bndonastfjphg" path="res://Assets/Sprites/Areas/PlaceholderAlley/Elements/players-shadow.png" id="4_4qnnl"]
-[ext_resource type="Shader" uid="uid://d2br60t128v5r" path="res://Resources/Shaders/rain_and_snow_shader.gdshader" id="5_5k3li"]
+[ext_resource type="Shader" uid="uid://d2br60t128v5r" path="res://addons/sprite-shader-mixer/assets/shaders/rain_and_snow_shader.gdshader" id="5_5k3li"]
 [ext_resource type="Script" uid="uid://dt25ajgrpbigq" path="res://Scripts/Classes/Objects/PlayerSpawnPoint.gd" id="5_rik5d"]
 [ext_resource type="Texture2D" uid="uid://d0s12dlc3emeu" path="res://Assets/Sprites/Areas/PlaceholderAlley/Elements/overlay.png" id="6_lykwo"]
 [ext_resource type="Script" uid="uid://cot0kgpaifnry" path="res://Scripts/Classes/Objects/RoomArea2d.gd" id="6_oj4wf"]
 [ext_resource type="Texture2D" uid="uid://bu2nsejgf8ue6" path="res://Assets/Sprites/Areas/PlaceholderAlley/Parallax/CloudsBackdrop.png" id="8_ju0q8"]
 [ext_resource type="Texture2D" uid="uid://21m8n2guiugi" path="res://Assets/Sprites/Areas/PlaceholderAlley/Parallax/FogClouds.png" id="10_4qnnl"]
+[ext_resource type="Shader" uid="uid://c0u3mqkfa7dis" path="res://addons/sprite-shader-mixer/assets/shaders/MapTest.gdshader" id="12_ju0q8"]
+
+[sub_resource type="Gradient" id="Gradient_16ags"]
+offsets = PackedFloat32Array(0, 0.13099998, 0.16799998, 0.24800003, 0.32, 0.417, 0.485, 0.67105263, 1)
+colors = PackedColorArray(0.15686275, 0.06666667, 0.05490196, 1, 0.15294118, 0.15686275, 0.24705882, 1, 0.15686275, 0.2, 0.32941177, 1, 0.13725491, 0.31764707, 0.38431373, 1, 0.26666668, 0.44705883, 0.45882353, 1, 0.42745098, 0.3647059, 0.47058824, 1, 0.79607844, 0.56078434, 0.6039216, 1, 0.79607844, 0.56078434, 0.6039216, 1, 0.88235295, 0.6784314, 0.73333335, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_824ii"]
+gradient = SubResource("Gradient_16ags")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ju0q8"]
+shader = ExtResource("12_ju0q8")
+shader_parameter/gradient = SubResource("GradientTexture1D_824ii")
+shader_parameter/mix_amount = 1.0
+shader_parameter/alpha = 1.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ju0q8"]
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_824ii"]
-blend_mode = 2
+blend_mode = 1
+light_mode = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ju0q8"]
 atlas = ExtResource("4_4qnnl")
@@ -39,8 +53,37 @@ animations = [{
 "speed": 2.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lykwo"]
-size = Vector2(1366, 51)
+[sub_resource type="Gradient" id="Gradient_824ii"]
+interpolation_mode = 2
+colors = PackedColorArray(0, 0.25882354, 1, 1, 0, 0.25882354, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ju0q8"]
+gradient = SubResource("Gradient_824ii")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.2)
+
+[sub_resource type="Shader" id="Shader_824ii"]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform sampler2D gradient: hint_default_black;
+uniform float mix_amount = 1.0;
+uniform float alpha = 1.0;
+
+void fragment() {
+    vec4 input_color = texture(TEXTURE, UV);
+    float greyscale_value = dot(input_color.rgb, vec3(0.299, 0.587, 0.114));
+    vec3 sampled_color = texture(gradient, vec2(greyscale_value, 0.0)).rgb;
+    COLOR.rgb = mix(input_color.rgb, sampled_color, mix_amount);
+    COLOR.a = input_color.a * alpha;
+}   "
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xdkoj"]
+shader = SubResource("Shader_824ii")
+shader_parameter/gradient = SubResource("GradientTexture1D_824ii")
+shader_parameter/mix_amount = 1.0
+shader_parameter/alpha = 0.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_oj4wf"]
 
@@ -49,53 +92,118 @@ shader = ExtResource("5_5k3li")
 shader_parameter/rain_amount = 200.0
 shader_parameter/near_rain_length = 0.09800000395648
 shader_parameter/far_rain_length = 0.21500000951398
-shader_parameter/near_rain_width = 0.58000002429012
-shader_parameter/far_rain_width = 0.32200001203511996
+shader_parameter/near_rain_width = 0.38000001479012
+shader_parameter/far_rain_width = 0.28000001004012
 shader_parameter/near_rain_transparency = 0.10000000149012
 shader_parameter/far_rain_transparency = 0.5
 shader_parameter/rain_color = Color(0.2784314, 0, 0.93333334, 0.2784314)
-shader_parameter/base_rain_speed = 0.66900002851762
+shader_parameter/base_rain_speed = 1.0
 shader_parameter/additional_rain_speed = 1.0
 shader_parameter/slant = -0.2649999650875
 
-[node name="RoomTest" type="Node" unique_id=1223702011]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lykwo"]
+size = Vector2(1366, 51)
+
+[sub_resource type="GDScript" id="GDScript_oj4wf"]
+resource_name = "Test"
+script/source = "extends Node
+
+func _ready() -> void:
+	if (!AudioManager.activeSfxs.has(\"rain_ambience\")):
+		AudioManager.play_global_sfx('rain_ambience', true)
+
+func _exit_tree() -> void:
+	AudioManager.kill_sfx(\"rain_ambience\")
+"
+
+[node name="RoomTest" type="Node2D" unique_id=1744626424]
+material = SubResource("ShaderMaterial_ju0q8")
 script = ExtResource("1_ppfii")
+music = ExtResource("3_ju0q8")
 cameraLimits = Vector2i(1203, 854)
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1663940655]
+[node name="Stage" type="Sprite2D" parent="." unique_id=1663940655]
+z_index = 1
+use_parent_material = true
 texture = ExtResource("2_h3jov")
 centered = false
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D" unique_id=1521149481]
+[node name="Collision" type="StaticBody2D" parent="Stage" unique_id=1521149481]
 visible = false
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite2D/StaticBody2D" unique_id=1258501650]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Stage/Collision" unique_id=1258501650]
 polygon = PackedVector2Array(163, 1002, 161, 676, 246, 670, 255, 536, 158, 536, 161, 383, 252, 311, 280, -44, -5, -37, -6, 1002)
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Sprite2D/StaticBody2D" unique_id=510916246]
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Stage/Collision" unique_id=510916246]
 polygon = PackedVector2Array(1008, -21, 962, 197, 1102, 215, 1104, 325, 996, 325, 996, 583, 1104, 587, 1101, 995, 1243, 995, 1258, -28)
 
-[node name="LightGlow" type="Sprite2D" parent="Sprite2D" unique_id=1335597495]
+[node name="Elements" type="Node" parent="Stage" unique_id=1355439421]
+
+[node name="LightGlow" type="Sprite2D" parent="Stage/Elements" unique_id=1335597495]
 material = SubResource("CanvasItemMaterial_ju0q8")
+use_parent_material = true
 position = Vector2(1013, 179)
 scale = Vector2(0.82, 0.82)
 texture = ExtResource("3_oj4wf")
 
 [node name="Player" parent="." unique_id=2027798040 instance=ExtResource("3_5k3li")]
-position = Vector2(606, 434)
+use_parent_material = true
+position = Vector2(662, 219)
 
 [node name="Shadow" type="AnimatedSprite2D" parent="Player" unique_id=2112155484]
 self_modulate = Color(1, 1, 1, 0.627451)
-material = SubResource("CanvasItemMaterial_824ii")
+z_index = -1
+use_parent_material = true
 position = Vector2(0, 52)
 scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_16ags")
 autoplay = "default"
 offset = Vector2(-140, -94)
 
+[node name="DirectionalLight2D" type="Sprite2D" parent="Player" unique_id=1474743196]
+z_index = -1
+use_parent_material = true
+scale = Vector2(10, 10)
+texture = SubResource("GradientTexture2D_ju0q8")
+
+[node name="LevelOverlay" type="Sprite2D" parent="Player" unique_id=2067018150]
+z_index = 2
+material = SubResource("ShaderMaterial_xdkoj")
+texture = ExtResource("6_lykwo")
+
+[node name="Parallax" type="Parallax2D" parent="." unique_id=1714613371]
+z_index = 11
+use_parent_material = true
+repeat_size = Vector2(3000, 50000)
+autoscroll = Vector2(16, 0)
+repeat_times = 10
+follow_viewport = false
+
+[node name="Fog" type="Sprite2D" parent="Parallax" unique_id=757945713]
+material = SubResource("CanvasItemMaterial_oj4wf")
+use_parent_material = true
+position = Vector2(552, 354)
+texture = ExtResource("10_4qnnl")
+
+[node name="BackDrop" type="Sprite2D" parent="Parallax/Fog" unique_id=1927079143]
+use_parent_material = true
+position = Vector2(0, 80)
+texture = ExtResource("8_ju0q8")
+
+[node name="Rain" type="ColorRect" parent="." unique_id=2133990916]
+z_index = 5
+material = SubResource("ShaderMaterial_jvrox")
+offset_left = -358.0
+offset_top = -229.0
+offset_right = 1512.0
+offset_bottom = 938.0
+color = Color(1, 1, 1, 0)
+metadata/_edit_lock_ = true
+
 [node name="AreaPoints" type="Node" parent="." unique_id=1327702808]
 
 [node name="RoomExit" type="Area2D" parent="AreaPoints" unique_id=235170919]
+visible = false
 position = Vector2(606, -160)
 collision_layer = 0
 script = ExtResource("6_oj4wf")
@@ -109,52 +217,24 @@ shape = SubResource("RectangleShape2D_lykwo")
 position = Vector2(606, 1007)
 collision_layer = 0
 script = ExtResource("6_oj4wf")
-roomToGo = "uid://bmgniaenpud7h"
+roomToGo = "uid://wu3aoh3h176"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaPoints/RoomEnter" unique_id=216640728]
 shape = SubResource("RectangleShape2D_lykwo")
 
 [node name="PlayerSpawnPointExiting" type="Node2D" parent="AreaPoints" unique_id=1111464597]
+visible = false
 position = Vector2(606, 52)
 script = ExtResource("5_rik5d")
 
 [node name="PlayerSpawnPointEntering" type="Node2D" parent="AreaPoints" unique_id=195003007]
+visible = false
 position = Vector2(606, 801)
 script = ExtResource("5_rik5d")
 pointID = 1
 
-[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1714613371]
-z_index = 11
-repeat_size = Vector2(3000, 50000)
-autoscroll = Vector2(16, 0)
-follow_viewport = false
-
-[node name="Fog" type="Sprite2D" parent="Parallax2D" unique_id=757945713]
-material = SubResource("CanvasItemMaterial_oj4wf")
-position = Vector2(552, 354)
-texture = ExtResource("10_4qnnl")
-
-[node name="BackDrop" type="Sprite2D" parent="Parallax2D/Fog" unique_id=1927079143]
-position = Vector2(0, 80)
-texture = ExtResource("8_ju0q8")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=691379720]
-layer = 127
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=2133990916]
-material = SubResource("ShaderMaterial_jvrox")
-offset_left = -358.0
-offset_top = -229.0
-offset_right = 1512.0
-offset_bottom = 938.0
-color = Color(1, 1, 1, 0)
-metadata/_edit_lock_ = true
-
-[node name="LevelOverlay" type="PointLight2D" parent="CanvasLayer" unique_id=1127308926]
-position = Vector2(606, 434)
-blend_mode = 2
-texture = ExtResource("6_lykwo")
-metadata/_edit_lock_ = true
+[node name="RainAmbience" type="Node" parent="." unique_id=1394733887]
+script = SubResource("GDScript_oj4wf")
 
 [connection signal="area_entered" from="AreaPoints/RoomExit" to="AreaPoints/RoomExit" method="on_player_pass"]
 [connection signal="area_entered" from="AreaPoints/RoomEnter" to="AreaPoints/RoomEnter" method="on_player_pass"]

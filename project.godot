@@ -21,12 +21,15 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 run/default_filters/use_nearest_mipmap_filter=false
 
+[audio]
+
+buses/default_bus_layout="uid://b5e7gcnfcl4vr"
+
 [autoload]
 
-AudioManager="*uid://cmjnqmstp70bm"
+AudioManager="*uid://cb5v0hqgpooap"
 Global="*uid://cs50vpgckp73"
 SaveManager="*uid://cx5m8pk6ylogg"
-Dialogic="*uid://ds2q0uclmolvu"
 
 [dialogic]
 
@@ -81,6 +84,10 @@ window/size/viewport_width=960
 window/size/viewport_height=720
 window/size/initial_position_type=4
 window/stretch/mode="viewport"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/sprite-shader-mixer/plugin.cfg")
 
 [global_group]
 

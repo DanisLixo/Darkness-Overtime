@@ -6,6 +6,10 @@ extends Node
 
 var itemsLoad := ["PlaceholderBurger", "PlaceholderWhip", "PlaceholderKey"]
 
+var ambience := "rain"
+
+var currentRoom: RoomClass
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
@@ -16,4 +20,12 @@ func handle_mouse() -> void:
 	mouse.global_position = get_viewport().get_mouse_position()
 
 func transition_to_scene(scene_path: String = "") -> void:
+	if (load(scene_path) == null):
+		printerr("Cena nao encontrada.")
+		return
+	
+	$GameHud/ColorRect.show()
+	$GameHud/AnimationPlayer.play("fade_in")
+	await $GameHud/AnimationPlayer.animation_finished
 	get_tree().change_scene_to_file(scene_path)
+	$GameHud/AnimationPlayer.play_backwards("fade_in")

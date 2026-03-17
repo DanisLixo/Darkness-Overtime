@@ -324,6 +324,7 @@ texture = ExtResource("6_eabwu")
 texture_scale = 0.78
 
 [node name="ChoiceBox" type="PanelContainer" parent="." unique_id=230606284]
+visible = false
 layout_mode = 0
 offset_left = 192.0
 offset_top = 185.0
@@ -351,4 +352,3 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="DialogueSounds" type="AudioStreamPlayer" parent="." unique_id=894061398]
-bus = &"VoiceSounds"
