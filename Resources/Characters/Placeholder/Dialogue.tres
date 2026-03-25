@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="DialogueCharacter" format=3 uid="uid://ck2okgl7e36m8"]
+
+[ext_resource type="Texture2D" uid="uid://cvvp1umdhm8pp" path="res://Assets/Sprites/Entities/Characters/NPCs/PlaceholderNPC/portrait.png" id="1_2hfat"]
+[ext_resource type="Script" uid="uid://ccqoi7mrsfenl" path="res://Scripts/Parts/Dialogue/Resources/Members/DialogueCharacterResource.gd" id="1_t4tm8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48ffa"]
+atlas = ExtResource("1_2hfat")
+region = Rect2(0, 0, 180, 357)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6v3d2"]
+atlas = ExtResource("1_2hfat")
+region = Rect2(0, 0, 180, 357)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5p6m"]
+atlas = ExtResource("1_2hfat")
+region = Rect2(180, 0, 180, 357)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjjfx"]
+atlas = ExtResource("1_2hfat")
+region = Rect2(360, 0, 180, 357)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t4tm8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_48ffa")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6v3d2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5p6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjjfx")
+}],
+"loop": true,
+"name": &"talk",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_t4tm8")
+characterName = "PlaceholderNPC"
+portraitSpriteFrames = SubResource("SpriteFrames_t4tm8")
+metadata/_custom_type_script = "uid://ccqoi7mrsfenl"

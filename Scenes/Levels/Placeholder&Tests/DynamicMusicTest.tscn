@@ -1,16 +1,14 @@
 [gd_scene format=4 uid="uid://wu3aoh3h176"]
 
 [ext_resource type="Script" uid="uid://c3884lbnyy7vs" path="res://Scripts/Classes/RoomClass.gd" id="1_f433h"]
-[ext_resource type="AudioStream" uid="uid://cib6pfvsvl851" path="res://Assets/Audios/BGMs/Tests/mus_star.mp3" id="2_2vgd7"]
 [ext_resource type="Texture2D" uid="uid://boyv1p0ockgvl" path="res://addons/TerrainExample/Terrain/Tileset/Water Background color.png" id="2_kkfpw"]
 [ext_resource type="PackedScene" uid="uid://2eawxqo4hirj" path="res://Scenes/Prefabs/Entities/Player.tscn" id="3_m8au4"]
-[ext_resource type="Script" uid="uid://ce6qp508j3ej6" path="res://Scripts/Classes/Objects/DialogueArea.gd" id="4_l2ob3"]
-[ext_resource type="Script" uid="uid://it8jrs2sdtkn" path="res://Scripts/Parts/Dialogue/Resources/DialogueExportResource.gd" id="5_2vgd7"]
-[ext_resource type="Script" uid="uid://b7c7yfuvorlf2" path="res://Scripts/Parts/Dialogue/Resources/DialogueFunctionResource.gd" id="6_kx477"]
-[ext_resource type="AudioStream" uid="uid://bpvkeo6cy4i6x" path="res://Assets/Audios/BGMs/Tests/mus_enemyApproaching.mp3" id="7_swjk1"]
-[ext_resource type="AudioStream" uid="uid://vywtu5sa2l8b" path="res://Assets/Audios/BGMs/Tests/mus_delugeApproaching.mp3" id="8_rru4e"]
-[ext_resource type="AudioStream" uid="uid://d4diyhyaj2nl5" path="res://Assets/Audios/BGMs/Tests/mus_eruptionApproaching.mp3" id="9_u0at3"]
-[ext_resource type="AudioStream" uid="uid://b240yua4pvown" path="res://Assets/Audios/BGMs/Tests/mus_specialApproaching.mp3" id="10_hj7rn"]
+[ext_resource type="Script" uid="uid://it8jrs2sdtkn" path="res://Scripts/Parts/Dialogue/Resources/Members/DialogueExportResource.gd" id="5_2vgd7"]
+[ext_resource type="Script" uid="uid://1rf3gwnmhi8d" path="res://Scripts/Classes/Objects/CameraLockArea2D.gd" id="11_5cmej"]
+[ext_resource type="PackedScene" uid="uid://c11yowsdwbpe3" path="res://Scenes/Prefabs/Entities/NPC.tscn" id="12_hj7rn"]
+[ext_resource type="Script" uid="uid://01wyspg0cufo" path="res://Scripts/Parts/Dialogue/Resources/Members/DialogueArrayResource.gd" id="13_3er0f"]
+[ext_resource type="Script" uid="uid://k1hia4rojl6b" path="res://Scripts/Parts/Dialogue/Resources/DialogueTextResource.gd" id="14_3er0f"]
+[ext_resource type="Resource" uid="uid://x6lipqhlahux" path="res://Resources/Dialogues/DialogueTest.tres" id="14_5cmej"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4fqrm"]
 resource_name = "Water"
@@ -23,63 +21,43 @@ tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_4fqrm")
 
-[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_u0at3"]
-stream_count = 4
-stream_0/stream = ExtResource("7_swjk1")
-stream_0/volume = 0.0
-stream_1/stream = ExtResource("8_rru4e")
-stream_1/volume = 0.0
-stream_2/stream = ExtResource("9_u0at3")
-stream_2/volume = 0.0
-stream_3/stream = ExtResource("10_hj7rn")
-stream_3/volume = 0.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5cmej"]
+size = Vector2(1907, 1402.5)
 
-[sub_resource type="Resource" id="Resource_swjk1"]
-script = ExtResource("6_kx477")
-targetNodePath = NodePath("..")
-funcName = "set_music"
-funcArgs = [SubResource("AudioStreamSynchronized_u0at3")]
-hideDialogueScene = true
-metadata/_custom_type_script = "uid://b7c7yfuvorlf2"
+[sub_resource type="Resource" id="Resource_5cmej"]
+script = ExtResource("14_3er0f")
+text = "eai?"
+metadata/_custom_type_script = "uid://k1hia4rojl6b"
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_swjk1"]
-size = Vector2(212, 198)
+[sub_resource type="Resource" id="Resource_r5vtf"]
+script = ExtResource("14_3er0f")
+charResourceName = "Placeholder"
+portraitSide = "right"
+text = "eai oq"
+metadata/_custom_type_script = "uid://k1hia4rojl6b"
 
-[sub_resource type="Resource" id="Resource_rru4e"]
-script = ExtResource("6_kx477")
-targetNodePath = NodePath("..")
-funcName = "set_current_sync"
-funcArgs = [0]
-hideDialogueScene = true
-metadata/_custom_type_script = "uid://b7c7yfuvorlf2"
+[sub_resource type="Resource" id="Resource_nw5ts"]
+script = ExtResource("14_3er0f")
+exitOtherSide = false
+text = "ta entao esqueca tudo"
+metadata/_custom_type_script = "uid://k1hia4rojl6b"
 
-[sub_resource type="Resource" id="Resource_u0at3"]
-script = ExtResource("6_kx477")
-targetNodePath = NodePath("..")
-funcName = "set_current_sync"
-funcArgs = [1]
-hideDialogueScene = true
-metadata/_custom_type_script = "uid://b7c7yfuvorlf2"
+[sub_resource type="Resource" id="Resource_l0o1l"]
+script = ExtResource("14_3er0f")
+charResourceName = "Placeholder"
+portraitSide = "right"
+exitOtherSide = false
+text = "oxe tropa"
+characterTextPitchLimit = Array[float]([0.2, 0.6])
+metadata/_custom_type_script = "uid://k1hia4rojl6b"
 
-[sub_resource type="Resource" id="Resource_hj7rn"]
-script = ExtResource("6_kx477")
-targetNodePath = NodePath("..")
-funcName = "set_current_sync"
-funcArgs = [2]
-hideDialogueScene = true
-metadata/_custom_type_script = "uid://b7c7yfuvorlf2"
-
-[sub_resource type="Resource" id="Resource_818iu"]
-script = ExtResource("6_kx477")
-targetNodePath = NodePath("..")
-funcName = "set_current_sync"
-funcArgs = [3]
-hideDialogueScene = true
-metadata/_custom_type_script = "uid://b7c7yfuvorlf2"
+[sub_resource type="Resource" id="Resource_o7ud7"]
+script = ExtResource("13_3er0f")
+array = Array[ExtResource("5_2vgd7")]([SubResource("Resource_5cmej"), SubResource("Resource_r5vtf"), SubResource("Resource_nw5ts"), SubResource("Resource_l0o1l")])
+metadata/_custom_type_script = "uid://01wyspg0cufo"
 
 [node name="DynamicMusicTest" type="Node2D" unique_id=435351762]
 script = ExtResource("1_f433h")
-music = ExtResource("2_2vgd7")
 areaGroup = "Template"
 metadata/_custom_type_script = "uid://c3884lbnyy7vs"
 
@@ -94,57 +72,18 @@ rendering_quadrant_size = 64
 [node name="Player" parent="." unique_id=2027798040 instance=ExtResource("3_m8au4")]
 position = Vector2(1546, 1716)
 
-[node name="SyncAudioSet" type="Area2D" parent="." unique_id=1845260818]
-position = Vector2(3064, 1086)
-script = ExtResource("4_l2ob3")
-activateInstant = true
-dialogue = Array[ExtResource("5_2vgd7")]([SubResource("Resource_swjk1")])
+[node name="CameraLockTest" type="Area2D" parent="." unique_id=70805163]
+position = Vector2(4417, 1463)
+script = ExtResource("11_5cmej")
+easeType = 2
+zoom = Vector2(0.8, 0.8)
 metadata/_custom_type_script = "uid://ce6qp508j3ej6"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SyncAudioSet" unique_id=1259327334]
-shape = SubResource("RectangleShape2D_swjk1")
-debug_color = Color(0.8627451, 0.10980392, 0.39215687, 1)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLockTest" unique_id=1622937023]
+position = Vector2(-1.5, -207.75)
+shape = SubResource("RectangleShape2D_5cmej")
+debug_color = Color(0.4810804, 0.42973724, 0.7331027, 0.5529412)
 
-[node name="SyncAudioSet2" type="Area2D" parent="." unique_id=856406126]
-position = Vector2(4031, 1086)
-script = ExtResource("4_l2ob3")
-activateInstant = true
-dialogue = Array[ExtResource("5_2vgd7")]([SubResource("Resource_rru4e")])
-metadata/_custom_type_script = "uid://ce6qp508j3ej6"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SyncAudioSet2" unique_id=1979964061]
-shape = SubResource("RectangleShape2D_swjk1")
-debug_color = Color(0.8627451, 0.10980392, 0.39215687, 1)
-
-[node name="SyncAudioSet3" type="Area2D" parent="." unique_id=1823539751]
-position = Vector2(4806, 1086)
-script = ExtResource("4_l2ob3")
-activateInstant = true
-dialogue = Array[ExtResource("5_2vgd7")]([SubResource("Resource_u0at3")])
-metadata/_custom_type_script = "uid://ce6qp508j3ej6"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SyncAudioSet3" unique_id=1661832840]
-shape = SubResource("RectangleShape2D_swjk1")
-debug_color = Color(0.8627451, 0.10980392, 0.39215687, 1)
-
-[node name="SyncAudioSet4" type="Area2D" parent="." unique_id=1722399176]
-position = Vector2(4417, 728)
-script = ExtResource("4_l2ob3")
-activateInstant = true
-dialogue = Array[ExtResource("5_2vgd7")]([SubResource("Resource_hj7rn")])
-metadata/_custom_type_script = "uid://ce6qp508j3ej6"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SyncAudioSet4" unique_id=1575959034]
-shape = SubResource("RectangleShape2D_swjk1")
-debug_color = Color(0.8627451, 0.10980392, 0.39215687, 1)
-
-[node name="SyncAudioSet5" type="Area2D" parent="." unique_id=812793152]
-position = Vector2(5198, 728)
-script = ExtResource("4_l2ob3")
-activateInstant = true
-dialogue = Array[ExtResource("5_2vgd7")]([SubResource("Resource_818iu")])
-metadata/_custom_type_script = "uid://ce6qp508j3ej6"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SyncAudioSet5" unique_id=230208671]
-shape = SubResource("RectangleShape2D_swjk1")
-debug_color = Color(0.8627451, 0.10980392, 0.39215687, 1)
+[node name="NPC" parent="." unique_id=249774739 instance=ExtResource("12_hj7rn")]
+position = Vector2(2324, 1543)
+dialogueArray = Array[ExtResource("13_3er0f")]([ExtResource("14_5cmej"), SubResource("Resource_o7ud7")])

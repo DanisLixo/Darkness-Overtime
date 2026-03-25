@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bqld1rdbdmxlg"]
+
+[ext_resource type="VideoStream" uid="uid://b87l82ibv68af" path="res://Assets/Videos/galinhaoo.ogv" id="1_u3bql"]
+
+[node name="VideoPlayer" type="VideoStreamPlayer" unique_id=1843963916]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("1_u3bql")
+autoplay = true
+expand = true

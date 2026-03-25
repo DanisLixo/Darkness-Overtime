@@ -13,6 +13,7 @@ var DECEL := 90.0
 
 @onready var sprite: AnimatedSprite2D = $SpriteJoint/Sprite
 @onready var stateMachine: StateMachine = $States
+@onready var hintText := $HintText
 
 var direction: Vector2i
 
@@ -30,7 +31,15 @@ var can_run := true
 
 var debugging = false
 
-func _process(delta: float) -> void:
+@onready var camera: Camera2D = $Camera
+@onready var cameraHandler: Camera2DHandler = $CameraHandler
+
+func _process(_delta: float) -> void:
+	if (hintText != null):
+		var newText := "move_action"
+		
+		hintText.text = newText.replace(newText, "Z")
+	
 	if (Input.is_action_just_pressed("debug_key")):
 		if (debugging):
 			debugging = false
@@ -55,12 +64,23 @@ func get_input() -> void:
 	keyHold[INPUT.ACTION] = Input.is_action_pressed("move_action")
 	keyHold[INPUT.RUN] = Input.is_action_pressed("move_run")
 
+func lock_camera(toPosition := Vector2.ZERO, tweenTime := 5.0, instant := false, easeType := Tween.EaseType.EASE_OUT, zoom := Vector2(1, 1)) -> void:
+	cameraHandler.lock_current_camera(toPosition, tweenTime, instant, easeType, zoom)
+
+func unlock_camera() -> void:
+	cameraHandler.unlock_camera()
+
 ## Bem simples, neh?
 func handle_animations() -> void:
 	handle_animation_direction()
+	if (stateMachine.state.name == "Freeze"):
+		sprName = "idle"
 	
-	sprite.animation = sprName + "_" + directionSprName
-	sprite.play()
+	var fah = sprite.animation
+	if (fah.contains(sprName)):
+		sprite.animation = sprName + "_" + directionSprName
+	else:
+		sprite.play(sprName + "_" + directionSprName)
 
 var sprName: String = "idle"
 var directionSprName: String = "front"

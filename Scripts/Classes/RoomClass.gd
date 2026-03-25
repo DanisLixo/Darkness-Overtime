@@ -12,7 +12,7 @@ func _ready() -> void:
 	get_viewport().get_camera_2d().limit_right = cameraLimits.x
 	get_viewport().get_camera_2d().limit_bottom = cameraLimits.y
 
-func set_music(newMusic: AudioStream) -> void:
+func set_music(newMusic: AudioStream = null) -> void:
 	AudioManager.stop_all_music()
 	music = newMusic
 	AudioManager.handle_music(0)

@@ -11,6 +11,8 @@ var sfxLibrary := DEFAULT_SFX_LIBRARY.duplicate(true)
 var activeSfxs := {}
 var queuedSfxs := []
 
+var overrideMusic: AudioStream
+
 signal music_beat(idx)
 
 func play_sfx(streamName = "", isAmbience := false, position := Vector2.ZERO, pitch := 1.0, canOverlap := true) -> void:
@@ -75,12 +77,14 @@ func handle_music(delta: float) -> void:
 		#musicPlayer.stream_paused = false
 		if (!musicPlayer.playing):
 			musicPlayer.stream = Global.currentRoom.music
+			if (overrideMusic != null):
+				musicPlayer.stream = overrideMusic
 		if (musicPlayer.stream is AudioStreamSynchronized && !musicPlayer.playing):
 			set_current_used_sync(0, 60)
 		if (!musicPlayer.playing):
 			musicPlayer.play()
 
-func set_current_used_sync(id := 0, stepDec := 0, stepInc := 0, muteOthers := true) -> void:
+func set_current_used_sync(id := 0, stepDec := 0.0, stepInc := 0.0, muteOthers := true) -> void:
 	if (musicPlayer.stream is not AudioStreamSynchronized):
 		return
 	

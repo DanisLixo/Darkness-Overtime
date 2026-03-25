@@ -56,6 +56,9 @@ _data = {
 process_mode = 3
 script = ExtResource("1_fyb7y")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1701419742]
+layer = 127
+
 [node name="GameHud" parent="." unique_id=1094812230 instance=ExtResource("2_ohhm8")]
 
 [node name="GUI" parent="GameHud" index="0" unique_id=262914432]

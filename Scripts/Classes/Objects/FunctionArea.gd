@@ -1,14 +1,10 @@
-class_name DialogueArea2D extends Area2D
+class_name FunctionArea2D extends Area2D
 
 @export var activateInstant: bool
 @export var onlyActivateOnce: bool
 @export var overrideDialoguePosition: bool
 @export var overridePosition: Vector2
-@export var dialogue: DialogueArray
-
-const dialogueSystemScene := preload("res://Scenes/Prefabs/UI/DialogueScene.tscn")
-var dialogueTopPosition := Vector2(160, 48)
-var dialogueBottomPosition := Vector2(160, 192)
+@export var dialogue: Array[ResourceDE]
 
 var playerBodyIn := false
 var alreadyActivated := false
@@ -61,6 +57,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if (onlyActivateOnce && alreadyActivated):
 		return
 	if (body.is_in_group("Players")):
+		body.hintText.show()
 		playerBodyIn = true
 		if (activateInstant):
 			activate_dialogue()

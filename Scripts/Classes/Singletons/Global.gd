@@ -29,3 +29,7 @@ func transition_to_scene(scene_path: String = "") -> void:
 	await $GameHud/AnimationPlayer.animation_finished
 	get_tree().change_scene_to_file(scene_path)
 	$GameHud/AnimationPlayer.play_backwards("fade_in")
+
+func add_dialogue(dialogue) -> void:
+	$CanvasLayer.add_child(dialogue)
+	dialogue.open()

@@ -8,10 +8,10 @@ extends CharacterBody2D
 @export var onlyActivateOnce: bool
 @export var overrideDialoguePosition: bool
 @export var overridePosition: Vector2
-@export var dialogue: Array[ResourceDE]
+@export var dialogueArray: Array[DialogueArray]
 
 var direction: Vector2i
-var timesInteracted := 0
+var interactionIdx := 0
 
 enum INPUT {
 	ACTION,
@@ -25,7 +25,9 @@ var keyHold: Array = [0, 0]
 var character := "Placeholder"
 
 func _process(_delta: float) -> void:
-	z_index = 0 + int(global_position.y > get_tree().get_first_node_in_group("Players").global_position.y)
+	var player = get_tree().get_first_node_in_group("Players")
+	if (player != null):
+		z_index = (player.z_index - 1) + int(global_position.y > player.global_position.y)
 	
 	handle_animations()
 

@@ -6,13 +6,13 @@
 [ext_resource type="AudioStream" uid="uid://cib6pfvsvl851" path="res://Assets/Audios/BGMs/Tests/mus_star.mp3" id="3_ju0q8"]
 [ext_resource type="Texture2D" uid="uid://duc7efujrf46x" path="res://Assets/Sprites/Areas/PlaceholderAlley/Elements/LightGlow.png" id="3_oj4wf"]
 [ext_resource type="Texture2D" uid="uid://bndonastfjphg" path="res://Assets/Sprites/Areas/PlaceholderAlley/Elements/players-shadow.png" id="4_4qnnl"]
-[ext_resource type="Shader" uid="uid://d2br60t128v5r" path="res://addons/sprite-shader-mixer/assets/shaders/rain_and_snow_shader.gdshader" id="5_5k3li"]
+[ext_resource type="Shader" uid="uid://d2br60t128v5r" path="res://Resources/Shaders/rain_and_snow_shader.gdshader" id="5_5k3li"]
 [ext_resource type="Script" uid="uid://dt25ajgrpbigq" path="res://Scripts/Classes/Objects/PlayerSpawnPoint.gd" id="5_rik5d"]
 [ext_resource type="Texture2D" uid="uid://d0s12dlc3emeu" path="res://Assets/Sprites/Areas/PlaceholderAlley/Elements/overlay.png" id="6_lykwo"]
 [ext_resource type="Script" uid="uid://cot0kgpaifnry" path="res://Scripts/Classes/Objects/RoomArea2d.gd" id="6_oj4wf"]
 [ext_resource type="Texture2D" uid="uid://bu2nsejgf8ue6" path="res://Assets/Sprites/Areas/PlaceholderAlley/Parallax/CloudsBackdrop.png" id="8_ju0q8"]
 [ext_resource type="Texture2D" uid="uid://21m8n2guiugi" path="res://Assets/Sprites/Areas/PlaceholderAlley/Parallax/FogClouds.png" id="10_4qnnl"]
-[ext_resource type="Shader" uid="uid://c0u3mqkfa7dis" path="res://addons/sprite-shader-mixer/assets/shaders/MapTest.gdshader" id="12_ju0q8"]
+[ext_resource type="Shader" uid="uid://c0u3mqkfa7dis" path="res://Resources/Shaders/MapTest.gdshader" id="12_ju0q8"]
 
 [sub_resource type="Gradient" id="Gradient_16ags"]
 offsets = PackedFloat32Array(0, 0.13099998, 0.16799998, 0.24800003, 0.32, 0.417, 0.485, 0.67105263, 1)
@@ -151,7 +151,7 @@ use_parent_material = true
 position = Vector2(662, 219)
 
 [node name="Shadow" type="AnimatedSprite2D" parent="Player" unique_id=2112155484]
-self_modulate = Color(1, 1, 1, 0.627451)
+self_modulate = Color(1, 1, 1, 0.4627451)
 z_index = -1
 use_parent_material = true
 position = Vector2(0, 52)

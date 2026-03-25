@@ -2,7 +2,7 @@ extends Control
 
 const buttonScene := null
 
-@export var dialogue: Array[ResourceDE]
+@export var dialogueArray: DialogueArray
 var curDialogueItem := 0
 var nextItem := true
 
@@ -12,7 +12,7 @@ var players: Array[Player]
 var activatorNode: Node
 
 enum ControlState {
-	OUTSIDE = -1, INSIDE = 0, 
+	OUTSIDE, INSIDE
 }
 
 @onready var infoPanel: PanelContainer = $InfoPanel
@@ -21,23 +21,29 @@ var panelState := -1
 @onready var leftPortraitControl: Control = $PortraitLeft
 @onready var leftSprite: AnimatedSprite2D = %LeftSprite
 var leftSideState := ControlState.OUTSIDE
+var leftChanging := false
+var leftPositions := [Vector2(-1000, 71), Vector2(0, 71)]
 
 @onready var rightPortraitControl: Control = $PortraitRight
 @onready var rightSprite: AnimatedSprite2D = %RightSprite
 var rightSideState := ControlState.OUTSIDE
+var rightChanging := false
+var rightPositions := [Vector2(1600, 71), Vector2(1058, 71)]
 
 @onready var dialogueControl: Control = $DialogueBox
 @onready var dialogueLabel: RichTextLabel = %DialogueText
 var boxState := ControlState.OUTSIDE
+var boxChanging := false
+var boxPositions := [Vector2(441.5, 1200), [Vector2(192, 862), Vector2(441.5, 862), Vector2(708, 862)]]
 
 @onready var soundManager := $DialogueSounds
+@onready var dialogue := dialogueArray.array
 
 signal dialogueOpen
 signal dialogueClose
 
 func _ready() -> void:
-	close()
-	
+	global_position = Vector2.ZERO
 	for i in get_tree().get_nodes_in_group("Players"):
 		players.append(i)
 		
@@ -45,8 +51,7 @@ func _ready() -> void:
 		i.stateMachine.change_state("Freeze")
 
 func _process(_delta: float) -> void:
-	# handle_control_states()
-	
+	handle_control_states()
 	if (!active): return
 	
 	if (curDialogueItem == dialogue.size()):
@@ -83,18 +88,24 @@ func _process(_delta: float) -> void:
 			nextItem = true
 
 func text_resource(res: DialogueText) -> void:
-	soundManager.stream = res.characterTextSounds[0]
+	control_set_state("boxState", ControlState.INSIDE)
+	var characterResource: DialogueCharacter = get_character_resource(res.charResourceName)
+	
+	var randInt := randi_range(0, characterResource.characterTextSounds.size() - 1)
+	if (characterResource.characterTextSounds.size() != 0):
+		soundManager.stream = characterResource.characterTextSounds[randInt]
 	soundManager.volume_db = res.characterTextVolume_db
-
+	soundManager.pitch_scale = randf_range(res.characterTextPitchLimit[0], res.characterTextPitchLimit[1])
+	
 	var currentPortrait = get(res.portraitSide + "PortraitControl")
 	var currentPortraitSprite = get(res.portraitSide + "Sprite")
 	
-	update_current_speaker(res, currentPortrait, currentPortraitSprite)
+	update_current_speaker(res, characterResource, currentPortrait, currentPortraitSprite)
 	
 	dialogueLabel.visible_characters = 2
 	dialogueLabel.text = "* " + res.text
 	
-	var textWoutSB = text_without_square_brackets("* " + res.text)
+	var textWoutSB = text_without_square_brackets(dialogueLabel.text)
 	var totalChars := textWoutSB.length()
 	var charTimer: float = 0.0
 	
@@ -108,14 +119,15 @@ func text_resource(res: DialogueText) -> void:
 			var character: String = textWoutSB[dialogueLabel.visible_characters]
 			dialogueLabel.visible_characters += 1
 			if (character != " "):
-				var randInt := randi_range(0, res.characterTextSounds.size() - 1)
-				soundManager.stream = res.characterTextSounds[randInt]
+				randInt = randi_range(0, characterResource.characterTextSounds.size() - 1)
+				if (characterResource.characterTextSounds.size() != 0):
+					soundManager.stream = characterResource.characterTextSounds[randInt]
 				soundManager.pitch_scale = randf_range(res.characterTextPitchLimit[0], res.characterTextPitchLimit[1])
 				soundManager.play()
 			charTimer = 0.0
 	
 		await get_tree().process_frame
-	currentPortraitSprite.play(res.portraitRestAnim)
+	currentPortraitSprite.play(characterResource.animations.idle["name"])
 	
 	await get_tree().create_timer(0.5, false).timeout
 	while true:
@@ -126,13 +138,15 @@ func text_resource(res: DialogueText) -> void:
 				nextItem = true
 
 func choice_resource(res: DialogueChoice) -> void:
+	var characterResource: DialogueCharacter = get_character_resource(res.charResourceName)
+	
 	dialogueLabel.text = res.text
 	dialogueLabel.visible_characters = -1
 	
 	var currentPortrait = get(res.portraitSide + "PortraitControl")
 	var currentPortraitSprite = get(res.portraitSide + "Sprite")
 	
-	update_current_speaker(res, currentPortrait, currentPortraitSprite)
+	update_current_speaker(res, characterResource, res.portraitSide + "PortraitControl", res.portraitSide + "Sprite")
 	
 	# TODO: Node de escolher
 	
@@ -201,18 +215,19 @@ func close(destroy: bool = false) -> void:
 	if (destroy):
 		queue_free()
 
-func update_current_speaker(resource: ResourceDE, control: Control, sprite: AnimatedSprite2D) -> void:
+func update_current_speaker(resource: ResourceDE, character: DialogueCharacter, control: Control, sprite: AnimatedSprite2D) -> void:
 	if (resource == null): return
 	
-	if (control != null):
-		pass
-		# control_set_state(control, ControlState.Inside)
-		# if (resource.exitOtherSide):
-			# control_set_state(control, ControlState.Outside)
+	control_set_state(resource.portraitSide + "SideState", ControlState.INSIDE)
+	if (resource.exitOtherSide):
+		if (resource.portraitSide == "left"):
+			control_set_state("rightSideState", ControlState.OUTSIDE)
+		if (resource.portraitSide == "right"):
+			control_set_state("leftSideState", ControlState.OUTSIDE)
 	
-	if (sprite != null && resource.portraitSpriteFrames != null):
-		sprite.sprite_frames = resource.portraitSpriteFrames
-		sprite.play(resource.portraitTalkAnim)
+	if (sprite != null && character.portraitSpriteFrames != null):
+		sprite.sprite_frames = character.portraitSpriteFrames
+		sprite.play(character.animations.talk["name"])
 
 func text_without_square_brackets(text: String) -> String:
 	var result := ""
@@ -248,3 +263,47 @@ func choice_button_pressed(targetNode: Node, waitSignalName: String) -> void:
 	
 	curDialogueItem += 1
 	nextItem = true
+
+func get_character_resource(resourceName: String = "") -> DialogueCharacter:
+	if (resourceName == ""):
+		resourceName = "Y_character"
+	var path := "res://Resources/Characters/*character/Dialogue.tres"
+	path = path.replace("*character", resourceName)
+	return load(path)
+
+func control_set_state(varName: String, newState: ControlState) -> void:
+	set(varName, newState)
+
+func handle_control_states() -> void:
+	var states := [leftSideState, rightSideState, boxState]
+	var sides := [leftPortraitControl, rightPortraitControl, dialogueControl]
+	var changing := [leftChanging, rightChanging, boxChanging]
+	var positions := [leftPositions, rightPositions, boxPositions]
+	
+	for i in states.size():
+		var state = states[i]
+		var side = sides[i]
+		var pos = positions[i][state]
+		
+		if (state == ControlState.INSIDE && side == dialogueControl):
+			enter_dialogue(side, changing[i], pos)
+			return
+		side_change_position(side, changing[i], pos)
+
+func side_change_position(side: Control, changing: bool = false, positionToGo: Vector2 = Vector2.ZERO, changeY := false) -> void:
+	if (changing):
+		return
+	
+	side.position.x = positionToGo.x
+	if (changeY):
+		side.position.y = positionToGo.y
+
+func enter_dialogue(side: Control, changing: bool = false, positions: Array = []) -> void:
+	var final_position: Vector2 = positions[1]
+	
+	if (leftSideState == ControlState.INSIDE && rightSideState == ControlState.OUTSIDE):
+		final_position = positions[2]
+	if (rightSideState == ControlState.INSIDE && leftSideState == ControlState.OUTSIDE):
+		final_position = positions[0]
+		
+	side_change_position(side, changing, final_position, true)

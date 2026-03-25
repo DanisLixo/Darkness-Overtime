@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://tls1rvf00tvd" path="res://Assets/Sprites/Entities/Characters/Y_Character/LeftWalk.png" id="12_a1d2e"]
 [ext_resource type="Script" uid="uid://bq5qq203jsqon" path="res://Scripts/Parts/StepSounds.gd" id="12_mqpnb"]
 [ext_resource type="Texture2D" uid="uid://bd21bf3hmdtbb" path="res://Assets/Sprites/Entities/Characters/Y_Character/RightWalk.png" id="13_hofol"]
+[ext_resource type="Script" uid="uid://bphirlqi3pugm" path="res://Scripts/Parts/CameraHandler.gd" id="15_f873f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nnfeo"]
 atlas = ExtResource("6_8f1du")
@@ -1007,6 +1008,10 @@ texture = ExtResource("9_c4akn")
 [node name="Camera" type="Camera2D" parent="." unique_id=2053075079]
 limit_left = 0
 limit_top = 0
+position_smoothing_enabled = true
+
+[node name="CameraHandler" type="Node2D" parent="." unique_id=713032123]
+script = ExtResource("15_f873f")
 
 [node name="WallCollision" type="CollisionShape2D" parent="." unique_id=1164538073]
 visible = false
@@ -1032,3 +1037,18 @@ sprite = "run"
 framesToPlay = Array[int]([0])
 prefix = "_running"
 metadata/_custom_type_script = "uid://bq5qq203jsqon"
+
+[node name="HintText" type="Label" parent="." unique_id=1560192000]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -49.0
+offset_top = -120.0
+offset_right = 49.0
+offset_bottom = -75.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 28
+text = "move_action"
+horizontal_alignment = 1
+vertical_alignment = 1

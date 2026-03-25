@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://dhdf5yb63opyf"]
 
 [ext_resource type="Script" uid="uid://445w12fdycr0" path="res://Scripts/Classes/UI/DialogueSubScene.gd" id="1_782r4"]
-[ext_resource type="Texture2D" uid="uid://bak3mdotyate4" path="res://Assets/Sprites/Entities/Characters/Placeholder/portrait.png" id="2_gf8rw"]
 [ext_resource type="Texture2D" uid="uid://jbj3bsld65i5" path="res://addons/EasyBlend/Blends/divide.png" id="3_eabwu"]
 [ext_resource type="Shader" uid="uid://ckcleaebmnjgv" path="res://addons/EasyBlend/EasyBlend.gdshader" id="3_rpc8b"]
 [ext_resource type="Texture2D" uid="uid://cvvp1umdhm8pp" path="res://Assets/Sprites/Entities/Characters/NPCs/PlaceholderNPC/portrait.png" id="3_x2xnc"]
@@ -10,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://csgxw0j6j5kjs" path="res://Assets/Sprites/UI/Dialogue/Gradient.png" id="5_khwdy"]
 [ext_resource type="Texture2D" uid="uid://0mrw0jwsg06j" path="res://Assets/Sprites/UI/Dialogue/FontOverlay.png" id="6_eabwu"]
 [ext_resource type="Texture2D" uid="uid://dpja0a3jdrppo" path="res://Assets/Sprites/Entities/Characters/Placeholder/icon.png" id="7_eabwu"]
+[ext_resource type="Texture2D" uid="uid://bo1mjxofmxkqc" path="res://Assets/Sprites/Entities/Characters/Y_Character/Portraits.png" id="8_khwdy"]
 [ext_resource type="StyleBox" uid="uid://cb4c88dyjy3dj" path="res://Resources/UI/Panels/PanelDefault.tres" id="11_eabwu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yxloq"]
@@ -32,43 +32,36 @@ func _process(delta: float) -> void:
 	position.x -= 1
 "
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_j8qvl"]
-atlas = ExtResource("2_gf8rw")
-region = Rect2(0, 0, 208, 357)
+[sub_resource type="AtlasTexture" id="AtlasTexture_rr6eg"]
+atlas = ExtResource("8_khwdy")
+region = Rect2(0, 0, 438, 686)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_u248v"]
-atlas = ExtResource("2_gf8rw")
-region = Rect2(416, 0, 208, 357)
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vjt7"]
+atlas = ExtResource("8_khwdy")
+region = Rect2(0, 0, 438, 686)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cyctn"]
-atlas = ExtResource("2_gf8rw")
-region = Rect2(208, 0, 208, 357)
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tgq3"]
+atlas = ExtResource("8_khwdy")
+region = Rect2(0, 1372, 438, 686)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dutmy"]
-atlas = ExtResource("2_gf8rw")
-region = Rect2(0, 0, 208, 357)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ma3ox"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_u0cdc"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_j8qvl")
+"texture": SubResource("AtlasTexture_rr6eg")
 }],
-"loop": true,
+"loop": false,
 "name": &"idle",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_u248v")
+"texture": SubResource("AtlasTexture_5vjt7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cyctn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dutmy")
+"texture": SubResource("AtlasTexture_4tgq3")
 }],
-"loop": true,
+"loop": false,
 "name": &"talk",
 "speed": 12.0
 }]
@@ -199,9 +192,9 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = -403.0
-offset_top = -473.0
-offset_right = -3.0
+offset_top = -1015.0
+offset_right = 601.0
+offset_bottom = 114.0
 grow_vertical = 0
 size_flags_horizontal = 4
 metadata/_edit_group_ = true
@@ -209,7 +202,7 @@ metadata/_edit_group_ = true
 [node name="LeftSprite" type="AnimatedSprite2D" parent="PortraitLeft" unique_id=1455681998]
 unique_name_in_owner = true
 scale = Vector2(1.5, 1.5)
-sprite_frames = SubResource("SpriteFrames_ma3ox")
+sprite_frames = SubResource("SpriteFrames_u0cdc")
 animation = &"idle"
 centered = false
 
@@ -221,19 +214,19 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -453.0
-offset_right = 400.0
+offset_left = -400.0
+offset_top = -657.0
 grow_horizontal = 0
 grow_vertical = 0
 metadata/_edit_group_ = true
 
 [node name="RightSprite" type="AnimatedSprite2D" parent="PortraitRight" unique_id=1060759009]
 unique_name_in_owner = true
-position = Vector2(400, 0)
-scale = Vector2(-1.5, 1.5)
+scale = Vector2(2.25, 2.25)
 sprite_frames = SubResource("SpriteFrames_qujit")
 animation = &"idle"
 centered = false
+flip_h = true
 
 [node name="DialogueBox" type="Control" parent="." unique_id=2113207184]
 custom_minimum_size = Vector2(717, 338)
@@ -244,8 +237,8 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -358.5
+offset_top = -338.0
 offset_right = 358.5
-offset_bottom = 338.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 3
@@ -352,3 +345,4 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="DialogueSounds" type="AudioStreamPlayer" parent="." unique_id=894061398]
+bus = &"VS"
