@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="ResourceCS" format=3 uid="uid://cqjmux6njn4eb"]
+
+[ext_resource type="Script" uid="uid://bdae5levkc3vr" path="res://Scripts/Parts/Entities/Resources/CharacterSprites.gd" id="1_qx0nr"]
+[ext_resource type="Texture2D" uid="uid://dl1yxec0krjlf" path="res://Assets/Sprites/Entities/Characters/PlaceholderNPC/front.png" id="1_yxeyg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s21p0"]
+atlas = ExtResource("1_yxeyg")
+region = Rect2(0, 0, 113, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q181b"]
+atlas = ExtResource("1_yxeyg")
+region = Rect2(113, 0, 113, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q42kf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s21p0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q181b")
+}],
+"loop": true,
+"name": &"idle_front",
+"speed": 6.0
+}]
+
+[resource]
+script = ExtResource("1_qx0nr")
+sprite_frames = SubResource("SpriteFrames_q42kf")
+offsets = Array[Vector2]([Vector2(0, 0)])
+global_offset = Vector2(0, 48)
+metadata/_custom_type_script = "uid://bdae5levkc3vr"

@@ -1,4 +1,5 @@
-extends Node2D
+@tool
+extends Node
 class_name RoomClass
 
 @export var music: AudioStream
@@ -12,8 +13,13 @@ func _ready() -> void:
 	get_viewport().get_camera_2d().limit_right = cameraLimits.x
 	get_viewport().get_camera_2d().limit_bottom = cameraLimits.y
 
+func _process(delta: float) -> void:
+	if (Engine.is_editor_hint()):
+		$Player/Camera.limit_right = cameraLimits.x
+		$Player/Camera.limit_bottom = cameraLimits.y
+		$Player/Camera.queue_redraw()
+
 func set_music(newMusic: AudioStream = null) -> void:
-	AudioManager.stop_all_music()
 	music = newMusic
 	AudioManager.handle_music(0)
 

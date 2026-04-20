@@ -1,6 +1,43 @@
 [gd_scene format=3 uid="uid://bqld1rdbdmxlg"]
 
-[ext_resource type="VideoStream" uid="uid://b87l82ibv68af" path="res://Assets/Videos/galinhaoo.ogv" id="1_u3bql"]
+[ext_resource type="VideoStream" uid="uid://hd6iglqtebv5" path="res://Assets/Videos/PlaceholderCutscene.ogv" id="1_u3bql"]
+
+[sub_resource type="GDScript" id="GDScript_ks48y"]
+resource_name = "VIDEO"
+script/source = "extends VideoStreamPlayer
+
+const secondsToAnswer := 2.0
+
+@export var scene_goTo := \"\"
+@onready var label := $Label
+var alphaTween: Tween
+
+var pressedOnce := false
+var timer := secondsToAnswer
+
+func _process(delta: float) -> void:
+	if (Input.is_action_just_pressed(\"ui_accept\")):
+		if (pressedOnce):
+			finish_cutscene()
+		else:
+			if (alphaTween): alphaTween.kill()
+			alphaTween = create_tween()
+			alphaTween.tween_property(label, \"modulate:a\", 1, 0.5)
+			
+			pressedOnce = true
+	if (pressedOnce && timer > 0.0):
+		timer -= delta
+	elif (pressedOnce):
+		if (alphaTween): alphaTween.kill()
+		alphaTween = create_tween()
+		alphaTween.tween_property(label, \"modulate:a\", 0, 0.5)
+		
+		pressedOnce = false
+		timer = secondsToAnswer
+
+func finish_cutscene() -> void:
+	Global.transition_to_scene(scene_goTo)
+"
 
 [node name="VideoPlayer" type="VideoStreamPlayer" unique_id=1843963916]
 anchors_preset = 15
@@ -11,3 +48,16 @@ grow_vertical = 2
 stream = ExtResource("1_u3bql")
 autoplay = true
 expand = true
+bus = &"SFX"
+script = SubResource("GDScript_ks48y")
+scene_goTo = "res://Scenes/Levels/Placeholder&Tests/RoomTest.tscn"
+
+[node name="Label" type="Label" parent="." unique_id=533021168]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 17.0
+theme_override_font_sizes/font_size = 80
+text = "Aperta Enter de novo pra pular..."
+
+[connection signal="finished" from="." to="." method="finish_cutscene"]

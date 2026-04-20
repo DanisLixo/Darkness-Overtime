@@ -1,8 +1,23 @@
 [gd_resource type="Resource" script_class="DialogueArray" format=3 uid="uid://x6lipqhlahux"]
 
 [ext_resource type="Script" uid="uid://it8jrs2sdtkn" path="res://Scripts/Parts/Dialogue/Resources/Members/DialogueExportResource.gd" id="1_btusd"]
-[ext_resource type="Script" uid="uid://01wyspg0cufo" path="res://Scripts/Parts/Dialogue/Resources/Members/DialogueArrayResource.gd" id="2_813tm"]
+[ext_resource type="Script" uid="uid://01wyspg0cufo" path="res://Scripts/Parts/Dialogue/Resources/Members/DialogueArray.gd" id="2_813tm"]
+[ext_resource type="Script" uid="uid://k1hia4rojl6b" path="res://Scripts/Parts/Dialogue/Resources/DialogueText.gd" id="2_srjsi"]
+
+[sub_resource type="Resource" id="Resource_7aqey"]
+script = ExtResource("2_srjsi")
+charResourceName = "PlaceholderNPC"
+portraitSide = "right"
+text = "vai se foder"
+metadata/_custom_type_script = "uid://k1hia4rojl6b"
+
+[sub_resource type="Resource" id="Resource_y31rk"]
+script = ExtResource("2_srjsi")
+charResourceName = "Y_character"
+text = ":("
+metadata/_custom_type_script = "uid://k1hia4rojl6b"
 
 [resource]
 script = ExtResource("2_813tm")
+array = Array[ExtResource("1_btusd")]([SubResource("Resource_7aqey"), SubResource("Resource_y31rk")])
 metadata/_custom_type_script = "uid://01wyspg0cufo"

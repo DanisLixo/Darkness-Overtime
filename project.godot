@@ -16,7 +16,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="RPG GAMES"
 config/tags=PackedStringArray("amigos")
-run/main_scene="uid://dveck2oh8mngv"
+run/main_scene="uid://bqld1rdbdmxlg"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 run/default_filters/use_nearest_mipmap_filter=false
@@ -30,6 +30,7 @@ buses/default_bus_layout="uid://b5e7gcnfcl4vr"
 AudioManager="*uid://cb5v0hqgpooap"
 Global="*uid://cs50vpgckp73"
 SaveManager="*uid://cx5m8pk6ylogg"
+BetterTerrain="*uid://bf56prtwwug4w"
 
 [dialogic]
 
@@ -80,19 +81,20 @@ audio/channel_defaults={
 
 [display]
 
-window/size/viewport_width=1600
-window/size/viewport_height=1200
+window/size/viewport_width=1440
+window/size/viewport_height=1080
 window/size/initial_position_type=4
 window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/sprite-shader-mixer/plugin.cfg")
+enabled=PackedStringArray("res://addons/better-terrain/plugin.cfg", "res://addons/sprite-shader-mixer/plugin.cfg")
 
 [global_group]
 
 Players=""
 NPCs=""
+Props=""
 
 [gui]
 

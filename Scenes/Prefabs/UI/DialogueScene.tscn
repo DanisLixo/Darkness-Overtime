@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://445w12fdycr0" path="res://Scripts/Classes/UI/DialogueSubScene.gd" id="1_782r4"]
 [ext_resource type="Texture2D" uid="uid://jbj3bsld65i5" path="res://addons/EasyBlend/Blends/divide.png" id="3_eabwu"]
 [ext_resource type="Shader" uid="uid://ckcleaebmnjgv" path="res://addons/EasyBlend/EasyBlend.gdshader" id="3_rpc8b"]
-[ext_resource type="Texture2D" uid="uid://cvvp1umdhm8pp" path="res://Assets/Sprites/Entities/Characters/NPCs/PlaceholderNPC/portrait.png" id="3_x2xnc"]
+[ext_resource type="Texture2D" uid="uid://cvvp1umdhm8pp" path="res://Assets/Sprites/Entities/Characters/PlaceholderNPC/portrait.png" id="3_x2xnc"]
 [ext_resource type="Texture2D" uid="uid://cv4aulre111wh" path="res://Assets/Sprites/UI/Dialogue/DialogueBox.png" id="4_nvmde"]
 [ext_resource type="FontFile" uid="uid://eeyl5ctvfhuv" path="res://Assets/Fonts/ByteBounce.ttf" id="5_7qleg"]
 [ext_resource type="Texture2D" uid="uid://csgxw0j6j5kjs" path="res://Assets/Sprites/UI/Dialogue/Gradient.png" id="5_khwdy"]
@@ -192,8 +192,9 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
+offset_left = -697.0
 offset_top = -1015.0
-offset_right = 601.0
+offset_right = -96.0
 offset_bottom = 114.0
 grow_vertical = 0
 size_flags_horizontal = 4
@@ -214,15 +215,16 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -400.0
-offset_top = -657.0
+offset_left = 10.0
+offset_top = -1015.0
+offset_right = 576.0
 grow_horizontal = 0
 grow_vertical = 0
 metadata/_edit_group_ = true
 
 [node name="RightSprite" type="AnimatedSprite2D" parent="PortraitRight" unique_id=1060759009]
 unique_name_in_owner = true
-scale = Vector2(2.25, 2.25)
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_qujit")
 animation = &"idle"
 centered = false
@@ -237,8 +239,8 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -358.5
-offset_top = -338.0
 offset_right = 358.5
+offset_bottom = 338.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 3
@@ -292,6 +294,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Icon" type="TextureRect" parent="DialogueBox/TabletText/DwonSlashes" unique_id=173120423]
+unique_name_in_owner = true
 use_parent_material = true
 layout_mode = 1
 anchors_preset = 8

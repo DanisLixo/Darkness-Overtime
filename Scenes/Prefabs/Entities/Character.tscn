@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://5egg5jhuv4mn"]
+
+[ext_resource type="Script" uid="uid://du5peusxu1fxp" path="res://Scripts/Classes/Entities/GenericCharacter.gd" id="1_3t4pi"]
+[ext_resource type="Script" uid="uid://d3h5v51k4ds7" path="res://Scripts/Classes/States/StateMachine.gd" id="2_3w2hf"]
+[ext_resource type="Texture2D" uid="uid://dl1yxec0krjlf" path="res://Assets/Sprites/Entities/Characters/PlaceholderNPC/front.png" id="3_oon16"]
+[ext_resource type="Script" uid="uid://cuiojdqpijbvs" path="res://Scripts/Parts/Entities/DynamicAnimatedSprite2D.gd" id="3_oqc5g"]
+[ext_resource type="Script" uid="uid://bq5qq203jsqon" path="res://Scripts/Parts/Entities/StepSounds.gd" id="7_h51q1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s21p0"]
+atlas = ExtResource("3_oon16")
+region = Rect2(0, 0, 113, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q181b"]
+atlas = ExtResource("3_oon16")
+region = Rect2(113, 0, 113, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q42kf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s21p0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q181b")
+}],
+"loop": true,
+"name": &"idle_front",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m3e5v"]
+size = Vector2(56, 29)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ecb4m"]
+radius = 86.0
+
+[node name="Character" type="CharacterBody2D" unique_id=1596251819]
+collision_layer = 0
+collision_mask = 7
+script = ExtResource("1_3t4pi")
+metadata/_custom_type_script = "uid://du5peusxu1fxp"
+
+[node name="States" type="Node" parent="." unique_id=158308114]
+script = ExtResource("2_3w2hf")
+metadata/_custom_type_script = "uid://d3h5v51k4ds7"
+
+[node name="SpriteJoint" type="Node2D" parent="." unique_id=746707890]
+use_parent_material = true
+
+[node name="Sprite" type="AnimatedSprite2D" parent="SpriteJoint" unique_id=1735560964]
+unique_name_in_owner = true
+use_parent_material = true
+position = Vector2(0, -57)
+sprite_frames = SubResource("SpriteFrames_q42kf")
+animation = &"idle_front"
+script = ExtResource("3_oqc5g")
+metadata/_custom_type_script = "uid://cuiojdqpijbvs"
+
+[node name="WallCollision" type="CollisionShape2D" parent="." unique_id=1959442584]
+position = Vector2(1, 31)
+shape = SubResource("RectangleShape2D_m3e5v")
+
+[node name="InteractionArea" type="Area2D" parent="." unique_id=1541027673]
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape2D" parent="InteractionArea" unique_id=1364045699]
+shape = SubResource("CircleShape2D_ecb4m")
+debug_color = Color(0.95, 0, 0.5541664, 0.21960784)
+
+[node name="StepSounds" type="Node" parent="." unique_id=170541766]
+script = ExtResource("7_h51q1")
+metadata/_custom_type_script = "uid://bq5qq203jsqon"
+
+[node name="RunStepSounds" type="Node" parent="." unique_id=1568194249]
+script = ExtResource("7_h51q1")
+metadata/_custom_type_script = "uid://bq5qq203jsqon"

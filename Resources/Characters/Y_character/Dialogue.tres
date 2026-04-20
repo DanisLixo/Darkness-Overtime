@@ -1,7 +1,8 @@
 [gd_resource type="Resource" script_class="DialogueCharacter" format=3 uid="uid://p3x44joyimc7"]
 
 [ext_resource type="AudioStream" uid="uid://pubs1kt3bss0" path="res://Assets/Audios/SFXs/RainStepTest.wav" id="1_4glkx"]
-[ext_resource type="Script" uid="uid://ccqoi7mrsfenl" path="res://Scripts/Parts/Dialogue/Resources/Members/DialogueCharacterResource.gd" id="1_c0a0p"]
+[ext_resource type="Script" uid="uid://ccqoi7mrsfenl" path="res://Scripts/Parts/Dialogue/Resources/Members/DialogueCharacter.gd" id="1_c0a0p"]
+[ext_resource type="Texture2D" uid="uid://dpja0a3jdrppo" path="res://Assets/Sprites/Entities/Characters/Placeholder/icon.png" id="2_l18w3"]
 [ext_resource type="Texture2D" uid="uid://bo1mjxofmxkqc" path="res://Assets/Sprites/Entities/Characters/Y_Character/Portraits.png" id="2_wm3b2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rr6eg"]
@@ -35,7 +36,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"talk",
-"speed": 2.0
+"speed": 10.0
 }]
 
 [resource]
@@ -43,4 +44,5 @@ script = ExtResource("1_c0a0p")
 characterName = "Y"
 portraitSpriteFrames = SubResource("SpriteFrames_u0cdc")
 characterTextSounds = Array[AudioStream]([ExtResource("1_4glkx")])
+dialogueIcon = ExtResource("2_l18w3")
 metadata/_custom_type_script = "uid://ccqoi7mrsfenl"

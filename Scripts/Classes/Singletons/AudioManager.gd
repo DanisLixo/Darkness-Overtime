@@ -64,14 +64,11 @@ func kill_sfx(sfxName := "") -> void:
 		activeSfxs[sfxName].queue_free()
 		activeSfxs.erase(sfxName)
 
-func load_sfx_map(json := {}) -> void:
-	sfxLibrary = DEFAULT_SFX_LIBRARY.duplicate()
-	for i in json:
-		sfxLibrary[i] = json[i]
-
 func handle_music(delta: float) -> void:
 	if is_instance_valid(Global.currentRoom):
 		if (Global.currentRoom.music == null):
+			tween_music_stream(-80, 0.5)
+			await music_tweened
 			musicPlayer.stop()
 			return
 		#musicPlayer.stream_paused = false
@@ -83,6 +80,8 @@ func handle_music(delta: float) -> void:
 			set_current_used_sync(0, 60)
 		if (!musicPlayer.playing):
 			musicPlayer.play()
+			tween_music_stream(0, 5)
+			await music_tweened
 
 func set_current_used_sync(id := 0, stepDec := 0.0, stepInc := 0.0, muteOthers := true) -> void:
 	if (musicPlayer.stream is not AudioStreamSynchronized):
@@ -92,17 +91,35 @@ func set_current_used_sync(id := 0, stepDec := 0.0, stepInc := 0.0, muteOthers :
 	
 	for i in streamer.stream_count:
 		if (i != id && muteOthers):
-			tween_audio_stream(i, -60, stepDec)
+			tween_sync_music_stream(i, -60, stepDec)
 		else:
-			tween_audio_stream(i, 0, stepInc)
+			tween_sync_music_stream(i, 0, stepInc)
 
-func handle_ambience() -> void:
-	pass
+signal music_tweened
 
-func tween_audio_stream(id: int = 0, target_db: float = 0, step: float = 1.0) -> void:
-	var streamer: AudioStreamSynchronized = musicPlayer.stream
-	var curVolume := streamer.get_sync_stream_volume(id)
-	var goUpwards := curVolume < target_db
+func tween_music_stream(target_db: float = 0, step: float = 1.0) -> void:
+	var streamer = musicPlayer
+	var curVolume: float = streamer.volume_db
+	var goUpwards = curVolume < target_db
+	
+	while curVolume != target_db:
+		curVolume = streamer.volume_db
+		if (goUpwards && target_db > curVolume) || (!goUpwards && target_db < curVolume):
+			streamer.volume_db = move_toward(streamer.volume_db, target_db, step)
+		else:
+			streamer.volume_db = target_db
+			music_tweened.emit()
+		await get_tree().process_frame
+
+func tween_sync_music_stream(id: int = 0, target_db: float = 0, step: float = 1.0) -> void:
+	var streamer: AudioStream = musicPlayer.stream
+	var curVolume: float
+	
+	if (streamer is AudioStreamSynchronized):
+		curVolume = streamer.get_sync_stream_volume(id)
+	else:
+		curVolume = streamer.volume
+	var goUpwards = curVolume < target_db
 	
 	while curVolume != target_db:
 		curVolume = streamer.get_sync_stream_volume(id)
@@ -112,6 +129,7 @@ func tween_audio_stream(id: int = 0, target_db: float = 0, step: float = 1.0) ->
 			streamer.set_sync_stream_volume(id, curVolume - step)
 		else:
 			streamer.set_sync_stream_volume(id, target_db)
+			music_tweened.emit()
 		await get_tree().process_frame
 
 func on_beat(idx := 0) -> void:

@@ -90,7 +90,6 @@ func _process(_delta: float) -> void:
 func text_resource(res: DialogueText) -> void:
 	control_set_state("boxState", ControlState.INSIDE)
 	var characterResource: DialogueCharacter = get_character_resource(res.charResourceName)
-	
 	var randInt := randi_range(0, characterResource.characterTextSounds.size() - 1)
 	if (characterResource.characterTextSounds.size() != 0):
 		soundManager.stream = characterResource.characterTextSounds[randInt]
@@ -213,6 +212,8 @@ func close(destroy: bool = false) -> void:
 	hide()
 	dialogueClose.emit()
 	if (destroy):
+		await get_tree().process_frame
+		Global.inCutscene = false
 		queue_free()
 
 func update_current_speaker(resource: ResourceDE, character: DialogueCharacter, control: Control, sprite: AnimatedSprite2D) -> void:
@@ -228,6 +229,8 @@ func update_current_speaker(resource: ResourceDE, character: DialogueCharacter, 
 	if (sprite != null && character.portraitSpriteFrames != null):
 		sprite.sprite_frames = character.portraitSpriteFrames
 		sprite.play(character.animations.talk["name"])
+	if (character.dialogueIcon != null):
+		%Icon.texture = character.dialogueIcon
 
 func text_without_square_brackets(text: String) -> String:
 	var result := ""

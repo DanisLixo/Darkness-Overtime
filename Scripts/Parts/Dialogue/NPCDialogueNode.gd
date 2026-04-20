@@ -8,7 +8,6 @@ var dialoguePosition: Vector2
 
 var players: Array[Player]
 @onready var npc: GenericNPC = get_parent()
-@onready var hintText := $"../HintText"
 
 func _ready() -> void:
 	for i in get_tree().get_nodes_in_group("Players"):
@@ -19,25 +18,30 @@ func _process(_delta: float) -> void:
 		for i in get_tree().get_nodes_in_group("Players"):
 			players.append(i)
 		return
+	
 	if (playerBodyIn):
 		if (npc.onlyActivateOnce && alreadyActivated):
 			set_process(false)
 			return
 		if (Input.is_action_just_pressed("move_action")):
 			activate_dialogue()
-			playerBodyIn = false
+			if (npc.onlyActivateOnce):
+				for i in players:
+					_on_body_exited(i)
 
 func activate_dialogue() -> void:
+	if (Global.inCutscene):
+		return
 	for i in players:
 		i.stateMachine.change_state("Freeze")
 		
 	var dialogueNode := dialogueSystemScene.instantiate()
 	dialogueNode.activatorNode = npc
-	dialogueNode.global_position = dialoguePosition
 	dialogueNode.dialogueArray = npc.dialogueArray[npc.interactionIdx]
 	Global.add_dialogue(dialogueNode)
 	dialogueNode.open()
 	
+	alreadyActivated = true
 	npc.interactionIdx += 1
 	npc.interactionIdx = clampi(npc.interactionIdx, 0, npc.dialogueArray.size() - 1)
 

@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bkmowuf1ru1vd"]
+
+[ext_resource type="Script" uid="uid://b3fbgygn7u5gh" path="res://Scripts/Classes/Entities/PropStaticBody2D.gd" id="1_3wdaa"]
+[ext_resource type="Script" uid="uid://1dhkfwvdxrfe" path="res://Scripts/Parts/Entities/PlayerZIndexPerspective.gd" id="2_y2tvm"]
+
+[node name="BasicProp" type="StaticBody2D" unique_id=127087855]
+script = ExtResource("1_3wdaa")
+metadata/_custom_type_script = "uid://b3fbgygn7u5gh"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2135692929]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=270485473]
+
+[node name="PlayerZIndexPerspective" type="Node" parent="." unique_id=215368292]
+script = ExtResource("2_y2tvm")

@@ -1,17 +1,18 @@
 [gd_scene format=3 uid="uid://c11yowsdwbpe3"]
 
 [ext_resource type="Script" uid="uid://c55oergbnbj84" path="res://Scripts/Classes/Entities/NPC.gd" id="1_s21p0"]
-[ext_resource type="Script" uid="uid://d3h5v51k4ds7" path="res://Scripts/Classes/States/StateMachine.gd" id="2_q181b"]
-[ext_resource type="Script" uid="uid://bxd23uucghluo" path="res://Scripts/Parts/States/State.gd" id="3_s21p0"]
-[ext_resource type="Texture2D" uid="uid://dl1yxec0krjlf" path="res://Assets/Sprites/Entities/Characters/NPCs/PlaceholderNPC/front.png" id="4_t7phd"]
+[ext_resource type="PackedScene" uid="uid://5egg5jhuv4mn" path="res://Scenes/Prefabs/Entities/Character.tscn" id="1_yst1b"]
+[ext_resource type="Script" uid="uid://01wyspg0cufo" path="res://Scripts/Parts/Dialogue/Resources/Members/DialogueArray.gd" id="3_s21p0"]
+[ext_resource type="Texture2D" uid="uid://dl1yxec0krjlf" path="res://Assets/Sprites/Entities/Characters/PlaceholderNPC/front.png" id="4_s21p0"]
 [ext_resource type="Script" uid="uid://7qb8tawv0n5e" path="res://Scripts/Parts/Dialogue/NPCDialogueNode.gd" id="5_s21p0"]
+[ext_resource type="Script" uid="uid://1dhkfwvdxrfe" path="res://Scripts/Parts/Entities/PlayerZIndexPerspective.gd" id="6_q181b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s21p0"]
-atlas = ExtResource("4_t7phd")
+atlas = ExtResource("4_s21p0")
 region = Rect2(0, 0, 113, 160)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q181b"]
-atlas = ExtResource("4_t7phd")
+atlas = ExtResource("4_s21p0")
 region = Rect2(113, 0, 113, 160)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_q42kf"]
@@ -28,46 +29,32 @@ animations = [{
 "speed": 6.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8fcoy"]
-size = Vector2(56, 29)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_t7phd"]
-radius = 86.0
-
-[node name="NPC" type="CharacterBody2D" unique_id=2027798040 groups=["NPCs"]]
+[node name="NPC" unique_id=1596251819 groups=["NPCs"] instance=ExtResource("1_yst1b")]
 collision_layer = 5
-collision_mask = 0
+collision_mask = 2
 script = ExtResource("1_s21p0")
+onlyActivateOnce = false
+dialogueArray = Array[ExtResource("3_s21p0")]([])
 
-[node name="States" type="Node" parent="." unique_id=370585288 node_paths=PackedStringArray("initialState")]
-script = ExtResource("2_q181b")
-initialState = NodePath("Static")
-
-[node name="Static" type="Node" parent="States" unique_id=1986504375]
-script = ExtResource("3_s21p0")
-metadata/_custom_type_script = "uid://bxd23uucghluo"
-
-[node name="SpriteJoint" type="Node2D" parent="." unique_id=690043612]
-
-[node name="Sprite" type="AnimatedSprite2D" parent="SpriteJoint" unique_id=890405284]
-unique_name_in_owner = true
+[node name="Sprite" parent="SpriteJoint" parent_id_path=PackedInt32Array(746707890) index="0" unique_id=1735560964]
 sprite_frames = SubResource("SpriteFrames_q42kf")
-animation = &"idle_front"
-frame_progress = 0.09540313
+autoplay = "idle_front"
+offset = Vector2(0, 48)
 
-[node name="Collision" type="CollisionShape2D" parent="." unique_id=1164538073]
-position = Vector2(-1, 34)
-shape = SubResource("RectangleShape2D_8fcoy")
+[node name="WallCollision" parent="." index="2" unique_id=1959442584]
+visible = true
 
-[node name="InteractionArea" type="Area2D" parent="." unique_id=261541476]
+[node name="InteractionArea" parent="." index="3" unique_id=1541027673]
+visible = true
 collision_layer = 0
+collision_mask = 5
 
-[node name="Collision" type="CollisionShape2D" parent="InteractionArea" unique_id=542316185]
-shape = SubResource("CircleShape2D_t7phd")
-debug_color = Color(0.96, 0, 0.5279997, 0.21960784)
-
-[node name="NPCDialogueNode" type="Node" parent="." unique_id=1737984559]
+[node name="NPCDialogueNode" type="Node" parent="." index="6" unique_id=915075552]
 script = ExtResource("5_s21p0")
+
+[node name="PlayerZIndexPerspective" type="Node" parent="." index="7" unique_id=739557653]
+script = ExtResource("6_q181b")
+metadata/_custom_type_script = "uid://1dhkfwvdxrfe"
 
 [connection signal="body_entered" from="InteractionArea" to="NPCDialogueNode" method="_on_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="NPCDialogueNode" method="_on_body_exited"]

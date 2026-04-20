@@ -20,7 +20,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:self_modulate")
+tracks/0/path = NodePath("../Misc/ColorRect:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -36,7 +36,7 @@ length = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:self_modulate")
+tracks/0/path = NodePath("../Misc/ColorRect:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -56,7 +56,7 @@ _data = {
 process_mode = 3
 script = ExtResource("1_fyb7y")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1701419742]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1289471604]
 layer = 127
 
 [node name="GameHud" parent="." unique_id=1094812230 instance=ExtResource("2_ohhm8")]
@@ -64,7 +64,10 @@ layer = 127
 [node name="GUI" parent="GameHud" index="0" unique_id=262914432]
 visible = false
 
-[node name="ColorRect" type="ColorRect" parent="GameHud" unique_id=560850368]
+[node name="Misc" type="CanvasLayer" parent="." unique_id=1701419742]
+layer = 129
+
+[node name="ColorRect" type="ColorRect" parent="Misc" unique_id=560850368]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -73,13 +76,14 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GameHud" unique_id=1602552091]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Misc" unique_id=1602552091]
 sprite_frames = SubResource("SpriteFrames_o00oc")
 autoplay = "default"
 centered = false
 offset = Vector2(-3, -3)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="GameHud" unique_id=1060498216]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Misc" unique_id=1060498216]
+root_node = NodePath("../../GameHud")
 libraries/ = SubResource("AnimationLibrary_o00oc")
 
 [editable path="GameHud"]

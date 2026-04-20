@@ -2,12 +2,14 @@
 
 [ext_resource type="Script" uid="uid://c3884lbnyy7vs" path="res://Scripts/Classes/RoomClass.gd" id="1_f433h"]
 [ext_resource type="Texture2D" uid="uid://boyv1p0ockgvl" path="res://addons/TerrainExample/Terrain/Tileset/Water Background color.png" id="2_kkfpw"]
-[ext_resource type="PackedScene" uid="uid://2eawxqo4hirj" path="res://Scenes/Prefabs/Entities/Player.tscn" id="3_m8au4"]
+[ext_resource type="PackedScene" uid="uid://bbffg46epjcyw" path="res://Scenes/Prefabs/Entities/Player.tscn" id="3_m8au4"]
 [ext_resource type="Script" uid="uid://it8jrs2sdtkn" path="res://Scripts/Parts/Dialogue/Resources/Members/DialogueExportResource.gd" id="5_2vgd7"]
+[ext_resource type="AudioStream" uid="uid://cib6pfvsvl851" path="res://Assets/Audios/BGMs/Tests/mus_star.mp3" id="9_u0at3"]
+[ext_resource type="Script" uid="uid://b7c7yfuvorlf2" path="res://Scripts/Parts/Dialogue/Resources/DialogueFunction.gd" id="10_hj7rn"]
 [ext_resource type="Script" uid="uid://1rf3gwnmhi8d" path="res://Scripts/Classes/Objects/CameraLockArea2D.gd" id="11_5cmej"]
 [ext_resource type="PackedScene" uid="uid://c11yowsdwbpe3" path="res://Scenes/Prefabs/Entities/NPC.tscn" id="12_hj7rn"]
-[ext_resource type="Script" uid="uid://01wyspg0cufo" path="res://Scripts/Parts/Dialogue/Resources/Members/DialogueArrayResource.gd" id="13_3er0f"]
-[ext_resource type="Script" uid="uid://k1hia4rojl6b" path="res://Scripts/Parts/Dialogue/Resources/DialogueTextResource.gd" id="14_3er0f"]
+[ext_resource type="Script" uid="uid://01wyspg0cufo" path="res://Scripts/Parts/Dialogue/Resources/Members/DialogueArray.gd" id="13_3er0f"]
+[ext_resource type="Script" uid="uid://k1hia4rojl6b" path="res://Scripts/Parts/Dialogue/Resources/DialogueText.gd" id="14_3er0f"]
 [ext_resource type="Resource" uid="uid://x6lipqhlahux" path="res://Resources/Dialogues/DialogueTest.tres" id="14_5cmej"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4fqrm"]
@@ -21,9 +23,6 @@ tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_4fqrm")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5cmej"]
-size = Vector2(1907, 1402.5)
-
 [sub_resource type="Resource" id="Resource_5cmej"]
 script = ExtResource("14_3er0f")
 text = "eai?"
@@ -31,7 +30,7 @@ metadata/_custom_type_script = "uid://k1hia4rojl6b"
 
 [sub_resource type="Resource" id="Resource_r5vtf"]
 script = ExtResource("14_3er0f")
-charResourceName = "Placeholder"
+charResourceName = "PlaceholderNPC"
 portraitSide = "right"
 text = "eai oq"
 metadata/_custom_type_script = "uid://k1hia4rojl6b"
@@ -44,7 +43,7 @@ metadata/_custom_type_script = "uid://k1hia4rojl6b"
 
 [sub_resource type="Resource" id="Resource_l0o1l"]
 script = ExtResource("14_3er0f")
-charResourceName = "Placeholder"
+charResourceName = "PlaceholderNPC"
 portraitSide = "right"
 exitOtherSide = false
 text = "oxe tropa"
@@ -56,9 +55,78 @@ script = ExtResource("13_3er0f")
 array = Array[ExtResource("5_2vgd7")]([SubResource("Resource_5cmej"), SubResource("Resource_r5vtf"), SubResource("Resource_nw5ts"), SubResource("Resource_l0o1l")])
 metadata/_custom_type_script = "uid://01wyspg0cufo"
 
-[node name="DynamicMusicTest" type="Node2D" unique_id=435351762]
+[sub_resource type="Resource" id="Resource_818iu"]
+script = ExtResource("10_hj7rn")
+targetNodePath = NodePath("..")
+funcName = "set_music"
+funcArgs = [ExtResource("9_u0at3")]
+metadata/_custom_type_script = "uid://b7c7yfuvorlf2"
+
+[sub_resource type="Resource" id="Resource_3er0f"]
+script = ExtResource("14_3er0f")
+exitOtherSide = false
+text = "Mais uma de mim? Eles vem mesmo cortando custos com designers.... apesar dela parecer uma replica perfeita de mim...."
+metadata/_custom_type_script = "uid://k1hia4rojl6b"
+
+[sub_resource type="Resource" id="Resource_2kp5s"]
+script = ExtResource("14_3er0f")
+portraitSide = "right"
+text = "ta bom ne"
+metadata/_custom_type_script = "uid://k1hia4rojl6b"
+
+[sub_resource type="Resource" id="Resource_1oqih"]
+script = ExtResource("14_3er0f")
+text = "Como assim \"ta bom ne\"? Isso nao te traz desconforto? De forma alguma?"
+metadata/_custom_type_script = "uid://k1hia4rojl6b"
+
+[sub_resource type="Resource" id="Resource_s0wid"]
+script = ExtResource("14_3er0f")
+portraitSide = "right"
+text = "olha so eu nao preciso saber oq ta acontecendo em um momento desses"
+metadata/_custom_type_script = "uid://k1hia4rojl6b"
+
+[sub_resource type="Resource" id="Resource_xxj7i"]
+script = ExtResource("14_3er0f")
+portraitSide = "right"
+text = "so saiba q isso e importante para o plot"
+metadata/_custom_type_script = "uid://k1hia4rojl6b"
+
+[sub_resource type="Resource" id="Resource_1jq2i"]
+script = ExtResource("14_3er0f")
+text = "Voce nao faz sentido... nada disso faz sentido. Seja la o que e esse seu plot, nao quero fazer parte disso."
+metadata/_custom_type_script = "uid://k1hia4rojl6b"
+
+[sub_resource type="Resource" id="Resource_4mlso"]
+script = ExtResource("14_3er0f")
+portraitSide = "right"
+exitOtherSide = false
+text = "ha ha isso e engracado"
+metadata/_custom_type_script = "uid://k1hia4rojl6b"
+
+[sub_resource type="Resource" id="Resource_pufiq"]
+script = ExtResource("14_3er0f")
+exitOtherSide = false
+text = "Voce e bem mais do que so um clone... nao e?"
+textSpeed = 15.0
+metadata/_custom_type_script = "uid://k1hia4rojl6b"
+
+[sub_resource type="Resource" id="Resource_pu45j"]
+script = ExtResource("10_hj7rn")
+targetNodePath = NodePath("..")
+funcName = "set_music"
+hideDialogueScene = true
+metadata/_custom_type_script = "uid://b7c7yfuvorlf2"
+
+[sub_resource type="Resource" id="Resource_d322e"]
+script = ExtResource("13_3er0f")
+array = Array[ExtResource("5_2vgd7")]([SubResource("Resource_818iu"), SubResource("Resource_3er0f"), SubResource("Resource_2kp5s"), SubResource("Resource_1oqih"), SubResource("Resource_s0wid"), SubResource("Resource_xxj7i"), SubResource("Resource_1jq2i"), SubResource("Resource_4mlso"), SubResource("Resource_pufiq"), SubResource("Resource_pu45j")])
+metadata/_custom_type_script = "uid://01wyspg0cufo"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5cmej"]
+size = Vector2(1740, 1402.5)
+
+[node name="DynamicMusicTest" type="Node" unique_id=1044140866]
 script = ExtResource("1_f433h")
-areaGroup = "Template"
 metadata/_custom_type_script = "uid://c3884lbnyy7vs"
 
 [node name="Stage" type="Node" parent="." unique_id=1068326416]
@@ -71,19 +139,28 @@ rendering_quadrant_size = 64
 
 [node name="Player" parent="." unique_id=2027798040 instance=ExtResource("3_m8au4")]
 position = Vector2(1546, 1716)
+collision_mask = 1
+
+[node name="NPC" parent="." unique_id=249774739 instance=ExtResource("12_hj7rn")]
+position = Vector2(2324, 1543)
+collision_mask = 1
+dialogueArray = Array[ExtResource("13_3er0f")]([ExtResource("14_5cmej"), SubResource("Resource_o7ud7")])
+
+[node name="Y_clone" parent="." unique_id=1596251819 instance=ExtResource("12_hj7rn")]
+position = Vector2(5469, 1776)
+collision_mask = 1
+onlyActivateOnce = true
+dialogueArray = Array[ExtResource("13_3er0f")]([SubResource("Resource_d322e")])
+characterName = "Y_character"
+initialDirection = 2
+asymetricalSprites = true
 
 [node name="CameraLockTest" type="Area2D" parent="." unique_id=70805163]
 position = Vector2(4417, 1463)
 script = ExtResource("11_5cmej")
-easeType = 2
-zoom = Vector2(0.8, 0.8)
 metadata/_custom_type_script = "uid://ce6qp508j3ej6"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLockTest" unique_id=1622937023]
-position = Vector2(-1.5, -207.75)
+position = Vector2(-85, -207.75)
 shape = SubResource("RectangleShape2D_5cmej")
 debug_color = Color(0.4810804, 0.42973724, 0.7331027, 0.5529412)
-
-[node name="NPC" parent="." unique_id=249774739 instance=ExtResource("12_hj7rn")]
-position = Vector2(2324, 1543)
-dialogueArray = Array[ExtResource("13_3er0f")]([ExtResource("14_5cmej"), SubResource("Resource_o7ud7")])
