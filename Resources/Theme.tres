@@ -25,7 +25,7 @@ axis_stretch_vertical = 1
 
 [resource]
 default_font = ExtResource("1_kpcpn")
-default_font_size = 24
+default_font_size = 64
 VScrollBar/icons/decrement = SubResource("ImageTexture_vmxg5")
 VScrollBar/icons/decrement_highlight = SubResource("ImageTexture_vmxg5")
 VScrollBar/icons/decrement_pressed = SubResource("ImageTexture_vmxg5")

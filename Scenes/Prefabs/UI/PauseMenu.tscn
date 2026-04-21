@@ -1,0 +1,174 @@
+[gd_scene format=3 uid="uid://cuyewh05u76d1"]
+
+[ext_resource type="Script" uid="uid://dueo5ujmlkwsg" path="res://Scripts/UI/Pause/PauseMenu.gd" id="1_pjw2q"]
+[ext_resource type="Texture2D" uid="uid://e6vwsqesb3jk" path="res://Assets/Sprites/UI/HUD/Menu_pause.png" id="2_5p74i"]
+[ext_resource type="Script" uid="uid://cxkttwbc5gjdv" path="res://Scripts/UI/Pause/ConfirmQuit.gd" id="3_5p74i"]
+[ext_resource type="Script" uid="uid://cj3ggoy7cpecg" path="res://Scripts/UI/Pause/SaveMenu.gd" id="4_jjya5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jjya5"]
+
+[node name="PauseMenu" type="Control" unique_id=1576074431 node_paths=PackedStringArray("options")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pjw2q")
+options = [NodePath("Selections/PanelContainer/MarginContainer/VBoxContainer/dd"), NodePath("Selections/PanelContainer/MarginContainer/VBoxContainer/dd2"), NodePath("Selections/PanelContainer/MarginContainer/VBoxContainer/dd3"), NodePath("Selections/PanelContainer/MarginContainer/VBoxContainer/dd4")]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=750000123]
+layout_mode = 0
+offset_right = 1440.0
+offset_bottom = 1080.0
+texture = ExtResource("2_5p74i")
+
+[node name="Selections" type="Control" parent="." unique_id=2089393188]
+layout_mode = 1
+anchor_left = 0.066
+anchor_top = 0.28800002
+anchor_right = 0.35300002
+anchor_bottom = 0.89900005
+offset_left = -0.040000916
+offset_top = 63.95999
+offset_right = -0.32000732
+offset_bottom = 0.079956055
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Selections" unique_id=1332926845]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -26.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_jjya5")
+
+[node name="MarginContainer" type="MarginContainer" parent="Selections/PanelContainer" unique_id=1056270662]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Selections/PanelContainer/MarginContainer" unique_id=1985751706]
+layout_mode = 2
+
+[node name="dd" type="Control" parent="Selections/PanelContainer/MarginContainer/VBoxContainer" unique_id=2936673]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="dd2" type="Control" parent="Selections/PanelContainer/MarginContainer/VBoxContainer" unique_id=1506583253]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="dd3" type="Control" parent="Selections/PanelContainer/MarginContainer/VBoxContainer" unique_id=297146972]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="dd4" type="Control" parent="Selections/PanelContainer/MarginContainer/VBoxContainer" unique_id=1879209230]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Cursor" type="ColorRect" parent="Selections" unique_id=709586487]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ConfirmQuit" type="Control" parent="." unique_id=780508532 node_paths=PackedStringArray("options")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -529.75
+offset_top = -149.25
+offset_right = 529.75
+offset_bottom = 149.25
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_5p74i")
+options = [NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Button"), NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Button2")]
+
+[node name="PanelContainer" type="PanelContainer" parent="ConfirmQuit" unique_id=363329048]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ConfirmQuit/PanelContainer" unique_id=477322938]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ConfirmQuit/PanelContainer/MarginContainer" unique_id=1414384849]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ConfirmQuit/PanelContainer/MarginContainer/VBoxContainer" unique_id=1529163673]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Tem certeza que quer sair do jogo?"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ConfirmQuit/PanelContainer/MarginContainer/VBoxContainer" unique_id=99019453]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Button" type="Button" parent="ConfirmQuit/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1859134810]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_right = NodePath("../Button2")
+text = "Sim"
+
+[node name="Button2" type="Button" parent="ConfirmQuit/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=937836419]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../Button")
+text = "Nao"
+
+[node name="SaveMenu" type="Control" parent="." unique_id=790769759]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -529.75
+offset_top = -149.25
+offset_right = 529.75
+offset_bottom = 149.25
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_jjya5")
+
+[node name="PanelContainer" type="PanelContainer" parent="SaveMenu" unique_id=182279475]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="SaveMenu/PanelContainer" unique_id=344358942]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SaveMenu/PanelContainer/MarginContainer" unique_id=688400496]
+layout_mode = 2
+alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="SaveMenu/PanelContainer/MarginContainer/VBoxContainer" unique_id=465448113]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label2" type="Label" parent="SaveMenu/PanelContainer/MarginContainer/VBoxContainer" unique_id=969101895]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Novo Arquivo"
+horizontal_alignment = 1
+
+[connection signal="option_4_selected" from="." to="ConfirmQuit" method="open"]

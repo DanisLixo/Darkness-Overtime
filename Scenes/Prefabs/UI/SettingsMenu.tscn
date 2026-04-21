@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://cyrg3f5dd82jy"]
+
+[ext_resource type="Script" uid="uid://b1i4clblqkssv" path="res://Scripts/UI/SettingsMenu.gd" id="1_ug1i2"]
+[ext_resource type="Texture2D" uid="uid://cngwb5qpqlecj" path="res://Assets/Sprites/UI/HUD/Menu_De_Opcoes.png" id="2_dl6kk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0bsy8"]
+
+[node name="SettingsMenu" type="Control" unique_id=1989868414]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ug1i2")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=672187258]
+layout_mode = 0
+offset_right = 1440.0
+offset_bottom = 1080.0
+texture = ExtResource("2_dl6kk")
+
+[node name="Selections" type="Control" parent="." unique_id=787955499]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -406.0
+offset_top = 278.0
+offset_right = 478.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Selections" unique_id=1630454845]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.43
+offset_right = -26.0
+offset_bottom = 0.13998413
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_0bsy8")
+
+[node name="MarginContainer" type="MarginContainer" parent="Selections/PanelContainer" unique_id=871956724]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Selections/PanelContainer/MarginContainer" unique_id=1726610965]
+layout_mode = 2
+
+[node name="dd" type="Control" parent="Selections/PanelContainer/MarginContainer/VBoxContainer" unique_id=1479645057]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="dd2" type="Control" parent="Selections/PanelContainer/MarginContainer/VBoxContainer" unique_id=1923712023]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="dd3" type="Control" parent="Selections/PanelContainer/MarginContainer/VBoxContainer" unique_id=915099654]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="dd4" type="Control" parent="Selections" unique_id=1977260868]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -179.0
+offset_top = -220.0
+offset_right = 163.0
+offset_bottom = -62.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Cursor" type="ColorRect" parent="Selections" unique_id=1666636034]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
