@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="placeholder_back.png">
+	<!-- Created with Adobe Flash Professional version 15.0.0.173 -->
+	<!-- http://www.adobe.com/products/flash.html -->
+	<SubTexture name="back instance 10000" x="596" y="10" width="94" height="119" frameX="-3" frameY="0" frameWidth="97" frameHeight="120"/>
+	<SubTexture name="back instance 10001" x="596" y="10" width="94" height="119" frameX="-3" frameY="0" frameWidth="97" frameHeight="120"/>
+	<SubTexture name="back instance 10002" x="596" y="10" width="94" height="119" frameX="-3" frameY="0" frameWidth="97" frameHeight="120"/>
+	<SubTexture name="back instance 10003" x="450" y="10" width="96" height="119" frameX="-1" frameY="0" frameWidth="97" frameHeight="120"/>
+	<SubTexture name="back instance 10004" x="450" y="10" width="96" height="119" frameX="-1" frameY="0" frameWidth="97" frameHeight="120"/>
+	<SubTexture name="back instance 10005" x="450" y="10" width="96" height="119" frameX="-1" frameY="0" frameWidth="97" frameHeight="120"/>
+	<SubTexture name="back instance 10006" x="157" y="10" width="96" height="120" frameX="0" frameY="0" frameWidth="97" frameHeight="120"/>
+	<SubTexture name="back instance 10007" x="157" y="10" width="96" height="120" frameX="0" frameY="0" frameWidth="97" frameHeight="120"/>
+	<SubTexture name="back instance 10008" x="157" y="10" width="96" height="120" frameX="0" frameY="0" frameWidth="97" frameHeight="120"/>
+	<SubTexture name="back instance 10009" x="303" y="10" width="97" height="118" frameX="0" frameY="-1" frameWidth="97" frameHeight="120"/>
+	<SubTexture name="back instance 10010" x="303" y="10" width="97" height="118" frameX="0" frameY="-1" frameWidth="97" frameHeight="120"/>
+	<SubTexture name="back instance 10011" x="303" y="10" width="97" height="118" frameX="0" frameY="-1" frameWidth="97" frameHeight="120"/>
+	<SubTexture name="back instance 10012" x="10" y="10" width="97" height="120"/>
+	<SubTexture name="back instance 10013" x="10" y="10" width="97" height="120"/>
+	<SubTexture name="back instance 10014" x="10" y="10" width="97" height="120"/>
+	<SubTexture name="back instance 10015" x="303" y="10" width="97" height="118" frameX="0" frameY="-1" frameWidth="97" frameHeight="120"/>
+	<SubTexture name="back instance 10016" x="303" y="10" width="97" height="118" frameX="0" frameY="-1" frameWidth="97" frameHeight="120"/>
+	<SubTexture name="back instance 10017" x="303" y="10" width="97" height="118" frameX="0" frameY="-1" frameWidth="97" frameHeight="120"/>
+</TextureAtlas>

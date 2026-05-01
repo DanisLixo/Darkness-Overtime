@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="placeholder_side.png">
+	<!-- Created with Adobe Flash Professional version 15.0.0.173 -->
+	<!-- http://www.adobe.com/products/flash.html -->
+	<SubTexture name="side instance 10000" x="739" y="10" width="91" height="114" frameX="-3" frameY="0" frameWidth="97" frameHeight="115"/>
+	<SubTexture name="side instance 10001" x="739" y="10" width="91" height="114" frameX="-3" frameY="0" frameWidth="97" frameHeight="115"/>
+	<SubTexture name="side instance 10002" x="739" y="10" width="91" height="114" frameX="-3" frameY="0" frameWidth="97" frameHeight="115"/>
+	<SubTexture name="side instance 10003" x="596" y="10" width="93" height="113" frameX="-2" frameY="-1" frameWidth="97" frameHeight="115"/>
+	<SubTexture name="side instance 10004" x="596" y="10" width="93" height="113" frameX="-2" frameY="-1" frameWidth="97" frameHeight="115"/>
+	<SubTexture name="side instance 10005" x="596" y="10" width="93" height="113" frameX="-2" frameY="-1" frameWidth="97" frameHeight="115"/>
+	<SubTexture name="side instance 10006" x="451" y="10" width="95" height="115" frameX="-1" frameY="0" frameWidth="97" frameHeight="115"/>
+	<SubTexture name="side instance 10007" x="451" y="10" width="95" height="115" frameX="-1" frameY="0" frameWidth="97" frameHeight="115"/>
+	<SubTexture name="side instance 10008" x="451" y="10" width="95" height="115" frameX="-1" frameY="0" frameWidth="97" frameHeight="115"/>
+	<SubTexture name="side instance 10009" x="304" y="10" width="97" height="113" frameX="0" frameY="-1" frameWidth="97" frameHeight="115"/>
+	<SubTexture name="side instance 10010" x="304" y="10" width="97" height="113" frameX="0" frameY="-1" frameWidth="97" frameHeight="115"/>
+	<SubTexture name="side instance 10011" x="304" y="10" width="97" height="113" frameX="0" frameY="-1" frameWidth="97" frameHeight="115"/>
+	<SubTexture name="side instance 10012" x="10" y="10" width="97" height="114" frameX="0" frameY="0" frameWidth="97" frameHeight="115"/>
+	<SubTexture name="side instance 10013" x="10" y="10" width="97" height="114" frameX="0" frameY="0" frameWidth="97" frameHeight="115"/>
+	<SubTexture name="side instance 10014" x="10" y="10" width="97" height="114" frameX="0" frameY="0" frameWidth="97" frameHeight="115"/>
+	<SubTexture name="side instance 10015" x="157" y="10" width="97" height="114" frameX="0" frameY="-1" frameWidth="97" frameHeight="115"/>
+	<SubTexture name="side instance 10016" x="157" y="10" width="97" height="114" frameX="0" frameY="-1" frameWidth="97" frameHeight="115"/>
+	<SubTexture name="side instance 10017" x="157" y="10" width="97" height="114" frameX="0" frameY="-1" frameWidth="97" frameHeight="115"/>
+</TextureAtlas>
