@@ -17,8 +17,8 @@ func _process(_delta: float) -> void:
 	
 	if (!active):
 		selectedIndex.y = -1
-	
-	handle_inputs()
+	if (active):
+		handle_inputs()
 	
 func handle_inputs() -> void:
 	var directionX := int(Input.is_action_just_pressed("ui_right")) - int(Input.is_action_just_pressed("ui_left"))

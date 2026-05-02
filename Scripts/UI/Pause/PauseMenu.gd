@@ -6,7 +6,7 @@ var active := true
 @export var options: Array[Control] = []
 @onready var cursor := $Selections/Cursor
 
-@export var willPause := false
+@export var willPause := true
 
 var selectedIdx := 0 
 
@@ -17,9 +17,6 @@ signal option_4_selected
 
 signal closed
 signal opened
-
-func _ready() -> void:
-	open()
 
 func _process(delta: float) -> void:
 	if (active):
@@ -49,23 +46,29 @@ func open_settings() -> void:
 	active = true
 
 func open() -> void:
+	Global.currentState = Global.PlayState.INMENUS
+	show()
+	
+	await get_tree().process_frame
 	if (willPause):
 		Global.paused = true
 		get_tree().paused = true
 		
-	show()
-	
-	await get_tree().physics_frame
-	opened.emit()
 	active = true
+	opened.emit()
 
-func close() -> void:
+func close(unpause := true) -> void:
+	Global.currentState = Global.PlayState.PLAYING
 	hide()
 	
 	active = false
 	selectedIdx = 0
 	
+	if (unpause):
+		Global.paused = false
+		get_tree().paused = false
+		
 	closed.emit()
-	
-	Global.paused = false
-	get_tree().paused = false
+
+func save_game() -> void:
+	SaveManager.write_save(Global.currentFile)

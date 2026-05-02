@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c3884lbnyy7vs" path="res://Scripts/Classes/RoomClass.gd" id="1_ppfii"]
 [ext_resource type="Texture2D" uid="uid://c26bg7uljebfc" path="res://Assets/Sprites/Areas/PlaceholderAlley/BG.png" id="2_h3jov"]
-[ext_resource type="PackedScene" uid="uid://bbffg46epjcyw" path="res://Scenes/Prefabs/Entities/Player.tscn" id="3_5k3li"]
+[ext_resource type="PackedScene" uid="uid://bbffg46epjcyw" path="res://Scenes/Prefabs/Entities/Characters/Player.tscn" id="3_5k3li"]
 [ext_resource type="AudioStream" uid="uid://cib6pfvsvl851" path="res://Assets/Audios/BGMs/Tests/mus_star.mp3" id="3_ju0q8"]
 [ext_resource type="Texture2D" uid="uid://duc7efujrf46x" path="res://Assets/Sprites/Areas/PlaceholderAlley/Elements/LightGlow.png" id="3_oj4wf"]
 [ext_resource type="Texture2D" uid="uid://bndonastfjphg" path="res://Assets/Sprites/Areas/PlaceholderAlley/Elements/players-shadow.png" id="4_4qnnl"]
@@ -111,6 +111,8 @@ func _exit_tree() -> void:
 
 [node name="RoomTest" type="Node" unique_id=751695159]
 script = ExtResource("1_ppfii")
+areaName = "Room Test"
+areaGroup = "Test Rooms"
 music = ExtResource("3_ju0q8")
 cameraLimits = Vector2i(1203, 854)
 

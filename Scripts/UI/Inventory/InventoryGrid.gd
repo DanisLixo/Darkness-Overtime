@@ -9,12 +9,13 @@ var slots := []
 
 var slotScene := preload("res://Scenes/Parts/InventorySlot.tscn")
 
-## Grid de items, itens que aparecem precisam aparecer em suas devidas categorias
 func _ready() -> void:
-	get_items()
+	await get_tree().process_frame
 	generate_grid()
 
 func generate_grid() -> void:
+	get_items()
+	
 	var slotsArr: Array = []
 	for i in invSize:
 		var newSlot := slotScene.instantiate()
@@ -35,8 +36,8 @@ func generate_grid() -> void:
 			currentRow += 1
 
 func get_items() -> void:
-	for itemStr in Global.itemsLoad:
-		var itemPath: String = get_item_data(itemStr)
+	for i in Global.inventory:
+		var itemPath: String = get_item_data(str(i))
 		var itemData: ItemData = load(itemPath)
 		
 		if (itemData.itemType not in itemsAccepted):
@@ -44,7 +45,5 @@ func get_items() -> void:
 		
 		items.append(itemData)
 
-func get_item_data(itemName: String) -> String:
-	var fullPath = "res://Resources/Items/"
-	fullPath = fullPath.path_join(itemName + ".tres")
-	return fullPath
+func get_item_data(itemId: String) -> String:
+	return "res://Resources/Items/" + Global.itemMap[itemId] + ".tres"

@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bo0iwgl4pejy"]
+
+[ext_resource type="Script" uid="uid://4pqx51hwdngb" path="res://Scripts/Classes/CombatClass.gd" id="1_fa1kp"]
+[ext_resource type="Texture2D" uid="uid://dm4ienan465x4" path="res://Assets/Sprites/Combat/imagedef.png" id="2_ishmi"]
+[ext_resource type="Texture2D" uid="uid://dpjx4bscy68v8" path="res://Assets/Sprites/Combat/boss/background.png" id="3_korcp"]
+[ext_resource type="Texture2D" uid="uid://cildraldfatcd" path="res://Assets/Sprites/Combat/X_character/player.png" id="4_nlodp"]
+[ext_resource type="Texture2D" uid="uid://bfct4l6tcns0e" path="res://Assets/Sprites/Combat/Y_character/Y-player.png" id="5_uyec6"]
+[ext_resource type="Texture2D" uid="uid://cy63fr2r2drev" path="res://Assets/Sprites/Combat/boss/boss-sprite.png" id="6_405vv"]
+
+[node name="CombatTest" type="Node" unique_id=433252822]
+script = ExtResource("1_fa1kp")
+
+[node name="Imagedef" type="TextureRect" parent="." unique_id=1730032420]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ishmi")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_lock_ = true
+
+[node name="Background" type="Sprite2D" parent="." unique_id=722285118]
+position = Vector2(719, 504)
+texture = ExtResource("3_korcp")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1456612120]
+position = Vector2(493, 657)
+texture = ExtResource("4_nlodp")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=333089836]
+position = Vector2(715, 645)
+texture = ExtResource("5_uyec6")
+
+[node name="BossSprite" type="Sprite2D" parent="." unique_id=266908579]
+position = Vector2(1069, 548)
+texture = ExtResource("6_405vv")

@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://dqx3afpe558aa"]
+
+[ext_resource type="Script" uid="uid://cj3ggoy7cpecg" path="res://Scripts/UI/Pause/SaveMenu.gd" id="1_6if7p"]
+[ext_resource type="PackedScene" uid="uid://ca4xcpm1clts0" path="res://Scenes/Parts/SaveContainer.tscn" id="2_nexu3"]
+
+[node name="SaveMenu" type="Control" unique_id=99171053]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6if7p")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1135994488]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -376.0
+offset_right = 376.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1254241355]
+layout_mode = 2
+
+[node name="VBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1841611780]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="SaveContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=472566976 instance=ExtResource("2_nexu3")]
+layout_mode = 2
+
+[node name="SaveContainer2" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=601664862 instance=ExtResource("2_nexu3")]
+layout_mode = 2
+saveFile = 1
+
+[node name="SaveContainer3" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1608131184 instance=ExtResource("2_nexu3")]
+layout_mode = 2
+saveFile = 2

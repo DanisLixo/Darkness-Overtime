@@ -26,10 +26,10 @@ func handle_inputs() -> void:
 
 func option_selected() -> void:
 	if (selectedIdx == 0):
-		Global.paused = false
-		get_tree().paused = false
+		close()
+		owner.close()
 		
-		Global.transition_to_scene("res://Scenes/Parts/VideoPlayer.tscn")
+		Global.transition_to_scene("res://Scenes/Levels/TitleScreen.tscn")
 	elif (selectedIdx == 1):
 		close()
 
@@ -37,11 +37,12 @@ func open() -> void:
 	show()
 	owner.active = false
 	
-	await get_tree().physics_frame
+	await get_tree().process_frame
 	active = true
 
 func close() -> void:
 	hide()
-	owner.active = true
-	active = false
 	selectedIdx = 0
+	
+	active = false
+	owner.active = true

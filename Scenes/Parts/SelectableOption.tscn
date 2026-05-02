@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dsb23tvs0sett"]
+
+[ext_resource type="PackedScene" uid="uid://c7rkctsy8rv6q" path="res://Scenes/Parts/SelectableLabel.tscn" id="1_6jl6f"]
+
+[node name="SelectableOption" type="HBoxContainer" unique_id=1904761721]
+
+[node name="Control" type="Control" parent="." unique_id=1074123894]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=729649963]
+visible = false
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+
+[node name="SelectableLabel" parent="." unique_id=704275405 instance=ExtResource("1_6jl6f")]
+layout_mode = 2
+
+[connection signal="focus_entered" from="SelectableLabel" to="Control/ColorRect" method="show"]
+[connection signal="focus_exited" from="SelectableLabel" to="Control/ColorRect" method="hide"]

@@ -4,3 +4,5 @@
 
 [node name="Settings" type="Node" unique_id=242378157]
 script = ExtResource("1_luut1")
+
+[node name="Apply" type="Node" parent="." unique_id=1504568345]

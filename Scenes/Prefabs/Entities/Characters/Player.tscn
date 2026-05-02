@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bbffg46epjcyw"]
 
 [ext_resource type="Script" uid="uid://dwy5h1g63sq6a" path="res://Scripts/Classes/Entities/Player.gd" id="1_q38nx"]
-[ext_resource type="PackedScene" uid="uid://5egg5jhuv4mn" path="res://Scenes/Prefabs/Entities/Character.tscn" id="1_rs3l8"]
+[ext_resource type="PackedScene" uid="uid://5egg5jhuv4mn" path="res://Scenes/Prefabs/Entities/Characters/Character.tscn" id="1_rs3l8"]
 [ext_resource type="Script" uid="uid://7ej2yf2aog6i" path="res://Scripts/Parts/States/PlayableState.gd" id="4_rs3l8"]
 [ext_resource type="Script" uid="uid://bt0hjyj78g5b7" path="res://Scripts/Classes/States/Playables/NoClip.gd" id="5_7nbqp"]
 [ext_resource type="Script" uid="uid://bf6yrtdb3iksn" path="res://Scripts/Classes/States/Playables/Normal.gd" id="5_rs3l8"]

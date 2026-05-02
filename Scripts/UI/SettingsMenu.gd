@@ -1,11 +1,25 @@
 extends Control
 
+signal closed
+signal opened
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+var active := false
+var selectedIdx := 0
 
+var minimumIdx := -1
+var maximumIdx := 0
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func open() -> void:
+	show()
+	
+	await get_tree().physics_frame
+	opened.emit()
+	active = true
+
+func close() -> void:
+	hide()
+	
+	active = false
+	selectedIdx = 0
+	
+	closed.emit()

@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://c3884lbnyy7vs" path="res://Scripts/Classes/RoomClass.gd" id="1_f433h"]
 [ext_resource type="Texture2D" uid="uid://boyv1p0ockgvl" path="res://addons/TerrainExample/Terrain/Tileset/Water Background color.png" id="2_kkfpw"]
-[ext_resource type="PackedScene" uid="uid://bbffg46epjcyw" path="res://Scenes/Prefabs/Entities/Player.tscn" id="3_m8au4"]
+[ext_resource type="PackedScene" uid="uid://bbffg46epjcyw" path="res://Scenes/Prefabs/Entities/Characters/Player.tscn" id="3_m8au4"]
 [ext_resource type="Script" uid="uid://it8jrs2sdtkn" path="res://Scripts/Parts/Dialogue/Resources/Members/DialogueExportResource.gd" id="5_2vgd7"]
 [ext_resource type="AudioStream" uid="uid://cib6pfvsvl851" path="res://Assets/Audios/BGMs/Tests/mus_star.mp3" id="9_u0at3"]
 [ext_resource type="Script" uid="uid://b7c7yfuvorlf2" path="res://Scripts/Parts/Dialogue/Resources/DialogueFunction.gd" id="10_hj7rn"]
 [ext_resource type="Script" uid="uid://1rf3gwnmhi8d" path="res://Scripts/Classes/Objects/CameraLockArea2D.gd" id="11_5cmej"]
-[ext_resource type="PackedScene" uid="uid://c11yowsdwbpe3" path="res://Scenes/Prefabs/Entities/NPC.tscn" id="12_hj7rn"]
+[ext_resource type="PackedScene" uid="uid://c11yowsdwbpe3" path="res://Scenes/Prefabs/Entities/Characters/NPC.tscn" id="12_hj7rn"]
 [ext_resource type="Script" uid="uid://01wyspg0cufo" path="res://Scripts/Parts/Dialogue/Resources/Members/DialogueArray.gd" id="13_3er0f"]
 [ext_resource type="Script" uid="uid://k1hia4rojl6b" path="res://Scripts/Parts/Dialogue/Resources/DialogueText.gd" id="14_3er0f"]
 [ext_resource type="Resource" uid="uid://x6lipqhlahux" path="res://Resources/Dialogues/DialogueTest.tres" id="14_5cmej"]
@@ -127,6 +127,8 @@ size = Vector2(1740, 1402.5)
 
 [node name="DynamicMusicTest" type="Node" unique_id=1044140866]
 script = ExtResource("1_f433h")
+areaName = "Dynamic Music Test"
+areaGroup = "Test Rooms"
 metadata/_custom_type_script = "uid://c3884lbnyy7vs"
 
 [node name="Stage" type="Node" parent="." unique_id=1068326416]

@@ -1,0 +1,167 @@
+[gd_scene format=3 uid="uid://ca4xcpm1clts0"]
+
+[ext_resource type="Script" uid="uid://7gb84cmg6nkj" path="res://Scripts/UI/SlotContainer.gd" id="1_ihkgo"]
+[ext_resource type="Texture2D" uid="uid://dpja0a3jdrppo" path="res://Assets/Sprites/Entities/Characters/Placeholder/icon.png" id="1_x07ns"]
+[ext_resource type="PackedScene" uid="uid://c7rkctsy8rv6q" path="res://Scenes/Parts/SelectableLabel.tscn" id="3_a3n0e"]
+[ext_resource type="Script" uid="uid://bvmwa4iq00r1g" path="res://Scripts/UI/AutoScrollContainer.gd" id="3_nbjan"]
+[ext_resource type="Script" uid="uid://kgifew3vwv6i" path="res://Scripts/UI/SaveFilesList.gd" id="5_o205c"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_nbjan"]
+color = Color(1, 1, 1, 1)
+grow_begin = 0.0
+grow_end = -5.0
+thickness = 8
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_a3n0e"]
+color = Color(1, 1, 1, 1)
+grow_begin = 6.0
+thickness = 8
+
+[node name="SlotContainer" type="PanelContainer" unique_id=601664862]
+clip_contents = true
+custom_minimum_size = Vector2(0, 256)
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 709.0
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_ihkgo")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1273534406]
+layout_mode = 2
+
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1012970576]
+layout_mode = 2
+
+[node name="File" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1518333003]
+unique_name_in_owner = true
+layout_mode = 2
+text = "File {NUMBER}"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer" unique_id=2038972524]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_nbjan")
+
+[node name="SaveInfo" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1425886151]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/SaveInfo" unique_id=601327313]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("1_x07ns")
+stretch_mode = 3
+
+[node name="NewGame" parent="MarginContainer/HBoxContainer/SaveInfo" unique_id=704275405 instance=ExtResource("3_a3n0e")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "New Game"
+horizontal_alignment = 1
+
+[node name="Continue" type="VBoxContainer" parent="MarginContainer/HBoxContainer/SaveInfo" unique_id=782617673]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="AutoScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/SaveInfo/Continue" unique_id=1895498160]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+script = ExtResource("3_nbjan")
+metadata/_custom_type_script = "uid://bvmwa4iq00r1g"
+
+[node name="RoomName" type="Label" parent="MarginContainer/HBoxContainer/SaveInfo/Continue/AutoScrollContainer" unique_id=122196527]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+text = "{ROOM NAME}"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AutoScrollContainer2" type="ScrollContainer" parent="MarginContainer/HBoxContainer/SaveInfo/Continue" unique_id=350911544]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+script = ExtResource("3_nbjan")
+metadata/_custom_type_script = "uid://bvmwa4iq00r1g"
+
+[node name="RoomGroup" type="Label" parent="MarginContainer/HBoxContainer/SaveInfo/Continue/AutoScrollContainer2" unique_id=2146028430]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+text = "{ROOM GROUP}"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Playtime" type="Label" parent="MarginContainer/HBoxContainer/SaveInfo/Continue" unique_id=214291683]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+text = "{PLAYTIME}"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameTime" type="Label" parent="MarginContainer/HBoxContainer/SaveInfo/Continue" unique_id=3185785]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+text = "{GAME_DAY} / {GAME_WEEK}"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Play" type="VBoxContainer" parent="MarginContainer/HBoxContainer/SaveInfo/Continue" unique_id=1928634770]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/SaveInfo/Continue/Play" unique_id=81781144]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="SelectableLabel" parent="MarginContainer/HBoxContainer/SaveInfo/Continue/Play/HBoxContainer" unique_id=1482347435 instance=ExtResource("3_a3n0e")]
+layout_mode = 2
+text = "Continue"
+
+[node name="SelectableLabel2" parent="MarginContainer/HBoxContainer/SaveInfo/Continue/Play/HBoxContainer" unique_id=440042499 instance=ExtResource("3_a3n0e")]
+layout_mode = 2
+text = "Delete"
+
+[node name="SelectableLabel3" parent="MarginContainer/HBoxContainer/SaveInfo/Continue/Play/HBoxContainer" unique_id=179770926 instance=ExtResource("3_a3n0e")]
+layout_mode = 2
+text = "Saves"
+
+[node name="Control" type="HSeparator" parent="MarginContainer/HBoxContainer/SaveInfo" unique_id=1875167078]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_a3n0e")
+
+[node name="SaveList" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1088841827]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 32
+alignment = 1
+script = ExtResource("5_o205c")
+
+[connection signal="focus_entered" from="." to="." method="set_process" binds= [true]]
+[connection signal="focus_exited" from="." to="." method="set_process" binds= [false]]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/SaveInfo/NewGame" to="." method="pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/SaveInfo/Continue/Play/HBoxContainer/SelectableLabel" to="." method="pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/SaveInfo/Continue/Play/HBoxContainer/SelectableLabel2" to="." method="clear_save"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/SaveInfo/Continue/Play/HBoxContainer/SelectableLabel3" to="MarginContainer/HBoxContainer/SaveList" method="open"]

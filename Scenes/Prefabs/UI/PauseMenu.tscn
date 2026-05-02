@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dueo5ujmlkwsg" path="res://Scripts/UI/Pause/PauseMenu.gd" id="1_pjw2q"]
 [ext_resource type="Texture2D" uid="uid://e6vwsqesb3jk" path="res://Assets/Sprites/UI/HUD/Menu_pause.png" id="2_5p74i"]
 [ext_resource type="Script" uid="uid://cxkttwbc5gjdv" path="res://Scripts/UI/Pause/ConfirmQuit.gd" id="3_5p74i"]
-[ext_resource type="Script" uid="uid://cj3ggoy7cpecg" path="res://Scripts/UI/Pause/SaveMenu.gd" id="4_jjya5"]
+[ext_resource type="PackedScene" uid="uid://cyrg3f5dd82jy" path="res://Scenes/Prefabs/UI/SettingsMenu.tscn" id="5_oa114"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jjya5"]
 
@@ -130,45 +130,12 @@ size_flags_horizontal = 3
 focus_neighbor_left = NodePath("../Button")
 text = "Nao"
 
-[node name="SaveMenu" type="Control" parent="." unique_id=790769759]
+[node name="SettingsMenu" parent="." unique_id=1989868414 instance=ExtResource("5_oa114")]
 visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -529.75
-offset_top = -149.25
-offset_right = 529.75
-offset_bottom = 149.25
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("4_jjya5")
 
-[node name="PanelContainer" type="PanelContainer" parent="SaveMenu" unique_id=182279475]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="SaveMenu/PanelContainer" unique_id=344358942]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="SaveMenu/PanelContainer/MarginContainer" unique_id=688400496]
-layout_mode = 2
-alignment = 1
-
-[node name="HSeparator" type="HSeparator" parent="SaveMenu/PanelContainer/MarginContainer/VBoxContainer" unique_id=465448113]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Label2" type="Label" parent="SaveMenu/PanelContainer/MarginContainer/VBoxContainer" unique_id=969101895]
-layout_mode = 2
-size_flags_vertical = 6
-text = "Novo Arquivo"
-horizontal_alignment = 1
-
+[connection signal="option_1_selected" from="." to="." method="close"]
+[connection signal="option_2_selected" from="." to="." method="save_game"]
 [connection signal="option_4_selected" from="." to="ConfirmQuit" method="open"]
+
+[editable path="SettingsMenu"]

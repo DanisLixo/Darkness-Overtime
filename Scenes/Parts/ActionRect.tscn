@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://d2c0rn3i8oig3"]
+
+[ext_resource type="Texture2D" uid="uid://d3yl8wsvp7nwx" path="res://Assets/Sprites/Combat/HUD/retangulo-principal.png" id="1_yvbab"]
+[ext_resource type="Texture2D" uid="uid://pwmv8qsjgace" path="res://Assets/Sprites/Combat/HUD/mana.png" id="2_gxopm"]
+[ext_resource type="Texture2D" uid="uid://dp1dic6tcyamd" path="res://Assets/Sprites/Combat/HUD/icones-principal0001.png" id="3_thy2j"]
+
+[node name="ActionRect" type="TextureButton" unique_id=1400570978]
+texture_normal = ExtResource("1_yvbab")
+stretch_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1779738111]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.53924936
+anchor_top = 0.57236844
+anchor_right = 0.8361777
+anchor_bottom = 0.8355263
+texture = ExtResource("2_gxopm")
+metadata/_edit_use_anchors_ = true
+
+[node name="Stamina" type="Label" parent="TextureRect" unique_id=286075817]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.43678162
+anchor_top = -0.05
+anchor_right = 0.7586207
+anchor_bottom = 1.05
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+metadata/_edit_use_anchors_ = true
+
+[node name="Icon" type="TextureRect" parent="." unique_id=1906684488]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -73.99994
+offset_top = -52.5
+offset_right = 16.000061
+offset_bottom = 52.5
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("3_thy2j")
+
+[node name="Label" type="Label" parent="." unique_id=486990928]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 30.000061
+offset_top = -22.0
+offset_right = 70.00006
+offset_bottom = 22.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "bruh"

@@ -2,9 +2,347 @@
 
 [ext_resource type="PackedScene" uid="uid://bfkc7meaemb0v" path="res://Scenes/Prefabs/UI/InventoryMenu.tscn" id="1_f4vck"]
 [ext_resource type="Script" uid="uid://c1odeh0t1wnuv" path="res://Scripts/Classes/UI/GameHUD.gd" id="1_yjs50"]
+[ext_resource type="Texture2D" uid="uid://dm4ienan465x4" path="res://Assets/Sprites/Combat/imagedef.png" id="2_7twq2"]
+[ext_resource type="Texture2D" uid="uid://cnl74tstgks0g" path="res://Assets/Sprites/Combat/HUD/BottomBar.png" id="3_4b76u"]
+[ext_resource type="PackedScene" uid="uid://cuyewh05u76d1" path="res://Scenes/Prefabs/UI/PauseMenu.tscn" id="3_miqgn"]
+[ext_resource type="Texture2D" uid="uid://xy3eewwrq1rv" path="res://Assets/Sprites/Combat/Y_character/Y-icone.png" id="4_6dxi8"]
+[ext_resource type="PackedScene" uid="uid://d2c0rn3i8oig3" path="res://Scenes/Parts/ActionRect.tscn" id="5_6dxi8"]
+[ext_resource type="Texture2D" uid="uid://daq8afox6y7eg" path="res://Assets/Sprites/Combat/X_character/passiva_icone.png" id="6_j84h1"]
+[ext_resource type="Texture2D" uid="uid://dnbweaq8te6l5" path="res://Assets/Sprites/Combat/HUD/botao_terminar-turno.png" id="6_mbcey"]
+[ext_resource type="Texture2D" uid="uid://bhxgow3op0h57" path="res://Assets/Sprites/Combat/Y_character/Y-passiva_icone.png" id="7_mbcey"]
+[ext_resource type="Texture2D" uid="uid://dgvgddbkcf0rn" path="res://Assets/Sprites/Combat/HUD/boss barra.png" id="8_kea6h"]
+[ext_resource type="Texture2D" uid="uid://cyihlgqdbu1of" path="res://Assets/Sprites/Combat/HUD/boss_icone.png" id="9_i5u84"]
+
+[sub_resource type="GDScript" id="GDScript_mbcey"]
+script/source = "extends ColorRect
+
+func _process(delta: float) -> void:
+	var new_size = %HealthRemaining.scale.x - (1.3 * (get_index() - 1))
+	scale.x = new_size
+"
 
 [node name="GameHud" type="CanvasLayer" unique_id=1094812230]
+process_mode = 3
 layer = 128
 script = ExtResource("1_yjs50")
 
-[node name="GUI" parent="." unique_id=262914432 instance=ExtResource("1_f4vck")]
+[node name="Combat" type="Control" parent="." unique_id=1071042878]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Ref" type="TextureRect" parent="Combat" unique_id=1596156441]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_7twq2")
+stretch_mode = 5
+
+[node name="BottomPart" type="TextureRect" parent="Combat" unique_id=383277612]
+process_mode = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.14375004
+anchor_top = 0.7777778
+anchor_right = 1.14375
+anchor_bottom = 1.0
+offset_left = 103.5
+offset_right = -103.5
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_4b76u")
+expand_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Combat/BottomPart" unique_id=1391549683]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 103.5
+offset_top = 88.0
+offset_right = -103.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Allies" type="Control" parent="Combat/BottomPart/HBoxContainer" unique_id=1394375505]
+custom_minimum_size = Vector2(313.145, 0)
+layout_mode = 2
+
+[node name="Player1" type="TextureRect" parent="Combat/BottomPart/HBoxContainer/Allies" unique_id=1705641840]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -179.99994
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("4_6dxi8")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Player2" type="TextureRect" parent="Combat/BottomPart/HBoxContainer/Allies" unique_id=92919199]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_top = 26.0
+offset_right = 132.00006
+offset_bottom = -26.0
+grow_vertical = 2
+texture = ExtResource("4_6dxi8")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Player3" type="TextureRect" parent="Combat/BottomPart/HBoxContainer/Allies" unique_id=1627662047]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -123.99994
+offset_top = 35.0
+offset_right = -31.999939
+offset_bottom = -39.0
+grow_vertical = 2
+texture = ExtResource("4_6dxi8")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Player4" type="TextureRect" parent="Combat/BottomPart/HBoxContainer/Allies" unique_id=1016895706]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -222.99994
+offset_top = 48.0
+offset_right = -70.99994
+offset_bottom = -48.0
+grow_vertical = 2
+texture = ExtResource("4_6dxi8")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Actions" type="VBoxContainer" parent="Combat/BottomPart/HBoxContainer" unique_id=1032608524]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Default" type="HBoxContainer" parent="Combat/BottomPart/HBoxContainer/Actions" unique_id=279742075]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="ActionRect" parent="Combat/BottomPart/HBoxContainer/Actions/Default" unique_id=1400570978 instance=ExtResource("5_6dxi8")]
+layout_mode = 2
+
+[node name="ActionRect2" parent="Combat/BottomPart/HBoxContainer/Actions/Default" unique_id=1115844952 instance=ExtResource("5_6dxi8")]
+layout_mode = 2
+
+[node name="ActionRect3" parent="Combat/BottomPart/HBoxContainer/Actions/Default" unique_id=1238616542 instance=ExtResource("5_6dxi8")]
+layout_mode = 2
+
+[node name="Y_character" type="HBoxContainer" parent="Combat/BottomPart/HBoxContainer/Actions" unique_id=1004126953]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="ActionRect" parent="Combat/BottomPart/HBoxContainer/Actions/Y_character" unique_id=171584915 instance=ExtResource("5_6dxi8")]
+layout_mode = 2
+
+[node name="ActionRect2" parent="Combat/BottomPart/HBoxContainer/Actions/Y_character" unique_id=76042620 instance=ExtResource("5_6dxi8")]
+layout_mode = 2
+
+[node name="ActionRect3" parent="Combat/BottomPart/HBoxContainer/Actions/Y_character" unique_id=1242754045 instance=ExtResource("5_6dxi8")]
+layout_mode = 2
+
+[node name="Finish" type="TextureRect" parent="Combat/BottomPart" unique_id=1684649165]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1357.5
+offset_top = -175.0
+offset_right = 1564.5
+offset_bottom = 36.0
+texture = ExtResource("6_mbcey")
+expand_mode = 1
+
+[node name="Effects" type="VBoxContainer" parent="Combat" unique_id=83050410]
+layout_mode = 0
+anchor_left = 0.015972223
+anchor_top = 0.5574074
+anchor_right = 0.090277776
+anchor_bottom = 0.76666665
+theme_override_constants/separation = 16
+alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Combat/Effects" unique_id=1425029556]
+layout_mode = 2
+size_flags_vertical = 8
+texture = ExtResource("6_j84h1")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="Combat/Effects" unique_id=361675258]
+layout_mode = 2
+size_flags_vertical = 8
+texture = ExtResource("7_mbcey")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="TopPart" type="Control" parent="Combat" unique_id=1475397202]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 176.0
+grow_horizontal = 2
+
+[node name="EnemyBar" type="TextureRect" parent="Combat/TopPart" unique_id=1263149313]
+z_index = 2
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 35.0
+offset_right = -33.0
+offset_bottom = 60.0
+grow_horizontal = 2
+size_flags_vertical = 8
+texture = ExtResource("8_kea6h")
+expand_mode = 2
+
+[node name="Background" type="ColorRect" parent="Combat/TopPart/EnemyBar" unique_id=2085813605]
+z_index = -2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 31.0
+offset_top = 18.0
+offset_right = -31.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.15294118, 0.14509805, 0.14509805, 1)
+
+[node name="HealthRemaining" type="ColorRect" parent="Combat/TopPart/EnemyBar" unique_id=1958752399]
+unique_name_in_owner = true
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 18.0
+offset_right = -25.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.81960785, 0, 0, 1)
+
+[node name="HealthRemaining2" type="ColorRect" parent="Combat/TopPart/EnemyBar" unique_id=2026885013]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -96.0
+offset_top = 63.0
+offset_right = 181.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1)
+color = Color(0.81960785, 0, 0, 1)
+script = SubResource("GDScript_mbcey")
+
+[node name="HealthRemaining3" type="ColorRect" parent="Combat/TopPart/EnemyBar" unique_id=628126738]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -101.0
+offset_top = 133.0
+offset_right = 176.0
+offset_bottom = 97.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1)
+color = Color(0.81960785, 0, 0, 1)
+script = SubResource("GDScript_mbcey")
+
+[node name="HealthRemaining4" type="ColorRect" parent="Combat/TopPart/EnemyBar" unique_id=1699741362]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -101.0
+offset_top = 195.0
+offset_right = 176.0
+offset_bottom = 159.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1)
+color = Color(0.81960785, 0, 0, 1)
+script = SubResource("GDScript_mbcey")
+
+[node name="HealthRemaining5" type="ColorRect" parent="Combat/TopPart/EnemyBar" unique_id=919847538]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -97.0
+offset_top = 261.0
+offset_right = 180.0
+offset_bottom = 225.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1)
+color = Color(0.81960785, 0, 0, 1)
+script = SubResource("GDScript_mbcey")
+
+[node name="HealthRemaining6" type="ColorRect" parent="Combat/TopPart/EnemyBar" unique_id=1657795318]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -96.0
+offset_top = 316.0
+offset_right = 181.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1)
+color = Color(0.81960785, 0, 0, 1)
+script = SubResource("GDScript_mbcey")
+
+[node name="EnemyIcon" type="TextureRect" parent="Combat/TopPart" unique_id=1162484295]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03888889
+anchor_top = 0.32386363
+anchor_right = 0.18680556
+anchor_bottom = 0.8806818
+grow_vertical = 0
+texture = ExtResource("9_i5u84")
+metadata/_edit_use_anchors_ = true
+
+[node name="Inventory" parent="." unique_id=262914432 instance=ExtResource("1_f4vck")]
+visible = false
+
+[node name="FreeRoamPauseMenu" parent="." unique_id=1576074431 instance=ExtResource("3_miqgn")]
+visible = false

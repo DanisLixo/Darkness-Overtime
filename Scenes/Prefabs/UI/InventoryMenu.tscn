@@ -53,6 +53,7 @@ axis_stretch_vertical = 1
 texture = ExtResource("11_glwmw")
 
 [node name="InventoryMenu" type="Control" unique_id=262914432 node_paths=PackedStringArray("containers", "sectionImages")]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

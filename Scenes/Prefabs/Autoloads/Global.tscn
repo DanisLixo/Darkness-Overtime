@@ -61,9 +61,6 @@ layer = 127
 
 [node name="GameHud" parent="." unique_id=1094812230 instance=ExtResource("2_ohhm8")]
 
-[node name="GUI" parent="GameHud" index="0" unique_id=262914432]
-visible = false
-
 [node name="Misc" type="CanvasLayer" parent="." unique_id=1701419742]
 layer = 129
 
@@ -85,5 +82,3 @@ offset = Vector2(-3, -3)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Misc" unique_id=1060498216]
 root_node = NodePath("../../GameHud")
 libraries/ = SubResource("AnimationLibrary_o00oc")
-
-[editable path="GameHud"]

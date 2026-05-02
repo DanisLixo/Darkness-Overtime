@@ -1,5 +1,9 @@
 extends Node
 
+enum File {ONE, TWO, THREE}
+enum PlayState {INMENUS, PLAYING, CUTSCENE}
+enum GameMode {FREEROAM, BATTLE, SPECIAL}
+var itemMap := {}
 const langCodes := ["pt-br", "en"]
 var configPath := get_local_dir()
 
@@ -8,15 +12,21 @@ var isUnrelease := true
 
 var debug := false
 
+var countTime := false
+var playtime := 0.0
+
+var currentFile: Global.File = File.ONE
 var saveFiles := []
-var currentFile := 0
-var inventory := []
+var inventory := [0, 0, 0, 0, 0, 0]
 var flags := []
 
 var ambience := "rain"
-var inCutscene := false
 var currentRoom: RoomClass
 
+var gameDate := [-1, -1]
+
+var currentState: Global.PlayState = PlayState.INMENUS
+var currentMode: Global.GameMode = GameMode.SPECIAL
 var paused := false
 
 ## Sem funcao por agora, somente eh um autoload
@@ -26,16 +36,41 @@ var paused := false
 func _init() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
+func _ready() -> void:
+	setup_config()
+
 func _process(delta: float) -> void:
+	if (countTime):
+		playtime += delta
 	handle_mouse()
 	
+func setup_config() -> void:
+	update_item_id_map()
+	
+	var dirs := ["files"]
+	for d in dirs:
+		var path := configPath.path_join(d)
+		if (!DirAccess.dir_exists_absolute(path)):
+			DirAccess.make_dir_recursive_absolute(path)
+
+func update_item_id_map() -> void:
+	itemMap.clear()
+	
+	var path := "res://Resources/ItemIDMap.json"
+	var map := FileAccess.open(path, FileAccess.READ)
+	var json: Dictionary = JSON.parse_string(map.get_as_text())
+	
+	itemMap = json.duplicate(true)
+
 func handle_mouse() -> void:
 	mouse.global_position = get_viewport().get_mouse_position()
 
-func transition_to_scene(scene_path: String = "") -> void:
+func transition_to_scene(scene_path: StringName = "*.tscn") -> void:
 	if (load(scene_path) == null):
 		printerr("Cena nao encontrada.")
 		return
+	
+	$GameHud.reset()
 	
 	$Misc/ColorRect.show()
 	$Misc/AnimationPlayer.play("fade_in")
@@ -44,7 +79,8 @@ func transition_to_scene(scene_path: String = "") -> void:
 	$Misc/AnimationPlayer.play_backwards("fade_in")
 
 func add_dialogue(dialogue) -> void:
-	inCutscene = true
+	currentState = PlayState.CUTSCENE
+	
 	$CanvasLayer.add_child(dialogue)
 	dialogue.open()
 
@@ -67,4 +103,3 @@ func get_local_dir() -> String:
 		push_warning("Couldn't create save folder, current exe directory is not writeable. Check Appdata/Roaming")
 		
 	return "user://"
-	

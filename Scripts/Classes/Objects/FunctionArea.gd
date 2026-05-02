@@ -1,5 +1,7 @@
 class_name FunctionArea2D extends Area2D
 
+const dialogueSystemScene := preload("res://Scenes/Prefabs/UI/DialogueScene.tscn")
+
 @export var activateInstant: bool
 @export var onlyActivateOnce: bool
 @export var overrideDialoguePosition: bool
@@ -8,7 +10,7 @@ class_name FunctionArea2D extends Area2D
 
 var playerBodyIn := false
 var alreadyActivated := false
-var dialoguePosition: Vector2
+var dialoguePosition: Vector2 = Vector2.ZERO
 
 var players: Array[Player]
 
@@ -37,17 +39,7 @@ func activate_dialogue() -> void:
 		i.stateMachine.change_state("Freeze")
 		
 	var dialogueNode := dialogueSystemScene.instantiate()
-	if (overrideDialoguePosition):
-		dialoguePosition = overridePosition
-	else:
-		var someoneOnBottom = false
-		for i in players:
-			if (i.global_position.y > get_viewport().get_camera_2d().get_screen_center_position().y):
-				someoneOnBottom = true
-		if (someoneOnBottom):
-			dialoguePosition = dialogueTopPosition
-		else:
-			dialoguePosition = dialogueBottomPosition
+	
 	dialogueNode.activatorNode = self
 	dialogueNode.global_position = dialoguePosition
 	dialogueNode.dialogue = dialogue

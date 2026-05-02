@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://btbuq7oru26br"]
+
+[ext_resource type="Script" uid="uid://c8t4cwm17eq18" path="res://Scripts/Classes/TitleScreen.gd" id="1_1j3pg"]
+[ext_resource type="PackedScene" uid="uid://cyrg3f5dd82jy" path="res://Scenes/Prefabs/UI/SettingsMenu.tscn" id="2_4kc87"]
+[ext_resource type="PackedScene" uid="uid://dsb23tvs0sett" path="res://Scenes/Parts/SelectableOption.tscn" id="2_8t4ah"]
+[ext_resource type="Script" uid="uid://cj3ggoy7cpecg" path="res://Scripts/UI/Pause/SaveMenu.gd" id="2_k5jbm"]
+[ext_resource type="PackedScene" uid="uid://ca4xcpm1clts0" path="res://Scenes/Parts/SaveContainer.tscn" id="3_8t4ah"]
+
+[node name="TitleScreen" type="Node" unique_id=1362859808]
+script = ExtResource("1_1j3pg")
+isPlayableRoom = false
+areaName = "Title Screen"
+areaGroup = "Menus"
+cameraLimits = Vector2i(10000, 10000)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1417529175]
+layer = 128
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=354896172]
+layout_mode = 3
+anchor_left = 0.12222222
+anchor_top = 0.08425926
+anchor_right = 0.83194447
+anchor_bottom = 0.9425926
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MainList" type="VBoxContainer" parent="CanvasLayer/Control" unique_id=430625400]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -46.0
+offset_right = 96.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Start" parent="CanvasLayer/Control/MainList" unique_id=1904761721 instance=ExtResource("2_8t4ah")]
+layout_mode = 2
+
+[node name="SelectableLabel" parent="CanvasLayer/Control/MainList/Start" index="1" unique_id=704275405]
+text = "Start Game"
+
+[node name="Options" parent="CanvasLayer/Control/MainList" unique_id=1524306267 instance=ExtResource("2_8t4ah")]
+layout_mode = 2
+
+[node name="SelectableLabel" parent="CanvasLayer/Control/MainList/Options" index="1" unique_id=704275405]
+text = "Options"
+
+[node name="Exit" parent="CanvasLayer/Control/MainList" unique_id=968100842 instance=ExtResource("2_8t4ah")]
+layout_mode = 2
+
+[node name="SelectableLabel" parent="CanvasLayer/Control/MainList/Exit" index="1" unique_id=704275405]
+text = "Exit"
+
+[node name="SaveList" type="HBoxContainer" parent="CanvasLayer/Control" unique_id=1681633316 node_paths=PackedStringArray("containers")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+script = ExtResource("2_k5jbm")
+containers = [null, null, null]
+
+[node name="SaveContainer" parent="CanvasLayer/Control/SaveList" unique_id=472566976 instance=ExtResource("3_8t4ah")]
+layout_mode = 2
+
+[node name="SaveContainer2" parent="CanvasLayer/Control/SaveList" unique_id=811139681 instance=ExtResource("3_8t4ah")]
+layout_mode = 2
+saveFile = 1
+
+[node name="SaveContainer3" parent="CanvasLayer/Control/SaveList" unique_id=1793924427 instance=ExtResource("3_8t4ah")]
+layout_mode = 2
+saveFile = 2
+
+[node name="SettingsMenu" parent="CanvasLayer" unique_id=1989868414 instance=ExtResource("2_4kc87")]
+visible = false
+
+[connection signal="pressed" from="CanvasLayer/Control/MainList/Start/SelectableLabel" to="CanvasLayer/Control/MainList" method="hide"]
+[connection signal="pressed" from="CanvasLayer/Control/MainList/Start/SelectableLabel" to="CanvasLayer/Control/SaveList" method="show"]
+
+[editable path="CanvasLayer/Control/MainList/Start"]
+[editable path="CanvasLayer/Control/MainList/Options"]
+[editable path="CanvasLayer/Control/MainList/Exit"]

@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bkmowuf1ru1vd" path="res://Scenes/Prefabs/Entities/Props/BasicProp.tscn" id="3_yh1hx"]
 [ext_resource type="Texture2D" uid="uid://bhrchdqqve7md" path="res://Assets/Sprites/Areas/TilesetTest/Props/Cone.png" id="4_hmqck"]
 [ext_resource type="Texture2D" uid="uid://dkeifpnkno2kp" path="res://Assets/Sprites/Areas/TilesetTest/Props/Lampada.png" id="5_f65yc"]
-[ext_resource type="PackedScene" uid="uid://bbffg46epjcyw" path="res://Scenes/Prefabs/Entities/Player.tscn" id="5_qbyya"]
+[ext_resource type="PackedScene" uid="uid://bbffg46epjcyw" path="res://Scenes/Prefabs/Entities/Characters/Player.tscn" id="5_qbyya"]
 [ext_resource type="Texture2D" uid="uid://b73kd3rn5pwra" path="res://Assets/Sprites/Areas/TilesetTest/Props/Lixeira.png" id="6_o8cou"]
 [ext_resource type="Texture2D" uid="uid://i0othbyvs3j0" path="res://Assets/Sprites/Areas/TilesetTest/Props/Papel0.png" id="10_717a8"]
 [ext_resource type="Texture2D" uid="uid://cmy5jl3dvielo" path="res://Assets/Sprites/Areas/TilesetTest/Props/Papel1.png" id="11_7kims"]
@@ -207,6 +207,8 @@ size = Vector2(1279, 128)
 
 [node name="TilesetTest" type="Node" unique_id=2043655054]
 script = ExtResource("1_u6mw4")
+areaName = "Tileset Test"
+areaGroup = "Test Rooms"
 cameraLimits = Vector2i(3000, 5000)
 metadata/_custom_type_script = "uid://c3884lbnyy7vs"
 

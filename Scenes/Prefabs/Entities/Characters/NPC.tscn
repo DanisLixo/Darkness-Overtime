@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c11yowsdwbpe3"]
 
 [ext_resource type="Script" uid="uid://c55oergbnbj84" path="res://Scripts/Classes/Entities/NPC.gd" id="1_s21p0"]
-[ext_resource type="PackedScene" uid="uid://5egg5jhuv4mn" path="res://Scenes/Prefabs/Entities/Character.tscn" id="1_yst1b"]
+[ext_resource type="PackedScene" uid="uid://5egg5jhuv4mn" path="res://Scenes/Prefabs/Entities/Characters/Character.tscn" id="1_yst1b"]
 [ext_resource type="Script" uid="uid://01wyspg0cufo" path="res://Scripts/Parts/Dialogue/Resources/Members/DialogueArray.gd" id="3_s21p0"]
 [ext_resource type="Texture2D" uid="uid://dl1yxec0krjlf" path="res://Assets/Sprites/Entities/Characters/PlaceholderNPC/front.png" id="4_s21p0"]
 [ext_resource type="Script" uid="uid://7qb8tawv0n5e" path="res://Scripts/Parts/Dialogue/NPCDialogueNode.gd" id="5_s21p0"]

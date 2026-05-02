@@ -6,7 +6,7 @@ extends Control
 
 func _process(_delta: float) -> void:
 	var itemName: String = ""
-	if (invSection.currentSlot.myItem != null):
+	if (invSection.currentSlot != null && invSection.currentSlot.myItem != null):
 		itemName = invSection.currentSlot.myItem.itemName.replace(" ", "")
 	
 	for item in items:
