@@ -986,6 +986,7 @@ metadata/_custom_type_script = "uid://7ej2yf2aog6i"
 [node name="Sprite" parent="SpriteJoint" parent_id_path=PackedInt32Array(746707890) index="0" unique_id=1735560964]
 position = Vector2(0, -106.5)
 sprite_frames = SubResource("SpriteFrames_q42kf")
+animation = &"walk_left"
 
 [node name="CharacterLight" type="PointLight2D" parent="SpriteJoint/Sprite" index="0" unique_id=128563615]
 material = SubResource("CanvasItemMaterial_7nbqp")

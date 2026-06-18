@@ -20,7 +20,18 @@ var debugging = false
 @onready var camera: Camera2D = $Camera
 @onready var cameraHandler: Camera2DHandler = $CameraHandler
 
+var pathId = 0;
+
 func _process(_delta: float) -> void:
+	path_array[pathId] = {
+		"position": position,
+		"dir": direction
+	};
+	
+	pathId += 1;
+	if pathId > 6:
+		pathId = 0;
+		
 	if (hintText != null):
 		var newText := "move_action"
 		
