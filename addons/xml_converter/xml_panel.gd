@@ -425,7 +425,3 @@ func add_anim(animPlayer, image, fps, loop, args = []):
 					animPlayer.set_animation_speed(curAnimation, fps);
 					
 				animPlayer.add_frame(curAnimation, frameTexture);
-
-
-func _on_file_dialog_file_selected(path: String) -> void:
-	%LineEdit1.text = path

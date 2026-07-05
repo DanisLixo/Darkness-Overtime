@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bqky4m8oipwt7"]
+
+[ext_resource type="PackedScene" uid="uid://bbffg46epjcyw" path="res://Scenes/Prefabs/Entities/Characters/Player.tscn" id="1_a3njk"]
+[ext_resource type="Texture2D" uid="uid://im17gcweyd6j" path="res://Assets/Sprites/m hmhgkmgh.jpg" id="1_c3teg"]
+[ext_resource type="SpriteFrames" uid="uid://cesx86odqhq3f" path="res://Assets/Sprites/Entities/Characters/Placeholder/sprite_sheet.tres" id="2_0i1hh"]
+[ext_resource type="Script" uid="uid://dbr7s2fkxoptw" path="res://Scripts/Classes/Entities/partner.gd" id="3_6bt3x"]
+
+[node name="placeholder" type="Node2D" unique_id=793030194]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1967442139]
+position = Vector2(562, 291)
+scale = Vector2(3.9612615, 3.3456903)
+texture = ExtResource("1_c3teg")
+
+[node name="Partner" type="AnimatedSprite2D" parent="." unique_id=409708399 node_paths=PackedStringArray("player")]
+sprite_frames = ExtResource("2_0i1hh")
+animation = &"front instance 1"
+script = ExtResource("3_6bt3x")
+player = NodePath("../Player")
+metadata/_custom_type_script = "uid://dbr7s2fkxoptw"
+
+[node name="Player" parent="." unique_id=1596251819 instance=ExtResource("1_a3njk")]
+position = Vector2(731, 493)

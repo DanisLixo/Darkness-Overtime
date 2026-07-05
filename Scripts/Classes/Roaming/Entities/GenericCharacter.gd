@@ -21,7 +21,11 @@ var direction := Vector2i(0, 1)
 @export var initialDirection := Character.Direction.FRONT
 @export var asymetricalSprites := false
 
+var path_array = [];
+
 func _ready() -> void:
+	path_array.resize(7);
+	
 	sprite.update_sprites()
 	sprite.direction = initialDirection
 	sprite.change_to_idle()

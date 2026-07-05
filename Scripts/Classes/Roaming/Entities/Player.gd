@@ -22,8 +22,18 @@ var debugging = false
 
 static var money := 0
 static var inventory := [ItemHandler.ID.PLACEHOLDER_BURGER]
+var pathId = 0;
 
 func _process(_delta: float) -> void:
+	path_array[pathId] = {
+		"position": position,
+		"dir": direction
+	};
+	
+	pathId += 1;
+	if pathId > 6:
+		pathId = 0;
+		
 	if (hintText != null):
 		var newText := "move_action"
 		
