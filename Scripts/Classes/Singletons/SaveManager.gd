@@ -2,15 +2,15 @@ extends Node
 
 var SAVE_DIR: String = Global.configPath.path_join("files/File[SLOT]")
 const SAVE_FILE := {
-	"room" : {
-		"path" : "",
-		"name": "",
-		"group": ""
+	"Room" : {
+		"Path" : "",
+		"Name": "",
 	},
-	"playtime": -1.0,
-	"items" : [],
-	"flags" : [],
-	"date" : [-1, -1],
+	"Group": -1.0,
+	"Items" : [],
+	"Flags" : [],
+	"Date" : [-1, -1],
+	"Party": ["Y_character"]
 }
 
 var currentFile = SAVE_FILE
@@ -38,22 +38,19 @@ func write_save(slotId := 0) -> void:
 	if (!DirAccess.dir_exists_absolute(path)):
 		DirAccess.make_dir_recursive_absolute(path)
 	
-	saveJson.room["path"] = Global.currentRoom.scene_file_path
-	saveJson.room["name"] = Global.currentRoom.areaName
-	saveJson.room["group"] = Global.currentRoom.areaGroup
+	saveJson["Room"]["Path"] = Global.currentRoom.scene_file_path
+	saveJson["Room"]["Name"] = Global.currentRoom.areaName
+	saveJson["Room"]["Group"] = Global.currentRoom.areaGroup
 	
-	saveJson["playtime"] = Global.playtime
-	saveJson["items"] = Global.inventory
-	saveJson["flags"] = Global.flags
-	saveJson["date"][0] = Global.gameDate[0]
-	saveJson["date"][1] = Global.gameDate[1]
+	saveJson["Playtime"] = Global.playtime
+	saveJson["Items"] = Global.inventory
+	saveJson["Flags"] = Global.flags
+	saveJson["Date"][0] = Global.gameDate[0]
+	saveJson["Date"][1] = Global.gameDate[1]
 	
 	write_to_file(saveJson, path.path_join(Time.get_datetime_string_from_system() + ".sav"))
 
 func clear_save(slotId := 0) -> void:
-	var save := SAVE_FILE.duplicate(true)
-	apply_save(save)
-	
 	var path = SAVE_DIR.replace("[SLOT]", str(slotId))
 	
 	for i in DirAccess.get_files_at(path):
@@ -67,11 +64,12 @@ func write_to_file(json := {}, path := "") -> void:
 	file.close()
 
 func apply_save(json := {}) -> void:
-	Global.inventory = json["items"]
-	Global.flags = json["flags"]
-	Global.playtime = json["playtime"]
-	Global.gameDate[0] = json["date"][0]
-	Global.gameDate[1] = json["date"][1]
+	Global.inventory = json["Items"]
+	Global.flags = json["Flags"]
+	Global.playtime = json["Group"]
+	Global.gameDate[0] = json["Date"][0]
+	Global.gameDate[1] = json["Date"][1]
+	Global.party = json["Party"]
 
 func convert_playtime(time := 0.0) -> String:
 	var string := ""

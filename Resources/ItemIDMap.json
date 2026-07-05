@@ -1,5 +1,3 @@
 {
-	"0": "PlaceholderBurger",
-	"1": "PlaceholderKey",
-	"2": "PlaceholderWhip",
+	"ItemArray": ["PlaceholderBurger", "PlaceholderKey", "PlaceholderWhip"]
 }

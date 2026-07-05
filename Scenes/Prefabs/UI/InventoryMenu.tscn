@@ -11,10 +11,10 @@
 [ext_resource type="Script" uid="uid://dswphka2i04u" path="res://Scripts/UI/Inventory/InventoryGrid.gd" id="9_3me7l"]
 [ext_resource type="Texture2D" uid="uid://d1ubhebdqr6yp" path="res://Assets/Sprites/UI/Inventory/Panels/PanelDefault.png" id="10_fu2cn"]
 [ext_resource type="Texture2D" uid="uid://bqasmicqlshrs" path="res://Assets/Sprites/UI/Inventory/Panels/InfoBG.png" id="11_glwmw"]
-[ext_resource type="Texture2D" uid="uid://b1jkce2i8icfg" path="res://Assets/Sprites/UI/Inventory/Grid/Items/PlaceholderKey/Portrait.png" id="12_wd73n"]
+[ext_resource type="Texture2D" uid="uid://b1jkce2i8icfg" path="res://Assets/Sprites/UI/Items/PlaceholderKey/Portrait.png" id="12_wd73n"]
 [ext_resource type="Script" uid="uid://b5dy67437fhiq" path="res://Scripts/UI/Inventory/WireframeInfo.gd" id="13_8hmr0"]
 [ext_resource type="Texture2D" uid="uid://nidna65o3afu" path="res://Assets/Sprites/UI/Inventory/Elements/Y_Wireframe.png" id="14_kxowu"]
-[ext_resource type="Texture2D" uid="uid://bo87kh25xtqne" path="res://Assets/Sprites/UI/Inventory/Grid/Items/PlaceholderKey/Wireframe.png" id="15_cnnjm"]
+[ext_resource type="Texture2D" uid="uid://bo87kh25xtqne" path="res://Assets/Sprites/UI/Items/PlaceholderKey/Wireframe.png" id="15_cnnjm"]
 
 [sub_resource type="GDScript" id="GDScript_uu3oj"]
 script/source = "extends Label

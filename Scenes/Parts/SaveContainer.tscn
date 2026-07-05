@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://ca4xcpm1clts0"]
 
-[ext_resource type="Script" uid="uid://7gb84cmg6nkj" path="res://Scripts/UI/SlotContainer.gd" id="1_ihkgo"]
+[ext_resource type="Script" uid="uid://7gb84cmg6nkj" path="res://Scripts/UI/Save/SlotContainer.gd" id="1_ihkgo"]
 [ext_resource type="Texture2D" uid="uid://dpja0a3jdrppo" path="res://Assets/Sprites/Entities/Characters/Placeholder/icon.png" id="1_x07ns"]
 [ext_resource type="PackedScene" uid="uid://c7rkctsy8rv6q" path="res://Scenes/Parts/SelectableLabel.tscn" id="3_a3n0e"]
-[ext_resource type="Script" uid="uid://bvmwa4iq00r1g" path="res://Scripts/UI/AutoScrollContainer.gd" id="3_nbjan"]
-[ext_resource type="Script" uid="uid://kgifew3vwv6i" path="res://Scripts/UI/SaveFilesList.gd" id="5_o205c"]
+[ext_resource type="Script" uid="uid://bvmwa4iq00r1g" path="res://Scripts/UI/Extensions/AutoScrollContainer.gd" id="3_nbjan"]
+[ext_resource type="Script" uid="uid://kgifew3vwv6i" path="res://Scripts/UI/Save/SaveFilesList.gd" id="5_o205c"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_nbjan"]
 color = Color(1, 1, 1, 1)

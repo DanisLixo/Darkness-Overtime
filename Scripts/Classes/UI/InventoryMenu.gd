@@ -45,8 +45,7 @@ func open() -> void:
 	Global.currentState = Global.PlayState.INMENUS
 	
 	await get_tree().process_frame
-	Global.paused = true
-	get_tree().paused = true
+	Global.toggle_pause(true)
 	
 	active = true
 	opened.emit()
@@ -54,8 +53,7 @@ func open() -> void:
 func close() -> void:
 	Global.currentState = Global.PlayState.PLAYING
 	
-	Global.paused = false
-	get_tree().paused = false
+	Global.toggle_pause(false)
 	
 	print("Botao apertado")
 	for i: Player in get_tree().get_nodes_in_group("Players"):

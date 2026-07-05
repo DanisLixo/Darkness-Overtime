@@ -3,15 +3,15 @@
 [ext_resource type="PackedScene" uid="uid://bfkc7meaemb0v" path="res://Scenes/Prefabs/UI/InventoryMenu.tscn" id="1_f4vck"]
 [ext_resource type="Script" uid="uid://c1odeh0t1wnuv" path="res://Scripts/Classes/UI/GameHUD.gd" id="1_yjs50"]
 [ext_resource type="Texture2D" uid="uid://dm4ienan465x4" path="res://Assets/Sprites/Combat/imagedef.png" id="2_7twq2"]
-[ext_resource type="Texture2D" uid="uid://cnl74tstgks0g" path="res://Assets/Sprites/Combat/HUD/BottomBar.png" id="3_4b76u"]
+[ext_resource type="Texture2D" uid="uid://cnl74tstgks0g" path="res://Assets/Sprites/Combat/HUD/Main/ActionsBar.png" id="3_4b76u"]
 [ext_resource type="PackedScene" uid="uid://cuyewh05u76d1" path="res://Scenes/Prefabs/UI/PauseMenu.tscn" id="3_miqgn"]
-[ext_resource type="Texture2D" uid="uid://xy3eewwrq1rv" path="res://Assets/Sprites/Combat/Y_character/Y-icone.png" id="4_6dxi8"]
+[ext_resource type="Texture2D" uid="uid://xy3eewwrq1rv" path="res://Assets/Sprites/Combat/Entities/Characters/Y_character/Icon.png" id="4_6dxi8"]
 [ext_resource type="PackedScene" uid="uid://d2c0rn3i8oig3" path="res://Scenes/Parts/ActionRect.tscn" id="5_6dxi8"]
-[ext_resource type="Texture2D" uid="uid://daq8afox6y7eg" path="res://Assets/Sprites/Combat/X_character/passiva_icone.png" id="6_j84h1"]
-[ext_resource type="Texture2D" uid="uid://dnbweaq8te6l5" path="res://Assets/Sprites/Combat/HUD/botao_terminar-turno.png" id="6_mbcey"]
-[ext_resource type="Texture2D" uid="uid://bhxgow3op0h57" path="res://Assets/Sprites/Combat/Y_character/Y-passiva_icone.png" id="7_mbcey"]
-[ext_resource type="Texture2D" uid="uid://dgvgddbkcf0rn" path="res://Assets/Sprites/Combat/HUD/boss barra.png" id="8_kea6h"]
-[ext_resource type="Texture2D" uid="uid://cyihlgqdbu1of" path="res://Assets/Sprites/Combat/HUD/boss_icone.png" id="9_i5u84"]
+[ext_resource type="Texture2D" uid="uid://daq8afox6y7eg" path="res://Assets/Sprites/Combat/Entities/Characters/X_character/Passive.png" id="6_j84h1"]
+[ext_resource type="Texture2D" uid="uid://dnbweaq8te6l5" path="res://Assets/Sprites/Combat/HUD/Main/EndTurn.png" id="6_mbcey"]
+[ext_resource type="Texture2D" uid="uid://bhxgow3op0h57" path="res://Assets/Sprites/Combat/Entities/Characters/Y_character/Passive.png" id="7_mbcey"]
+[ext_resource type="Texture2D" uid="uid://dgvgddbkcf0rn" path="res://Assets/Sprites/Combat/HUD/Enemies/Bosses/BossHealthBar.png" id="8_kea6h"]
+[ext_resource type="Texture2D" uid="uid://cyihlgqdbu1of" path="res://Assets/Sprites/Combat/Entities/Enemies/Bosses/Placeholder/Icon.png" id="9_i5u84"]
 
 [sub_resource type="GDScript" id="GDScript_mbcey"]
 script/source = "extends ColorRect
@@ -27,6 +27,7 @@ layer = 128
 script = ExtResource("1_yjs50")
 
 [node name="Combat" type="Control" parent="." unique_id=1071042878]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -77,56 +78,29 @@ grow_vertical = 2
 custom_minimum_size = Vector2(313.145, 0)
 layout_mode = 2
 
-[node name="Player1" type="TextureRect" parent="Combat/BottomPart/HBoxContainer/Allies" unique_id=1705641840]
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -179.99994
-grow_horizontal = 0
-grow_vertical = 2
+[node name="Player1" type="Sprite2D" parent="Combat/BottomPart/HBoxContainer/Allies" unique_id=2131678303]
+unique_name_in_owner = true
+position = Vector2(247.00006, 70)
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("4_6dxi8")
-expand_mode = 2
-stretch_mode = 5
 
-[node name="Player2" type="TextureRect" parent="Combat/BottomPart/HBoxContainer/Allies" unique_id=92919199]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_top = 26.0
-offset_right = 132.00006
-offset_bottom = -26.0
-grow_vertical = 2
+[node name="Player2" type="Sprite2D" parent="Combat/BottomPart/HBoxContainer/Allies" unique_id=120358930]
+unique_name_in_owner = true
+position = Vector2(82.00006, 73)
+scale = Vector2(0.6, 0.6)
 texture = ExtResource("4_6dxi8")
-expand_mode = 2
-stretch_mode = 5
 
-[node name="Player3" type="TextureRect" parent="Combat/BottomPart/HBoxContainer/Allies" unique_id=1627662047]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_left = -123.99994
-offset_top = 35.0
-offset_right = -31.999939
-offset_bottom = -39.0
-grow_vertical = 2
+[node name="Player3" type="Sprite2D" parent="Combat/BottomPart/HBoxContainer/Allies" unique_id=649688842]
+unique_name_in_owner = true
+position = Vector2(-34.999947, 73)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("4_6dxi8")
-expand_mode = 2
-stretch_mode = 5
 
-[node name="Player4" type="TextureRect" parent="Combat/BottomPart/HBoxContainer/Allies" unique_id=1016895706]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_left = -222.99994
-offset_top = 48.0
-offset_right = -70.99994
-offset_bottom = -48.0
-grow_vertical = 2
+[node name="Player4" type="Sprite2D" parent="Combat/BottomPart/HBoxContainer/Allies" unique_id=1656297468]
+unique_name_in_owner = true
+position = Vector2(-113.99995, 73)
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("4_6dxi8")
-expand_mode = 2
-stretch_mode = 5
 
 [node name="Actions" type="VBoxContainer" parent="Combat/BottomPart/HBoxContainer" unique_id=1032608524]
 layout_mode = 2
@@ -187,6 +161,7 @@ alignment = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="Combat/Effects" unique_id=1425029556]
+visible = false
 layout_mode = 2
 size_flags_vertical = 8
 texture = ExtResource("6_j84h1")
@@ -194,6 +169,7 @@ expand_mode = 5
 stretch_mode = 5
 
 [node name="TextureRect2" type="TextureRect" parent="Combat/Effects" unique_id=361675258]
+visible = false
 layout_mode = 2
 size_flags_vertical = 8
 texture = ExtResource("7_mbcey")
@@ -249,80 +225,87 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.81960785, 0, 0, 1)
 
-[node name="HealthRemaining2" type="ColorRect" parent="Combat/TopPart/EnemyBar" unique_id=2026885013]
+[node name="Control" type="Control" parent="Combat/TopPart/EnemyBar" unique_id=1156975947]
+anchors_preset = 0
+anchor_left = -0.06559767
+anchor_top = 1.1
+anchor_right = -0.06559767
+anchor_bottom = 6.6833334
+metadata/_edit_use_anchors_ = true
+
+[node name="HealthRemaining2" type="ColorRect" parent="Combat/TopPart/EnemyBar/Control" unique_id=2026885013]
 z_index = -1
+custom_minimum_size = Vector2(0, 24)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -96.0
-offset_top = 63.0
-offset_right = 181.0
-offset_bottom = 27.0
+offset_right = 277.0
+offset_bottom = -311.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1e-05, 1)
 color = Color(0.81960785, 0, 0, 1)
 script = SubResource("GDScript_mbcey")
 
-[node name="HealthRemaining3" type="ColorRect" parent="Combat/TopPart/EnemyBar" unique_id=628126738]
+[node name="HealthRemaining3" type="ColorRect" parent="Combat/TopPart/EnemyBar/Control" unique_id=628126738]
 z_index = -1
+custom_minimum_size = Vector2(0, 24)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -101.0
-offset_top = 133.0
-offset_right = 176.0
-offset_bottom = 97.0
+offset_top = 64.0
+offset_right = 277.0
+offset_bottom = -246.99997
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1e-05, 1)
 color = Color(0.81960785, 0, 0, 1)
 script = SubResource("GDScript_mbcey")
 
-[node name="HealthRemaining4" type="ColorRect" parent="Combat/TopPart/EnemyBar" unique_id=1699741362]
+[node name="HealthRemaining4" type="ColorRect" parent="Combat/TopPart/EnemyBar/Control" unique_id=1699741362]
 z_index = -1
+custom_minimum_size = Vector2(0, 24)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -101.0
-offset_top = 195.0
-offset_right = 176.0
-offset_bottom = 159.0
+offset_top = 128.0
+offset_right = 277.0
+offset_bottom = -183.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1e-05, 1)
 color = Color(0.81960785, 0, 0, 1)
 script = SubResource("GDScript_mbcey")
 
-[node name="HealthRemaining5" type="ColorRect" parent="Combat/TopPart/EnemyBar" unique_id=919847538]
+[node name="HealthRemaining5" type="ColorRect" parent="Combat/TopPart/EnemyBar/Control" unique_id=919847538]
 z_index = -1
+custom_minimum_size = Vector2(0, 24)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -97.0
-offset_top = 261.0
-offset_right = 180.0
-offset_bottom = 225.0
+offset_top = 192.0
+offset_right = 277.0
+offset_bottom = -119.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1e-05, 1)
 color = Color(0.81960785, 0, 0, 1)
 script = SubResource("GDScript_mbcey")
 
-[node name="HealthRemaining6" type="ColorRect" parent="Combat/TopPart/EnemyBar" unique_id=1657795318]
+[node name="HealthRemaining6" type="ColorRect" parent="Combat/TopPart/EnemyBar/Control" unique_id=1657795318]
 z_index = -1
+custom_minimum_size = Vector2(0, 24)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -96.0
-offset_top = 316.0
-offset_right = 181.0
-offset_bottom = 280.0
+offset_top = 256.0
+offset_right = 277.0
+offset_bottom = -55.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1e-05, 1)

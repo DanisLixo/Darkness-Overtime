@@ -34,7 +34,7 @@ var rightPositions := [Vector2(1600, 71), Vector2(1058, 71)]
 @onready var dialogueLabel: RichTextLabel = %DialogueText
 var boxState := ControlState.OUTSIDE
 var boxChanging := false
-var boxPositions := [Vector2(441.5, 1200), [Vector2(192, 862), Vector2(441.5, 862), Vector2(708, 862)]]
+var boxPositions := [Vector2(441.5, 1200), [Vector2(192, 742), Vector2(441.5, 742), Vector2(708, 742)]]
 
 @onready var soundManager := $DialogueSounds
 @onready var dialogue := dialogueArray.array
@@ -87,6 +87,7 @@ func _process(_delta: float) -> void:
 			curDialogueItem += 1
 			nextItem = true
 
+var skipTime := 2
 func text_resource(res: DialogueText) -> void:
 	control_set_state("boxState", ControlState.INSIDE)
 	var characterResource: DialogueCharacter = get_character_resource(res.charResourceName)
@@ -96,11 +97,11 @@ func text_resource(res: DialogueText) -> void:
 	soundManager.volume_db = res.characterTextVolume_db
 	soundManager.pitch_scale = randf_range(res.characterTextPitchLimit[0], res.characterTextPitchLimit[1])
 	
-	var currentPortrait = get(res.portraitSide + "PortraitControl")
 	var currentPortraitSprite = get(res.portraitSide + "Sprite")
 	
-	update_current_speaker(res, characterResource, currentPortrait, currentPortraitSprite)
+	update_current_speaker(res, characterResource, currentPortraitSprite)
 	
+	skipTime = 2
 	dialogueLabel.visible_characters = 2
 	dialogueLabel.text = "* " + res.text
 	
@@ -109,9 +110,9 @@ func text_resource(res: DialogueText) -> void:
 	var charTimer: float = 0.0
 	
 	while dialogueLabel.visible_characters < totalChars:
-		#*if (Input.is_action_just_pressed("move_action")):
-			# dialogueLabel.visible_characters = totalChars
-			#break
+		if (Input.is_action_just_pressed("move_action") && skipTime <= 0):
+			dialogueLabel.visible_characters = totalChars
+			break
 		
 		charTimer += get_process_delta_time()
 		if (charTimer >= (1.0 / res.textSpeed) or textWoutSB[dialogueLabel.visible_characters] == " "):
@@ -124,11 +125,11 @@ func text_resource(res: DialogueText) -> void:
 				soundManager.pitch_scale = randf_range(res.characterTextPitchLimit[0], res.characterTextPitchLimit[1])
 				soundManager.play()
 			charTimer = 0.0
-	
+		
+		skipTime -= 1
 		await get_tree().process_frame
 	currentPortraitSprite.play(characterResource.animations.idle["name"])
 	
-	await get_tree().create_timer(0.5, false).timeout
 	while true:
 		await get_tree().process_frame
 		if (dialogueLabel.visible_characters == totalChars):
@@ -142,10 +143,7 @@ func choice_resource(res: DialogueChoice) -> void:
 	dialogueLabel.text = res.text
 	dialogueLabel.visible_characters = -1
 	
-	var currentPortrait = get(res.portraitSide + "PortraitControl")
-	var currentPortraitSprite = get(res.portraitSide + "Sprite")
-	
-	update_current_speaker(res, characterResource, res.portraitSide + "PortraitControl", res.portraitSide + "Sprite")
+	update_current_speaker(res, characterResource, res.portraitSide + "Sprite")
 	
 	# TODO: Node de escolher
 	
@@ -213,10 +211,10 @@ func close(destroy: bool = false) -> void:
 	dialogueClose.emit()
 	if (destroy):
 		await get_tree().process_frame
-		Global.inCutscene = false
+		Global.currentState = Global.PlayState.PLAYING
 		queue_free()
 
-func update_current_speaker(resource: ResourceDE, character: DialogueCharacter, control: Control, sprite: AnimatedSprite2D) -> void:
+func update_current_speaker(resource: ResourceDE, character: DialogueCharacter, sprite: AnimatedSprite2D) -> void:
 	if (resource == null): return
 	
 	control_set_state(resource.portraitSide + "SideState", ControlState.INSIDE)

@@ -1,7 +1,7 @@
 class_name PauseMenu
 extends Control
 
-var active := true
+var active := false
 
 @export var options: Array[Control] = []
 @onready var cursor := $Selections/Cursor
@@ -51,8 +51,7 @@ func open() -> void:
 	
 	await get_tree().process_frame
 	if (willPause):
-		Global.paused = true
-		get_tree().paused = true
+		Global.toggle_pause(true)
 		
 	active = true
 	opened.emit()
@@ -65,8 +64,7 @@ func close(unpause := true) -> void:
 	selectedIdx = 0
 	
 	if (unpause):
-		Global.paused = false
-		get_tree().paused = false
+		Global.toggle_pause(false)
 		
 	closed.emit()
 
