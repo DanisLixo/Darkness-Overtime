@@ -36,5 +36,5 @@ func get_files() -> void:
 		
 		containers.append(container)
 		add_child(container)
-		
+		move_child(container, idx)
 		idx += 1

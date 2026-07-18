@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dwy5h1g63sq6a" path="res://Scripts/Classes/Roaming/Entities/Player.gd" id="1_q38nx"]
 [ext_resource type="PackedScene" uid="uid://5egg5jhuv4mn" path="res://Scenes/Prefabs/Roam/Entities/Characters/Character.tscn" id="1_rs3l8"]
 [ext_resource type="Script" uid="uid://7ej2yf2aog6i" path="res://Scripts/Parts/States/PlayableState.gd" id="4_rs3l8"]
+[ext_resource type="Script" uid="uid://k38kvpy55qq7" path="res://Scripts/Classes/States/Playables/Combat.gd" id="4_taqtx"]
 [ext_resource type="Script" uid="uid://bt0hjyj78g5b7" path="res://Scripts/Classes/States/Playables/NoClip.gd" id="5_7nbqp"]
 [ext_resource type="Script" uid="uid://bf6yrtdb3iksn" path="res://Scripts/Classes/States/Playables/Normal.gd" id="5_rs3l8"]
 [ext_resource type="Texture2D" uid="uid://dso11fxa4dfm1" path="res://Assets/Sprites/Entities/Characters/Y_Character/BackIdle.png" id="5_shhao"]
@@ -609,7 +610,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gkj26")
 }],
-"loop": 1,
+"loop": true,
 "name": &"idle_back",
 "speed": 24.0
 }, {
@@ -695,7 +696,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_f3n8o")
 }],
-"loop": 1,
+"loop": true,
 "name": &"idle_front",
 "speed": 24.0
 }, {
@@ -769,7 +770,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_06eq6")
 }],
-"loop": 1,
+"loop": true,
 "name": &"idle_left",
 "speed": 24.0
 }, {
@@ -843,7 +844,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nt74c")
 }],
-"loop": 1,
+"loop": true,
 "name": &"idle_right",
 "speed": 24.0
 }, {
@@ -872,7 +873,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hofol")
 }],
-"loop": 1,
+"loop": true,
 "name": &"walk_back",
 "speed": 9.0
 }, {
@@ -901,7 +902,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qkll0")
 }],
-"loop": 1,
+"loop": true,
 "name": &"walk_front",
 "speed": 9.0
 }, {
@@ -927,7 +928,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_d8qdd")
 }],
-"loop": 1,
+"loop": true,
 "name": &"walk_left",
 "speed": 9.0
 }, {
@@ -953,7 +954,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_eaf6u")
 }],
-"loop": 1,
+"loop": true,
 "name": &"walk_right",
 "speed": 9.0
 }]
@@ -964,29 +965,32 @@ animations = [{
 size = Vector2(134, 43)
 
 [node name="Player" unique_id=1596251819 groups=["Players"] instance=ExtResource("1_rs3l8")]
-collision_layer = 1
 script = ExtResource("1_q38nx")
 characterName = "Y_character"
 asymetricalSprites = true
 
 [node name="States" parent="." index="0" unique_id=158308114 node_paths=PackedStringArray("initialState")]
-initialState = NodePath("Normal")
+initialState = NodePath("RPG")
 
-[node name="Normal" type="Node" parent="States" index="0" unique_id=450141113]
+[node name="RPG" type="Node" parent="States" index="0" unique_id=450141113]
 script = ExtResource("5_rs3l8")
 
-[node name="Freeze" type="Node" parent="States" index="1" unique_id=742199734]
+[node name="Combat" type="Node" parent="States" index="1" unique_id=1952538188]
+script = ExtResource("4_taqtx")
+metadata/_custom_type_script = "uid://7ej2yf2aog6i"
+
+[node name="Freeze" type="Node" parent="States" index="2" unique_id=742199734]
 script = ExtResource("4_rs3l8")
 metadata/_custom_type_script = "uid://7ej2yf2aog6i"
 
-[node name="NoClip" type="Node" parent="States" index="2" unique_id=122534141]
+[node name="NoClip" type="Node" parent="States" index="3" unique_id=122534141]
 script = ExtResource("5_7nbqp")
 metadata/_custom_type_script = "uid://7ej2yf2aog6i"
 
 [node name="Sprite" parent="SpriteJoint" parent_id_path=PackedInt32Array(746707890) index="0" unique_id=1735560964]
 position = Vector2(0, -106.5)
 sprite_frames = SubResource("SpriteFrames_q42kf")
-animation = &"walk_left"
+frame_progress = 0.7746722
 
 [node name="CharacterLight" type="PointLight2D" parent="SpriteJoint/Sprite" index="0" unique_id=128563615]
 material = SubResource("CanvasItemMaterial_7nbqp")
@@ -1002,7 +1006,6 @@ shape = SubResource("RectangleShape2D_057py")
 [node name="InteractionArea" parent="." index="3" unique_id=1541027673]
 position = Vector2(0, -49.5)
 collision_layer = 5
-collision_mask = 1
 
 [node name="StepSounds" parent="." index="4" unique_id=170541766]
 framesToPlay = Array[int]([0, 4])
@@ -1023,6 +1026,7 @@ editor_draw_limits = true
 script = ExtResource("15_f873f")
 
 [node name="HintText" type="Label" parent="." index="8" unique_id=727098058]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5

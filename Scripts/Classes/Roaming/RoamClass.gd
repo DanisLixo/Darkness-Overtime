@@ -5,7 +5,11 @@ class_name RoamRoomClass extends RoomClass
 @onready var camera := get_viewport().get_camera_2d()
 
 func _enter_tree() -> void:
-	super()
+	Global.currentRoom.scenePath = scene_file_path
+	Global.currentRoom.areaName = areaName
+	Global.currentRoom.areaGroup = areaGroup
+	if (music != null):
+		Global.currentRoom.music = music.resource_path
 	
 	if (!Engine.is_editor_hint() && has_node("DebugCamera")):
 		get_node("DebugCamera").free()

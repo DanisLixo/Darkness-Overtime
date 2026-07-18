@@ -20,12 +20,23 @@ var flags := []
 var party := ["Y_character"]
 
 var ambience := "rain"
-var currentRoom: RoomClass
+var currentRoom: Dictionary = {
+	"scenePath": "",
+	"music": "",
+	"areaName": "",
+	"areaGroup": ""
+}
 
 var gameDate := [-1, -1]
 
 var currentState: Global.PlayState = PlayState.INMENUS
-var currentMode: Global.GameMode = GameMode.SPECIAL
+
+signal mode_changed(new_mode)
+var currentMode: Global.GameMode = GameMode.SPECIAL: 
+	set(value):
+		currentMode = value
+		mode_changed.emit(currentMode)
+		
 var paused := false
 
 var configPath := get_local_dir()
@@ -58,7 +69,7 @@ func setup_config() -> void:
 func handle_mouse() -> void:
 	mouse.global_position = get_viewport().get_mouse_position()
 
-func transition_to_scene(scene_path: StringName = "*.tscn") -> void:
+func transition_to_scene(scene_path: Variant = "*.tscn") -> void:
 	if (load(scene_path) == null):
 		printerr("Cena nao encontrada.")
 		return
@@ -69,7 +80,12 @@ func transition_to_scene(scene_path: StringName = "*.tscn") -> void:
 	$Transition.show()
 	$Transition/AnimationPlayer.play("fade_in")
 	await $Transition/AnimationPlayer.animation_finished
-	get_tree().change_scene_to_file(scene_path)
+	if (scene_path is String):
+		get_tree().change_scene_to_file(scene_path)
+	elif (scene_path is Node):
+		get_tree().change_scene_to_node(scene_path)
+	elif (scene_path is PackedScene):
+		get_tree().change_scene_to_packed(scene_path)
 	
 	$Transition/AnimationPlayer.play_backwards("fade_in")
 	await $Transition/AnimationPlayer.animation_finished

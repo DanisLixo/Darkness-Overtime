@@ -6,6 +6,11 @@ var characterName := ""
 var direction := Character.Direction.FRONT
 var data: RoamingCharacter
 
+func _ready() -> void:
+	update_sprites()
+	if (Engine.is_editor_hint()):
+		change_to_idle()
+
 func _process(_delta: float) -> void:
 	if (Engine.is_editor_hint()):
 		if (characterName != owner.characterName):
@@ -52,4 +57,5 @@ func get_animation_offset(anim: String) -> void:
 	if (anim.contains("walk") && data.loop_offsets):
 		var newAnim: String = "idle_" + owner.get_animation_direction()
 		idx = sprite_frames.get_animation_names().find(newAnim)
-	offset = data.global_offset + data.offsets[idx]
+	if (data != null):
+		offset = data.global_offset + data.offsets[idx]

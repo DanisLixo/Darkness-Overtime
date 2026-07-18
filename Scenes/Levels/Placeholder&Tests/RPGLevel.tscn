@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://byet1fbqjn4qo"]
+
+[ext_resource type="Script" uid="uid://clo53ky587djs" path="res://Scripts/Classes/Roaming/RoamClass.gd" id="1_6e12u"]
+[ext_resource type="Script" uid="uid://ce6qp508j3ej6" path="res://Scripts/Classes/Roaming/Objects/DialogueArea.gd" id="3_ng37i"]
+[ext_resource type="PackedScene" uid="uid://bbffg46epjcyw" path="res://Scenes/Prefabs/Roam/Entities/Characters/Player.tscn" id="10_7u2el"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bkg10"]
+size = Vector2(200, 200)
+
+[node name="RPGLevel" type="Node" unique_id=1044140866]
+script = ExtResource("1_6e12u")
+metadata/_custom_type_script = "uid://c3884lbnyy7vs"
+
+[node name="Stage" type="Node" parent="." unique_id=1068326416]
+
+[node name="NPCs" type="Node" parent="." unique_id=1052685049]
+
+[node name="AreaTriggers" type="Node" parent="." unique_id=522688742]
+
+[node name="DialogueArea2D" type="Area2D" parent="AreaTriggers" unique_id=1934631352]
+position = Vector2(404, 355)
+script = ExtResource("3_ng37i")
+collisionShape = SubResource("RectangleShape2D_bkg10")
+metadata/_custom_type_script = "uid://ce6qp508j3ej6"
+
+[node name="Player" parent="." unique_id=2027798040 instance=ExtResource("10_7u2el")]
+
+[node name="DebugCamera" type="Camera2D" parent="." unique_id=1461861650]
+enabled = false
+limit_left = 0
+limit_top = 0
+limit_right = 1000000
+limit_bottom = 1000000
+editor_draw_screen = false
+editor_draw_limits = true

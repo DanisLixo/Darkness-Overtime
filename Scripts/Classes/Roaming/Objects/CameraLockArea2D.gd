@@ -1,4 +1,5 @@
-class_name CameraLockArea2D extends Area2D
+@tool
+class_name CameraLockArea2D extends AreaTrigger2D
 
 @export_category("Entered Area")
 @export var tweenTime := 0.5
@@ -8,19 +9,18 @@ class_name CameraLockArea2D extends Area2D
 
 var cameraLocked := false
 
-func _ready() -> void:
-	area_entered.connect(player_entered)
-	area_exited.connect(player_exited)
-	
 func player_entered(playerArea: Area2D) -> void:
-	if (cameraLocked): return
-	var player = playerArea.owner
-	if (player is Player):
+	super(playerArea)
+	
+	if (playerIn):
+		var player = playerArea.owner
 		player.lock_camera(global_position, tweenTime, instant, easeType, zoom)
 		cameraLocked = true
 
 func player_exited(playerArea: Area2D) -> void:
-	var player = playerArea.owner
-	if (player is Player):
+	super(playerArea)
+	
+	if (!playerIn):
+		var player = playerArea.owner
 		player.unlock_camera()
 		cameraLocked = false

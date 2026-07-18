@@ -109,7 +109,7 @@ animations = [{
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_eabwu"]
 
-[node name="DialogueSubScene" type="Control" unique_id=1957221761]
+[node name="DialogueSubScene" type="Control" unique_id=1957221761 node_paths=PackedStringArray("soundManager", "dialogueLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -117,6 +117,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_782r4")
+soundManager = NodePath("DialogueSounds")
+dialogueLabel = NodePath("InfoPanel/MarginContainer/ScrollContainer/Control/Label")
 metadata/_edit_lock_ = true
 
 [node name="Background" type="Control" parent="." unique_id=2141691904]

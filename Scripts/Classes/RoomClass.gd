@@ -8,7 +8,7 @@ class_name RoomClass
 @export var music: AudioStream
 
 func _enter_tree() -> void:
-	Global.currentRoom = self
+	set_music(music)
 
 func set_music(newMusic: AudioStream = null) -> void:
 	music = newMusic

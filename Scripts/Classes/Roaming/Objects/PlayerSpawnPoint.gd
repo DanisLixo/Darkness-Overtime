@@ -9,7 +9,6 @@ func _ready() -> void:
 func run_room_spawn_check() -> void:
 	if (pointID == RoomArea2D.exitID):
 		set_player_to_point()
-		
 
 func set_player_to_point() -> void:
 	for p in get_tree().get_nodes_in_group("Players"):

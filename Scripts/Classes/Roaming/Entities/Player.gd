@@ -2,13 +2,27 @@ class_name Player
 extends Character
 
 #region Physics Variables
-var WALK_MAX_SPEED := 500.0
-var WALK_ACCEL := 20.0
+var RPG_PHYSICS := {
+	"WALK_ACCEL": 20.0,
+	"WALK_MAX_SPEED": 500.0,
+	
+	"RUN_ACCEL": 35.0,
+	"RUN_MAX_SPEED": 720.0,
+	
+	"DECEL": 120.0,
+}
 
-var RUN_MAX_SPEED := 720.0
-var RUN_ACCEL := 35.0
+var COMBAT_PHYSICS := {
+	"WALK_ACCEL": 20.0,
+	"WALK_MAX_SPEED": 500.0,
+	
+	"RUN_ACCEL": 35.0,
+	"RUN_MAX_SPEED": 720.0,
+	
+	"DECEL": 120.0,
+}
 
-var DECEL := 120.0
+var physics := RPG_PHYSICS
 #endregion
 
 @onready var hintText := $HintText
@@ -24,11 +38,12 @@ static var money := 0
 static var inventory := [ItemHandler.ID.PLACEHOLDER_BURGER]
 var pathId = 0;
 
+func _ready() -> void:
+	Global.mode_changed.connect(handle_states)
+
 func _process(_delta: float) -> void:
-	path_array[pathId] = {
-		"position": position,
-		"dir": direction
-	};
+	
+	path_array.append( {"position": position, "dir": direction} )
 	
 	pathId += 1;
 	if pathId > 6:
@@ -38,6 +53,8 @@ func _process(_delta: float) -> void:
 		var newText := "move_action"
 		
 		hintText.text = newText.replace(newText, "Z")
+		
+func _physics_process(delta: float) -> void:
 	get_input()
 
 func set_spawnpoint(spawnpoint: PlayerSpawnpoint) -> void:
@@ -57,8 +74,9 @@ func get_input() -> void:
 	keyHold[INPUT.ACTION] = Input.is_action_pressed("move_action")
 	keyHold[INPUT.RUN] = Input.is_action_pressed("move_run")
 
-func lock_camera(toPosition := Vector2.ZERO, tweenTime := 5.0, instant := false, easeType := Tween.EaseType.EASE_OUT, zoom := Vector2(1, 1)) -> void:
-	cameraHandler.lock_current_camera(toPosition, tweenTime, instant, easeType, zoom)
-
-func unlock_camera() -> void:
-	cameraHandler.unlock_camera()
+func handle_states(newMode := 0) -> void:
+	match newMode:
+		Global.GameMode.FREEROAM:
+			stateMachine.change_state("RPG")
+		Global.GameMode.BATTLE:
+			stateMachine.change_state("Combat")

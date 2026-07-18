@@ -1,26 +1,36 @@
 extends PlayableState
 
+var cameraOut := false
+var tweening := false
+
+var running := false
+
 func enter(_msg = {}) -> void:
-	player.physics = player.RPG_PHYSICS
+	player.physics = player.COMBAT_PHYSICS
 
 func process(_delta: float) -> void:
+	if (player.keyHold[player.INPUT.RUN] && player.inputDirection != Vector2.ZERO):
+		if (!cameraOut):
+			apply_zoom_to_camera()
+	else:
+		if (cameraOut):
+			reset_zoom()
+	
 	if (Input.is_action_just_pressed("debug_key")):
 		player.debugging = true
 		player.stateMachine.change_state("NoClip")
 
-## Roda todo frame de fisica, atualiza o movimento e animacao
 func physics_process(delta: float) -> void:
 	handle_movement(delta)
 	handle_animations()
-
-## Atualiza a direcao e a velocidade do personagem
+	
 func handle_movement(delta: float) -> void:
 	handle_direction()
 	handle_acceleration(delta)
 	handle_deceleration(delta)
 	
 	player.move_and_slide()
-
+	
 func handle_direction() -> void:
 	# A direcao do input e um float e as vezes pode mudar para zero, direcao e usado para os sprites.
 	if (player.inputDirection):
@@ -29,10 +39,14 @@ func handle_direction() -> void:
 	if (player.inputDirection.y != 0):
 		player.direction.x = 0
 
-## Aceleracao de uma direcao sendo usada (uau).
 func handle_acceleration(delta: float) -> void:
 	var target_accel = player.physics.WALK_ACCEL
 	var target_speed = player.physics.WALK_MAX_SPEED
+	
+	if (player.inputDirection != Vector2.ZERO && player.keyHold[player.INPUT.RUN] && !running):
+		player.velocity += player.inputDirection * (player.physics.RUN_MAX_SPEED * 1.25)
+	
+	running = player.can_run && player.keyHold[player.INPUT.RUN] && player.inputDirection != Vector2.ZERO || !player.keyHold[player.INPUT.RUN] && player.inputDirection != Vector2.ZERO
 	
 	if (player.can_run && player.keyHold[player.INPUT.RUN]):
 		target_accel = player.physics.RUN_ACCEL
@@ -43,7 +57,30 @@ func handle_acceleration(delta: float) -> void:
 	if (player.inputDirection.y):
 		player.velocity.y = move_toward(player.velocity.y, target_speed * player.inputDirection.y, (target_accel / delta) * delta)
 
-## Decelaracao de uma direcao nao sendo usada.
+func apply_zoom_to_camera() -> void:
+	if (tweening):
+		return
+	
+	tweening = true
+	
+	player.cameraHandler.apply_zoom(Vector2(0.9, 0.9), 0.15, Tween.EaseType.EASE_IN_OUT)
+	await player.cameraHandler.zoom_tweened
+	
+	cameraOut = true
+	tweening = false
+
+func reset_zoom() -> void:
+	if (tweening):
+		return
+	
+	tweening = true
+	
+	player.cameraHandler.apply_zoom(Vector2.ONE, 0.15)
+	await player.cameraHandler.zoom_tweened
+	
+	cameraOut = false
+	tweening = false
+
 func handle_deceleration(delta: float) -> void:
 	var target_decel = player.physics.DECEL
 	
@@ -52,7 +89,6 @@ func handle_deceleration(delta: float) -> void:
 	if (!player.inputDirection.y):
 		player.velocity.y = move_toward(player.velocity.y, 0, (target_decel / delta) * delta)
 
-## Isso deve ficar mais complexo sei la
 func handle_animations() -> void:
 	var spriteName = get_animation()
 	var speed := 1.0
@@ -61,7 +97,6 @@ func handle_animations() -> void:
 	
 	player.play_animation(spriteName, speed)
 
-## Isso deve ficar mais complexo tambem nao sei.
 func get_animation() -> String:
 	if (player.inputDirection == Vector2.ZERO):
 		return "idle"

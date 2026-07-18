@@ -38,7 +38,7 @@ func write_save(slotId := 0) -> void:
 	if (!DirAccess.dir_exists_absolute(path)):
 		DirAccess.make_dir_recursive_absolute(path)
 	
-	saveJson["Room"]["Path"] = Global.currentRoom.scene_file_path
+	saveJson["Room"]["Path"] = Global.currentRoom.scenePath
 	saveJson["Room"]["Name"] = Global.currentRoom.areaName
 	saveJson["Room"]["Group"] = Global.currentRoom.areaGroup
 	

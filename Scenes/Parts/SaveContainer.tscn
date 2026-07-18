@@ -18,15 +18,16 @@ grow_begin = 6.0
 thickness = 8
 
 [node name="SlotContainer" type="PanelContainer" unique_id=601664862]
-clip_contents = true
 custom_minimum_size = Vector2(0, 256)
-anchors_preset = 9
+clip_contents = true
+anchors_preset = -1
+anchor_right = 0.07847222
 anchor_bottom = 1.0
-offset_right = 709.0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_ihkgo")
+metadata/_edit_use_anchors_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1273534406]
 layout_mode = 2
@@ -156,8 +157,20 @@ visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 32
-alignment = 1
 script = ExtResource("5_o205c")
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/SaveList" unique_id=1882776630]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/HBoxContainer/SaveList" unique_id=1479612019]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_nbjan")
+
+[node name="SelectableLabel4" parent="MarginContainer/HBoxContainer/SaveList" unique_id=374091853 instance=ExtResource("3_a3n0e")]
+layout_mode = 2
+text = "Back"
+horizontal_alignment = 1
 
 [connection signal="focus_entered" from="." to="." method="set_process" binds= [true]]
 [connection signal="focus_exited" from="." to="." method="set_process" binds= [false]]
@@ -165,3 +178,4 @@ script = ExtResource("5_o205c")
 [connection signal="pressed" from="MarginContainer/HBoxContainer/SaveInfo/Continue/Play/HBoxContainer/SelectableLabel" to="." method="pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/SaveInfo/Continue/Play/HBoxContainer/SelectableLabel2" to="." method="clear_save"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/SaveInfo/Continue/Play/HBoxContainer/SelectableLabel3" to="MarginContainer/HBoxContainer/SaveList" method="open"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/SaveList/SelectableLabel4" to="MarginContainer/HBoxContainer/SaveList" method="close"]

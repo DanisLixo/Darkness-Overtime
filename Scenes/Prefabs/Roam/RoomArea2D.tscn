@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dn2by1rwbdide"]
+
+[ext_resource type="Script" uid="uid://cot0kgpaifnry" path="res://Scripts/Classes/Roaming/Objects/RoomArea2d.gd" id="1_1t5we"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1t5we"]
+size = Vector2(150, 150)
+
+[node name="RoomArea2D" type="Area2D" unique_id=1365126452]
+scale = Vector2(1.5999994, 1)
+collision_layer = 0
+script = ExtResource("1_1t5we")
+roomToGo = "uid://wu3aoh3h176"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=892806775]
+shape = SubResource("RectangleShape2D_1t5we")
+
+[connection signal="area_entered" from="." to="." method="on_player_pass"]

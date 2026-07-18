@@ -11,7 +11,9 @@ var sfxLibrary := DEFAULT_SFX_LIBRARY.duplicate(true)
 var activeSfxs := {}
 var queuedSfxs := []
 
-var overrideMusic: AudioStream
+enum OVERRIDE_MUSIC {NONE = -1, CURRENT = 0}
+
+var overrideMusic: OVERRIDE_MUSIC = OVERRIDE_MUSIC.CURRENT
 
 signal music_beat(idx)
 
@@ -56,8 +58,9 @@ func _process(delta: float) -> void:
 
 func stop_all_music() -> void:
 	AudioManager.musicPlayer.stop()
-	if Global.currentRoom != null:
-		Global.currentRoom.music = null
+	if Global.currentRoom.scenePath != "":
+		get_tree().current_scene.music = null
+		Global.currentRoom.music = ""
 
 func kill_sfx(sfxName := "") -> void:
 	if activeSfxs.has(sfxName):
@@ -65,23 +68,23 @@ func kill_sfx(sfxName := "") -> void:
 		activeSfxs.erase(sfxName)
 
 func handle_music(delta: float) -> void:
-	if is_instance_valid(Global.currentRoom):
-		if (Global.currentRoom.music == null):
-			tween_music_stream(-80, 0.5)
+	if (is_instance_valid(get_tree().current_scene)):
+		if (get_tree().current_scene.get("music") != musicPlayer.stream):
+			tween_music_stream(-80, 20 / delta * 60.0)
 			await music_tweened
 			musicPlayer.stop()
-			return
 		#musicPlayer.stream_paused = false
 		if (!musicPlayer.playing):
-			musicPlayer.stream = Global.currentRoom.music
-			if (overrideMusic != null):
-				musicPlayer.stream = overrideMusic
-		if (musicPlayer.stream is AudioStreamSynchronized && !musicPlayer.playing):
-			set_current_used_sync(0, 60)
-		if (!musicPlayer.playing):
-			musicPlayer.play()
-			tween_music_stream(0, 5)
-			await music_tweened
+			musicPlayer.stream = get_tree().current_scene.music
+			if (overrideMusic == OVERRIDE_MUSIC.NONE):
+				return
+			elif (overrideMusic == OVERRIDE_MUSIC.CURRENT):
+				if (musicPlayer.stream is AudioStreamSynchronized):
+					set_current_used_sync(0, 60 / delta * 60.0)
+				else:
+					musicPlayer.play()
+					tween_music_stream(0, 20 / delta * 60.0)
+					await music_tweened
 
 func set_current_used_sync(id := 0, stepDec := 0.0, stepInc := 0.0, muteOthers := true) -> void:
 	if (musicPlayer.stream is not AudioStreamSynchronized):
@@ -96,8 +99,12 @@ func set_current_used_sync(id := 0, stepDec := 0.0, stepInc := 0.0, muteOthers :
 			tween_sync_music_stream(i, 0, stepInc)
 
 signal music_tweened
-
+var running_tweening := false
 func tween_music_stream(target_db: float = 0, step: float = 1.0) -> void:
+	if (running_tweening):
+		return
+	
+	running_tweening = true
 	var streamer = musicPlayer
 	var curVolume: float = streamer.volume_db
 	var goUpwards = curVolume < target_db
@@ -106,10 +113,11 @@ func tween_music_stream(target_db: float = 0, step: float = 1.0) -> void:
 		curVolume = streamer.volume_db
 		if (goUpwards && target_db > curVolume) || (!goUpwards && target_db < curVolume):
 			streamer.volume_db = move_toward(streamer.volume_db, target_db, step)
+			await get_tree().process_frame
 		else:
 			streamer.volume_db = target_db
+			running_tweening = false
 			music_tweened.emit()
-		await get_tree().process_frame
 
 func tween_sync_music_stream(id: int = 0, target_db: float = 0, step: float = 1.0) -> void:
 	var streamer: AudioStream = musicPlayer.stream

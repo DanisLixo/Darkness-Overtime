@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dpvid7ib4kmw"]
 
-[ext_resource type="Script" uid="uid://c3884lbnyy7vs" path="res://Scripts/Classes/RoomClass.gd" id="1_hi3tt"]
+[ext_resource type="Script" uid="uid://dp783dw3rei7s" path="res://Scenes/Levels/Placeholder&Tests/shop_test.gd" id="1_5fcel"]
 [ext_resource type="Texture2D" uid="uid://cxu8lm7440iad" path="res://Assets/Sprites/Shops/Placeholder/Scenario/Background.png" id="2_2qltq"]
 [ext_resource type="AudioStream" uid="uid://o3mt884wife8" path="res://Assets/Audios/BGMs/Tests/TeabatShop.ogg" id="2_cvvf6"]
 [ext_resource type="Texture2D" uid="uid://c37lwx5kix4vy" path="res://Assets/Sprites/Shops/Placeholder/Scenario/KeeperSheet.png" id="3_r8m8f"]
@@ -46,7 +46,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vc7nb")
 }],
-"loop": 0,
+"loop": false,
 "name": &"default",
 "speed": 10.0
 }]
@@ -59,7 +59,7 @@ func _process(delta: float) -> void:
 "
 
 [node name="ShopTest" type="Node" unique_id=647483132]
-script = ExtResource("1_hi3tt")
+script = ExtResource("1_5fcel")
 music = ExtResource("2_cvvf6")
 metadata/_custom_type_script = "uid://c3884lbnyy7vs"
 

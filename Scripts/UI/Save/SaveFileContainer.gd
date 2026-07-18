@@ -1,4 +1,4 @@
-class_name SaveFileContainer extends Button
+class_name SaveFileContainer extends MarginContainer
 
 @export_enum("First", "Second", "Third") var saveFile := 0
 

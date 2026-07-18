@@ -9,7 +9,8 @@ func _ready() -> void:
 	if (state == null):
 		print("Estado nao existe para o personagem: %s" % get_parent().name)
 		return
-	state.enter()
+	if (state.use_enter_as_ready):
+		state.enter()
 
 func _process(delta: float) -> void:
 	if (state == null):
