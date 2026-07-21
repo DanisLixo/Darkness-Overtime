@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cxbqgif6n7jyd"]
+
+[ext_resource type="Texture2D" uid="uid://55w2c2jjcyf1" path="res://icon.svg" id="1_nxj5y"]
+[ext_resource type="Script" uid="uid://di63gs5vd30ft" path="res://Scripts/gun.gd" id="1_oqrbh"]
+
+[node name="Gun" type="Node2D" unique_id=2023315131]
+script = ExtResource("1_oqrbh")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1067465062]
+position = Vector2(107, 0)
+rotation = -1.5707964
+scale = Vector2(0.28125003, 0.609375)
+texture = ExtResource("1_nxj5y")
+
+[node name="Muzzle" type="Node2D" parent="Sprite2D" unique_id=43751276]
+unique_name_in_owner = true
+position = Vector2(0, 50)

@@ -1,1 +1,0 @@
-Gaming pc chair testing (tava escrito coisa do dialogic aqui)

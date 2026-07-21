@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b0a3dow5ey5i1"]
+
+[ext_resource type="Script" uid="uid://dam48k0ndb0at" path="res://Scripts/Global.gd" id="1_6yl2a"]
+[ext_resource type="Texture2D" uid="uid://cyptratv0uyxe" path="res://Assets/Sprites/UI/cursor.png" id="2_uavi6"]
+
+[node name="Global" type="Node" unique_id=187146055]
+script = ExtResource("1_6yl2a")
+
+[node name="Mouse" type="CanvasLayer" parent="." unique_id=1060688791]
+
+[node name="MouseSprite" type="Sprite2D" parent="Mouse" unique_id=1459798743]
+texture = ExtResource("2_uavi6")
+centered = false
+offset = Vector2(-4, -4)

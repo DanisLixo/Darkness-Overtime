@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cl5udwwuuhdiy"]
+
+[ext_resource type="Script" uid="uid://vlesfbcftaep" path="res://Scripts/SceneClass.gd" id="1_32d50"]
+[ext_resource type="Script" uid="uid://d4k3w1i6g5pm6" path="res://Scripts/RoomClass.gd" id="2_c4sjm"]
+[ext_resource type="PackedScene" uid="uid://c0fhe8pg1l0ys" path="res://Scenes/Player.tscn" id="3_26150"]
+
+[node name="TestScene" type="Node" unique_id=2010601193]
+script = ExtResource("1_32d50")
+
+[node name="Room" type="Node2D" parent="." unique_id=11640306]
+script = ExtResource("2_c4sjm")
+
+[node name="Player" parent="." unique_id=480091350 groups=["Players"] instance=ExtResource("3_26150")]
+position = Vector2(292, 327)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1280243522]
+limit_left = 0
+limit_top = 0

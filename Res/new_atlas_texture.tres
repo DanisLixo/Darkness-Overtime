@@ -1,0 +1,13 @@
+[gd_resource type="AtlasTexture" script_class="AtlasTextureJSON" format=3 uid="uid://80bh1w432ffq"]
+
+[ext_resource type="Script" uid="uid://c3jgyrwe6kosn" path="res://addons/json-atlas/atlas_texture_json.gd" id="1_obeve"]
+[ext_resource type="Texture2D" uid="uid://bi7pmqx8rjlfg" path="res://Assets/SpritesNew/Y_character/spritemap1.png" id="1_xlhx2"]
+[ext_resource type="JSON" path="res://Assets/SpritesNew/Y_character/spritemap1.json" id="2_bh2qc"]
+
+[resource]
+atlas = ExtResource("1_xlhx2")
+script = ExtResource("1_obeve")
+texture = ExtResource("1_xlhx2")
+json_file = ExtResource("2_bh2qc")
+is_adobe = true
+metadata/_custom_type_script = "uid://c3jgyrwe6kosn"
