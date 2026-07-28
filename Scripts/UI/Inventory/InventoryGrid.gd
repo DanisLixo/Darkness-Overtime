@@ -36,14 +36,10 @@ func generate_grid() -> void:
 			currentRow += 1
 
 func get_items() -> void:
-	for i in Global.inventory:
-		var itemPath: String = get_item_data(str(i))
-		var itemData: ItemData = load(itemPath)
+	for i in Player.inventory:
+		var itemData := ItemHandler.get_item_data(i)
 		
 		if (itemData.itemType not in itemsAccepted):
 			continue
 		
 		items.append(itemData)
-
-func get_item_data(itemId: String) -> String:
-	return "res://Resources/Items/" + Global.itemMap[itemId] + ".tres"

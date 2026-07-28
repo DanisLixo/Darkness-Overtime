@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://brw46p53p5vw3" path="res://Assets/Sprites/UI/Inventory/Grid/GridTile.png" id="1_34vkq"]
 [ext_resource type="Script" uid="uid://bbaw8xivjr45r" path="res://Scripts/UI/Inventory/InventorySlot.gd" id="2_ae0wq"]
-[ext_resource type="Texture2D" uid="uid://qvt0hn45qehl" path="res://Assets/Sprites/UI/Inventory/Grid/Items/PlaceholderKey/Icon.png" id="3_ptt16"]
+[ext_resource type="Texture2D" uid="uid://qvt0hn45qehl" path="res://Assets/Sprites/UI/Items/PlaceholderKey/Icon.png" id="3_ptt16"]
 [ext_resource type="Script" uid="uid://qms6siuk0cho" path="res://Scripts/UI/Inventory/SlotItem.gd" id="4_2kth7"]
 
 [node name="InventorySlot" type="TextureRect" unique_id=1595015124]

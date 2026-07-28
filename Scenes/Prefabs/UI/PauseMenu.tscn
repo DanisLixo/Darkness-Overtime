@@ -9,6 +9,7 @@
 
 [node name="PauseMenu" type="Control" unique_id=1576074431 node_paths=PackedStringArray("options")]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dhkmk5j3reyr2"]
 
-[ext_resource type="Script" uid="uid://khvfrm44ib5i" path="res://Scripts/UI/SaveFileContainer.gd" id="1_cdc81"]
+[ext_resource type="Script" uid="uid://khvfrm44ib5i" path="res://Scripts/UI/Save/SaveFileContainer.gd" id="1_cdc81"]
 [ext_resource type="PackedScene" uid="uid://c7rkctsy8rv6q" path="res://Scenes/Parts/SelectableLabel.tscn" id="3_kng7j"]
-[ext_resource type="Script" uid="uid://bvmwa4iq00r1g" path="res://Scripts/UI/AutoScrollContainer.gd" id="4_s0e7b"]
+[ext_resource type="Script" uid="uid://bvmwa4iq00r1g" path="res://Scripts/UI/Extensions/AutoScrollContainer.gd" id="4_s0e7b"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cdc81"]
 

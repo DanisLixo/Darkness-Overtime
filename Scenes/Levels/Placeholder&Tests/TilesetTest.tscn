@@ -1,14 +1,14 @@
 [gd_scene format=4 uid="uid://ckvakkd3smq4u"]
 
-[ext_resource type="Script" uid="uid://c3884lbnyy7vs" path="res://Scripts/Classes/RoomClass.gd" id="1_u6mw4"]
-[ext_resource type="Script" uid="uid://cot0kgpaifnry" path="res://Scripts/Classes/Objects/RoomArea2d.gd" id="2_dt7ux"]
+[ext_resource type="Script" uid="uid://clo53ky587djs" path="res://Scripts/Classes/Roaming/RoamClass.gd" id="1_2s5oo"]
+[ext_resource type="Script" uid="uid://cot0kgpaifnry" path="res://Scripts/Classes/Roaming/Objects/RoomArea2d.gd" id="2_dt7ux"]
 [ext_resource type="Texture2D" uid="uid://cf6dujrlowcgh" path="res://Assets/Sprites/Areas/TilesetTest/ConceptTileset.png" id="2_f8mrj"]
-[ext_resource type="Script" uid="uid://dt25ajgrpbigq" path="res://Scripts/Classes/Objects/PlayerSpawnPoint.gd" id="3_f8mrj"]
+[ext_resource type="Script" uid="uid://dt25ajgrpbigq" path="res://Scripts/Classes/Roaming/Objects/PlayerSpawnPoint.gd" id="3_f8mrj"]
 [ext_resource type="Texture2D" uid="uid://ddj4pbs6yrbuq" path="res://Assets/Sprites/Areas/TilesetTest/Props/Cano.png" id="3_stbh2"]
-[ext_resource type="PackedScene" uid="uid://bkmowuf1ru1vd" path="res://Scenes/Prefabs/Entities/Props/BasicProp.tscn" id="3_yh1hx"]
+[ext_resource type="PackedScene" uid="uid://bkmowuf1ru1vd" path="res://Scenes/Prefabs/Roam/Entities/Props/BasicProp.tscn" id="3_yh1hx"]
 [ext_resource type="Texture2D" uid="uid://bhrchdqqve7md" path="res://Assets/Sprites/Areas/TilesetTest/Props/Cone.png" id="4_hmqck"]
 [ext_resource type="Texture2D" uid="uid://dkeifpnkno2kp" path="res://Assets/Sprites/Areas/TilesetTest/Props/Lampada.png" id="5_f65yc"]
-[ext_resource type="PackedScene" uid="uid://bbffg46epjcyw" path="res://Scenes/Prefabs/Entities/Characters/Player.tscn" id="5_qbyya"]
+[ext_resource type="PackedScene" uid="uid://bbffg46epjcyw" path="res://Scenes/Prefabs/Roam/Entities/Characters/Player.tscn" id="5_qbyya"]
 [ext_resource type="Texture2D" uid="uid://b73kd3rn5pwra" path="res://Assets/Sprites/Areas/TilesetTest/Props/Lixeira.png" id="6_o8cou"]
 [ext_resource type="Texture2D" uid="uid://i0othbyvs3j0" path="res://Assets/Sprites/Areas/TilesetTest/Props/Papel0.png" id="10_717a8"]
 [ext_resource type="Texture2D" uid="uid://cmy5jl3dvielo" path="res://Assets/Sprites/Areas/TilesetTest/Props/Papel1.png" id="11_7kims"]
@@ -194,22 +194,21 @@ metadata/_better_terrain = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jqelo"]
-size = Vector2(115, 74)
+size = Vector2(59, 57)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8yayo"]
 size = Vector2(132, 104)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8xem1"]
-size = Vector2(309, 269)
+size = Vector2(207, 269)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qbyya"]
 size = Vector2(1279, 128)
 
 [node name="TilesetTest" type="Node" unique_id=2043655054]
-script = ExtResource("1_u6mw4")
+script = ExtResource("1_2s5oo")
 areaName = "Tileset Test"
 areaGroup = "Test Rooms"
-cameraLimits = Vector2i(3000, 5000)
 metadata/_custom_type_script = "uid://c3884lbnyy7vs"
 
 [node name="Stage" type="Node2D" parent="." unique_id=436334286]
@@ -240,7 +239,7 @@ position = Vector2(775, 2507)
 propTexture = ExtResource("4_hmqck")
 propOffset = Vector2(0, 37)
 hitboxShape = SubResource("RectangleShape2D_jqelo")
-hitboxOffset = Vector2(0, 2)
+hitboxOffset = Vector2(0, -29)
 
 [node name="Lampada" parent="Stage/Props" unique_id=322875313 groups=["Props"] instance=ExtResource("3_yh1hx")]
 z_index = 2
@@ -258,9 +257,9 @@ hitboxOffset = Vector2(0, -29)
 [node name="Lixeira" parent="Stage/Props" unique_id=100945487 groups=["Props"] instance=ExtResource("3_yh1hx")]
 position = Vector2(615, 2084)
 propTexture = ExtResource("6_o8cou")
-propOffset = Vector2(0, -64)
+propOffset = Vector2(0, 16)
 hitboxShape = SubResource("RectangleShape2D_8xem1")
-hitboxOffset = Vector2(40.865, 0)
+hitboxOffset = Vector2(0, 110)
 
 [node name="Papel" parent="Stage/Props" unique_id=89307201 groups=["Props"] instance=ExtResource("3_yh1hx")]
 position = Vector2(1285, 2198)

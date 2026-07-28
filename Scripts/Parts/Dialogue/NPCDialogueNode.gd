@@ -30,7 +30,7 @@ func _process(_delta: float) -> void:
 					_on_body_exited(i)
 
 func activate_dialogue() -> void:
-	if (Global.inCutscene):
+	if (Global.currentState == Global.PlayState.CUTSCENE):
 		return
 	for i in players:
 		i.stateMachine.change_state("Freeze")

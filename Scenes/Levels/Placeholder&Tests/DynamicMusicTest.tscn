@@ -1,13 +1,13 @@
 [gd_scene format=4 uid="uid://wu3aoh3h176"]
 
-[ext_resource type="Script" uid="uid://c3884lbnyy7vs" path="res://Scripts/Classes/RoomClass.gd" id="1_f433h"]
+[ext_resource type="Script" uid="uid://clo53ky587djs" path="res://Scripts/Classes/Roaming/RoamClass.gd" id="1_u0at3"]
 [ext_resource type="Texture2D" uid="uid://boyv1p0ockgvl" path="res://addons/TerrainExample/Terrain/Tileset/Water Background color.png" id="2_kkfpw"]
-[ext_resource type="PackedScene" uid="uid://bbffg46epjcyw" path="res://Scenes/Prefabs/Entities/Characters/Player.tscn" id="3_m8au4"]
+[ext_resource type="PackedScene" uid="uid://bbffg46epjcyw" path="res://Scenes/Prefabs/Roam/Entities/Characters/Player.tscn" id="3_m8au4"]
 [ext_resource type="Script" uid="uid://it8jrs2sdtkn" path="res://Scripts/Parts/Dialogue/Resources/Members/DialogueExportResource.gd" id="5_2vgd7"]
 [ext_resource type="AudioStream" uid="uid://cib6pfvsvl851" path="res://Assets/Audios/BGMs/Tests/mus_star.mp3" id="9_u0at3"]
 [ext_resource type="Script" uid="uid://b7c7yfuvorlf2" path="res://Scripts/Parts/Dialogue/Resources/DialogueFunction.gd" id="10_hj7rn"]
-[ext_resource type="Script" uid="uid://1rf3gwnmhi8d" path="res://Scripts/Classes/Objects/CameraLockArea2D.gd" id="11_5cmej"]
-[ext_resource type="PackedScene" uid="uid://c11yowsdwbpe3" path="res://Scenes/Prefabs/Entities/Characters/NPC.tscn" id="12_hj7rn"]
+[ext_resource type="Script" uid="uid://1rf3gwnmhi8d" path="res://Scripts/Classes/Roaming/Objects/CameraLockArea2D.gd" id="11_5cmej"]
+[ext_resource type="PackedScene" uid="uid://c11yowsdwbpe3" path="res://Scenes/Prefabs/Roam/Entities/Characters/NPC.tscn" id="12_hj7rn"]
 [ext_resource type="Script" uid="uid://01wyspg0cufo" path="res://Scripts/Parts/Dialogue/Resources/Members/DialogueArray.gd" id="13_3er0f"]
 [ext_resource type="Script" uid="uid://k1hia4rojl6b" path="res://Scripts/Parts/Dialogue/Resources/DialogueText.gd" id="14_3er0f"]
 [ext_resource type="Resource" uid="uid://x6lipqhlahux" path="res://Resources/Dialogues/DialogueTest.tres" id="14_5cmej"]
@@ -57,7 +57,7 @@ metadata/_custom_type_script = "uid://01wyspg0cufo"
 
 [sub_resource type="Resource" id="Resource_818iu"]
 script = ExtResource("10_hj7rn")
-targetNodePath = NodePath("..")
+targetNodePath = NodePath("../..")
 funcName = "set_music"
 funcArgs = [ExtResource("9_u0at3")]
 metadata/_custom_type_script = "uid://b7c7yfuvorlf2"
@@ -112,7 +112,7 @@ metadata/_custom_type_script = "uid://k1hia4rojl6b"
 
 [sub_resource type="Resource" id="Resource_pu45j"]
 script = ExtResource("10_hj7rn")
-targetNodePath = NodePath("..")
+targetNodePath = NodePath("../..")
 funcName = "set_music"
 hideDialogueScene = true
 metadata/_custom_type_script = "uid://b7c7yfuvorlf2"
@@ -126,7 +126,8 @@ metadata/_custom_type_script = "uid://01wyspg0cufo"
 size = Vector2(1740, 1402.5)
 
 [node name="DynamicMusicTest" type="Node" unique_id=1044140866]
-script = ExtResource("1_f433h")
+script = ExtResource("1_u0at3")
+cameraLimits = Vector2i(5875, 2205)
 areaName = "Dynamic Music Test"
 areaGroup = "Test Rooms"
 metadata/_custom_type_script = "uid://c3884lbnyy7vs"
@@ -139,16 +140,14 @@ tile_map_data = PackedByteArray("AAAZABsAAAAAAAAAAAAaABsAAAAAAAAAAAAbABsAAAAAAAA
 tile_set = SubResource("TileSet_l2ob3")
 rendering_quadrant_size = 64
 
-[node name="Player" parent="." unique_id=2027798040 instance=ExtResource("3_m8au4")]
-position = Vector2(1546, 1716)
-collision_mask = 1
+[node name="NPCs" type="Node2D" parent="." unique_id=1035061737]
 
-[node name="NPC" parent="." unique_id=249774739 instance=ExtResource("12_hj7rn")]
+[node name="NPC" parent="NPCs" unique_id=249774739 instance=ExtResource("12_hj7rn")]
 position = Vector2(2324, 1543)
 collision_mask = 1
 dialogueArray = Array[ExtResource("13_3er0f")]([ExtResource("14_5cmej"), SubResource("Resource_o7ud7")])
 
-[node name="Y_clone" parent="." unique_id=1596251819 instance=ExtResource("12_hj7rn")]
+[node name="Y_clone" parent="NPCs" unique_id=1596251819 instance=ExtResource("12_hj7rn")]
 position = Vector2(5469, 1776)
 collision_mask = 1
 onlyActivateOnce = true
@@ -156,6 +155,10 @@ dialogueArray = Array[ExtResource("13_3er0f")]([SubResource("Resource_d322e")])
 characterName = "Y_character"
 initialDirection = 2
 asymetricalSprites = true
+
+[node name="Player" parent="." unique_id=2027798040 instance=ExtResource("3_m8au4")]
+position = Vector2(1546, 1716)
+collision_mask = 1
 
 [node name="CameraLockTest" type="Area2D" parent="." unique_id=70805163]
 position = Vector2(4417, 1463)
@@ -166,3 +169,12 @@ metadata/_custom_type_script = "uid://ce6qp508j3ej6"
 position = Vector2(-85, -207.75)
 shape = SubResource("RectangleShape2D_5cmej")
 debug_color = Color(0.4810804, 0.42973724, 0.7331027, 0.5529412)
+
+[node name="DebugCamera" type="Camera2D" parent="." unique_id=1461861650]
+enabled = false
+limit_left = 0
+limit_top = 0
+limit_right = 5875
+limit_bottom = 2205
+editor_draw_screen = false
+editor_draw_limits = true

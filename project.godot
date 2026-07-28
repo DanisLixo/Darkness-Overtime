@@ -85,6 +85,8 @@ audio/channel_defaults={
 window/size/viewport_width=1440
 window/size/viewport_height=1080
 window/size/initial_position_type=4
+window/size/window_width_override=960
+window/size/window_height_override=720
 window/stretch/mode="viewport"
 
 [editor_plugins]

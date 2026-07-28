@@ -1,11 +1,10 @@
 extends Node
 
+const langCodes := ["pt-br", "en"]
+
 enum File {ONE, TWO, THREE}
 enum PlayState {INMENUS, PLAYING, CUTSCENE}
 enum GameMode {FREEROAM, BATTLE, SPECIAL}
-var itemMap := {}
-const langCodes := ["pt-br", "en"]
-var configPath := get_local_dir()
 
 var currentVersion := -1
 var isUnrelease := true
@@ -17,8 +16,8 @@ var playtime := 0.0
 
 var currentFile: Global.File = File.ONE
 var saveFiles := []
-var inventory := [0, 0, 0, 0, 0, 0]
 var flags := []
+var party := ["Y_character"]
 
 var ambience := "rain"
 var currentRoom: RoomClass
@@ -29,9 +28,11 @@ var currentState: Global.PlayState = PlayState.INMENUS
 var currentMode: Global.GameMode = GameMode.SPECIAL
 var paused := false
 
+var configPath := get_local_dir()
+
 ## Sem funcao por agora, somente eh um autoload
 @onready var gameHud := $GameHud
-@onready var mouse := $Misc/AnimatedSprite2D
+@onready var mouse := $Mouse/MouseSprite
 
 func _init() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
@@ -45,22 +46,14 @@ func _process(delta: float) -> void:
 	handle_mouse()
 	
 func setup_config() -> void:
-	update_item_id_map()
+	ItemHandler.update_item_id_map()
+	print(str(ItemHandler.itemMap))
 	
 	var dirs := ["files"]
 	for d in dirs:
 		var path := configPath.path_join(d)
 		if (!DirAccess.dir_exists_absolute(path)):
 			DirAccess.make_dir_recursive_absolute(path)
-
-func update_item_id_map() -> void:
-	itemMap.clear()
-	
-	var path := "res://Resources/ItemIDMap.json"
-	var map := FileAccess.open(path, FileAccess.READ)
-	var json: Dictionary = JSON.parse_string(map.get_as_text())
-	
-	itemMap = json.duplicate(true)
 
 func handle_mouse() -> void:
 	mouse.global_position = get_viewport().get_mouse_position()
@@ -71,20 +64,29 @@ func transition_to_scene(scene_path: StringName = "*.tscn") -> void:
 		return
 	
 	$GameHud.reset()
+	toggle_pause()
 	
-	$Misc/ColorRect.show()
-	$Misc/AnimationPlayer.play("fade_in")
-	await $Misc/AnimationPlayer.animation_finished
+	$Transition.show()
+	$Transition/AnimationPlayer.play("fade_in")
+	await $Transition/AnimationPlayer.animation_finished
 	get_tree().change_scene_to_file(scene_path)
-	$Misc/AnimationPlayer.play_backwards("fade_in")
+	
+	$Transition/AnimationPlayer.play_backwards("fade_in")
+	await $Transition/AnimationPlayer.animation_finished
+	$Transition.hide()
+	
+	toggle_pause()
 
 func add_dialogue(dialogue) -> void:
 	currentState = PlayState.CUTSCENE
 	
-	$CanvasLayer.add_child(dialogue)
+	$DialogueLayer.add_child(dialogue)
 	dialogue.open()
 
 func get_local_dir() -> String:
+	if (isUnrelease):
+		return "user://"
+	
 	var exePath := OS.get_executable_path()
 	var exeDir := exePath.get_base_dir()
 	
@@ -103,3 +105,7 @@ func get_local_dir() -> String:
 		push_warning("Couldn't create save folder, current exe directory is not writeable. Check Appdata/Roaming")
 		
 	return "user://"
+
+func toggle_pause(pauseTo: bool = !Global.paused) -> void:
+	get_tree().paused = pauseTo
+	Global.paused = pauseTo
