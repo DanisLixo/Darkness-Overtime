@@ -3,4 +3,3 @@ class_name TitleScreen extends RoomClass
 
 func _ready() -> void:
 	$CanvasLayer/Control/MainList/Start/SelectableLabel.grab_focus()
-"res://Assets/Fla's/placeholder.png"

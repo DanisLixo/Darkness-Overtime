@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://qfwtvkx4rptv"]
+
+[ext_resource type="Script" uid="uid://bhlb3xqivxnwy" path="res://Scenes/Levels/default_level/level.gd" id="1_4is5k"]
+
+[node name="Level" type="Node2D" unique_id=55402206]
+position = Vector2(731, 495)
+script = ExtResource("1_4is5k")
