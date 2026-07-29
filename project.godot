@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Roguelike GAMES"
 run/main_scene="uid://cl5udwwuuhdiy"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -33,6 +33,7 @@ enabled=PackedStringArray("res://addons/AATTAAI/plugin.cfg")
 [global_group]
 
 Players="Players"
+Items=""
 
 [gui]
 

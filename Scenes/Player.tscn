@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://d3h5v51k4ds7" path="res://Scripts/States/StateMachine.gd" id="11_glx4g"]
 [ext_resource type="Script" uid="uid://d0t7j4g0qcxbh" path="res://Scripts/Normal.gd" id="12_glx4g"]
 [ext_resource type="PackedScene" uid="uid://cxbqgif6n7jyd" path="res://Scenes/gun.tscn" id="13_o3h8g"]
+[ext_resource type="Script" uid="uid://mooii5d2x7aq" path="res://Scripts/StatusEffects/EffectsHandler.gd" id="14_o3h8g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nnfeo"]
 atlas = ExtResource("1_5ncpa")
@@ -607,7 +608,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gkj26")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle_back",
 "speed": 24.0
 }, {
@@ -693,7 +694,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_f3n8o")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle_front",
 "speed": 24.0
 }, {
@@ -767,7 +768,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_06eq6")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle_left",
 "speed": 24.0
 }, {
@@ -841,7 +842,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nt74c")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle_right",
 "speed": 24.0
 }, {
@@ -870,7 +871,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hofol")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_back",
 "speed": 9.0
 }, {
@@ -899,7 +900,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qkll0")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_front",
 "speed": 9.0
 }, {
@@ -925,7 +926,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_d8qdd")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_left",
 "speed": 9.0
 }, {
@@ -951,7 +952,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_eaf6u")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_right",
 "speed": 9.0
 }]
@@ -964,6 +965,7 @@ radius = 48.0
 height = 168.0
 
 [node name="Player" type="CharacterBody2D" unique_id=480091350]
+process_priority = 1
 script = ExtResource("1_wi0c6")
 
 [node name="SpriteJoint" type="Node2D" parent="." unique_id=1080640744]
@@ -1023,3 +1025,6 @@ grow_horizontal = 2
 grow_vertical = 2
 autowrap_mode = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="StatusEffectsHandler" type="Node" parent="." unique_id=1452556040]
+script = ExtResource("14_o3h8g")

@@ -8,6 +8,10 @@ func physics_process(delta: float) -> void:
 	handle_movement(delta)
 	
 func handle_movement(delta: float) -> void:
+	player.size_mult = 1.0
+	if (player.is_status_effected()):
+		player.effects_handler.apply_effects()
+	
 	handle_acceleration(delta)
 	handle_deceleration(delta)
 	handle_direction()

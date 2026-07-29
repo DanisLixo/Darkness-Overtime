@@ -3,6 +3,33 @@
 [ext_resource type="Script" uid="uid://vlesfbcftaep" path="res://Scripts/SceneClass.gd" id="1_32d50"]
 [ext_resource type="Script" uid="uid://d4k3w1i6g5pm6" path="res://Scripts/RoomClass.gd" id="2_c4sjm"]
 [ext_resource type="PackedScene" uid="uid://c0fhe8pg1l0ys" path="res://Scenes/Player.tscn" id="3_26150"]
+[ext_resource type="PackedScene" uid="uid://ulah8awu31xa" path="res://Scenes/Item.tscn" id="4_dsox3"]
+[ext_resource type="Texture2D" uid="uid://cxuqyo8e7cqw" path="res://Assets/Sprites/UI/Items/PlaceholderChip/Shop.png" id="5_hffpj"]
+[ext_resource type="Script" uid="uid://bd53mkw4epr5e" path="res://Scripts/StatusEffects/EffectResource.gd" id="5_llj8l"]
+
+[sub_resource type="Resource" id="Resource_llj8l"]
+script = ExtResource("5_llj8l")
+effect = 2
+override_related = false
+metadata/_custom_type_script = "uid://bd53mkw4epr5e"
+
+[sub_resource type="Resource" id="Resource_hffpj"]
+script = ExtResource("5_llj8l")
+effect = 2
+time = 5.0
+metadata/_custom_type_script = "uid://bd53mkw4epr5e"
+
+[sub_resource type="Resource" id="Resource_rfals"]
+script = ExtResource("5_llj8l")
+effect = 3
+override_related = false
+time = 10.0
+metadata/_custom_type_script = "uid://bd53mkw4epr5e"
+
+[sub_resource type="Resource" id="Resource_1e7my"]
+script = ExtResource("5_llj8l")
+effect = 3
+metadata/_custom_type_script = "uid://bd53mkw4epr5e"
 
 [node name="TestScene" type="Node" unique_id=2010601193]
 script = ExtResource("1_32d50")
@@ -16,3 +43,27 @@ position = Vector2(292, 327)
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1280243522]
 limit_left = 0
 limit_top = 0
+
+[node name="ItemTest" parent="." unique_id=654059929 instance=ExtResource("4_dsox3")]
+position = Vector2(995, 289)
+scale = Vector2(0.5, 0.5)
+effects = Array[ExtResource("5_llj8l")]([SubResource("Resource_llj8l")])
+texture = ExtResource("5_hffpj")
+
+[node name="ItemTest3" parent="." unique_id=1665710618 instance=ExtResource("4_dsox3")]
+position = Vector2(1123, 549)
+scale = Vector2(0.5, 0.5)
+effects = Array[ExtResource("5_llj8l")]([SubResource("Resource_hffpj")])
+texture = ExtResource("5_hffpj")
+
+[node name="ItemTest2" parent="." unique_id=1381107131 instance=ExtResource("4_dsox3")]
+position = Vector2(1148, 125)
+scale = Vector2(2, 2)
+effects = Array[ExtResource("5_llj8l")]([SubResource("Resource_rfals")])
+texture = ExtResource("5_hffpj")
+
+[node name="ItemTest4" parent="." unique_id=940330205 instance=ExtResource("4_dsox3")]
+position = Vector2(273, 573)
+scale = Vector2(2, 2)
+effects = Array[ExtResource("5_llj8l")]([SubResource("Resource_1e7my")])
+texture = ExtResource("5_hffpj")

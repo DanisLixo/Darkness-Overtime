@@ -7,9 +7,12 @@ extends CharacterBody2D
 @onready var state_machine := $StateMachine
 @onready var gun := $Gun
 @onready var sprite := $SpriteJoint/AnimatedSprite2D
+@onready var effects_handler: StatusEffectsHandler = $StatusEffectsHandler
 
 var input_direction := Vector2.ZERO
 var direction := Vector2i.ZERO
+
+var size_mult := 1.0
 
 enum Action {
 	X, Y, RUN, SHOOT
@@ -18,6 +21,17 @@ enum Action {
 static var key_press := [false, false, false, false]
 static var key_hold := [0.0, 0.0, false, false]
 static var key_release := [0, 0, false, false]
+
+const BASE_PHYSICS := {
+	"WALK_MAX_SPEED": 300.0,
+	"RUN_MAX_SPEED": 500.0,
+	
+	"WALK_ACCEL": 35.0,
+	"RUN_ACCEL": 45.0,
+	
+	"MOVE_DECEL": 40.0,
+	"SKID_DECEL": 75.0
+}
 
 var PHYSICS := {
 	"WALK_MAX_SPEED": 300.0,
@@ -58,10 +72,16 @@ var debug_info := {
 	"direction": "",
 	
 	"shot_delay": "",
+	"effects": [""]
 }
 
 func _process(delta: float) -> void:
 	update_debug()
+
+func _physics_process(delta: float) -> void:
+	scale = Vector2.ONE * size_mult
+	
+	handle_inputs()
 
 func update_debug() -> void:
 	is_running = Player.key_hold[Player.Action.RUN]
@@ -74,15 +94,18 @@ func update_debug() -> void:
 			debug_info[key] = get_physics_process_delta_time()
 		elif (key.contains("shot")):
 			debug_info[key] = gun.get(key)
+		elif (key.contains("effects")):
+			if (effects_handler == null):
+				continue
+			debug_info[key] = []
+			for fx in effects_handler.effects:
+				debug_info[key].append_array([StatusEffect.Effect.find_key(fx.effect), fx.time])
 		else:
 			debug_info[key] = get(key)
 		
 		text += "%s: %s\n" % [key, str(debug_info[key])]
 	
 	%DebugLabel.text = text
-
-func _physics_process(delta: float) -> void:
-	handle_inputs()
 
 func handle_inputs() -> void:
 	#var input_arr := [Player.key_press, Player.key_hold, Player.key_release]
@@ -112,3 +135,13 @@ func handle_inputs() -> void:
 
 func to_input_action(neg_value: Variant, pos_value: Variant, mult := 1.0) -> Variant:
 	return int(pos_value) * mult - int(neg_value) * mult
+
+func is_status_effected() -> bool:
+	if (effects_handler == null):
+		return false
+	return !effects_handler.effects.is_empty()
+
+func has_effect(effect := StatusEffect.Effect.NONE) -> bool:
+	if (effects_handler == null):
+		return false
+	return effects_handler.has_effect(effect)

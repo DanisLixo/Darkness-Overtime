@@ -1,3 +1,6 @@
 [gd_scene format=3 uid="uid://tlnjo0rxsj4h"]
 
+[ext_resource type="Script" uid="uid://bbd3usnmrhoot" path="res://Scenes/typing/typing.gd" id="1_273ri"]
+
 [node name="Typing" type="Node2D" unique_id=897747438]
+script = ExtResource("1_273ri")
