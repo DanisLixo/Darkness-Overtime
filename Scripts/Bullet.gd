@@ -7,3 +7,9 @@ func set_mouse_direction(mouse_direction: Vector2) -> void:
 
 func _physics_process(delta: float) -> void:
 	move_and_slide()
+
+func hit_something(body: Node2D) -> void:
+	explode()
+	
+func explode() -> void:
+	queue_free()

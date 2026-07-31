@@ -4,6 +4,8 @@ extends Node
 
 var current_room: Room
 
+var players: Array[Player] = [null]
+
 func _init() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 

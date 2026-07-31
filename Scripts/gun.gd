@@ -5,6 +5,8 @@ const BULLET_SCENE := preload("res://Scenes/Bullet.tscn")
 var can_shoot := true
 var shot_delay := 0.0
 
+@onready var player: Player = owner
+
 signal gun_shot
 
 func _ready() -> void:
@@ -22,7 +24,7 @@ func _physics_process(delta: float) -> void:
 	handle_direction()
 
 func handle_input() -> void:
-	if (Player.key_hold[Player.Action.SHOOT]):
+	if (Player.player_action_pressed(Player.Action.SHOOT, player.player_id)):
 		throw_projectile()
 
 func handle_direction() -> void:
@@ -30,7 +32,8 @@ func handle_direction() -> void:
 	rotation = dirVector.angle()
 
 func throw_projectile() -> void:
-	if (!can_shoot || shot_delay > 0): return
+	if (!can_shoot || shot_delay > 0.0): 
+		return
 	var bullet := BULLET_SCENE.instantiate()
 	get_tree().current_scene.add_child(bullet)
 	bullet.global_position = %Muzzle.global_position

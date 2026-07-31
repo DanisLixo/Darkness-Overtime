@@ -2,8 +2,8 @@
 
 [ext_resource type="FontFile" uid="uid://eeyl5ctvfhuv" path="res://Assets/Fonts/ByteBounce.ttf" id="1_kpcpn"]
 [ext_resource type="StyleBox" uid="uid://cb4c88dyjy3dj" path="res://Resources/UI/Panels/PanelDefault.tres" id="1_rij67"]
-[ext_resource type="Texture2D" uid="uid://curn8q8jj6r2l" path="res://Assets/Sprites/UI/Inventory/Buttons/ScrollIcon.png" id="1_twqg6"]
-[ext_resource type="Texture2D" uid="uid://fviw5vff2xbj" path="res://Assets/Sprites/UI/Inventory/Panels/ScrollBar.png" id="2_vmxg5"]
+[ext_resource type="Texture2D" uid="uid://curn8q8jj6r2l" path="res://AssetsOld/Sprites/UI/Inventory/Buttons/ScrollIcon.png" id="1_twqg6"]
+[ext_resource type="Texture2D" uid="uid://fviw5vff2xbj" path="res://AssetsOld/Sprites/UI/Inventory/Panels/ScrollBar.png" id="2_vmxg5"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_vmxg5"]
 

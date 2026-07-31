@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="RoamingCharacter" format=3 uid="uid://cqjmux6njn4eb"]
 
 [ext_resource type="Script" uid="uid://bdae5levkc3vr" path="res://Scripts/CharacterSprites.gd" id="1_qx0nr"]
-[ext_resource type="Texture2D" uid="uid://dl1yxec0krjlf" path="res://Assets/Sprites/Entities/Characters/PlaceholderNPC/front.png" id="1_yxeyg"]
+[ext_resource type="Texture2D" uid="uid://dl1yxec0krjlf" path="res://AssetsOld/Sprites/Entities/Characters/PlaceholderNPC/front.png" id="1_yxeyg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s21p0"]
 atlas = ExtResource("1_yxeyg")

@@ -3,32 +3,16 @@
 [ext_resource type="Script" uid="uid://vlesfbcftaep" path="res://Scripts/SceneClass.gd" id="1_32d50"]
 [ext_resource type="Script" uid="uid://d4k3w1i6g5pm6" path="res://Scripts/RoomClass.gd" id="2_c4sjm"]
 [ext_resource type="PackedScene" uid="uid://c0fhe8pg1l0ys" path="res://Scenes/Player.tscn" id="3_26150"]
-[ext_resource type="PackedScene" uid="uid://ulah8awu31xa" path="res://Scenes/Item.tscn" id="4_dsox3"]
-[ext_resource type="Texture2D" uid="uid://cxuqyo8e7cqw" path="res://Assets/Sprites/UI/Items/PlaceholderChip/Shop.png" id="5_hffpj"]
-[ext_resource type="Script" uid="uid://bd53mkw4epr5e" path="res://Scripts/StatusEffects/EffectResource.gd" id="5_llj8l"]
+[ext_resource type="PackedScene" uid="uid://bh51illamllxm" path="res://Scenes/3D/3DChair.tscn" id="4_llj8l"]
+[ext_resource type="PackedScene" uid="uid://chd6bfjlwsbmf" path="res://Scenes/3D/3DTable.tscn" id="5_rfals"]
+[ext_resource type="PackedScene" uid="uid://ulah8awu31xa" path="res://Scenes/Item.tscn" id="6_4gol5"]
+[ext_resource type="Script" uid="uid://bd53mkw4epr5e" path="res://Scripts/StatusEffects/EffectResource.gd" id="7_r5kl7"]
+[ext_resource type="PackedScene" uid="uid://b6s302edyylnh" path="res://Scenes/3D/3DCarpet.tscn" id="7_rfals"]
 
-[sub_resource type="Resource" id="Resource_llj8l"]
-script = ExtResource("5_llj8l")
-effect = 2
+[sub_resource type="Resource" id="Resource_34jd6"]
+script = ExtResource("7_r5kl7")
 override_related = false
-metadata/_custom_type_script = "uid://bd53mkw4epr5e"
-
-[sub_resource type="Resource" id="Resource_hffpj"]
-script = ExtResource("5_llj8l")
-effect = 2
-time = 5.0
-metadata/_custom_type_script = "uid://bd53mkw4epr5e"
-
-[sub_resource type="Resource" id="Resource_rfals"]
-script = ExtResource("5_llj8l")
-effect = 3
-override_related = false
-time = 10.0
-metadata/_custom_type_script = "uid://bd53mkw4epr5e"
-
-[sub_resource type="Resource" id="Resource_1e7my"]
-script = ExtResource("5_llj8l")
-effect = 3
+extra_args = [false]
 metadata/_custom_type_script = "uid://bd53mkw4epr5e"
 
 [node name="TestScene" type="Node" unique_id=2010601193]
@@ -37,33 +21,21 @@ script = ExtResource("1_32d50")
 [node name="Room" type="Node2D" parent="." unique_id=11640306]
 script = ExtResource("2_c4sjm")
 
-[node name="Player" parent="." unique_id=480091350 groups=["Players"] instance=ExtResource("3_26150")]
+[node name="3DMesh" parent="Room" unique_id=158911470 instance=ExtResource("7_rfals")]
+position = Vector2(822, 382)
+
+[node name="3DMesh" parent="Room/3DMesh" unique_id=1386411967 instance=ExtResource("4_llj8l")]
+
+[node name="3DMesh2" parent="Room/3DMesh" unique_id=1701936637 instance=ExtResource("5_rfals")]
+z_index = 1
+
+[node name="ItemTest" parent="Room" unique_id=654059929 instance=ExtResource("6_4gol5")]
+position = Vector2(1188, 639)
+effects = Array[ExtResource("7_r5kl7")]([SubResource("Resource_34jd6")])
+
+[node name="Player" parent="." unique_id=480091350 instance=ExtResource("3_26150")]
 position = Vector2(292, 327)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1280243522]
 limit_left = 0
 limit_top = 0
-
-[node name="ItemTest" parent="." unique_id=654059929 instance=ExtResource("4_dsox3")]
-position = Vector2(995, 289)
-scale = Vector2(0.5, 0.5)
-effects = Array[ExtResource("5_llj8l")]([SubResource("Resource_llj8l")])
-texture = ExtResource("5_hffpj")
-
-[node name="ItemTest3" parent="." unique_id=1665710618 instance=ExtResource("4_dsox3")]
-position = Vector2(1123, 549)
-scale = Vector2(0.5, 0.5)
-effects = Array[ExtResource("5_llj8l")]([SubResource("Resource_hffpj")])
-texture = ExtResource("5_hffpj")
-
-[node name="ItemTest2" parent="." unique_id=1381107131 instance=ExtResource("4_dsox3")]
-position = Vector2(1148, 125)
-scale = Vector2(2, 2)
-effects = Array[ExtResource("5_llj8l")]([SubResource("Resource_rfals")])
-texture = ExtResource("5_hffpj")
-
-[node name="ItemTest4" parent="." unique_id=940330205 instance=ExtResource("4_dsox3")]
-position = Vector2(273, 573)
-scale = Vector2(2, 2)
-effects = Array[ExtResource("5_llj8l")]([SubResource("Resource_1e7my")])
-texture = ExtResource("5_hffpj")

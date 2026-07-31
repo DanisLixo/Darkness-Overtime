@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="DialogueCharacter" format=3 uid="uid://ck2okgl7e36m8"]
 
-[ext_resource type="Texture2D" uid="uid://cvvp1umdhm8pp" path="res://Assets/Sprites/Entities/Characters/PlaceholderNPC/portrait.png" id="1_2hfat"]
-[ext_resource type="Texture2D" uid="uid://djotqlxm2pnr2" path="res://Assets/Sprites/Entities/Characters/PlaceholderNPC/icon.png" id="1_3t31i"]
-[ext_resource type="Script" uid="uid://ccqoi7mrsfenl" path="res://Scripts/Parts/Dialogue/Resources/Members/DialogueCharacter.gd" id="1_t4tm8"]
+[ext_resource type="Texture2D" uid="uid://cvvp1umdhm8pp" path="res://AssetsOld/Sprites/Entities/Characters/PlaceholderNPC/portrait.png" id="1_2hfat"]
+[ext_resource type="Texture2D" uid="uid://djotqlxm2pnr2" path="res://AssetsOld/Sprites/Entities/Characters/PlaceholderNPC/icon.png" id="1_3t31i"]
+[ext_resource type="Script" path="res://Scripts/Parts/Dialogue/Resources/Members/DialogueCharacter.gd" id="1_t4tm8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_48ffa"]
 atlas = ExtResource("1_2hfat")

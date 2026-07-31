@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ulah8awu31xa"]
 
 [ext_resource type="Script" uid="uid://d2ftvd0uv662o" path="res://Scripts/ItemClass.gd" id="1_08o4a"]
-[ext_resource type="Texture2D" uid="uid://dy8ofnetytmfk" path="res://Assets/Sprites/UI/Items/PlaceholderBurger/Icon.png" id="2_6oc8a"]
+[ext_resource type="Texture2D" uid="uid://dy8ofnetytmfk" path="res://AssetsOld/Sprites/UI/Items/PlaceholderBurger/Icon.png" id="2_6oc8a"]
 [ext_resource type="Script" uid="uid://ct3ljeh7wvp4t" path="res://Scenes/PlayerDetectorArea2D.gd" id="3_o34di"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_34jd6"]
@@ -14,6 +14,7 @@ script = ExtResource("1_08o4a")
 texture = ExtResource("2_6oc8a")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1026372946]
+collision_layer = 0
 script = ExtResource("3_o34di")
 metadata/_custom_type_script = "uid://ct3ljeh7wvp4t"
 

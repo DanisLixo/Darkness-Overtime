@@ -11,6 +11,7 @@ func update_effects(new_effects := []) -> void:
 		
 		effect.effect = effect_resource.effect
 		effect.time = effect_resource.time
+		effect.extra_args = effect_resource.extra_args
 		effects = EffectsMethods.update_effects(effect, effects, effect_resource.override_related)
 		
 		add_child(effect)

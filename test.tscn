@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bt8lttrp0meux"]
 
-[ext_resource type="Texture2D" uid="uid://bi7pmqx8rjlfg" path="res://Assets/SpritesNew/Y_character/spritemap1.png" id="1_37kl0"]
+[ext_resource type="Texture2D" uid="uid://bi7pmqx8rjlfg" path="res://Assets/Sprites/Y_character/spritemap1.png" id="1_37kl0"]
 
 [sub_resource type="Animation" id="Animation_8uh7m"]
 length = 0.041666666666666664

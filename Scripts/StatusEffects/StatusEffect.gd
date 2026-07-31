@@ -1,10 +1,11 @@
 class_name StatusEffect
 extends Node
 
+static var METHODS_ARRAY := []
 enum Effect {
 	NONE = -1,
 	VECTOR_NORMALIZER = 0,
-	DOUBLE_SPEED = 1,
+	DOUBLE_SPEED,
 	TURN_SMALL,
 	TURN_BIG
 }

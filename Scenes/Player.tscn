@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://c0fhe8pg1l0ys"]
 
-[ext_resource type="Texture2D" uid="uid://dso11fxa4dfm1" path="res://Assets/Sprites/Entities/Characters/Y_Character/BackIdle.png" id="1_5ncpa"]
+[ext_resource type="Texture2D" uid="uid://dso11fxa4dfm1" path="res://AssetsOld/Sprites/Entities/Characters/Y_Character/BackIdle.png" id="1_5ncpa"]
 [ext_resource type="Script" uid="uid://dqtms6dbdjf76" path="res://Scripts/Player.gd" id="1_wi0c6"]
-[ext_resource type="Texture2D" uid="uid://f7boy88w2hxg" path="res://Assets/Sprites/Entities/Characters/Y_Character/FrontIdle.png" id="2_wi0c6"]
-[ext_resource type="Texture2D" uid="uid://fv2dvjauswoi" path="res://Assets/Sprites/Entities/Characters/Y_Character/LeftIdle.png" id="3_hp6x6"]
-[ext_resource type="Texture2D" uid="uid://cdlywf06scw5m" path="res://Assets/Sprites/Entities/Characters/Y_Character/RightIdle.png" id="4_3tkgg"]
-[ext_resource type="Texture2D" uid="uid://dou83mup6tdae" path="res://Assets/Sprites/Entities/Characters/Y_Character/BackWalk.png" id="5_l6ohk"]
-[ext_resource type="Texture2D" uid="uid://t0fb411vkgjn" path="res://Assets/Sprites/Entities/Characters/Y_Character/FrontWalk.png" id="6_oudfo"]
-[ext_resource type="Texture2D" uid="uid://tls1rvf00tvd" path="res://Assets/Sprites/Entities/Characters/Y_Character/LeftWalk.png" id="7_d6rpx"]
-[ext_resource type="Texture2D" uid="uid://bd21bf3hmdtbb" path="res://Assets/Sprites/Entities/Characters/Y_Character/RightWalk.png" id="8_r3kul"]
+[ext_resource type="Texture2D" uid="uid://f7boy88w2hxg" path="res://AssetsOld/Sprites/Entities/Characters/Y_Character/FrontIdle.png" id="2_wi0c6"]
+[ext_resource type="Texture2D" uid="uid://fv2dvjauswoi" path="res://AssetsOld/Sprites/Entities/Characters/Y_Character/LeftIdle.png" id="3_hp6x6"]
+[ext_resource type="Texture2D" uid="uid://cdlywf06scw5m" path="res://AssetsOld/Sprites/Entities/Characters/Y_Character/RightIdle.png" id="4_3tkgg"]
+[ext_resource type="Texture2D" uid="uid://dou83mup6tdae" path="res://AssetsOld/Sprites/Entities/Characters/Y_Character/BackWalk.png" id="5_l6ohk"]
+[ext_resource type="Texture2D" uid="uid://t0fb411vkgjn" path="res://AssetsOld/Sprites/Entities/Characters/Y_Character/FrontWalk.png" id="6_oudfo"]
+[ext_resource type="Texture2D" uid="uid://tls1rvf00tvd" path="res://AssetsOld/Sprites/Entities/Characters/Y_Character/LeftWalk.png" id="7_d6rpx"]
+[ext_resource type="Texture2D" uid="uid://bd21bf3hmdtbb" path="res://AssetsOld/Sprites/Entities/Characters/Y_Character/RightWalk.png" id="8_r3kul"]
 [ext_resource type="Script" uid="uid://brgq3dbakcshh" path="res://Scripts/FlashSpriteSetter.gd" id="10_hp6x6"]
 [ext_resource type="Script" uid="uid://d3h5v51k4ds7" path="res://Scripts/States/StateMachine.gd" id="11_glx4g"]
 [ext_resource type="Script" uid="uid://d0t7j4g0qcxbh" path="res://Scripts/Normal.gd" id="12_glx4g"]
@@ -964,16 +964,20 @@ size = Vector2(119, 72)
 radius = 48.0
 height = 168.0
 
-[node name="Player" type="CharacterBody2D" unique_id=480091350]
+[node name="Player" type="CharacterBody2D" unique_id=480091350 groups=["Players"]]
 process_priority = 1
+collision_layer = 0
 script = ExtResource("1_wi0c6")
 
 [node name="SpriteJoint" type="Node2D" parent="." unique_id=1080640744]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpriteJoint" unique_id=1107682392]
+[node name="Sprite" type="AnimatedSprite2D" parent="SpriteJoint" unique_id=1107682392]
 position = Vector2(0, -117)
 sprite_frames = SubResource("SpriteFrames_jatw7")
 animation = &"idle_front"
+
+[node name="Gun" parent="SpriteJoint" unique_id=2023315131 instance=ExtResource("13_o3h8g")]
+position = Vector2(0, -40)
 
 [node name="StateMachine" type="Node" parent="." unique_id=797503455 node_paths=PackedStringArray("initialState")]
 script = ExtResource("11_glx4g")
@@ -986,8 +990,8 @@ metadata/_custom_type_script = "uid://7ej2yf2aog6i"
 
 [node name="FlashSpriteSetter" type="Node" parent="." unique_id=784586761 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("10_hp6x6")
-xml_path = "res://icon.svg"
-node_to_affect = NodePath("../SpriteJoint/AnimatedSprite2D")
+xml_path = "res://Assets/Sprites/Y_character.xml"
+node_to_affect = NodePath("../SpriteJoint/Sprite")
 property_name = "sprite_frames"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=55186319]
@@ -995,14 +999,12 @@ position = Vector2(0.5, -39)
 shape = SubResource("RectangleShape2D_34jd6")
 
 [node name="InteractionArea" type="Area2D" parent="." unique_id=64555044]
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=1196418084]
 position = Vector2(0, -86)
 shape = SubResource("CapsuleShape2D_34jd6")
 debug_color = Color(0.94022775, 0.13313243, 0.51803446, 0.41960785)
-
-[node name="Gun" parent="." unique_id=2023315131 instance=ExtResource("13_o3h8g")]
-position = Vector2(0, -40)
 
 [node name="DebugBullshit" type="CanvasLayer" parent="." unique_id=1965173683]
 

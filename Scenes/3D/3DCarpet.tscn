@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://b6s302edyylnh"]
+
+[ext_resource type="Texture2D" uid="uid://cgmncxwovtvfu" path="res://Assets/Meshs/OverDarkness_2.png" id="1_lnudt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6oewd"]
+resource_name = "material_2"
+transparency = 2
+alpha_scissor_threshold = 0.05
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("1_lnudt")
+texture_filter = 0
+texture_repeat = false
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_kiini"]
+_surfaces = [{
+"aabb": AABB(-2.25, 0, -1.375, 4.5625, 1e-05, 2.75),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
+"name": "material_2",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(77, 236, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_yrfaj"]
+resource_name = "blockbench_export_mesh11"
+_surfaces = [{
+"aabb": AABB(-2.25, 0, -1.375, 4.5625, 1e-05, 2.75),
+"attribute_data": PackedByteArray(196, 134, 255, 87, 0, 0, 0, 0, 255, 145, 0, 0, 0, 0, 255, 87),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
+"material": SubResource("StandardMaterial3D_6oewd"),
+"name": "material_2",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(77, 236, 0, 0, 255, 255, 255, 191, 0, 0, 0, 0, 0, 0, 255, 191, 255, 255, 0, 0, 0, 0, 255, 191, 0, 0, 0, 0, 255, 255, 255, 191, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_kiini")
+
+[node name="3DMeshCarpet" type="Node2D" unique_id=565324275]
+
+[node name="Tapete" type="SubViewportContainer" parent="." unique_id=1830906777]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="SubViewport" type="SubViewport" parent="Tapete" unique_id=37708734]
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+msaa_2d = 1
+msaa_3d = 1
+size = Vector2i(768, 768)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Tapete/SubViewport" unique_id=1980202989]
+transform = Transform3D(-4.371139e-08, 0.9396926, -0.34202015, 0, 0.34202015, 0.9396926, 1, 4.1075268e-08, -1.4950176e-08, -1.525, 3, 0)
+current = true
+
+[node name="AreaLight3D" type="AreaLight3D" parent="Tapete/SubViewport" unique_id=925639245]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8863933, 4.5451226, 6.718516)
+area_range = 15.121
+area_attenuation = -0.03
+
+[node name="Tapete" type="MeshInstance3D" parent="Tapete/SubViewport" unique_id=847332101]
+mesh = SubResource("ArrayMesh_yrfaj")

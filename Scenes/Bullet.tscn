@@ -17,3 +17,5 @@ uv = PackedVector2Array(1, 2, 20, 36, 77, 67, 53, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1619527772]
 shape = SubResource("RectangleShape2D_34jd6")
+
+[connection signal="body_entered" from="Area2D" to="." method="hit_something"]

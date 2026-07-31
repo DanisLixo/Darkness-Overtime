@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://cwroflorm2hd0"]
 
-[ext_resource type="Script" uid="uid://c3l5qnoxsuhmv" path="res://Scripts/Parts/Items/ItemData.gd" id="1_ie0lo"]
-[ext_resource type="Texture2D" uid="uid://bhc6ohkoyqdk8" path="res://Assets/Sprites/UI/Items/PlaceholderBurger/Portrait.png" id="2_1qp8e"]
-[ext_resource type="Texture2D" uid="uid://dy8ofnetytmfk" path="res://Assets/Sprites/UI/Items/PlaceholderBurger/Icon.png" id="2_mf3b4"]
-[ext_resource type="Texture2D" uid="uid://b3wme4ey870i8" path="res://Assets/Sprites/UI/Items/PlaceholderBurger/Shop.png" id="3_1qp8e"]
+[ext_resource type="Script" path="res://Scripts/Parts/Items/ItemData.gd" id="1_ie0lo"]
+[ext_resource type="Texture2D" uid="uid://bhc6ohkoyqdk8" path="res://AssetsOld/Sprites/UI/Items/PlaceholderBurger/Portrait.png" id="2_1qp8e"]
+[ext_resource type="Texture2D" uid="uid://dy8ofnetytmfk" path="res://AssetsOld/Sprites/UI/Items/PlaceholderBurger/Icon.png" id="2_mf3b4"]
+[ext_resource type="Texture2D" uid="uid://b3wme4ey870i8" path="res://AssetsOld/Sprites/UI/Items/PlaceholderBurger/Shop.png" id="3_1qp8e"]
 
 [resource]
 script = ExtResource("1_ie0lo")

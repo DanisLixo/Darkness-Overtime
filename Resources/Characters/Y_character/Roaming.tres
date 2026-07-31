@@ -1,14 +1,14 @@
 [gd_resource type="Resource" script_class="RoamingCharacter" format=3 uid="uid://dfd1e63sewv48"]
 
 [ext_resource type="Script" uid="uid://bdae5levkc3vr" path="res://Scripts/CharacterSprites.gd" id="1_inqea"]
-[ext_resource type="Texture2D" uid="uid://dso11fxa4dfm1" path="res://Assets/Sprites/Entities/Characters/Y_Character/BackIdle.png" id="2_inelm"]
-[ext_resource type="Texture2D" uid="uid://f7boy88w2hxg" path="res://Assets/Sprites/Entities/Characters/Y_Character/FrontIdle.png" id="3_mgwqy"]
-[ext_resource type="Texture2D" uid="uid://fv2dvjauswoi" path="res://Assets/Sprites/Entities/Characters/Y_Character/LeftIdle.png" id="4_57jlb"]
-[ext_resource type="Texture2D" uid="uid://cdlywf06scw5m" path="res://Assets/Sprites/Entities/Characters/Y_Character/RightIdle.png" id="5_fgrva"]
-[ext_resource type="Texture2D" uid="uid://dou83mup6tdae" path="res://Assets/Sprites/Entities/Characters/Y_Character/BackWalk.png" id="6_d7mk0"]
-[ext_resource type="Texture2D" uid="uid://t0fb411vkgjn" path="res://Assets/Sprites/Entities/Characters/Y_Character/FrontWalk.png" id="7_t51c7"]
-[ext_resource type="Texture2D" uid="uid://tls1rvf00tvd" path="res://Assets/Sprites/Entities/Characters/Y_Character/LeftWalk.png" id="8_xdgac"]
-[ext_resource type="Texture2D" uid="uid://bd21bf3hmdtbb" path="res://Assets/Sprites/Entities/Characters/Y_Character/RightWalk.png" id="9_py8dt"]
+[ext_resource type="Texture2D" uid="uid://dso11fxa4dfm1" path="res://AssetsOld/Sprites/Entities/Characters/Y_Character/BackIdle.png" id="2_inelm"]
+[ext_resource type="Texture2D" uid="uid://f7boy88w2hxg" path="res://AssetsOld/Sprites/Entities/Characters/Y_Character/FrontIdle.png" id="3_mgwqy"]
+[ext_resource type="Texture2D" uid="uid://fv2dvjauswoi" path="res://AssetsOld/Sprites/Entities/Characters/Y_Character/LeftIdle.png" id="4_57jlb"]
+[ext_resource type="Texture2D" uid="uid://cdlywf06scw5m" path="res://AssetsOld/Sprites/Entities/Characters/Y_Character/RightIdle.png" id="5_fgrva"]
+[ext_resource type="Texture2D" uid="uid://dou83mup6tdae" path="res://AssetsOld/Sprites/Entities/Characters/Y_Character/BackWalk.png" id="6_d7mk0"]
+[ext_resource type="Texture2D" uid="uid://t0fb411vkgjn" path="res://AssetsOld/Sprites/Entities/Characters/Y_Character/FrontWalk.png" id="7_t51c7"]
+[ext_resource type="Texture2D" uid="uid://tls1rvf00tvd" path="res://AssetsOld/Sprites/Entities/Characters/Y_Character/LeftWalk.png" id="8_xdgac"]
+[ext_resource type="Texture2D" uid="uid://bd21bf3hmdtbb" path="res://AssetsOld/Sprites/Entities/Characters/Y_Character/RightWalk.png" id="9_py8dt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nnfeo"]
 atlas = ExtResource("2_inelm")

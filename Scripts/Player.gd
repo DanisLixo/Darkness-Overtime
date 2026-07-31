@@ -3,10 +3,16 @@ extends CharacterBody2D
 
 @export var player_id := 0
 
-@onready var normal_state := $StateMachine/Normal
+@onready var interaction_area: Area2D = $InteractionArea
+
 @onready var state_machine := $StateMachine
-@onready var gun := $Gun
-@onready var sprite := $SpriteJoint/AnimatedSprite2D
+@onready var normal_state := $StateMachine/Normal
+
+@onready var sprite_joint: Node2D = $SpriteJoint
+@onready var sprite := $SpriteJoint/Sprite
+
+@onready var gun: Node2D = $SpriteJoint/Gun
+
 @onready var effects_handler: StatusEffectsHandler = $StatusEffectsHandler
 
 var input_direction := Vector2.ZERO
@@ -15,12 +21,17 @@ var direction := Vector2i.ZERO
 var size_mult := 1.0
 
 enum Action {
-	X, Y, RUN, SHOOT
+	X, Y, RUN, SHOOT, JUMP
 }
 
-static var key_press := [false, false, false, false]
-static var key_hold := [0.0, 0.0, false, false]
-static var key_release := [0, 0, false, false]
+var input_names := [
+	["move_left", "move_right"], 
+	["move_up", "move_down"], 
+	"move_run", "move_shoot", "move_jump"]
+
+var key_press := []
+var key_hold := []
+var key_release := []
 
 const BASE_PHYSICS := {
 	"WALK_MAX_SPEED": 300.0,
@@ -29,22 +40,15 @@ const BASE_PHYSICS := {
 	"WALK_ACCEL": 35.0,
 	"RUN_ACCEL": 45.0,
 	
-	"MOVE_DECEL": 40.0,
-	"SKID_DECEL": 75.0
-}
-
-var PHYSICS := {
-	"WALK_MAX_SPEED": 300.0,
-	"RUN_MAX_SPEED": 500.0,
-	
-	"WALK_ACCEL": 35.0,
-	"RUN_ACCEL": 45.0,
+	"JUMP_HEIGHT": 1450.0,
+	"JUMP_GRAVITY": 60.0,
+	"JUMP_THRESHOLD" : 64.0,
 	
 	"MOVE_DECEL": 40.0,
 	"SKID_DECEL": 75.0
 }
 
-var physics := PHYSICS
+var physics := BASE_PHYSICS.duplicate()
 
 var is_invicible := false
 var invincibilty_timer := -1:
@@ -65,7 +69,9 @@ var debug_info := {
 	"physics_delta": "",
 	
 	"global_position": "",
+	"global_position_z": "",
 	"velocity": "",
+	"velocity_z": "",
 	"is_running": "",
 	
 	"input_direction": "",
@@ -75,16 +81,87 @@ var debug_info := {
 	"effects": [""]
 }
 
-func _process(delta: float) -> void:
+var global_position_z := 0.0
+var velocity_z := 0.0
+
+func _enter_tree() -> void:
+	Global.players[player_id] = self
+
+func _process(_delta: float) -> void:
+	if (Input.is_physical_key_pressed(KEY_P)):
+		physics = BASE_PHYSICS.duplicate()
+	
 	update_debug()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	scale = Vector2.ONE * size_mult
 	
 	handle_inputs()
 
+func jump() -> void:
+	velocity_z = -physics.JUMP_HEIGHT
+	print(str(velocity_z))
+
+var real_z_index := z_index
+func z_move(delta: float) -> void:
+	if (global_position_z + (velocity_z * delta) >= 0.0):
+		velocity_z = 0.0
+		global_position_z = 0.0
+	
+	global_position_z += velocity_z * delta 
+	
+	set_collision_mask_value(1, is_actually_on_floor())
+	set_collision_mask_value(9, !is_actually_on_floor())
+	interaction_area.set_collision_layer_value(1, is_actually_on_floor())
+	interaction_area.set_collision_layer_value(9, !is_actually_on_floor())
+	
+	z_index = real_z_index + int(!is_actually_on_floor())
+	
+	sprite_joint.position.y = global_position_z
+
+func handle_inputs() -> void:
+	var input_arr := [key_press, key_hold, key_release]
+	var input_calls := [Input.is_action_just_pressed, Input.is_action_pressed, Input.is_action_just_released]
+
+	for i in input_arr.size():
+		for j in Action.size():
+			if (input_names[j] is Array):
+				var negative_input_name = input_names[j][0] + "_%s" % str(player_id)
+				var positive_input_name = input_names[j][1] + "_%s" % str(player_id)
+				var value = to_input_action(input_calls[i].call(negative_input_name), input_calls[i].call(positive_input_name))
+				
+				if (input_arr[i].size() <= j):
+					input_arr[i].append(value)
+				else:
+					input_arr[i][j] = value
+			else:
+				var input_name = input_names[j] + "_%s" % str(player_id)
+				var value = input_calls[i].call(input_name)
+				
+				if (input_arr[i].size() <= j):
+					input_arr[i].append(value)
+				else:
+					input_arr[i][j] = value
+	input_direction = Vector2(key_hold[Action.X], key_hold[Action.Y])
+
+func to_input_action(neg_value: Variant, pos_value: Variant, mult := 1.0) -> Variant:
+	return int(pos_value) * mult - int(neg_value) * mult
+
+func is_actually_on_floor() -> bool:
+	return global_position_z >= 0.0
+
+func is_status_effected() -> bool:
+	if (effects_handler == null):
+		return false
+	return !effects_handler.effects.is_empty()
+
+func has_effect(effect := StatusEffect.Effect.NONE) -> bool:
+	if (effects_handler == null):
+		return false
+	return effects_handler.has_effect(effect)
+
 func update_debug() -> void:
-	is_running = Player.key_hold[Player.Action.RUN]
+	is_running = key_hold[Player.Action.RUN]
 	
 	var text := ""
 	for key in debug_info:
@@ -107,41 +184,23 @@ func update_debug() -> void:
 	
 	%DebugLabel.text = text
 
-func handle_inputs() -> void:
-	#var input_arr := [Player.key_press, Player.key_hold, Player.key_release]
-	#var input_calls := [Input.is_action_just_pressed, [Input.get_axis, Input.is_action_pressed], Input.is_action_just_released]
-	#var inputs := ["p%s_left", "p%s_right", "p%s_up"]
-	#
-	#for key_arr in input_arr.size():
-		#for i in Action.size():
-			#input_arr[i] = input_calls[i].call()
-	
-	Player.key_press[Action.X] = to_input_action(Input.is_action_just_pressed("p%s_left" % str(player_id)), Input.is_action_just_pressed("p%s_right" % str(player_id)))
-	Player.key_press[Action.Y] = to_input_action(Input.is_action_just_pressed("p%s_up" % str(player_id)), Input.is_action_just_pressed("p%s_down" % str(player_id)))
-	Player.key_press[Action.RUN] = Input.is_action_just_pressed("p%s_run" % str(player_id))
-	Player.key_press[Action.SHOOT] = Input.is_action_just_pressed("p%s_shoot" % str(player_id))
-	
-	Player.key_hold[Action.X] = Input.get_axis("p%s_left" % str(player_id), "p%s_right" % str(player_id))
-	Player.key_hold[Action.Y] = Input.get_axis("p%s_up" % str(player_id), "p%s_down" % str(player_id))
-	Player.key_hold[Action.RUN] = Input.is_action_pressed("p%s_run" % str(player_id))
-	Player.key_hold[Action.SHOOT] = Input.is_action_pressed("p%s_shoot" % str(player_id))
-	
-	Player.key_release[Action.X] = to_input_action(Input.is_action_just_released("p%s_left" % str(player_id)), Input.is_action_just_released("p%s_right" % str(player_id)), 2)
-	Player.key_release[Action.Y] = to_input_action(Input.is_action_just_released("p%s_up" % str(player_id)), Input.is_action_just_released("p%s_down" % str(player_id)), 2)
-	Player.key_release[Action.RUN] = Input.is_action_just_released("p%s_run" % str(player_id))
-	Player.key_release[Action.SHOOT] = Input.is_action_just_released("p%s_shoot" % str(player_id))
-	
-	input_direction = Vector2(Player.key_hold[Action.X], Player.key_hold[Action.Y])
+static func player_action_just_pressed(action_enum: Player.Action, id := 0) -> bool:
+	var p: Player = Global.players[id]
+	if (p.key_press[action_enum] is bool):
+		return p.key_press[action_enum]
+	else:
+		return p.key_press[action_enum] != 0
 
-func to_input_action(neg_value: Variant, pos_value: Variant, mult := 1.0) -> Variant:
-	return int(pos_value) * mult - int(neg_value) * mult
+static func player_action_pressed(action_enum: Player.Action, id := 0) -> bool:
+	var p: Player = Global.players[id]
+	if (p.key_hold[action_enum] is bool):
+		return p.key_hold[action_enum]
+	else:
+		return p.key_hold[action_enum] != 0
 
-func is_status_effected() -> bool:
-	if (effects_handler == null):
-		return false
-	return !effects_handler.effects.is_empty()
-
-func has_effect(effect := StatusEffect.Effect.NONE) -> bool:
-	if (effects_handler == null):
-		return false
-	return effects_handler.has_effect(effect)
+static func player_action_released(action_enum: Player.Action, id := 0) -> bool:
+	var p: Player = Global.players[id]
+	if (p.key_release[action_enum] is bool):
+		return p.key_release[action_enum]
+	else:
+		return p.key_release[action_enum] != 0

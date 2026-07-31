@@ -1,6 +1,6 @@
 [gd_resource type="StyleBoxTexture" format=3 uid="uid://c0pop2juuvpqf"]
 
-[ext_resource type="Texture2D" uid="uid://718vf3dstr0i" path="res://Assets/Sprites/GUI/Inventory/PanelOutlineDefault.png" id="1_8812q"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/GUI/Inventory/PanelOutlineDefault.png" id="1_8812q"]
 
 [resource]
 content_margin_top = 28.0

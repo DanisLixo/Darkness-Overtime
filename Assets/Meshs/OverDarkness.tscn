@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dwqplw1j4hhy7"]
+
+[ext_resource type="PackedScene" uid="uid://e3bhdcfwrcju" path="res://Assets/Meshs/OverDarkness.gltf" id="1_1sio3"]
+
+[node name="OverDarkness" unique_id=1662475035 instance=ExtResource("1_1sio3")]
