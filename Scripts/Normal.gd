@@ -4,6 +4,11 @@ var mouse_aim := false
 
 @onready var saved_direction = player.input_direction
 
+func process(_delta: float) -> void:
+	if (Input.is_action_just_pressed("debug_key") && Global.debug):
+		player.debugging = true
+		player.stateMachine.change_state("NoClip")
+
 func physics_process(delta: float) -> void:
 	player.size_mult = 1.0
 	if (player.is_status_effected()):

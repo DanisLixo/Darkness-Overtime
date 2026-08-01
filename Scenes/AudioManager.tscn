@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cb5v0hqgpooap"]
+
+[ext_resource type="Script" uid="uid://cqck11dyihm8" path="res://Scripts/AudioManager.gd" id="1_tnwd7"]
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_dygvs"]
+stream_count = 1
+stream_0/volume = 0.0
+
+[node name="AudioManager" type="Node" unique_id=206454982]
+process_mode = 3
+script = ExtResource("1_tnwd7")
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=2078002896]
+stream = SubResource("AudioStreamSynchronized_dygvs")
+bus = &"Music"
+
+[node name="MusicOverride" type="AudioStreamPlayer" parent="." unique_id=1195152532]
+
+[node name="Sounds" type="Node" parent="." unique_id=1711717474]

@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://d0t7j4g0qcxbh" path="res://Scripts/Normal.gd" id="12_glx4g"]
 [ext_resource type="PackedScene" uid="uid://cxbqgif6n7jyd" path="res://Scenes/gun.tscn" id="13_o3h8g"]
 [ext_resource type="Script" uid="uid://mooii5d2x7aq" path="res://Scripts/StatusEffects/EffectsHandler.gd" id="14_o3h8g"]
+[ext_resource type="Script" uid="uid://bq5qq203jsqon" path="res://Scripts/Roaming/Entities/StepSounds.gd" id="15_1e7my"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nnfeo"]
 atlas = ExtResource("1_5ncpa")
@@ -1030,3 +1031,8 @@ metadata/_edit_use_anchors_ = true
 
 [node name="StatusEffectsHandler" type="Node" parent="." unique_id=1452556040]
 script = ExtResource("14_o3h8g")
+
+[node name="StepSounds" type="Node" parent="." unique_id=450629604]
+script = ExtResource("15_1e7my")
+framesToPlay = Array[int]([0])
+metadata/_custom_type_script = "uid://bq5qq203jsqon"

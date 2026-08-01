@@ -38,6 +38,8 @@ func throw_projectile() -> void:
 	get_tree().current_scene.add_child(bullet)
 	bullet.global_position = %Muzzle.global_position
 	
+	AudioManager.play_sfx("gun_shot", false, global_position)
+	
 	var pos := global_position.direction_to(get_global_mouse_position())
 	
 	bullet.set_mouse_direction(pos)
