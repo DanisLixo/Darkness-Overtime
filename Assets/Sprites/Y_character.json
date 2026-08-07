@@ -1,0 +1,18 @@
+{
+	"Source": {
+		"Image": "Y_character.png",
+		"AnimationFile": "Y_character.xml"
+	},
+	"AnimationInfo": {
+		"Y_idle": {
+			"loop": true,
+			"loop-offset": 0,
+			"framerate": 24
+		},
+		"Y_idle-backwards": {
+			"loop": true,
+			"loop-offset": 0,
+			"framerate": 24
+		}
+	}
+}

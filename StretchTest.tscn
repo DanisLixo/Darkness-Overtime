@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bo6gmv73eut45"]
+
+[ext_resource type="Script" uid="uid://brhtwnadyhd5d" path="res://StretchTest.gd" id="1_llny7"]
+[ext_resource type="Texture2D" uid="uid://55w2c2jjcyf1" path="res://icon.svg" id="2_fvs34"]
+
+[node name="Node2D" type="Node2D" unique_id=141661089]
+script = ExtResource("1_llny7")
+
+[node name="Legs" type="Sprite2D" parent="." unique_id=1073231107]
+texture = ExtResource("2_fvs34")
+
+[node name="Body" type="Node2D" parent="." unique_id=1388442708]
+position = Vector2(0, -71)
+
+[node name="Body" type="Sprite2D" parent="Body" unique_id=1477934733]
+unique_name_in_owner = true
+texture = ExtResource("2_fvs34")
+
+[node name="Head" type="Node2D" parent="." unique_id=546498968]
+position = Vector2(0, -145)
+
+[node name="Head" type="Sprite2D" parent="Head" unique_id=1947546504]
+unique_name_in_owner = true
+texture = ExtResource("2_fvs34")

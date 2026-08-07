@@ -1,5 +1,4 @@
-@tool
-class_name ShopRoom extends RoomClass
+class_name ShopRoom extends Node
 
 func _process(_delta: float) -> void:
 	if (Input.is_action_just_pressed("move_run")):

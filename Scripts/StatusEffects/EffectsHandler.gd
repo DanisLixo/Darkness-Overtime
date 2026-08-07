@@ -1,3 +1,4 @@
+## Holds StatusEffects, should be used by nodes that uses the apply_effects() method.
 class_name StatusEffectsHandler
 extends Node
 

@@ -1,4 +1,5 @@
 @tool
+## DEPRECATED Teleports the player to another Scene.
 extends AreaTrigger2D
 class_name RoomArea2D
 
@@ -7,7 +8,7 @@ class_name RoomArea2D
 
 static var exitID: int = -1
 
-func player_entered(playerArea: Area2D) -> void:
+func _player_entered(playerArea: Area2D) -> void:
 	super(playerArea)
 	
 	if (playerIn):

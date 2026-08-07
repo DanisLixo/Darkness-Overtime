@@ -38,7 +38,7 @@ func activate_dialogue() -> void:
 	#dialogueNode.dialogue = dialogue
 	#Global.add_dialogue(dialogueNode)
 
-func player_entered(playerArea: Area2D) -> void:
+func _player_entered(playerArea: Area2D) -> void:
 	super(playerArea)
 	
 	if (onlyActivateOnce && alreadyActivated):

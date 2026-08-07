@@ -1,14 +1,14 @@
 extends Control
 
-const ITEM_HOLDER_SCENE := preload("res://Scenes/Parts/ItemHolder.tscn")
-const INFO_LABEL_SCENE := preload("res://Scenes/Prefabs/UI/shop_item_info_label.tscn")
+const ITEM_HOLDER_SCENE := preload("res://Scenes/ItemHolder.tscn")
+const INFO_LABEL_SCENE := preload("res://Scenes/shop_item_info_label.tscn")
 
 var fullPrice := 0
 
 func buy_items(itemArr = %ShopInfoList.cart_items) -> void:
-	for item in itemArr:
-		Player.money -= item.itemInfo.itemPrice
-		Player.inventory.append(item.itemID as ItemHandler.ID)
+	# for item in itemArr:
+		# Player.money -= item.itemInfo.itemPrice
+		# Player.inventory.append(item.itemID as ItemHandler.ID)
 	
 	clear_items()
 
@@ -32,9 +32,9 @@ func update_total() -> void:
 	%Total.text = "Total - $%s" % fullPrice
 
 func buy_pressed() -> void:
-	if (Player.money < fullPrice):
-		printerr("pode nao")
-		return
+	# if (Player.money < fullPrice):
+		# printerr("pode nao")
+		# return
 	
 	buy_items()
 	update_total()

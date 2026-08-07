@@ -11,8 +11,8 @@ func _ready() -> void:
 	update()
 
 func update() -> void:
-	if (myHolder != null):
-		itemInfo = ItemHandler.get_item_data(myHolder.itemID)
+	# if (myHolder != null):
+		# itemInfo = ItemHandler.get_item_data(myHolder.itemID)
 	
 	%ItemName.text = itemInfo.itemName
 	%Price.text = "$" + str(itemInfo.itemPrice)

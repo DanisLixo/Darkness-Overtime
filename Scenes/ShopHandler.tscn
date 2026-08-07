@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://dx7v7ye2u4mne"]
 
-[ext_resource type="Script" uid="uid://csw0s88uomgwj" path="res://Scenes/Prefabs/UI/shop_handler.gd" id="1_6b84b"]
-[ext_resource type="Texture2D" uid="uid://cp8snhbirgke5" path="res://Assets/Sprites/Shops/Placeholder/Scenario/Table.png" id="2_nioud"]
-[ext_resource type="Script" uid="uid://cndm7li3u6gec" path="res://Scenes/Prefabs/UI/shop_list.gd" id="3_6b84b"]
-[ext_resource type="Script" uid="uid://bvmwa4iq00r1g" path="res://Scripts/UI/Extensions/AutoScrollContainer.gd" id="3_xrx6x"]
-[ext_resource type="Script" uid="uid://cnu1l1avsek42" path="res://Scenes/Prefabs/UI/shop_items_list.gd" id="7_msl3o"]
+[ext_resource type="Script" uid="uid://csw0s88uomgwj" path="res://Scenes/shop_handler.gd" id="1_6b84b"]
+[ext_resource type="Texture2D" uid="uid://cp8snhbirgke5" path="res://AssetsOld/Sprites/Shops/Placeholder/Scenario/Table.png" id="2_nioud"]
+[ext_resource type="Script" uid="uid://cndm7li3u6gec" path="res://Scenes/shop_list.gd" id="3_6b84b"]
+[ext_resource type="Script" uid="uid://bvmwa4iq00r1g" path="res://Scripts/States/Extensions/AutoScrollContainer.gd" id="3_xrx6x"]
+[ext_resource type="Script" uid="uid://cnu1l1avsek42" path="res://Scenes/shop_items_list.gd" id="7_msl3o"]
 
 [sub_resource type="GDScript" id="GDScript_xrx6x"]
 script/source = "extends Label
@@ -12,10 +12,12 @@ script/source = "extends Label
 var current_text := text
 
 func _ready() -> void:
-	Player.money += 1000
+	pass
+	#Player.money += 1000
 
 func _process(delta: float) -> void:
-	text = current_text + str(Player.money)
+	pass
+	# text = current_text + str(Player.money)
 "
 
 [node name="ShopHandler" type="Control" unique_id=683698789]

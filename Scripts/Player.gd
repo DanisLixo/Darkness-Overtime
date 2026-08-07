@@ -88,6 +88,11 @@ func _enter_tree() -> void:
 	Global.players[player_id] = self
 
 func _process(_delta: float) -> void:
+	if (direction.y == -1):
+		sprite.play("Y_idle-backwards")
+	else:
+		sprite.play("Y_idle")
+	
 	if (Input.is_physical_key_pressed(KEY_P)):
 		physics = BASE_PHYSICS.duplicate()
 	

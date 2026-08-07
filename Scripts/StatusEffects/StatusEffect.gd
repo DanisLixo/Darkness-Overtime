@@ -1,3 +1,4 @@
+## A status effect, modifies whatever it needs too.
 class_name StatusEffect
 extends Node
 
@@ -5,7 +6,7 @@ static var METHODS_ARRAY := []
 enum Effect {
 	NONE = -1,
 	VECTOR_NORMALIZER = 0,
-	DOUBLE_SPEED,
+	SPEED_MODIFIER,
 	TURN_SMALL,
 	TURN_BIG
 }

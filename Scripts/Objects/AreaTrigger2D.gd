@@ -1,6 +1,9 @@
 @tool
+## From the prior RPG, currently, this has no actual use.
+## Serves as the parent for other Area Functions, it will only detect the player. 
+## Should have an CollisionShape2D attached if not done automatically by the object itself. 
 class_name AreaTrigger2D
-extends Area2D
+extends PlayerDetectorArea2D
 
 @export var collisionShape: Shape2D: set = update_shape
 var collisionObject: CollisionShape2D
@@ -26,15 +29,4 @@ func check_existent_collision() -> void:
 	collisionObject.item_rect_changed.connect(update_shape)
 
 func _ready() -> void:
-	area_entered.connect(player_entered)
-	area_exited.connect(player_exited)
-	
 	check_existent_collision()
-
-func player_entered(playerArea: Area2D) -> void:
-	if (playerArea.owner is Player):
-		playerIn = true
-		
-func player_exited(playerArea: Area2D) -> void:
-	if (playerArea.owner is Player):
-		playerIn = false

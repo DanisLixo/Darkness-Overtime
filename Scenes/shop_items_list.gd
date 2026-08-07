@@ -1,6 +1,6 @@
 extends GridContainer
 
-var stockItems := [ItemHandler.ID.PLACEHOLDER_BURGER, ItemHandler.ID.PLACEHOLDER_KEY]
+var stockItems := []
 
 func _ready() -> void:
 	create_stock()

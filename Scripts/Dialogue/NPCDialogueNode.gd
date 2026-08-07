@@ -1,13 +1,13 @@
 extends Node
 
-const dialogueSystemScene := preload("res://Scenes/Prefabs/UI/DialogueScene.tscn")
+const dialogueSystemScene := null
 
 var playerBodyIn := false
 var alreadyActivated := false
 var dialoguePosition: Vector2
 
 var players: Array[Player]
-@onready var npc: GenericNPC = get_parent()
+@onready var npc: Node2D = get_parent() # TODO: Make this use the GenericNPC class, still not in this branch.
 
 func _ready() -> void:
 	for i in get_tree().get_nodes_in_group("Players"):
@@ -34,8 +34,8 @@ func activate_dialogue() -> void:
 		return
 	for i in players:
 		i.stateMachine.change_state("Freeze")
-		
-	var dialogueNode := dialogueSystemScene.instantiate()
+	# Just so the error doesn't annoy us for now. I will redo the dialogue system though.
+	var dialogueNode := Node2D.new() # dialogueSystemScene.instantiate()
 	dialogueNode.activatorNode = npc
 	dialogueNode.dialogueArray = npc.dialogueArray[npc.interactionIdx]
 	Global.add_dialogue(dialogueNode)

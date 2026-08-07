@@ -1,3 +1,4 @@
+# Note: This is used once and only for the first ShopKeeper.
 extends Node
 
 @onready var parent : Node2D = get_parent()

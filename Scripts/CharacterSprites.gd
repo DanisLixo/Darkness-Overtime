@@ -1,3 +1,4 @@
+## DEPRECATED Used for sprites in game.
 class_name RoamingCharacter extends Resource
 
 @export var sprite_frames: SpriteFrames

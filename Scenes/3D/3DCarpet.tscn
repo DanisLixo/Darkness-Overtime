@@ -68,10 +68,10 @@ render_target_update_mode = 4
 transform = Transform3D(-4.371139e-08, 0.9396926, -0.34202015, 0, 0.34202015, 0.9396926, 1, 4.1075268e-08, -1.4950176e-08, -1.525, 3, 0)
 current = true
 
-[node name="AreaLight3D" type="AreaLight3D" parent="Tapete/SubViewport" unique_id=925639245]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8863933, 4.5451226, 6.718516)
-area_range = 15.121
-area_attenuation = -0.03
+[node name="DirectionalLight3D" type="SpotLight3D" parent="Tapete/SubViewport" unique_id=860563623]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0903149, 0)
+spot_range = 1615.546
 
 [node name="Tapete" type="MeshInstance3D" parent="Tapete/SubViewport" unique_id=847332101]
+gi_mode = 2
 mesh = SubResource("ArrayMesh_yrfaj")

@@ -1,12 +1,10 @@
 [gd_scene format=3 uid="uid://dpvid7ib4kmw"]
 
-[ext_resource type="Script" uid="uid://dp783dw3rei7s" path="res://Scenes/Levels/Placeholder&Tests/shop_test.gd" id="1_5fcel"]
-[ext_resource type="Texture2D" uid="uid://cxu8lm7440iad" path="res://Assets/Sprites/Shops/Placeholder/Scenario/Background.png" id="2_2qltq"]
-[ext_resource type="AudioStream" uid="uid://o3mt884wife8" path="res://Assets/Audios/BGMs/Tests/TeabatShop.ogg" id="2_cvvf6"]
-[ext_resource type="Texture2D" uid="uid://c37lwx5kix4vy" path="res://Assets/Sprites/Shops/Placeholder/Scenario/KeeperSheet.png" id="3_r8m8f"]
-[ext_resource type="Script" uid="uid://c5sjv6dhv6n01" path="res://Scripts/Parts/HangingAnimation.gd" id="4_r8m8f"]
-[ext_resource type="Texture2D" uid="uid://d3v0xnkke5s7g" path="res://Assets/Sprites/Shops/Placeholder/Scenario/Chain.png" id="5_cvvf6"]
-[ext_resource type="PackedScene" uid="uid://dx7v7ye2u4mne" path="res://Scenes/Prefabs/UI/ShopHandler.tscn" id="7_l0l06"]
+[ext_resource type="Texture2D" uid="uid://cxu8lm7440iad" path="res://AssetsOld/Sprites/Shops/Placeholder/Scenario/Background.png" id="2_2qltq"]
+[ext_resource type="Texture2D" uid="uid://c37lwx5kix4vy" path="res://AssetsOld/Sprites/Shops/Placeholder/Scenario/KeeperSheet.png" id="3_r8m8f"]
+[ext_resource type="Script" uid="uid://c5sjv6dhv6n01" path="res://Scenes/Props/HangingAnimation.gd" id="4_r8m8f"]
+[ext_resource type="Texture2D" uid="uid://d3v0xnkke5s7g" path="res://AssetsOld/Sprites/Shops/Placeholder/Scenario/Chain.png" id="5_cvvf6"]
+[ext_resource type="PackedScene" uid="uid://dx7v7ye2u4mne" path="res://Scenes/ShopHandler.tscn" id="7_l0l06"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5txwn"]
 atlas = ExtResource("3_r8m8f")
@@ -59,9 +57,6 @@ func _process(delta: float) -> void:
 "
 
 [node name="ShopTest" type="Node" unique_id=647483132]
-script = ExtResource("1_5fcel")
-music = ExtResource("2_cvvf6")
-metadata/_custom_type_script = "uid://c3884lbnyy7vs"
 
 [node name="RoomBG" type="Node2D" parent="." unique_id=1479226532]
 
@@ -72,16 +67,18 @@ centered = false
 [node name="Chain2" type="Sprite2D" parent="RoomBG" unique_id=2058929327]
 position = Vector2(-5.0000305, 629)
 rotation = 2.7483902
-scale = Vector2(0.99999994, 0.99999994)
+scale = Vector2(0.597, 0.597)
 texture = ExtResource("5_cvvf6")
 
 [node name="Chain" type="Sprite2D" parent="RoomBG" unique_id=1443719806]
 position = Vector2(284, 394)
 rotation = 0.038998842
+scale = Vector2(0.597, 0.597)
 texture = ExtResource("5_cvvf6")
 
 [node name="ShopKeeper" type="Node2D" parent="." unique_id=1824962346]
 position = Vector2(202, -188)
+scale = Vector2(0.597, 0.597)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="ShopKeeper" unique_id=1120757994]
 position = Vector2(35, 597)
@@ -92,7 +89,6 @@ frame = 4
 script = ExtResource("4_r8m8f")
 
 [node name="Label" type="Label" parent="ShopKeeper" unique_id=1139621170]
-visible = false
 offset_left = 534.0
 offset_top = 239.0
 offset_right = 574.0

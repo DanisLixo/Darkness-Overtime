@@ -1,4 +1,5 @@
 @tool
+## DEPRECATED Locks the camera to an specific position, that is the Area2D global_position.
 class_name CameraLockArea2D extends AreaTrigger2D
 
 @export_category("Entered Area")
@@ -9,7 +10,7 @@ class_name CameraLockArea2D extends AreaTrigger2D
 
 var cameraLocked := false
 
-func player_entered(playerArea: Area2D) -> void:
+func _player_entered(playerArea: Area2D) -> void:
 	super(playerArea)
 	
 	if (playerIn):
@@ -17,7 +18,7 @@ func player_entered(playerArea: Area2D) -> void:
 		player.lock_camera(global_position, tweenTime, instant, easeType, zoom)
 		cameraLocked = true
 
-func player_exited(playerArea: Area2D) -> void:
+func _player_exited(playerArea: Area2D) -> void:
 	super(playerArea)
 	
 	if (!playerIn):

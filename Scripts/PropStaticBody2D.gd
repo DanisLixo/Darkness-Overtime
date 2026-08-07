@@ -1,4 +1,5 @@
 @tool
+## Used for 2D Props.
 class_name PropStaticBody2D
 extends StaticBody2D
 
