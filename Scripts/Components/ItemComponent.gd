@@ -11,5 +11,6 @@ func _ready() -> void:
 	body_entered.connect(on_player_entered.bind())
 	add_to_group("Items")
 	
+func on_player_entered(player: CharacterBody2D) -> void:
 	player.effects_handler.update_effects(effects)
 	get_parent().queue_free()
