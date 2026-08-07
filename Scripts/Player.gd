@@ -29,9 +29,9 @@ var input_names : Array[Variant] = [
 	["move_up", "move_down"], 
 	"move_run", "move_shoot", "move_jump"]
 
-var key_press : Array[bool] = []
-var key_hold : Array[bool] = []
-var key_release : Array[bool] = []
+var key_press : Array[Variant] = []
+var key_hold : Array[Variant] = []
+var key_release : Array[Variant] = []
 
 const BASE_PHYSICS : Dictionary[String, float] = {
 	"WALK_MAX_SPEED": 300.0,
@@ -196,13 +196,22 @@ func update_debug() -> void:
 #endregion
 
 static func player_action_just_pressed(action_enum: Player.Action, id := 0) -> bool:
-	var player : Player = Global.players[id]
-	return player.key_press[action_enum]
+	var player: Player = Global.players[id]
+	if (player.key_press[action_enum] is bool):
+		return player.key_press[action_enum]
+	else:
+		return player.key_press[action_enum] != 0
 
 static func player_action_pressed(action_enum: Player.Action, id := 0) -> bool:
-	var player : Player = Global.players[id]
-	return player.key_hold[action_enum]
+	var player: Player = Global.players[id]
+	if (player.key_hold[action_enum] is bool):
+		return player.key_hold[action_enum]
+	else:
+		return player.key_hold[action_enum] != 0
 
 static func player_action_released(action_enum: Player.Action, id := 0) -> bool:
 	var player: Player = Global.players[id]
-	return player.key_release[action_enum]
+	if (player.key_release[action_enum] is bool):
+		return player.key_release[action_enum]
+	else:
+		return player.key_release[action_enum] != 0
