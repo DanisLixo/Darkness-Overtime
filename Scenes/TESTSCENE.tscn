@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://d4k3w1i6g5pm6" path="res://Scripts/RoomClass.gd" id="2_c4sjm"]
 [ext_resource type="PackedScene" uid="uid://c0fhe8pg1l0ys" path="res://Scenes/Player.tscn" id="3_26150"]
 [ext_resource type="PackedScene" uid="uid://ulah8awu31xa" path="res://Scenes/Item.tscn" id="6_4gol5"]
-[ext_resource type="Script" uid="uid://bd53mkw4epr5e" path="res://Scripts/StatusEffects/EffectResource.gd" id="7_r5kl7"]
 [ext_resource type="PackedScene" uid="uid://bo6gmv73eut45" path="res://StretchTest.tscn" id="10_8wm0c"]
 
 [node name="TestScene" type="Node" unique_id=2010601193]

@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bt0hjyj78g5b7" path="res://Scripts/States/Playables/NoClip.gd" id="5_bhhdu"]
 [ext_resource type="Script" uid="uid://brgq3dbakcshh" path="res://Scripts/FlashSpriteSetter.gd" id="10_hp6x6"]
 [ext_resource type="Script" uid="uid://d3h5v51k4ds7" path="res://Scripts/States/StateMachine.gd" id="11_glx4g"]
-[ext_resource type="Script" uid="uid://d0t7j4g0qcxbh" path="res://Scripts/States/Playables/Normal.gd" id="12_glx4g"]
+[ext_resource type="Script" uid="uid://bf6yrtdb3iksn" path="res://Scripts/States/Playables/Normal.gd" id="12_glx4g"]
 [ext_resource type="PackedScene" uid="uid://cxbqgif6n7jyd" path="res://Scenes/gun.tscn" id="13_o3h8g"]
 [ext_resource type="Script" uid="uid://mooii5d2x7aq" path="res://Scripts/StatusEffects/EffectsHandler.gd" id="14_o3h8g"]
 [ext_resource type="Script" uid="uid://bq5qq203jsqon" path="res://Scripts/Roaming/Entities/StepSounds.gd" id="15_1e7my"]
@@ -36,8 +36,9 @@ animation = &""
 [node name="Gun" parent="SpriteJoint" unique_id=2023315131 instance=ExtResource("13_o3h8g")]
 position = Vector2(0, -40)
 
-[node name="StateMachine" type="Node" parent="." unique_id=797503455]
+[node name="StateMachine" type="Node" parent="." unique_id=797503455 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("11_glx4g")
+initial_state = NodePath("Normal")
 metadata/_custom_type_script = "uid://d3h5v51k4ds7"
 
 [node name="Normal" type="Node" parent="StateMachine" unique_id=1634321157]
