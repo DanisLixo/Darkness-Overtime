@@ -1,4 +1,4 @@
-extends Node2D
+extends Marker2D
 class_name PlayerSpawnpoint
 
 @export_range(0, 99) var pointID := 0

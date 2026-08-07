@@ -1,7 +1,6 @@
+##ItemData Resource, contains all data needed for an item
 class_name ItemData
 extends Resource
-
-## Data de um item, utilize para Resources apenas!!!
 
 enum ItemType {
 	KEYS,
@@ -16,8 +15,7 @@ enum ItemType {
 @export var spriteShop: Texture2D
 
 @export_category("General")
-@export var itemType := ItemType.KEYS
-@export var itemName := "placeholder"
+@export var itemType : ItemType = ItemType.KEYS
 @export_multiline var itemDescription: String
 
 @export_category("Shop")

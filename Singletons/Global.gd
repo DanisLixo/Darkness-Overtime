@@ -37,7 +37,7 @@ func get_local_dir() -> String:
 func _init() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	handle_mouse()
 	
 func handle_mouse() -> void:

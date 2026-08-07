@@ -72,10 +72,10 @@ func apply_save(json := {}) -> void:
 	Global.party = json["Party"]
 
 func convert_playtime(time := 0.0) -> String:
-	var string := ""
+	var string  := ""
 	var seconds := floori(time)
-	var minutes := floori(seconds / 60)
-	var hours := floori(minutes / 60)
+	var minutes := floori(seconds / 60.)
+	var hours := floori(minutes / 60.)
 	
 	string = "%s:%s.%s" % [str(hours).pad_zeros(2), str(minutes % 60).pad_zeros(2), str(seconds % 60).pad_zeros(2)]
 	

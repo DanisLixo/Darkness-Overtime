@@ -2,7 +2,7 @@ extends PlayableState
 
 var mouse_aim := false
 
-@onready var saved_direction = player.input_direction
+@onready var saved_direction : Vector2 = player.input_direction
 
 func process(_delta: float) -> void:
 	if (Input.is_action_just_pressed("debug_key") && Global.debug):
