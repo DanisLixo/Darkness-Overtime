@@ -35,7 +35,7 @@ func handle_direction() -> void:
 func throw_projectile() -> void:
 	if (!can_shoot || shot_delay > 0.0): 
 		return
-	var bullet := BULLET_SCENE.instantiate()
+	var bullet := bullet_scene.instantiate()
 	get_tree().current_scene.add_child(bullet)
 	bullet.global_position = shoot_position.global_position
 	
