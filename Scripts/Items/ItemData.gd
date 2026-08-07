@@ -15,8 +15,7 @@ enum ItemType {
 @export var spriteShop: Texture2D
 
 @export_category("General")
-@export var itemType := ItemType.KEYS
-@export var itemName := "placeholder"
+@export var itemType : ItemType = ItemType.KEYS
 @export_multiline var itemDescription: String
 
 @export_category("Shop")

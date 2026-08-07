@@ -1,10 +1,10 @@
+##A state machine, used to manage the states that modify the main object, should be paired with any type of State classes
 class_name StateMachine
 extends Node
 
 @export var initial_state: State
 @onready var state : State = initial_state
 
-## Usado para administrar os states que modificam o objeto principal.
 func _ready() -> void:
 	if (state == null):
 		print("Given state doesn't exist for the following Scene: %s" % owner.scene_file_path.get_file())
@@ -20,7 +20,8 @@ func _physics_process(delta: float) -> void:
 		return
 	state.physics_process(delta)
 
-## Muda o state atual (incrivel), MSGs sao para caso algum state precisa de algo para funcionar, assim pode ser listada num dicionario
+## Changes the current state, messages are for when a state needs something to function, 
+##so it can be listed in a dictionary.
 func change_state(state_name: String = "", exitMsg = {}, enterMsg = {}) -> void:
 	if (state_name == ""):
 		return

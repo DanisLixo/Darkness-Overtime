@@ -2,7 +2,7 @@
 class_name EffectsMethods
 extends Object
 
-static var effects_overrides := {
+static var effects_overrides : Dictionary[StatusEffect.Effect, StatusEffect.Effect]= {
 	StatusEffect.Effect.TURN_SMALL: StatusEffect.Effect.TURN_BIG,
 	StatusEffect.Effect.TURN_BIG: StatusEffect.Effect.TURN_SMALL
 }
@@ -35,7 +35,7 @@ static func get_effect_method(effect_enum := StatusEffect.Effect.NONE) -> String
 	return StatusEffect.METHODS_ARRAY[effect_enum]
 
 ## Normalize the given Vector2 to a normalized self.
-func normalize_vector(object: PhysicsBody2D, eat_inputs := false, vector_variable := "input_direction") -> void:
+func normalize_vector(object: PhysicsBody2D, eat_inputs : bool = false, vector_variable : String = "input_direction") -> void:
 	var vector = object.get(vector_variable)
 	
 	if (object.get(vector_variable) is Vector2):

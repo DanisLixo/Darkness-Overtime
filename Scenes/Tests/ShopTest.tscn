@@ -1,31 +1,30 @@
 [gd_scene format=3 uid="uid://dpvid7ib4kmw"]
 
-[ext_resource type="Script" uid="uid://dp783dw3rei7s" path="res://Scenes/shop_test.gd" id="1_5fcel"]
-[ext_resource type="Texture2D" uid="uid://cxu8lm7440iad" path="res://AssetsOld/Sprites/Shops/Placeholder/Scenario/Background.png" id="2_2qltq"]
-[ext_resource type="AudioStream" uid="uid://o3mt884wife8" path="res://AssetsOld/Audios/BGMs/Tests/TeabatShop.ogg" id="2_cvvf6"]
-[ext_resource type="Texture2D" uid="uid://c37lwx5kix4vy" path="res://AssetsOld/Sprites/Shops/Placeholder/Scenario/KeeperSheet.png" id="3_r8m8f"]
-[ext_resource type="Script" uid="uid://c5sjv6dhv6n01" path="res://Scenes/Props/HangingAnimation.gd" id="4_r8m8f"]
-[ext_resource type="Texture2D" uid="uid://d3v0xnkke5s7g" path="res://AssetsOld/Sprites/Shops/Placeholder/Scenario/Chain.png" id="5_cvvf6"]
-[ext_resource type="PackedScene" uid="uid://dx7v7ye2u4mne" path="res://Scenes/ShopHandler.tscn" id="7_l0l06"]
+[ext_resource type="Script" uid="uid://dp783dw3rei7s" path="res://Scenes/Tests/shop_test.gd" id="1_c11go"]
+[ext_resource type="Texture2D" uid="uid://cxu8lm7440iad" path="res://AssetsOld/Sprites/Shops/Placeholder/Scenario/Background.png" id="2_lfl1m"]
+[ext_resource type="Texture2D" uid="uid://d3v0xnkke5s7g" path="res://AssetsOld/Sprites/Shops/Placeholder/Scenario/Chain.png" id="3_fmb0m"]
+[ext_resource type="Texture2D" uid="uid://c37lwx5kix4vy" path="res://AssetsOld/Sprites/Shops/Placeholder/Scenario/KeeperSheet.png" id="4_m5ttm"]
+[ext_resource type="Script" uid="uid://c5sjv6dhv6n01" path="res://Scenes/Props/HangingAnimation.gd" id="5_01bxq"]
+[ext_resource type="PackedScene" uid="uid://dx7v7ye2u4mne" path="res://Scenes/ShopHandler.tscn" id="6_5a03g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5txwn"]
-atlas = ExtResource("3_r8m8f")
+atlas = ExtResource("4_m5ttm")
 region = Rect2(0, 0, 1280, 1280)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_duxy6"]
-atlas = ExtResource("3_r8m8f")
+atlas = ExtResource("4_m5ttm")
 region = Rect2(1280, 0, 1280, 1280)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qmnbg"]
-atlas = ExtResource("3_r8m8f")
+atlas = ExtResource("4_m5ttm")
 region = Rect2(2560, 0, 1280, 1280)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o56af"]
-atlas = ExtResource("3_r8m8f")
+atlas = ExtResource("4_m5ttm")
 region = Rect2(3840, 0, 1280, 1280)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vc7nb"]
-atlas = ExtResource("3_r8m8f")
+atlas = ExtResource("4_m5ttm")
 region = Rect2(5120, 0, 1280, 1280)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5txwn"]
@@ -59,26 +58,25 @@ func _process(delta: float) -> void:
 "
 
 [node name="ShopTest" type="Node" unique_id=647483132]
-script = ExtResource("1_5fcel")
-music = ExtResource("2_cvvf6")
+script = ExtResource("1_c11go")
 
 [node name="RoomBG" type="Node2D" parent="." unique_id=1479226532]
 
 [node name="Background" type="Sprite2D" parent="RoomBG" unique_id=227367251]
-texture = ExtResource("2_2qltq")
+texture = ExtResource("2_lfl1m")
 centered = false
 
 [node name="Chain2" type="Sprite2D" parent="RoomBG" unique_id=2058929327]
 position = Vector2(-5.0000305, 629)
 rotation = 2.7483902
 scale = Vector2(0.597, 0.597)
-texture = ExtResource("5_cvvf6")
+texture = ExtResource("3_fmb0m")
 
 [node name="Chain" type="Sprite2D" parent="RoomBG" unique_id=1443719806]
 position = Vector2(284, 394)
 rotation = 0.038998842
 scale = Vector2(0.597, 0.597)
-texture = ExtResource("5_cvvf6")
+texture = ExtResource("3_fmb0m")
 
 [node name="ShopKeeper" type="Node2D" parent="." unique_id=1824962346]
 position = Vector2(202, -188)
@@ -90,7 +88,7 @@ sprite_frames = SubResource("SpriteFrames_5txwn")
 frame = 4
 
 [node name="HangingAnimation" type="Node" parent="ShopKeeper" unique_id=779858126]
-script = ExtResource("4_r8m8f")
+script = ExtResource("5_01bxq")
 
 [node name="Label" type="Label" parent="ShopKeeper" unique_id=1139621170]
 offset_left = 534.0
@@ -99,4 +97,4 @@ offset_right = 574.0
 offset_bottom = 283.0
 script = SubResource("GDScript_l0l06")
 
-[node name="ShopHandler" parent="." unique_id=683698789 instance=ExtResource("7_l0l06")]
+[node name="ShopHandler" parent="." unique_id=683698789 instance=ExtResource("6_5a03g")]

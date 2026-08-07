@@ -4,12 +4,12 @@ extends CharacterBody2D
 @export var player_id : int = 0
 @export var interaction_area : Area2D
 
-@export_category("Visuals")
-@export var state_machine : StateMachine
+@export_group("Visuals")
 @export var sprite_joint: Node2D
 @export var sprite : AnimatedSprite2D
 
-@export_category("Functionality")
+@export_group("Functionality")
+@export var state_machine : StateMachine
 @export var gun: Node2D
 @export var effects_handler: StatusEffectsHandler
 
@@ -29,9 +29,9 @@ var input_names : Array[Variant] = [
 	["move_up", "move_down"], 
 	"move_run", "move_shoot", "move_jump"]
 
-var key_press := []
-var key_hold := []
-var key_release := []
+var key_press : Array[bool] = []
+var key_hold : Array[bool] = []
+var key_release : Array[bool] = []
 
 const BASE_PHYSICS : Dictionary[String, float] = {
 	"WALK_MAX_SPEED": 300.0,
@@ -197,21 +197,12 @@ func update_debug() -> void:
 
 static func player_action_just_pressed(action_enum: Player.Action, id := 0) -> bool:
 	var player : Player = Global.players[id]
-	if (player.key_press[action_enum] is bool):
-		return player.key_press[action_enum]
-	else:
-		return player.key_press[action_enum] != 0
+	return player.key_press[action_enum]
 
 static func player_action_pressed(action_enum: Player.Action, id := 0) -> bool:
 	var player : Player = Global.players[id]
-	if (player.key_hold[action_enum] is bool):
-		return player.key_hold[action_enum]
-	else:
-		return player.key_hold[action_enum] != 0
+	return player.key_hold[action_enum]
 
 static func player_action_released(action_enum: Player.Action, id := 0) -> bool:
 	var player: Player = Global.players[id]
-	if (player.key_release[action_enum] is bool):
-		return player.key_release[action_enum]
-	else:
-		return player.key_release[action_enum] != 0
+	return player.key_release[action_enum]
