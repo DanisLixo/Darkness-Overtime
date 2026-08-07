@@ -1,7 +1,6 @@
+##ItemData Resource, contains all data needed for an item
 class_name ItemData
 extends Resource
-
-## Data de um item, utilize para Resources apenas!!!
 
 enum ItemType {
 	KEYS,

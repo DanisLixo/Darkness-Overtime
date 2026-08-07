@@ -16,10 +16,16 @@ size = Vector2(119, 72)
 radius = 48.0
 height = 168.0
 
-[node name="Player" type="CharacterBody2D" unique_id=480091350 groups=["Players"]]
+[node name="Player" type="CharacterBody2D" unique_id=480091350 node_paths=PackedStringArray("interaction_area", "state_machine", "sprite_joint", "sprite", "gun", "effects_handler") groups=["Players"]]
 process_priority = 1
-collision_layer = 0
+collision_layer = 2
 script = ExtResource("1_wi0c6")
+interaction_area = NodePath("InteractionArea")
+state_machine = NodePath("StateMachine")
+sprite_joint = NodePath("SpriteJoint")
+sprite = NodePath("SpriteJoint/Sprite")
+gun = NodePath("SpriteJoint/Gun")
+effects_handler = NodePath("StatusEffectsHandler")
 
 [node name="SpriteJoint" type="Node2D" parent="." unique_id=1080640744]
 
@@ -30,9 +36,8 @@ animation = &""
 [node name="Gun" parent="SpriteJoint" unique_id=2023315131 instance=ExtResource("13_o3h8g")]
 position = Vector2(0, -40)
 
-[node name="StateMachine" type="Node" parent="." unique_id=797503455 node_paths=PackedStringArray("initialState")]
+[node name="StateMachine" type="Node" parent="." unique_id=797503455]
 script = ExtResource("11_glx4g")
-initialState = NodePath("Normal")
 metadata/_custom_type_script = "uid://d3h5v51k4ds7"
 
 [node name="Normal" type="Node" parent="StateMachine" unique_id=1634321157]
@@ -54,6 +59,7 @@ position = Vector2(0.5, -39)
 shape = SubResource("RectangleShape2D_34jd6")
 
 [node name="InteractionArea" type="Area2D" parent="." unique_id=64555044]
+collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=1196418084]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b0a3dow5ey5i1"]
 
-[ext_resource type="Script" uid="uid://dam48k0ndb0at" path="res://Scripts/Global.gd" id="1_6yl2a"]
+[ext_resource type="Script" uid="uid://dam48k0ndb0at" path="res://Singletons/Global.gd" id="1_6yl2a"]
 [ext_resource type="Texture2D" uid="uid://cyptratv0uyxe" path="res://AssetsOld/Sprites/UI/cursor.png" id="2_uavi6"]
 
 [node name="Global" type="Node" unique_id=187146055]
