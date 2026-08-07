@@ -39,6 +39,7 @@ position = Vector2(0, -40)
 [node name="StateMachine" type="Node" parent="." unique_id=797503455 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("11_glx4g")
 initial_state = NodePath("Normal")
+
 metadata/_custom_type_script = "uid://d3h5v51k4ds7"
 
 [node name="Normal" type="Node" parent="StateMachine" unique_id=1634321157]

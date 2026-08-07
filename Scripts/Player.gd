@@ -136,6 +136,7 @@ func handle_inputs() -> void:
 			if (input_names[j] is Array):
 				var negative_input_name : String = input_names[j][0] + "_%s" % str(player_id)
 				var positive_input_name : String = input_names[j][1] + "_%s" % str(player_id)
+
 				var value : Variant = to_input_action(input_calls[i].call(negative_input_name), input_calls[i].call(positive_input_name))
 				
 				if (input_arr[i].size() <= j):
