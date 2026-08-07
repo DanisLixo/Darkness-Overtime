@@ -1,30 +1,30 @@
 class_name Player
 extends CharacterBody2D
 
-@export var player_id := 0
+@export var player_id : int = 0
+@export var interaction_area : Area2D
 
-@onready var interaction_area: Area2D = $InteractionArea
+@export_category("Visuals")
+@export var state_machine : StateMachine
+@export var sprite_joint: Node2D
+@export var sprite : AnimatedSprite2D
 
-@onready var state_machine := $StateMachine
-@onready var normal_state := $StateMachine/Normal
+@export_category("Functionality")
+@export var gun: Node2D
+@export var effects_handler: StatusEffectsHandler
 
-@onready var sprite_joint: Node2D = $SpriteJoint
-@onready var sprite := $SpriteJoint/Sprite
+var normal_state : PlayableState
 
-@onready var gun: Node2D = $SpriteJoint/Gun
+var input_direction : Vector2 = Vector2.ZERO
+var direction : Vector2 = Vector2i.ZERO
 
-@onready var effects_handler: StatusEffectsHandler = $StatusEffectsHandler
-
-var input_direction := Vector2.ZERO
-var direction := Vector2i.ZERO
-
-var size_mult := 1.0
+var size_mult : float = 1.0
 
 enum Action {
 	X, Y, RUN, SHOOT, JUMP
 }
 
-var input_names := [
+var input_names : Array[Variant] = [
 	["move_left", "move_right"], 
 	["move_up", "move_down"], 
 	"move_run", "move_shoot", "move_jump"]
@@ -33,7 +33,7 @@ var key_press := []
 var key_hold := []
 var key_release := []
 
-const BASE_PHYSICS := {
+const BASE_PHYSICS : Dictionary[String, float] = {
 	"WALK_MAX_SPEED": 300.0,
 	"RUN_MAX_SPEED": 500.0,
 	
@@ -48,23 +48,23 @@ const BASE_PHYSICS := {
 	"SKID_DECEL": 75.0
 }
 
-var physics := BASE_PHYSICS.duplicate()
+var physics : Dictionary[String, float] = BASE_PHYSICS.duplicate()
 
-var is_invicible := false
-var invincibilty_timer := -1:
+var is_invicible : bool = false
+var invincibilty_timer : int = -1:
 	set(value):
 		invincibilty_timer = value
 		is_invicible = value > 0 
 
-var can_run := true
+var can_run : bool = true
 
-var can_jump := true
-var jump_cooldown := 0
+var can_jump : bool = true
+var jump_cooldown : bool = 0
 
-var is_skidding := false
-var is_running := false
+var is_skidding : bool = false
+var is_running : bool = false
 
-var debug_info := {
+var debug_info : Dictionary[String, Variant] = {
 	"process_delta": "",
 	"physics_delta": "",
 	
@@ -81,10 +81,13 @@ var debug_info := {
 	"effects": [""]
 }
 
-var global_position_z := 0.0
-var velocity_z := 0.0
+var global_position_z : float = 0.0
+var velocity_z : float = 0.0
 
 func _enter_tree() -> void:
+	#TODO: Should I change this since it's probably not how it's supposed to be? 
+	#(I just assumed it was i'm sorry if i'm wrong)
+	normal_state = state_machine.initial_state 
 	Global.players[player_id] = self
 
 func _process(_delta: float) -> void:
@@ -100,9 +103,9 @@ func _physics_process(_delta: float) -> void:
 
 func jump() -> void:
 	velocity_z = -physics.JUMP_HEIGHT
-	print(str(velocity_z))
+	#print(str(velocity_z))
 
-var real_z_index := z_index
+var real_z_index : int = z_index
 func z_move(delta: float) -> void:
 	if (global_position_z + (velocity_z * delta) >= 0.0):
 		velocity_z = 0.0
@@ -120,23 +123,23 @@ func z_move(delta: float) -> void:
 	sprite_joint.position.y = global_position_z
 
 func handle_inputs() -> void:
-	var input_arr := [key_press, key_hold, key_release]
-	var input_calls := [Input.is_action_just_pressed, Input.is_action_pressed, Input.is_action_just_released]
+	var input_arr : Array[Array] = [key_press, key_hold, key_release]
+	var input_calls : Array[Callable] = [Input.is_action_just_pressed, Input.is_action_pressed, Input.is_action_just_released]
 
 	for i in input_arr.size():
 		for j in Action.size():
 			if (input_names[j] is Array):
-				var negative_input_name = input_names[j][0] + "_%s" % str(player_id)
-				var positive_input_name = input_names[j][1] + "_%s" % str(player_id)
-				var value = to_input_action(input_calls[i].call(negative_input_name), input_calls[i].call(positive_input_name))
+				var negative_input_name : String = input_names[j][0] + "_%s" % str(player_id)
+				var positive_input_name : String= input_names[j][1] + "_%s" % str(player_id)
+				var value : Variant = to_input_action(input_calls[i].call(negative_input_name), input_calls[i].call(positive_input_name))
 				
 				if (input_arr[i].size() <= j):
 					input_arr[i].append(value)
 				else:
 					input_arr[i][j] = value
 			else:
-				var input_name = input_names[j] + "_%s" % str(player_id)
-				var value = input_calls[i].call(input_name)
+				var input_name : String = input_names[j] + "_%s" % str(player_id)
+				var value : String = input_calls[i].call(input_name)
 				
 				if (input_arr[i].size() <= j):
 					input_arr[i].append(value)
@@ -160,10 +163,11 @@ func has_effect(effect := StatusEffect.Effect.NONE) -> bool:
 		return false
 	return effects_handler.has_effect(effect)
 
+#region Debug Function
 func update_debug() -> void:
 	is_running = key_hold[Player.Action.RUN]
 	
-	var text := ""
+	var text : String = ""
 	for key in debug_info:
 		if (key.contains("process")):
 			debug_info[key] = get_process_delta_time()
@@ -183,24 +187,25 @@ func update_debug() -> void:
 		text += "%s: %s\n" % [key, str(debug_info[key])]
 	
 	%DebugLabel.text = text
+#endregion
 
 static func player_action_just_pressed(action_enum: Player.Action, id := 0) -> bool:
-	var p: Player = Global.players[id]
-	if (p.key_press[action_enum] is bool):
-		return p.key_press[action_enum]
+	var player : Player = Global.players[id]
+	if (player.key_press[action_enum] is bool):
+		return player.key_press[action_enum]
 	else:
-		return p.key_press[action_enum] != 0
+		return player.key_press[action_enum] != 0
 
 static func player_action_pressed(action_enum: Player.Action, id := 0) -> bool:
-	var p: Player = Global.players[id]
-	if (p.key_hold[action_enum] is bool):
-		return p.key_hold[action_enum]
+	var player : Player = Global.players[id]
+	if (player.key_hold[action_enum] is bool):
+		return player.key_hold[action_enum]
 	else:
-		return p.key_hold[action_enum] != 0
+		return player.key_hold[action_enum] != 0
 
 static func player_action_released(action_enum: Player.Action, id := 0) -> bool:
-	var p: Player = Global.players[id]
-	if (p.key_release[action_enum] is bool):
-		return p.key_release[action_enum]
+	var player: Player = Global.players[id]
+	if (player.key_release[action_enum] is bool):
+		return player.key_release[action_enum]
 	else:
-		return p.key_release[action_enum] != 0
+		return player.key_release[action_enum] != 0

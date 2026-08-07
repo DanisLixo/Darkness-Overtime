@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cb5v0hqgpooap"]
 
-[ext_resource type="Script" uid="uid://cqck11dyihm8" path="res://Scripts/AudioManager.gd" id="1_tnwd7"]
+[ext_resource type="Script" uid="uid://cqck11dyihm8" path="res://Singletons/AudioManager.gd" id="1_tnwd7"]
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_dygvs"]
 stream_count = 1

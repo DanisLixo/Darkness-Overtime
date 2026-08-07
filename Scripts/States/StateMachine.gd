@@ -1,8 +1,8 @@
 class_name StateMachine
 extends Node
 
-@export var initialState: State
-@onready var state := initialState
+@export var initial_state: State
+@onready var state : State = initial_state
 
 ## Usado para administrar os states que modificam o objeto principal.
 func _ready() -> void:
