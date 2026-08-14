@@ -10,9 +10,6 @@ func process(_delta: float) -> void:
 		player.stateMachine.change_state("NoClip")
 
 func physics_process(delta: float) -> void:
-	player.size_mult = 1.0
-	if (player.is_status_effected()):
-		player.effects_handler.apply_effects()
 	
 	if (player.is_actually_on_floor()):
 		on_floor()

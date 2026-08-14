@@ -2,38 +2,6 @@
 class_name EffectsMethods
 extends Object
 
-static var effects_overrides : Dictionary[StatusEffect.Effect, StatusEffect.Effect]= {
-	StatusEffect.Effect.TURN_SMALL: StatusEffect.Effect.TURN_BIG,
-	StatusEffect.Effect.TURN_BIG: StatusEffect.Effect.TURN_SMALL
-}
-static var not_effect_method := ["update_effects", "get_effect_method"]
-
-## Update the effects given inside effects_arr. returns the array modified and free refreshed/overwritten effects.
-static func update_effects(effect_to_compare: StatusEffect, effects_arr: Array, override_related := false) -> Array:
-	for i in effects_arr:
-		if (i.effect == effect_to_compare.effect):
-			i.end()
-		
-		if (override_related && effects_overrides.has(effect_to_compare.effect)):
-			if (i.effect == effects_overrides[effect_to_compare.effect]):
-				effects_arr.erase(i)
-				i.end()
-	
-	return effects_arr
-
-## Returns the method of the effect. No effect has a declarable name yet.
-static func get_effect_method(effect_enum := StatusEffect.Effect.NONE) -> String:
-	if (StatusEffect.METHODS_ARRAY.is_empty()):
-		var methods_list = EffectsMethods.new().get_script().get_script_method_list()
-		
-		for method in methods_list:
-			if (!not_effect_method.has(method["name"])):
-				StatusEffect.METHODS_ARRAY.append(method["name"])
-		
-		print(str(StatusEffect.METHODS_ARRAY))
-	
-	return StatusEffect.METHODS_ARRAY[effect_enum]
-
 ## Normalize the given Vector2 to a normalized self.
 func normalize_vector(object: PhysicsBody2D, eat_inputs : bool = false, vector_variable : String = "input_direction") -> void:
 	var vector = object.get(vector_variable)

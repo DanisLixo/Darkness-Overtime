@@ -37,6 +37,12 @@ window/stretch/aspect="expand"
 
 enabled=PackedStringArray("res://addons/AATTAAI/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://script_templates/": "teal"
+}
+
 [global_group]
 
 Players="Players"

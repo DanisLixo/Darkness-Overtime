@@ -1,51 +1,35 @@
-## A status effect, modifies whatever it needs too.
+## A status effect abstract class, should be inherited for any custom effect.
 class_name StatusEffect
 extends Node
-
-static var METHODS_ARRAY := []
-enum Effect {
-	NONE = -1,
-	VECTOR_NORMALIZER = 0,
-	SPEED_MODIFIER,
-	TURN_SMALL,
-	TURN_BIG
-}
-
-var effect_call := EffectsMethods.new()
 
 @onready var effects_handler: StatusEffectsHandler = get_parent()
 @onready var parent := effects_handler.parent
 
-var effect: Effect
-var effect_method: String
+enum Priority{
+	ON_PICKUP = -1,
+	ADDER = 0,
+	MULTIPLIER = 1,
+}
 
+@export var effect_overrides : Array[StatusEffect]
+@export var effect_priority : Priority = Priority.ON_PICKUP
+
+var extra_args : Array
 var timer := Timer.new()
 var time: float
 
-var extra_args: Array[Variant]
-
 func _ready() -> void:
-	effect_method = EffectsMethods.get_effect_method(effect)
-	
 	if (time > 0.0):
 		create_timer()
-
-func apply() -> void:
-	var args := [parent]
-	args.append_array(extra_args)
 	
-	effect_call.callv(effect_method, args)
+##Called each time an action gets called to StatusEffectsHandler
+func on_event(type : StatusEffectsHandler.ActionType, is_post : bool , source : Node = null, args: Dictionary = {}) -> void:
+	pass
 
 func create_timer() -> void:
 	add_child(timer)
-		
 	timer.start(time)
-	timer.timeout.connect(on_timeout)
-
-func on_timeout() -> void:
-	effects_handler.effects.erase(self)
-	queue_free()
+	timer.timeout.connect(end)
 
 func end() -> void:
-	effects_handler.effects.erase(self)
 	queue_free()

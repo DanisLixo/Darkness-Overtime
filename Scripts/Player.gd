@@ -103,8 +103,9 @@ func _process(_delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	scale = Vector2.ONE * size_mult
-	
+	effects_handler.trigger_event(StatusEffectsHandler.ActionType.MOVE, false, self)
 	handle_inputs()
+	effects_handler.trigger_event(StatusEffectsHandler.ActionType.MOVE, true, self)
 
 func jump() -> void:
 	velocity_z = -physics.JUMP_HEIGHT
@@ -164,11 +165,6 @@ func is_status_effected() -> bool:
 		return false
 	return !effects_handler.effects.is_empty()
 
-func has_effect(effect := StatusEffect.Effect.NONE) -> bool:
-	if (effects_handler == null):
-		return false
-	return effects_handler.has_effect(effect)
-
 #region Debug Function
 func update_debug() -> void:
 	is_running = key_hold[Player.Action.RUN]
@@ -186,7 +182,7 @@ func update_debug() -> void:
 				continue
 			debug_info[key] = []
 			for fx in effects_handler.effects:
-				debug_info[key].append_array([StatusEffect.Effect.find_key(fx.effect), fx.time])
+				debug_info[key].append_array([fx.name, fx.time])
 		else:
 			debug_info[key] = get(key)
 		
