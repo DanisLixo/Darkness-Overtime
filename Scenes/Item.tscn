@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://ulah8awu31xa"]
 
-[ext_resource type="Script" uid="uid://d2ftvd0uv662o" path="res://Scripts/Components/ItemComponent.gd" id="1_08o4a"]
+[ext_resource type="Script" uid="uid://d2ftvd0uv662o" path="res://Scripts/Components/item_component.gd" id="1_08o4a"]
 [ext_resource type="Texture2D" uid="uid://dy8ofnetytmfk" path="res://AssetsOld/Sprites/UI/Items/PlaceholderBurger/Icon.png" id="2_6oc8a"]
 [ext_resource type="Script" uid="uid://bd53mkw4epr5e" path="res://Scripts/StatusEffects/EffectResource.gd" id="2_08o4a"]
 
 [sub_resource type="Resource" id="Resource_2oiv6"]
 script = ExtResource("2_08o4a")
+effect = 3
+extra_args = [2.0]
 metadata/_custom_type_script = "uid://bd53mkw4epr5e"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_34jd6"]

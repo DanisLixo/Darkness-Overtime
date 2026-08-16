@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dqtms6dbdjf76" path="res://Scripts/Player.gd" id="1_wi0c6"]
 [ext_resource type="Script" uid="uid://bt0hjyj78g5b7" path="res://Scripts/States/Playables/NoClip.gd" id="5_bhhdu"]
+[ext_resource type="Script" uid="uid://22436r0fxyq0" path="res://Scripts/Components/health_component.gd" id="9_megsn"]
 [ext_resource type="Script" uid="uid://brgq3dbakcshh" path="res://Scripts/FlashSpriteSetter.gd" id="10_hp6x6"]
 [ext_resource type="Script" uid="uid://d3h5v51k4ds7" path="res://Scripts/States/StateMachine.gd" id="11_glx4g"]
 [ext_resource type="Script" uid="uid://d0t7j4g0qcxbh" path="res://Scripts/States/Playables/Normal.gd" id="12_glx4g"]
@@ -18,9 +19,8 @@ size = Vector2(119, 72)
 radius = 48.0
 height = 168.0
 
-[node name="Player" type="CharacterBody2D" unique_id=480091350 node_paths=PackedStringArray("interaction_area", "sprite_joint", "sprite", "state_machine", "gun", "effects_handler") groups=["Players"]]
+[node name="Player" type="CharacterBody2D" unique_id=480091350 node_paths=PackedStringArray("interaction_area", "sprite_joint", "sprite", "state_machine", "gun", "effects_handler", "health_component") groups=["Players"]]
 process_priority = 1
-collision_layer = 2
 script = ExtResource("1_wi0c6")
 interaction_area = NodePath("InteractionArea")
 sprite_joint = NodePath("SpriteJoint")
@@ -28,6 +28,7 @@ sprite = NodePath("SpriteJoint/Sprite")
 state_machine = NodePath("StateMachine")
 gun = NodePath("SpriteJoint/Gun")
 effects_handler = NodePath("StatusEffectsHandler")
+health_component = NodePath("HealthComponent")
 
 [node name="SpriteJoint" type="Node2D" parent="." unique_id=1080640744]
 
@@ -99,3 +100,9 @@ script = ExtResource("14_o3h8g")
 script = ExtResource("15_1e7my")
 sprite_node = NodePath("../SpriteJoint/Sprite")
 metadata/_custom_type_script = "uid://bq5qq203jsqon"
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1661302310 node_paths=PackedStringArray("hurtbox", "effect_handler")]
+script = ExtResource("9_megsn")
+hurtbox = NodePath("../InteractionArea")
+effect_handler = NodePath("../StatusEffectsHandler")
+metadata/_custom_type_script = "uid://22436r0fxyq0"

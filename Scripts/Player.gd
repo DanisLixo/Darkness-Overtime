@@ -12,6 +12,7 @@ extends CharacterBody2D
 @export var state_machine : StateMachine
 @export var gun: Node2D
 @export var effects_handler: StatusEffectsHandler
+@export var health_component: HealthComponent
 
 var normal_state : PlayableState
 

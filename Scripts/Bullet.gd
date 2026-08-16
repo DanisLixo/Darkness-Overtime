@@ -2,13 +2,13 @@ extends CharacterBody2D
 
 var SPEED := 320.0
 
-func set_mouse_direction(mouse_direction: Vector2) -> void:
-	velocity = mouse_direction * SPEED
+func set_direction(direction: Vector2) -> void:
+	velocity = direction * SPEED
 
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
-func hit_something(_body: Node2D) -> void:
+func hit_something(_body: Area2D) -> void:
 	explode()
 	
 func explode() -> void:

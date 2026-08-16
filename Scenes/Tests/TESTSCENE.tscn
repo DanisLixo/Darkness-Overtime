@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cl5udwwuuhdiy"]
 
 [ext_resource type="Script" uid="uid://vlesfbcftaep" path="res://Scripts/SceneClass.gd" id="1_u7sbh"]
+[ext_resource type="PackedScene" uid="uid://bk0x0u1w0b1qc" path="res://Scenes/Entities/chaser_enemy.tscn" id="2_lt624"]
 [ext_resource type="Script" uid="uid://d4k3w1i6g5pm6" path="res://Scripts/RoomClass.gd" id="2_ycjg2"]
 [ext_resource type="PackedScene" uid="uid://ulah8awu31xa" path="res://Scenes/Item.tscn" id="3_lt624"]
 [ext_resource type="PackedScene" uid="uid://c0fhe8pg1l0ys" path="res://Scenes/Player.tscn" id="4_3nn4y"]
@@ -8,6 +9,9 @@
 
 [node name="TestScene" type="Node" unique_id=2010601193]
 script = ExtResource("1_u7sbh")
+
+[node name="ChaserEnemy" parent="." unique_id=1316600268 instance=ExtResource("2_lt624")]
+position = Vector2(1193, 345)
 
 [node name="Room" type="Node2D" parent="." unique_id=11640306]
 script = ExtResource("2_ycjg2")
