@@ -21,6 +21,7 @@ height = 168.0
 
 [node name="Player" type="CharacterBody2D" unique_id=480091350 node_paths=PackedStringArray("interaction_area", "sprite_joint", "sprite", "state_machine", "gun", "effects_handler", "health_component") groups=["Players"]]
 process_priority = 1
+collision_mask = 16
 script = ExtResource("1_wi0c6")
 interaction_area = NodePath("InteractionArea")
 sprite_joint = NodePath("SpriteJoint")
@@ -64,7 +65,7 @@ shape = SubResource("RectangleShape2D_34jd6")
 
 [node name="InteractionArea" type="Area2D" parent="." unique_id=64555044]
 collision_layer = 2
-collision_mask = 0
+collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=1196418084]
 position = Vector2(0, -86)
@@ -74,6 +75,7 @@ debug_color = Color(0.94022775, 0.13313243, 0.51803446, 0.41960785)
 [node name="DebugBullshit" type="CanvasLayer" parent="." unique_id=1965173683]
 
 [node name="Control" type="Control" parent="DebugBullshit" unique_id=248634356]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

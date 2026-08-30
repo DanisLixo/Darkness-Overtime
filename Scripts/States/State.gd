@@ -19,3 +19,6 @@ func physics_process(_delta: float) -> void:
 
 func exit(_msg = {}) -> void:
 	pass
+
+func get_state_name() -> String:
+	return get_script().get_path().get_file().get_basename()

@@ -25,6 +25,7 @@ Global="*uid://b0a3dow5ey5i1"
 AudioManager="*uid://cb5v0hqgpooap"
 Settings="*uid://cp5snk72lrrdb"
 SaveManager="*uid://dv5m2ad8awebb"
+EventBus="*uid://cbetlhbp3m2br"
 
 [display]
 
@@ -36,6 +37,10 @@ window/stretch/aspect="expand"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/AATTAAI/plugin.cfg")
+
+[filesystem]
+
+import/canvas_textures/default_texture_filter=2
 
 [global_group]
 
@@ -101,8 +106,14 @@ debug_key={
 
 [layer_names]
 
-2d_physics/layer_1="Collisions"
-2d_physics/layer_2="Interactions"
+2d_physics/layer_1="players"
+2d_physics/layer_2="players_hurtbox"
+2d_physics/layer_3="enemies"
+2d_physics/layer_4="enemies_hurtbox"
+2d_physics/layer_5="collisions"
+2d_physics/layer_6="items"
+2d_physics/layer_7="player_hitboxes"
+2d_physics/layer_8="enemy_hitboxes"
 2d_physics/layer_9="Player (Airborne)"
 
 [physics]
@@ -111,6 +122,7 @@ debug_key={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=2
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

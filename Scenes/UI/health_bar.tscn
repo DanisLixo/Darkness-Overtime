@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://cnl1nd0uimtwr"]
+
+[ext_resource type="Texture2D" uid="uid://crrx1oytedklx" path="res://Assets/Sprites/ui/healthbar_under.png" id="1_1s5oa"]
+[ext_resource type="Texture2D" uid="uid://c8gowggxokn1u" path="res://Assets/Sprites/ui/healthbar_over.png" id="2_mfw7x"]
+[ext_resource type="FontFile" uid="uid://yaoycqkkpwcr" path="res://Assets/Fonts/Computer.ttf" id="3_ah7g7"]
+[ext_resource type="Script" uid="uid://cau3ibtge1ww2" path="res://Scenes/UI/health_bar.gd" id="3_mfw7x"]
+[ext_resource type="Texture2D" uid="uid://fsvvdjd64kci" path="res://Assets/Sprites/ui/Y_icon.png" id="5_ah7g7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dhq0n"]
+font = ExtResource("3_ah7g7")
+font_size = 40
+
+[node name="HealthBar" type="TextureProgressBar" unique_id=1568179962]
+anchors_preset = -1
+anchor_left = 0.078125
+anchor_top = 0.063194446
+anchor_right = 0.378125
+anchor_bottom = 0.16597222
+offset_top = -55.5
+offset_right = 576.0
+offset_bottom = 55.5
+scale = Vector2(0.4, 0.4)
+pivot_offset_ratio = Vector2(0, 0.5)
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 860
+stretch_margin_top = 92
+stretch_margin_right = 100
+stretch_margin_bottom = 93
+texture_under = ExtResource("1_1s5oa")
+texture_progress = ExtResource("2_mfw7x")
+script = ExtResource("3_mfw7x")
+metadata/_edit_use_anchors_ = true
+
+[node name="HealthText" type="Label" parent="." unique_id=1487760052]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.5
+offset_top = -16.5
+offset_right = 85.5
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "100/100"
+label_settings = SubResource("LabelSettings_dhq0n")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1822675302]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -192.5
+offset_right = 117.0
+offset_bottom = 89.5
+grow_vertical = 2
+pivot_offset_ratio = Vector2(1, 0.5)
+texture = ExtResource("5_ah7g7")
+stretch_mode = 2

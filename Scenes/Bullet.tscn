@@ -1,26 +1,30 @@
 [gd_scene format=3 uid="uid://8tisixtyewrn"]
 
 [ext_resource type="Script" uid="uid://cj4mynxfkltfl" path="res://Scripts/Bullet.gd" id="1_vlxeq"]
+[ext_resource type="Script" uid="uid://5i164ln224uq" path="res://Scripts/Components/hitbox_component.gd" id="2_14k46"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_34jd6"]
 size = Vector2(12, 12)
 
-[node name="Bullet" type="CharacterBody2D" unique_id=856772953]
+[node name="Bullet" type="CharacterBody2D" unique_id=856772953 node_paths=PackedStringArray("hitbox_component")]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_vlxeq")
+hitbox_component = NodePath("HitboxComponent")
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=1920336311]
 position = Vector2(-10, -10)
 polygon = PackedVector2Array(0, 0, 20, 0, 20, 20, 0, 20)
 uv = PackedVector2Array(1, 2, 20, 36, 77, 67, 53, 16)
 
-[node name="Area2D" type="Area2D" parent="." unique_id=409464632]
-collision_layer = 3
-collision_mask = 0
-monitoring = false
+[node name="HitboxComponent" type="Area2D" parent="." unique_id=1583781946]
+collision_layer = 64
+collision_mask = 8
+script = ExtResource("2_14k46")
+damage = -10
+metadata/_custom_type_script = "uid://5i164ln224uq"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1619527772]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=1619527772]
 shape = SubResource("RectangleShape2D_34jd6")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=1553895305]

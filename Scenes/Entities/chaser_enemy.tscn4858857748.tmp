@@ -19,14 +19,13 @@ height = 142.0
 radius = 49.0
 height = 148.0
 
-[node name="ChaserEnemy" type="CharacterBody2D" unique_id=1316600268 node_paths=PackedStringArray("health_component", "state_machine", "movement_component", "hitbox_component")]
+[node name="ChaserEnemy" type="CharacterBody2D" unique_id=1316600268 node_paths=PackedStringArray("health_component", "state_machine", "movement_component")]
 collision_layer = 4
 collision_mask = 21
 script = ExtResource("1_kho74")
 health_component = NodePath("HealthComponent")
 state_machine = NodePath("StateMachine")
 movement_component = NodePath("MovementComponent")
-hitbox_component = NodePath("HitboxComponent")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1899020230]
 position = Vector2(-48, -120)

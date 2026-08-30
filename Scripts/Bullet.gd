@@ -1,6 +1,10 @@
 extends CharacterBody2D
 
 var SPEED := 320.0
+@export var hitbox_component : HitboxComponent
+
+func _ready() -> void:
+	hitbox_component.area_entered.connect(hit_something.bind())
 
 func set_direction(direction: Vector2) -> void:
 	velocity = direction * SPEED

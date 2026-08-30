@@ -7,7 +7,7 @@ class_name MovementComponent
 
 func move_towards(position:Vector2, is_sprint:bool = false) -> void:
 	var cur_speed = sprint_speed if is_sprint and sprint_speed != 0 else speed
-	parent.global_position = parent.global_position.move_toward(position, cur_speed)
+	parent.velocity = position.direction_to(parent.global_position) * -cur_speed * 50 # TODO: PLEASE FIX THIS IT'S SO ASSS
 	
 func move_direction(direction:Vector2, is_sprint:bool) -> void:
 	var cur_speed = sprint_speed if is_sprint and sprint_speed != 0 else speed

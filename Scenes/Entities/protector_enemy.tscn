@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://c136mk6dvliay"]
+
+[ext_resource type="Script" uid="uid://crvewqiil5aa7" path="res://Scenes/Entities/protector_enemy.gd" id="1_fsq2d"]
+[ext_resource type="SpriteFrames" uid="uid://cmb0w2rjyedk0" path="res://AssetsOld/Fla's/placeholder.res" id="1_r8lax"]
+[ext_resource type="Script" uid="uid://d3h5v51k4ds7" path="res://Scripts/States/StateMachine.gd" id="2_idqco"]
+[ext_resource type="Script" uid="uid://22436r0fxyq0" path="res://Scripts/Components/health_component.gd" id="3_3e5jl"]
+[ext_resource type="Script" uid="uid://dme6dy3oa41bv" path="res://Scripts/Components/movement_component.gd" id="4_q1r2j"]
+[ext_resource type="Script" uid="uid://dtb4omvtcjdxc" path="res://Scripts/States/Enemies/Chase.gd" id="4_r55xy"]
+[ext_resource type="Script" uid="uid://5i164ln224uq" path="res://Scripts/Components/hitbox_component.gd" id="5_fsq2d"]
+[ext_resource type="Script" uid="uid://b5nmyl0tesyfg" path="res://Scripts/States/Enemies/Protect.gd" id="5_r55xy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r55xy"]
+size = Vector2(94, 58)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ykooa"]
+radius = 48.0
+height = 142.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mhewb"]
+radius = 49.0
+height = 148.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xt12r"]
+radius = 381.0643
+
+[node name="ProtectorEnemy" type="CharacterBody2D" unique_id=484003046 node_paths=PackedStringArray("health_component", "state_machine", "movement_component", "protect_area")]
+collision_layer = 4
+collision_mask = 21
+script = ExtResource("1_fsq2d")
+health_component = NodePath("HealthComponent")
+state_machine = NodePath("StateMachine")
+movement_component = NodePath("MovementComponent")
+protect_area = NodePath("ProtectArea")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1841793169]
+modulate = Color(0.30980393, 1, 1, 1)
+position = Vector2(-48, -120)
+sprite_frames = ExtResource("1_r8lax")
+animation = &"walk_front"
+centered = false
+
+[node name="StateMachine" type="Node" parent="." unique_id=1804540504 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_idqco")
+initial_state = NodePath("Protect")
+metadata/_custom_type_script = "uid://d3h5v51k4ds7"
+
+[node name="Chase" type="Node" parent="StateMachine" unique_id=730187573 node_paths=PackedStringArray("sprite", "movement_component")]
+script = ExtResource("4_r55xy")
+sprite = NodePath("../../AnimatedSprite2D")
+movement_component = NodePath("../../MovementComponent")
+metadata/_custom_type_script = "uid://bxd23uucghluo"
+
+[node name="Protect" type="Node" parent="StateMachine" unique_id=199076967 node_paths=PackedStringArray("sprite", "movement_component")]
+script = ExtResource("5_r55xy")
+sprite = NodePath("../../AnimatedSprite2D")
+movement_component = NodePath("../../MovementComponent")
+metadata/_custom_type_script = "uid://bxd23uucghluo"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1104328604]
+position = Vector2(0, -29)
+shape = SubResource("RectangleShape2D_r55xy")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=896526389 node_paths=PackedStringArray("hurtbox")]
+script = ExtResource("3_3e5jl")
+hurtbox = NodePath("../Hurtbox")
+metadata/_custom_type_script = "uid://22436r0fxyq0"
+
+[node name="MovementComponent" type="Node" parent="." unique_id=30765242]
+script = ExtResource("4_q1r2j")
+sprint_speed = 3.0
+metadata/_custom_type_script = "uid://dme6dy3oa41bv"
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1766879101]
+collision_layer = 8
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=2138489423]
+position = Vector2(0, -71)
+shape = SubResource("CapsuleShape2D_ykooa")
+debug_color = Color(0.94022775, 0.13313243, 0.51803446, 0.41960785)
+
+[node name="HitboxComponent" type="Area2D" parent="." unique_id=621096045]
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("5_fsq2d")
+damage = -10
+metadata/_custom_type_script = "uid://5i164ln224uq"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=702120452]
+position = Vector2(0, -71)
+shape = SubResource("CapsuleShape2D_mhewb")
+
+[node name="ProtectArea" type="Area2D" parent="." unique_id=1653486143]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProtectArea" unique_id=407721501]
+position = Vector2(0, -71)
+shape = SubResource("CircleShape2D_xt12r")
+debug_color = Color(0, 0.6372506, 0.39858016, 0.41960785)
