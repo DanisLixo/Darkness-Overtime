@@ -107,8 +107,14 @@ debug_key={
 
 [layer_names]
 
-2d_physics/layer_1="Collisions"
-2d_physics/layer_2="Interactions"
+2d_physics/layer_1="players"
+2d_physics/layer_2="players_hurtbox"
+2d_physics/layer_3="enemies"
+2d_physics/layer_4="enemies_hurtbox"
+2d_physics/layer_5="collisions"
+2d_physics/layer_6="items"
+2d_physics/layer_7="player_hitboxes"
+2d_physics/layer_8="enemy_hitboxes"
 2d_physics/layer_9="Player (Airborne)"
 
 [physics]

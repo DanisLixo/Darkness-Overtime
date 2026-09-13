@@ -2,6 +2,9 @@ extends PlayableState
 
 var mouse_aim := false
 
+@export var input_component : InputComponent
+@export var movement_component : MovementComponent
+
 @onready var saved_direction : Vector2 = player.input_direction
 
 func process(_delta: float) -> void:
@@ -37,8 +40,10 @@ func handle_movement(delta: float) -> void:
 	player.z_move(delta)
 
 func handle_ground_movement(delta: float) -> void:
-	ground_acceleration(delta)
-	deceleration(delta)
+	var inputs = Input.get_vector("move_left_0", "move_right_0", "move_up_0", "move_down_0")
+	movement_component.move_direction(inputs, player.is_running)
+	#ground_acceleration(delta)
+	#deceleration(delta)
 
 func handle_air_movement(delta: float) -> void:
 	deceleration(delta)
@@ -72,6 +77,8 @@ func ground_acceleration(delta: float) -> void:
 		player.velocity.x = move_toward(player.velocity.x, target_speed * player.input_direction.x, (target_accel / delta) * delta)
 	if (player.input_direction.y != 0.0):
 		player.velocity.y = move_toward(player.velocity.y, target_speed * player.input_direction.y, (target_accel / delta) * delta)
+
+
 
 func deceleration(delta: float) -> void:
 	var target_decel = player.physics.MOVE_DECEL if !player.is_skidding else player.physics.SKID_DECEL

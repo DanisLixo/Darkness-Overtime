@@ -1,12 +1,19 @@
 ##A template for StatusEffect subclasses
 extends StatusEffect
 
-func _ready() -> void:
-	
+func _start() -> void:
+	super()
 	pass
 
-func _process(delta: float) -> void:
+func _tick(delta:float) -> void:
+	super(delta)
 	pass
 
-func on_event(type : StatusEffectsHandler.ActionType, is_post : bool , source : Node = null, args: Dictionary = {}) -> void:
+func apply_static() -> void:
+	pass
+
+func apply_dynamic(type:ActionType) -> void:
+	pass
+
+func _on_action_performed(type:ActionType) -> void:
 	pass

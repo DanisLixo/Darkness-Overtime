@@ -103,9 +103,7 @@ func _process(_delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	scale = Vector2.ONE * size_mult
-	effects_handler.trigger_event(StatusEffectsHandler.ActionType.MOVE, false, self)
 	handle_inputs()
-	effects_handler.trigger_event(StatusEffectsHandler.ActionType.MOVE, true, self)
 
 func jump() -> void:
 	velocity_z = -physics.JUMP_HEIGHT
@@ -182,7 +180,7 @@ func update_debug() -> void:
 				continue
 			debug_info[key] = []
 			for fx in effects_handler.effects:
-				debug_info[key].append_array([fx.name, fx.time])
+				debug_info[key].append_array([fx.effect_id, "%.2f" %fx.time_remaining])
 		else:
 			debug_info[key] = get(key)
 		

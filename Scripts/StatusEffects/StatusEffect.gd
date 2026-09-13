@@ -1,35 +1,52 @@
 ## A status effect abstract class, should be inherited for any custom effect.
-class_name StatusEffect
-extends Node
+@abstract class_name StatusEffect
+extends ResourceGP
 
-@onready var effects_handler: StatusEffectsHandler = get_parent()
-@onready var parent := effects_handler.parent
+var effects_handler : StatusEffectsHandler
+var parent : Node2D
+var effect_id : StringName = StringName(get_script().get_global_name())
+
+enum ActionType {
+	MOVE,
+	JUMP,
+	SHOOT,
+	HIT_TAKEN,
+	HIT_DEALT,
+}
 
 enum Priority{
-	ON_PICKUP = -1,
-	ADDER = 0,
-	MULTIPLIER = 1,
+	ADD,
+	MULTIPLY,
+	REACT,
 }
 
 @export var effect_overrides : Array[StatusEffect]
-@export var effect_priority : Priority = Priority.ON_PICKUP
+@export var effect_priority : Priority = Priority.ADD
+@export var time : float
+var time_remaining : float = time
 
-var extra_args : Array
-var timer := Timer.new()
-var time: float
+func _start() -> void:
+	time_remaining = time
 
-func _ready() -> void:
-	if (time > 0.0):
-		create_timer()
+func end():
+	effects_handler.delete_effect(self)
 	
-##Called each time an action gets called to StatusEffectsHandler
-func on_event(type : StatusEffectsHandler.ActionType, is_post : bool , source : Node = null, args: Dictionary = {}) -> void:
+##Gets ticked every _physics_process() frame
+func _tick(delta:float):
+	if time != 0:
+		time_remaining -= delta
+		if time_remaining <= 0:
+			end()
+
+##Gets called iteratively each time override_action gets called on StatusEffectsHandler, 
+##meant to modify actions as they're happening
+func apply_dynamic(type : ActionType):
 	pass
 
-func create_timer() -> void:
-	add_child(timer)
-	timer.start(time)
-	timer.timeout.connect(end)
+##Gets called once when it gets added and value_statics gets rebuilt
+func apply_static():
+	pass
 
-func end() -> void:
-	queue_free()
+##Gets called by signals, meant for more reactionary (and non-compounding) effects than overrides
+func _on_action_performed(type : ActionType):
+	pass
