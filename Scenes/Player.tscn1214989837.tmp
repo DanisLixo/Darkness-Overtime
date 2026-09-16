@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://brgq3dbakcshh" path="res://Scripts/FlashSpriteSetter.gd" id="10_hp6x6"]
 [ext_resource type="Script" uid="uid://dc2mngbtkwvoc" path="res://Scripts/Components/input_component.gd" id="10_yoq75"]
 [ext_resource type="Script" uid="uid://d3h5v51k4ds7" path="res://Scripts/States/StateMachine.gd" id="11_glx4g"]
-[ext_resource type="Script" uid="uid://d0t7j4g0qcxbh" path="res://Scripts/States/Playables/Grounded.gd" id="12_glx4g"]
+[ext_resource type="Script" uid="uid://d0t7j4g0qcxbh" path="res://Scripts/States/Playables/Normal.gd" id="12_glx4g"]
 [ext_resource type="PackedScene" uid="uid://cxbqgif6n7jyd" path="res://Scenes/gun.tscn" id="13_o3h8g"]
 [ext_resource type="Script" uid="uid://mooii5d2x7aq" path="res://Scripts/StatusEffects/EffectsHandler.gd" id="14_o3h8g"]
 [ext_resource type="Script" uid="uid://bq5qq203jsqon" path="res://Scripts/Roaming/Entities/StepSounds.gd" id="15_1e7my"]
@@ -20,15 +20,13 @@ size = Vector2(119, 72)
 radius = 48.0
 height = 168.0
 
-[node name="Player" type="CharacterBody2D" unique_id=480091350 node_paths=PackedStringArray("interaction_area", "sprite_joint", "sprite", "movement_component", "input_component", "state_machine", "gun", "effects_handler") groups=["Players"]]
+[node name="Player" type="CharacterBody2D" unique_id=480091350 node_paths=PackedStringArray("interaction_area", "sprite_joint", "sprite", "state_machine", "gun", "effects_handler") groups=["Players"]]
 process_priority = 1
 collision_layer = 2
 script = ExtResource("1_wi0c6")
 interaction_area = NodePath("InteractionArea")
 sprite_joint = NodePath("SpriteJoint")
 sprite = NodePath("SpriteJoint/Sprite")
-movement_component = NodePath("MovementComponent")
-input_component = NodePath("InputComponent")
 state_machine = NodePath("StateMachine")
 gun = NodePath("SpriteJoint/Gun")
 effects_handler = NodePath("StatusEffectsHandler")
@@ -44,10 +42,10 @@ position = Vector2(0, -40)
 
 [node name="StateMachine" type="Node" parent="." unique_id=797503455 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("11_glx4g")
-initial_state = NodePath("Grounded")
+initial_state = NodePath("Normal")
 metadata/_custom_type_script = "uid://d3h5v51k4ds7"
 
-[node name="Grounded" type="Node" parent="StateMachine" unique_id=1634321157 node_paths=PackedStringArray("input_component", "movement_component")]
+[node name="Normal" type="Node" parent="StateMachine" unique_id=1634321157 node_paths=PackedStringArray("input_component", "movement_component")]
 script = ExtResource("12_glx4g")
 input_component = NodePath("../../InputComponent")
 movement_component = NodePath("../../MovementComponent")

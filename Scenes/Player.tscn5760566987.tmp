@@ -77,6 +77,7 @@ shape = SubResource("CapsuleShape2D_34jd6")
 debug_color = Color(0.94022775, 0.13313243, 0.51803446, 0.41960785)
 
 [node name="DebugBullshit" type="CanvasLayer" parent="." unique_id=1965173683]
+visible = false
 
 [node name="Control" type="Control" parent="DebugBullshit" unique_id=248634356]
 layout_mode = 3

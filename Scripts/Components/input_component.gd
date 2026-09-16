@@ -42,26 +42,29 @@ func handle_inputs(player_id : int) -> void:
 				else:
 					input_arr[i][j] = value
 	input_direction = Vector2(key_hold[Action.X], key_hold[Action.Y])
+	Global.players[player_id].key_hold = key_hold
+	Global.players[player_id].key_release = key_release
+	Global.players[player_id].key_press = key_press
 
 
-func to_input_action(neg_value: Variant, pos_value: Variant, mult := 1.0) -> Variant:
-	return (int(pos_value) - int(neg_value)) * mult
+func to_input_action(neg_value: int, pos_value: int, mult := 1.0) -> float:
+	return (pos_value - neg_value) * mult
 	
-static func player_action_just_pressed(action_enum: Player.Action, id := 0) -> bool:
+static func player_action_just_pressed(action_enum: Action, id := 0) -> bool:
 	var player: Player = Global.players[id]
 	if (player.key_press[action_enum] is bool):
 		return player.key_press[action_enum]
 	else:
 		return player.key_press[action_enum] != 0
 
-static func player_action_pressed(action_enum: Player.Action, id := 0) -> bool:
+static func player_action_pressed(action_enum: Action, id := 0) -> bool:
 	var player: Player = Global.players[id]
 	if (player.key_hold[action_enum] is bool):
 		return player.key_hold[action_enum]
 	else:
 		return player.key_hold[action_enum] != 0
 
-static func player_action_released(action_enum: Player.Action, id := 0) -> bool:
+static func player_action_released(action_enum: Action, id := 0) -> bool:
 	var player: Player = Global.players[id]
 	if (player.key_release[action_enum] is bool):
 		return player.key_release[action_enum]
