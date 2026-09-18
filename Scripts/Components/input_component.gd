@@ -15,7 +15,8 @@ var key_release : Array[Variant] = []
 
 var input_direction : Vector2 = Vector2.ZERO
 
-var effects_handler : StatusEffectsHandler
+func _ready() -> void:
+	add_to_group(&"StatusAffectable")
 
 func handle_inputs(player_id : int) -> void:
 	var input_arr : Array[Array] = [key_press, key_hold, key_release]

@@ -23,17 +23,20 @@ func _physics_process(delta: float) -> void:
 		effect._tick(delta)
 
 func _register_components():
-	for node in parent.get_children().filter(func(node): return !(node is StatusEffectsHandler)):
-		if node.has_method("_register_values"):
-			assert(node.get_script().get_global_name() != &"", "%s must be declared with class_name!" %node.name)
-			assert("effects_handler" in node, "%s doesn't have an effects_handler variable!"%node.name)
-			
-			node.effects_handler = self
+	for node : Node in parent.get_children().filter(func(node): return !(node is StatusEffectsHandler)):
+		if node.is_in_group(&"StatusAffectable"):
+			if node.has_method(&"_register_values"):
+				assert(node.get_script().get_global_name() != &"", "%s must be declared with class_name!" %node.name)
+				assert("effects_handler" in node, "%s doesn't have an effects_handler variable!"%node.name)
+				
+				node.effects_handler = self
+				components.set(node.get_script().get_global_name(), node)
+				
+				for key in node._register_values():
+					var new_key : StringName = StringName("%s.%s" %[node.get_script().get_global_name(), key])
+					value_defaults.set(new_key, node._register_values()[key])
 			components.set(node.get_script().get_global_name(), node)
 			
-			for key in node._register_values():
-				var new_key : StringName = StringName("%s.%s" %[node.get_script().get_global_name(), key])
-				value_defaults.set(new_key, node._register_values()[key])
 	
 	_rebuild_static()
 
@@ -53,7 +56,6 @@ func override_action(type: StatusEffect.ActionType) -> Dictionary[StringName, Va
 	effect_overrides = value_statics.duplicate(true)
 	for effect in _sort_priority():
 		effect.apply_dynamic(type)
-		
 	return effect_overrides
 
 func delete_effect(effect:StatusEffect):

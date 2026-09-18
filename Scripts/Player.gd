@@ -59,35 +59,7 @@ func _process(_delta: float) -> void:
 	update_debug()
 
 func _physics_process(_delta: float) -> void:
-	scale = Vector2.ONE * size_mult
 	input_component.handle_inputs(player_id)
-
-func jump() -> void:
-	#velocity_z = -physics.JUMP_HEIGHT
-	pass
-
-var real_z_index : int = z_index
-func z_move(delta: float) -> void:
-	if (global_position_z + (velocity_z * delta) >= 0.0):
-		velocity_z = 0.0
-		global_position_z = 0.0
-	
-	global_position_z += velocity_z * delta 
-	
-	set_collision_mask_value(1, is_actually_on_floor())
-	set_collision_mask_value(9, !is_actually_on_floor())
-	interaction_area.set_collision_layer_value(1, is_actually_on_floor())
-	interaction_area.set_collision_layer_value(9, !is_actually_on_floor())
-	
-	z_index = real_z_index + int(!is_actually_on_floor())
-	
-	sprite_joint.position.y = global_position_z
-
-func to_input_action(neg_value: Variant, pos_value: Variant, mult := 1.0) -> Variant:
-	return int(pos_value) * mult - int(neg_value) * mult
-
-func is_actually_on_floor() -> bool:
-	return global_position_z >= 0.0
 
 #region Debug Function
 func update_debug() -> void:

@@ -12,7 +12,7 @@ func process(_delta: float) -> void:
 		player.stateMachine.change_state("NoClip")
 
 func physics_process(delta: float) -> void:
-	if (player.is_actually_on_floor()):
+	if (movement_component.is_actually_on_floor()):
 		on_floor()
 	else:
 		in_air()
@@ -23,28 +23,22 @@ func on_floor() -> void:
 	handle_direction()
 	
 	if (InputComponent.player_action_just_pressed(InputComponent.Action.JUMP, player.player_id)):
-		player.jump()
+		movement_component.jump()
 
 func in_air() -> void:
 	pass
 
 func handle_movement(delta: float) -> void:
-	if (player.is_actually_on_floor()):
-		handle_ground_movement(delta)
-	else:
-		handle_air_movement(delta)
-	
+	if (movement_component.is_actually_on_floor()):
+		movement_component.move_direction(InputComponent.player_action_pressed(InputComponent.Action.RUN))
+	#else:
+		#handle_air_movement(delta)
+		
 	player.move_and_slide()
-	player.z_move(delta)
+	movement_component.z_move(delta)
 
-func handle_ground_movement(delta: float) -> void:
-	movement_component.move_direction(InputComponent.player_action_pressed(InputComponent.Action.RUN), input_component.input_direction)
+#func handle_air_movement(delta: float) -> void:
 
-func handle_air_movement(delta: float) -> void:
-	#movement_component.deceleration(delta, input_component.input_direction)
-	
-	var gravity: float = player.physics.JUMP_GRAVITY
-	player.velocity_z += (gravity / delta) * delta
 
 func handle_direction() -> void:
 	if (!mouse_aim):
