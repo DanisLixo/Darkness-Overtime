@@ -15,16 +15,21 @@ enum ActionType {
 }
 
 enum Priority{
+	UNSET = -1,
 	ADD,
 	MULTIPLY,
 	REACT,
 }
 
 @export var effect_overrides : Array[StatusEffect]
-@export var effect_priority : Priority = Priority.ADD
 @export var time : float
+
+var effect_priority : Priority = Priority.UNSET
 var time_remaining : float = time
 
+func _init():
+	assert(effect_priority != Priority.UNSET, "ERROR, StatusEffect %s should have its effect_priority set!" % get_script().get_global_name())
+	
 func _start() -> void:
 	time_remaining = time
 

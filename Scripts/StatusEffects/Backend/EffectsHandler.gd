@@ -11,7 +11,10 @@ signal effect_deleted(effect:StatusEffect)
 var effects: Dictionary[StatusEffect, StringName]
 var components : Dictionary[StringName, Node]
 
-var value_defaults : Dictionary[StringName, Variant]
+var value_defaults : Dictionary[StringName, Variant] = {
+	"parent.scale": Vector2(1., 1.),
+	"parent.modulate": Color(1.0, 1.0, 1.0, 1.0)
+}
 var value_statics : Dictionary[StringName, Variant]
 var effect_overrides : Dictionary[StringName, Variant]
 
@@ -25,18 +28,17 @@ func _physics_process(delta: float) -> void:
 func _register_components():
 	for node : Node in parent.get_children().filter(func(node): return !(node is StatusEffectsHandler)):
 		if node.is_in_group(&"StatusAffectable"):
-			if node.has_method(&"_register_values"):
-				assert(node.get_script().get_global_name() != &"", "%s must be declared with class_name!" %node.name)
-				assert("effects_handler" in node, "%s doesn't have an effects_handler variable!"%node.name)
-				
+			assert(node.get_script().get_global_name() != &"", "%s must be declared with class_name!" %node.name)
+			if "effects_handler" in node:
 				node.effects_handler = self
-				components.set(node.get_script().get_global_name(), node)
 				
-				for key in node._register_values():
-					var new_key : StringName = StringName("%s.%s" %[node.get_script().get_global_name(), key])
-					value_defaults.set(new_key, node._register_values()[key])
+			for prop in node.get_property_list():
+				if node.get(prop.name) is ComponentStats:
+					components.set(node.get_script().get_global_name(), node)
+					for key in node.get(prop.name)._register_values():
+						var new_key : StringName = StringName("%s.%s" %[node.get(prop.name).get_script().get_global_name(), key])
+						value_defaults.set(new_key, node.get(prop.name)._register_values()[key])
 			components.set(node.get_script().get_global_name(), node)
-			
 	
 	_rebuild_static()
 
@@ -56,6 +58,8 @@ func override_action(type: StatusEffect.ActionType) -> Dictionary[StringName, Va
 	effect_overrides = value_statics.duplicate(true)
 	for effect in _sort_priority():
 		effect.apply_dynamic(type)
+	parent.scale = effect_overrides.get("parent.scale")
+	parent.modulate = effect_overrides.get("parent.modulate")
 	return effect_overrides
 
 func delete_effect(effect:StatusEffect):
