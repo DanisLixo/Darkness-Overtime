@@ -2,7 +2,7 @@
 class_name ItemComponent
 extends Area2D
 
-@export var effects: Array[StatusEffectResource]
+@export var effects: Array[StatusEffect]
 @export var icon: Texture2D = preload("res://AssetsOld/Sprites/UI/Items/PlaceholderBurger/Icon.png")
 
 func _ready() -> void:
