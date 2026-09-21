@@ -8,7 +8,6 @@ extends PlayerDetectorArea2D
 @export var collisionShape: Shape2D: set = update_shape
 var collisionObject: CollisionShape2D
 
-var playerIn := false
 
 func update_shape(value: Shape2D) -> void:
 	collisionShape = value

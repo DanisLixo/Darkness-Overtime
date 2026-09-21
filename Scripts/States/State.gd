@@ -1,10 +1,13 @@
+##Base State class, used in tandem with the StateMachine class, each State should include their own
+## code
 class_name State
 extends Node
 
-@onready var stateMachine: StateMachine = get_parent()
-@onready var parent = stateMachine.owner
+@onready var state_machine: StateMachine = get_parent()
+@onready var parent = state_machine.owner
 
-## Para os states nao rodarem todos ao mesmo tempo, utilizamos metodos diferentes dos originais para nao termos que desativar nodes nao utilizados.
+#To prevent all states from running at the same time, we use different methods than the original ones 
+#so we don't have to disable unused nodes.
 func enter(_msg = {}) -> void:
 	pass
 

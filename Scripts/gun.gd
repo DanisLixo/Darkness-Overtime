@@ -1,11 +1,12 @@
 extends Node2D
+@export var bullet_scene : PackedScene = preload("res://Scenes/Bullet.tscn")
+@export var shoot_position : Marker2D
 
-const BULLET_SCENE := preload("res://Scenes/Bullet.tscn")
 
 var can_shoot := true
 var shot_delay := 0.0
-
-@onready var player: Player = owner
+# Would this interpret the owner as a Player even if it isn't?
+@onready var player : Player = owner
 
 signal gun_shot
 
@@ -19,7 +20,7 @@ func _process(delta: float) -> void:
 	if (shot_delay > 0.0):
 		shot_delay -= delta
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	handle_input()
 	handle_direction()
 
@@ -34,9 +35,9 @@ func handle_direction() -> void:
 func throw_projectile() -> void:
 	if (!can_shoot || shot_delay > 0.0): 
 		return
-	var bullet := BULLET_SCENE.instantiate()
+	var bullet := bullet_scene.instantiate()
 	get_tree().current_scene.add_child(bullet)
-	bullet.global_position = %Muzzle.global_position
+	bullet.global_position = shoot_position.global_position
 	
 	AudioManager.play_sfx("gun_shot", false, global_position)
 	

@@ -5,8 +5,8 @@ class_name CameraLockArea2D extends AreaTrigger2D
 @export_category("Entered Area")
 @export var tweenTime := 0.5
 @export var instant := false
-@export var easeType := Tween.EaseType.EASE_IN_OUT
 @export var zoom := Vector2(1, 1)
+@export var easeType : Tween.EaseType = Tween.EaseType.EASE_IN_OUT
 
 var cameraLocked := false
 

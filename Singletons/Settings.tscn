@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cp5snk72lrrdb"]
 
-[ext_resource type="Script" uid="uid://c2v30y06wnuvf" path="res://Scripts/SettingsManager.gd" id="1_luut1"]
+[ext_resource type="Script" uid="uid://c2v30y06wnuvf" path="res://Singletons/SettingsManager.gd" id="1_luut1"]
 
 [node name="Settings" type="Node" unique_id=242378157]
 process_mode = 3
