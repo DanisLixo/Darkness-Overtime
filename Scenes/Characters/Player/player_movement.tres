@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="MovementStats" format=3 uid="uid://dpohudqfc3jqh"]
+
+[ext_resource type="Script" uid="uid://dnx14uq16xs8b" path="res://Scripts/Components/Movement/movement_stats.gd" id="1_03ki8"]
+
+[resource]
+script = ExtResource("1_03ki8")
+jump_height = 350.0
+jump_gravity = 9.8
+walk_max_speed = 300.0
+walk_acceleration = 35.0
+walk_deceleration = 40.0
+run_max_speed = 500.0
+run_acceleration = 35.0
+run_deceleration = 75.0
+metadata/_custom_type_script = "uid://dnx14uq16xs8b"

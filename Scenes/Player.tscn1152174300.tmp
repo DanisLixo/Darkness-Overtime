@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dqtms6dbdjf76" path="res://Scripts/Player.gd" id="1_wi0c6"]
 [ext_resource type="Script" uid="uid://bt0hjyj78g5b7" path="res://Scripts/States/Playables/NoClip.gd" id="5_bhhdu"]
+[ext_resource type="Script" uid="uid://dme6dy3oa41bv" path="res://Scripts/Components/movement_component.gd" id="9_megsn"]
 [ext_resource type="Script" uid="uid://brgq3dbakcshh" path="res://Scripts/FlashSpriteSetter.gd" id="10_hp6x6"]
+[ext_resource type="Script" uid="uid://dc2mngbtkwvoc" path="res://Scripts/Components/input_component.gd" id="10_yoq75"]
 [ext_resource type="Script" uid="uid://d3h5v51k4ds7" path="res://Scripts/States/StateMachine.gd" id="11_glx4g"]
 [ext_resource type="Script" uid="uid://d0t7j4g0qcxbh" path="res://Scripts/States/Playables/Normal.gd" id="12_glx4g"]
 [ext_resource type="PackedScene" uid="uid://cxbqgif6n7jyd" path="res://Scenes/gun.tscn" id="13_o3h8g"]
@@ -37,14 +39,17 @@ sprite_frames = SubResource("SpriteFrames_u7sbh")
 
 [node name="Gun" parent="SpriteJoint" unique_id=2023315131 instance=ExtResource("13_o3h8g")]
 position = Vector2(0, -40)
+bullet_scene = null
 
 [node name="StateMachine" type="Node" parent="." unique_id=797503455 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("11_glx4g")
 initial_state = NodePath("Normal")
 metadata/_custom_type_script = "uid://d3h5v51k4ds7"
 
-[node name="Normal" type="Node" parent="StateMachine" unique_id=1634321157]
+[node name="Normal" type="Node" parent="StateMachine" unique_id=1634321157 node_paths=PackedStringArray("input_component", "movement_component")]
 script = ExtResource("12_glx4g")
+input_component = NodePath("../../InputComponent")
+movement_component = NodePath("../../MovementComponent")
 metadata/_custom_type_script = "uid://7ej2yf2aog6i"
 
 [node name="NoClip" type="Node" parent="StateMachine" unique_id=374179404]
@@ -92,10 +97,20 @@ grow_vertical = 2
 autowrap_mode = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="StatusEffectsHandler" type="Node" parent="." unique_id=1452556040]
-script = ExtResource("14_o3h8g")
-
 [node name="StepSounds" type="Node" parent="." unique_id=450629604 node_paths=PackedStringArray("sprite_node")]
 script = ExtResource("15_1e7my")
 sprite_node = NodePath("../SpriteJoint/Sprite")
 metadata/_custom_type_script = "uid://bq5qq203jsqon"
+
+[node name="MovementComponent" type="Node" parent="." unique_id=81369069]
+script = ExtResource("9_megsn")
+speed = 300.0
+sprint_speed = 500.0
+metadata/_custom_type_script = "uid://dme6dy3oa41bv"
+
+[node name="InputComponent" type="Node" parent="." unique_id=659896411]
+script = ExtResource("10_yoq75")
+metadata/_custom_type_script = "uid://dc2mngbtkwvoc"
+
+[node name="StatusEffectsHandler" type="Node" parent="." unique_id=1452556040]
+script = ExtResource("14_o3h8g")

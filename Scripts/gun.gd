@@ -25,7 +25,7 @@ func _physics_process(_delta: float) -> void:
 	handle_direction()
 
 func handle_input() -> void:
-	if (Player.player_action_pressed(Player.Action.SHOOT, player.player_id)):
+	if (InputComponent.player_action_pressed(InputComponent.Action.SHOOT, player.player_id)):
 		throw_projectile()
 
 func handle_direction() -> void:

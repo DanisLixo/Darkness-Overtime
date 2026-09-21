@@ -2,7 +2,7 @@
 class_name ItemComponent
 extends Area2D
 
-@export var effects: Array[StatusEffectResource]
+@export var effects: Array[StatusEffect]
 @export var icon: Texture2D = preload("res://AssetsOld/Sprites/UI/Items/PlaceholderBurger/Icon.png")
 
 func _ready() -> void:
@@ -11,6 +11,6 @@ func _ready() -> void:
 	body_entered.connect(on_player_entered.bind())
 	add_to_group("Items")
 	
-func on_player_entered(player: CharacterBody2D) -> void:
+func on_player_entered(player: Player) -> void:
 	player.effects_handler.update_effects(effects)
 	get_parent().queue_free()
