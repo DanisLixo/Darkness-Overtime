@@ -10,9 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://cnl1nd0uimtwr" path="res://Scenes/UI/health_bar.tscn" id="7_lt624"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_xt12r"]
-vertices = PackedVector2Array(1591.7578, -212.14844, 1561.2266, 1071.75, 757.14844, 424, 728.46094, 316.92188, 728.46094, 531.0781, 650.0781, 609.46094, -313.4922, 1025.25, 543, 638.14844, 435.92188, 609.46094, 357.53906, 531.0781, -249.49219, -239.85156, 328.85156, 424, 357.53906, 316.92188, 435.92188, 238.53906, 543, 209.85156, 650.0781, 238.53906)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 2, 1), PackedInt32Array(5, 4, 1), PackedInt32Array(5, 1, 6, 7), PackedInt32Array(8, 7, 6), PackedInt32Array(9, 8, 6), PackedInt32Array(9, 6, 10, 11), PackedInt32Array(12, 11, 10), PackedInt32Array(13, 12, 10), PackedInt32Array(13, 10, 0, 14), PackedInt32Array(15, 14, 0), PackedInt32Array(15, 0, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-324, 1035, 1571, 1082, 1602, -222, -259, -250)])
+vertices = PackedVector2Array(1592.75, -96.90625, 1356.0469, 972.6328, -93.203125, 907.3828, -247.4375, -239.07031)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-102, 917, 1364, 983, 1605, -106, -259, -250)])
 
 [node name="TestScene" type="Node" unique_id=2010601193]
 script = ExtResource("1_u7sbh")
@@ -57,9 +57,3 @@ position = Vector2(709, 446)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=965768456]
 navigation_polygon = SubResource("NavigationPolygon_xt12r")
-
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="NavigationRegion2D" unique_id=449851384]
-position = Vector2(543, 424)
-radius = 214.15
-affect_navigation_mesh = true
-carve_navigation_mesh = true

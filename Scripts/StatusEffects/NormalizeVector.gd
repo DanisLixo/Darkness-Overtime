@@ -15,9 +15,9 @@ func apply_static() -> void:
 
 func apply_dynamic(type:ActionType) -> void:
 	if type == ActionType.MOVE:
-		var vector = effects_handler.components[&"InputComponent"].get("input_direction")
+		var vector = effects_handler.components[&"MovementComponent"].get("input_direction")
 		if (vector is Vector2):
-			effects_handler.components[&"InputComponent"].set("input_direction", vector.normalized())
+			effects_handler.components[&"MovementComponent"].set("input_direction", vector.normalized())
 			#if (true && randi_range(0, 99) >= 74):
 				#var stop_time := randi_range(0, 99) < 80
 				#while stop_time:

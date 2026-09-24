@@ -54,6 +54,10 @@ func update_effects(new_effects : Array[StatusEffect] = []) -> void:
 		
 	_rebuild_static()
 		
+func set_default_value(name:StringName, value:Variant):
+	value_defaults.set(name, value)
+	_rebuild_static()
+
 func override_action(type: StatusEffect.ActionType) -> Dictionary[StringName, Variant]:
 	effect_overrides = value_statics.duplicate(true)
 	for effect in _sort_priority():

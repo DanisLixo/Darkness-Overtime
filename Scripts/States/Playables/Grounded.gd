@@ -30,7 +30,7 @@ func in_air() -> void:
 
 func handle_movement(delta: float) -> void:
 	if (movement_component.is_actually_on_floor()):
-		movement_component.move_direction(InputComponent.player_action_pressed(InputComponent.Action.RUN))
+		movement_component.move_direction(InputComponent.player_action_pressed(InputComponent.Action.RUN), input_component.input_direction)
 	#else:
 		#handle_air_movement(delta)
 		

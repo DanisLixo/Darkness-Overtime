@@ -4,13 +4,28 @@
 [ext_resource type="SpriteFrames" uid="uid://cmb0w2rjyedk0" path="res://AssetsOld/Fla's/placeholder.res" id="1_r8lax"]
 [ext_resource type="Script" uid="uid://d3h5v51k4ds7" path="res://Scripts/States/StateMachine.gd" id="2_idqco"]
 [ext_resource type="Script" uid="uid://22436r0fxyq0" path="res://Scripts/Components/health_component.gd" id="3_3e5jl"]
-[ext_resource type="Script" uid="uid://dme6dy3oa41bv" path="res://Scripts/Components/movement_component.gd" id="4_q1r2j"]
+[ext_resource type="Script" uid="uid://dme6dy3oa41bv" path="res://Scripts/Components/Movement/movement_component.gd" id="4_q1r2j"]
 [ext_resource type="Script" uid="uid://dtb4omvtcjdxc" path="res://Scripts/States/Enemies/Chase.gd" id="4_r55xy"]
 [ext_resource type="Script" uid="uid://5i164ln224uq" path="res://Scripts/Components/hitbox_component.gd" id="5_fsq2d"]
 [ext_resource type="Script" uid="uid://b5nmyl0tesyfg" path="res://Scripts/States/Enemies/Protect.gd" id="5_r55xy"]
+[ext_resource type="Script" uid="uid://dnx14uq16xs8b" path="res://Scripts/Components/Movement/movement_stats.gd" id="8_mhewb"]
+[ext_resource type="Script" uid="uid://qe1ln67biqwt" path="res://Scenes/Entities/navigation_component.gd" id="9_ykooa"]
+[ext_resource type="Script" uid="uid://mooii5d2x7aq" path="res://Scripts/StatusEffects/Backend/EffectsHandler.gd" id="11_i5s7n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r55xy"]
 size = Vector2(94, 58)
+
+[sub_resource type="Resource" id="Resource_i5s7n"]
+script = ExtResource("8_mhewb")
+jump_height = 350.0
+jump_gravity = 9.8
+walk_max_speed = 300.0
+walk_acceleration = 35.0
+walk_deceleration = 40.0
+run_max_speed = 500.0
+run_acceleration = 35.0
+run_deceleration = 75.0
+metadata/_custom_type_script = "uid://dnx14uq16xs8b"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ykooa"]
 radius = 48.0
@@ -44,16 +59,18 @@ script = ExtResource("2_idqco")
 initial_state = NodePath("Protect")
 metadata/_custom_type_script = "uid://d3h5v51k4ds7"
 
-[node name="Chase" type="Node" parent="StateMachine" unique_id=730187573 node_paths=PackedStringArray("sprite", "movement_component")]
+[node name="Chase" type="Node" parent="StateMachine" unique_id=730187573 node_paths=PackedStringArray("sprite", "movement_component", "navigation_component")]
 script = ExtResource("4_r55xy")
 sprite = NodePath("../../AnimatedSprite2D")
 movement_component = NodePath("../../MovementComponent")
+navigation_component = NodePath("../../NavigationComponent")
 metadata/_custom_type_script = "uid://bxd23uucghluo"
 
-[node name="Protect" type="Node" parent="StateMachine" unique_id=199076967 node_paths=PackedStringArray("sprite", "movement_component")]
+[node name="Protect" type="Node" parent="StateMachine" unique_id=199076967 node_paths=PackedStringArray("sprite", "movement_component", "navigation_component")]
 script = ExtResource("5_r55xy")
 sprite = NodePath("../../AnimatedSprite2D")
 movement_component = NodePath("../../MovementComponent")
+navigation_component = NodePath("../../NavigationComponent")
 metadata/_custom_type_script = "uid://bxd23uucghluo"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1104328604]
@@ -67,7 +84,7 @@ metadata/_custom_type_script = "uid://22436r0fxyq0"
 
 [node name="MovementComponent" type="Node" parent="." unique_id=30765242]
 script = ExtResource("4_q1r2j")
-sprint_speed = 3.0
+movement_stats = SubResource("Resource_i5s7n")
 metadata/_custom_type_script = "uid://dme6dy3oa41bv"
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1766879101]
@@ -99,3 +116,18 @@ monitorable = false
 position = Vector2(0, -71)
 shape = SubResource("CircleShape2D_xt12r")
 debug_color = Color(0, 0.6372506, 0.39858016, 0.41960785)
+
+[node name="NavigationComponent" type="NavigationAgent2D" parent="." unique_id=423962155 node_paths=PackedStringArray("timer")]
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_line_width = 1.0
+script = ExtResource("9_ykooa")
+timer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="NavigationComponent" unique_id=1702393882]
+process_callback = 0
+wait_time = 0.1
+
+[node name="StatusEffectsHandler" type="Node" parent="." unique_id=682986279]
+script = ExtResource("11_i5s7n")
+metadata/_custom_type_script = "uid://mooii5d2x7aq"
