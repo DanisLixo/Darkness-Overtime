@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://bk0x0u1w0b1qc"]
+
+[ext_resource type="Script" uid="uid://bda2j4nos8f0w" path="res://Scenes/Entities/chaser_enemy.gd" id="1_kho74"]
+[ext_resource type="SpriteFrames" uid="uid://cmb0w2rjyedk0" path="res://AssetsOld/Fla's/placeholder.res" id="1_pjx5x"]
+[ext_resource type="Script" uid="uid://d3h5v51k4ds7" path="res://Scripts/States/StateMachine.gd" id="3_flqlc"]
+[ext_resource type="Script" uid="uid://dtb4omvtcjdxc" path="res://Scripts/States/Enemies/Chase.gd" id="4_govn7"]
+[ext_resource type="Script" uid="uid://22436r0fxyq0" path="res://Scripts/Components/health_component.gd" id="6_yvm3r"]
+[ext_resource type="Script" uid="uid://dme6dy3oa41bv" path="res://Scripts/Components/movement_component.gd" id="7_e3jcx"]
+[ext_resource type="Script" uid="uid://5i164ln224uq" path="res://Scripts/Components/hitbox_component.gd" id="7_kho74"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xt12r"]
+size = Vector2(94, 58)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kho74"]
+radius = 48.0
+height = 142.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qgdlh"]
+radius = 49.0
+height = 148.0
+
+[node name="ChaserEnemy" type="CharacterBody2D" unique_id=1316600268 node_paths=PackedStringArray("health_component", "state_machine", "movement_component")]
+collision_layer = 4
+collision_mask = 21
+script = ExtResource("1_kho74")
+health_component = NodePath("HealthComponent")
+state_machine = NodePath("StateMachine")
+movement_component = NodePath("MovementComponent")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1899020230]
+position = Vector2(-48, -120)
+sprite_frames = ExtResource("1_pjx5x")
+animation = &"walk_front"
+centered = false
+
+[node name="StateMachine" type="Node" parent="." unique_id=1445505496 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_flqlc")
+initial_state = NodePath("Chase")
+metadata/_custom_type_script = "uid://d3h5v51k4ds7"
+
+[node name="Chase" type="Node" parent="StateMachine" unique_id=1346422529 node_paths=PackedStringArray("sprite", "movement_component")]
+script = ExtResource("4_govn7")
+sprite = NodePath("../../AnimatedSprite2D")
+movement_component = NodePath("../../MovementComponent")
+metadata/_custom_type_script = "uid://bxd23uucghluo"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1705703988]
+position = Vector2(0, -29)
+shape = SubResource("RectangleShape2D_xt12r")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=123292523 node_paths=PackedStringArray("hurtbox")]
+script = ExtResource("6_yvm3r")
+hurtbox = NodePath("../Hurtbox")
+metadata/_custom_type_script = "uid://22436r0fxyq0"
+
+[node name="MovementComponent" type="Node" parent="." unique_id=820863630]
+script = ExtResource("7_e3jcx")
+metadata/_custom_type_script = "uid://dme6dy3oa41bv"
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1928501358]
+collision_layer = 8
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1791848008]
+position = Vector2(0, -71)
+shape = SubResource("CapsuleShape2D_kho74")
+debug_color = Color(0.94022775, 0.13313243, 0.51803446, 0.41960785)
+
+[node name="HitboxComponent" type="Area2D" parent="." unique_id=1065628269]
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("7_kho74")
+damage = -10
+metadata/_custom_type_script = "uid://5i164ln224uq"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=498649561]
+position = Vector2(0, -71)
+shape = SubResource("CapsuleShape2D_qgdlh")

@@ -43,6 +43,6 @@ func throw_projectile() -> void:
 	
 	var pos := global_position.direction_to(get_global_mouse_position())
 	
-	bullet.set_mouse_direction(pos)
+	bullet.set_direction(pos)
 	
 	gun_shot.emit()

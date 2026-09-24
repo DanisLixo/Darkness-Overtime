@@ -1,5 +1,5 @@
-extends ComponentStats
 class_name MovementStats
+extends ComponentStats
 
 @export var jump_height : float
 @export var jump_gravity : float = 0.

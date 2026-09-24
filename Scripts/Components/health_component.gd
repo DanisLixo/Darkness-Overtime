@@ -11,6 +11,7 @@ signal killed
 var current_health : int = max_health
 
 func _ready() -> void:
+	add_to_group(&"StatusAffectable")
 	hurtbox.area_entered.connect(on_hitbox_entered.bind())
 
 func on_hitbox_entered(area:Area2D):
@@ -23,4 +24,6 @@ func change_health(amount: int):
 		killed.emit()
 		current_health = 0
 		return
+	if get_parent() is Player:
+		EventBus.player_damaged.emit(current_health)
 	changed_health.emit()

@@ -25,6 +25,7 @@ Global="*uid://b0a3dow5ey5i1"
 AudioManager="*uid://cb5v0hqgpooap"
 Settings="*uid://cp5snk72lrrdb"
 SaveManager="*uid://dv5m2ad8awebb"
+EventBus="*uid://cbetlhbp3m2br"
 
 [display]
 
@@ -37,11 +38,9 @@ window/stretch/aspect="expand"
 
 enabled=PackedStringArray("res://addons/AATTAAI/plugin.cfg")
 
-[file_customization]
+[filesystem]
 
-folder_colors={
-"res://script_templates/": "teal"
-}
+import/canvas_textures/default_texture_filter=2
 
 [global_group]
 
@@ -123,6 +122,7 @@ debug_key={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=2
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

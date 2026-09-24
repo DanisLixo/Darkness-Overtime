@@ -14,6 +14,7 @@ extends CharacterBody2D
 @export var state_machine : StateMachine
 @export var gun: Node2D
 @export var effects_handler: StatusEffectsHandler
+@export var health_component: HealthComponent
 
 var size_mult : float = 1.0
 
@@ -44,17 +45,15 @@ var debug_info : Dictionary[String, Variant] = {
 	"effects": [""]
 }
 
-var global_position_z : float = 0.0
-var velocity_z : float = 0.0
-
 func _enter_tree() -> void:
 	Global.players[player_id] = self
 
 func _process(_delta: float) -> void:
-	if (movement_component.direction.y == -1):
-		sprite.play("Y_idle-backwards")
-	else:
-		sprite.play("Y_idle")
+	if movement_component:
+		if (movement_component.direction.y == -1):
+			sprite.play("Y_idle-backwards")
+		else:
+			sprite.play("Y_idle")
 	
 	update_debug()
 
