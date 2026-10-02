@@ -2,6 +2,9 @@
 class_name NormalizeVector
 extends StatusEffect
 
+
+func _init() -> void:
+	effect_priority = Priority.REACT
 func _start() -> void:
 	super()
 	pass

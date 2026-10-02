@@ -3,32 +3,45 @@
 [ext_resource type="Script" uid="uid://d2ftvd0uv662o" path="res://Scripts/Components/item_component.gd" id="1_2oiv6"]
 [ext_resource type="Texture2D" uid="uid://dy8ofnetytmfk" path="res://AssetsOld/Sprites/UI/Items/PlaceholderBurger/Icon.png" id="2_6oc8a"]
 [ext_resource type="Script" uid="uid://cqfknksh4c5cl" path="res://Scripts/StatusEffects/Backend/StatusEffect.gd" id="2_o34di"]
+[ext_resource type="Script" uid="uid://c3l5qnoxsuhmv" path="res://Scripts/Items/ItemData.gd" id="2_rgxu5"]
+[ext_resource type="Script" uid="uid://6bd8ihmek3lr" path="res://Scripts/StatusEffects/NormalizeVector.gd" id="4_1fnsr"]
 [ext_resource type="Script" uid="uid://bjuwrcol7rb16" path="res://Scripts/StatusEffects/StaticAdd.gd" id="4_o34di"]
 [ext_resource type="Script" uid="uid://by2ejlua7j85j" path="res://Scripts/Components/component_stats.gd" id="4_rgxu5"]
 [ext_resource type="Script" uid="uid://dnx14uq16xs8b" path="res://Scripts/Components/Movement/movement_stats.gd" id="5_rgxu5"]
 [ext_resource type="Script" uid="uid://drgbyh4pt18p6" path="res://Scripts/StatusEffects/StaticMult.gd" id="6_so34g"]
 
-[sub_resource type="Resource" id="Resource_u7sbh"]
+[sub_resource type="Resource" id="Resource_n0syu"]
+script = ExtResource("4_1fnsr")
+time = 10.0
+metadata/_custom_type_script = "uid://6bd8ihmek3lr"
+
+[sub_resource type="Resource" id="Resource_vqggo"]
 script = ExtResource("5_rgxu5")
-walk_max_speed = 300.0
-walk_acceleration = 50.0
+walk_max_speed = 200.0
+run_max_speed = 200.0
 metadata/_custom_type_script = "uid://dnx14uq16xs8b"
 
-[sub_resource type="Resource" id="Resource_ksbbd"]
+[sub_resource type="Resource" id="Resource_rdi2b"]
 script = ExtResource("4_o34di")
-static_additions = Array[ExtResource("4_rgxu5")]([SubResource("Resource_u7sbh")])
-time = 10.0
+static_additions = Array[ExtResource("4_rgxu5")]([SubResource("Resource_vqggo")])
 metadata/_custom_type_script = "uid://bjuwrcol7rb16"
 
-[sub_resource type="Resource" id="Resource_so34g"]
+[sub_resource type="Resource" id="Resource_84lvs"]
 script = ExtResource("5_rgxu5")
-walk_deceleration = -0.5
+walk_acceleration = -0.5
+is_multiplier = true
 metadata/_custom_type_script = "uid://dnx14uq16xs8b"
 
-[sub_resource type="Resource" id="Resource_j3pel"]
+[sub_resource type="Resource" id="Resource_lije3"]
 script = ExtResource("6_so34g")
-static_multipliers = Array[ExtResource("4_rgxu5")]([SubResource("Resource_so34g")])
+static_multipliers = Array[ExtResource("4_rgxu5")]([SubResource("Resource_84lvs")])
+time = 15.0
 metadata/_custom_type_script = "uid://drgbyh4pt18p6"
+
+[sub_resource type="Resource" id="Resource_2oiv6"]
+script = ExtResource("2_rgxu5")
+status_effects = Array[ExtResource("2_o34di")]([SubResource("Resource_n0syu"), SubResource("Resource_rdi2b"), SubResource("Resource_lije3")])
+metadata/_custom_type_script = "uid://c3l5qnoxsuhmv"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_34jd6"]
 size = Vector2(84, 74)
@@ -37,10 +50,10 @@ size = Vector2(84, 74)
 
 [node name="ItemComponent" type="Area2D" parent="." unique_id=1389581518]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 0
 monitorable = false
 script = ExtResource("1_2oiv6")
-effects = Array[ExtResource("2_o34di")]([SubResource("Resource_ksbbd"), SubResource("Resource_j3pel")])
+item_data = SubResource("Resource_2oiv6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ItemComponent" unique_id=1763615221]
 position = Vector2(-1, -37)

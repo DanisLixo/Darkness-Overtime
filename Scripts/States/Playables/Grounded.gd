@@ -43,8 +43,7 @@ func handle_movement(delta: float) -> void:
 func handle_direction() -> void:
 	if (!mouse_aim):
 		if (input_component.input_direction):
-			movement_component.direction.x = sign(input_component.input_direction.x) * int(input_component.input_direction.y == 0)
-			movement_component.direction.y = sign(input_component.input_direction.y)
+			movement_component.get_face_direction()
 	
 	if (input_component.input_direction != Vector2.ZERO):
 		# if (!player.is_skidding && (player.input_direction.x == -saved_direction.x || player.input_direction.y == - saved_direction.y)):

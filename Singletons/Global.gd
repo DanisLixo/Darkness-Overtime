@@ -1,7 +1,6 @@
 extends Node
 
 @onready var mouse := $Mouse/MouseSprite
-
 var current_room: Room
 
 var players: Array[Player] = [null]
@@ -42,3 +41,4 @@ func _process(_delta: float) -> void:
 	
 func handle_mouse() -> void:
 	mouse.global_position = get_viewport().get_mouse_position()
+	

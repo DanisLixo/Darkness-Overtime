@@ -1,22 +1,13 @@
 class_name Player
-extends CharacterBody2D
+extends EntityBase
 
 @export var player_id : int = 0
-@export var interaction_area : Area2D
 
-@export_group("Visuals")
+@export var input_component : InputComponent
+@export var gun: Node2D
+
 @export var sprite_joint: Node2D
 @export var sprite : AnimatedSprite2D
-
-@export_group("Functionality")
-@export var movement_component : MovementComponent
-@export var input_component : InputComponent
-@export var state_machine : StateMachine
-@export var gun: Node2D
-@export var effects_handler: StatusEffectsHandler
-@export var health_component: HealthComponent
-
-var size_mult : float = 1.0
 
 var key_press : Array[Variant] = []
 var key_hold : Array[Variant] = []
@@ -50,7 +41,7 @@ func _enter_tree() -> void:
 
 func _process(_delta: float) -> void:
 	if movement_component:
-		if (movement_component.direction.y == -1):
+		if (movement_component.get_face_direction().y == -1):
 			sprite.play("Y_idle-backwards")
 		else:
 			sprite.play("Y_idle")

@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dc2mngbtkwvoc" path="res://Scripts/Components/input_component.gd" id="10_yoq75"]
 [ext_resource type="Script" uid="uid://d3h5v51k4ds7" path="res://Scripts/States/StateMachine.gd" id="11_glx4g"]
 [ext_resource type="Script" uid="uid://d0t7j4g0qcxbh" path="res://Scripts/States/Playables/Grounded.gd" id="12_glx4g"]
+[ext_resource type="Script" uid="uid://22436r0fxyq0" path="res://Scripts/Components/health_component.gd" id="12_rdi2b"]
 [ext_resource type="PackedScene" uid="uid://cxbqgif6n7jyd" path="res://Scenes/gun.tscn" id="13_o3h8g"]
 [ext_resource type="Script" uid="uid://mooii5d2x7aq" path="res://Scripts/StatusEffects/Backend/EffectsHandler.gd" id="14_o3h8g"]
 [ext_resource type="Script" uid="uid://bq5qq203jsqon" path="res://Scripts/Roaming/Entities/StepSounds.gd" id="15_1e7my"]
@@ -21,18 +22,19 @@ size = Vector2(119, 72)
 radius = 48.0
 height = 168.0
 
-[node name="Player" type="CharacterBody2D" unique_id=480091350 node_paths=PackedStringArray("interaction_area", "sprite_joint", "sprite", "movement_component", "input_component", "state_machine", "gun", "effects_handler") groups=["Players"]]
+[node name="Player" type="CharacterBody2D" unique_id=480091350 node_paths=PackedStringArray("input_component", "gun", "sprite_joint", "sprite", "movement_component", "state_machine", "effects_handler", "health_component", "interaction_area") groups=["Players"]]
 process_priority = 1
-collision_layer = 2
+collision_mask = 33
 script = ExtResource("1_wi0c6")
-interaction_area = NodePath("InteractionArea")
+input_component = NodePath("InputComponent")
+gun = NodePath("SpriteJoint/Gun")
 sprite_joint = NodePath("SpriteJoint")
 sprite = NodePath("SpriteJoint/Sprite")
 movement_component = NodePath("MovementComponent")
-input_component = NodePath("InputComponent")
 state_machine = NodePath("StateMachine")
-gun = NodePath("SpriteJoint/Gun")
 effects_handler = NodePath("StatusEffectsHandler")
+health_component = NodePath("HealthComponent")
+interaction_area = NodePath("InteractionArea")
 
 [node name="SpriteJoint" type="Node2D" parent="." unique_id=1080640744]
 
@@ -78,6 +80,7 @@ shape = SubResource("CapsuleShape2D_34jd6")
 debug_color = Color(0.94022775, 0.13313243, 0.51803446, 0.41960785)
 
 [node name="DebugBullshit" type="CanvasLayer" parent="." unique_id=1965173683]
+visible = false
 
 [node name="Control" type="Control" parent="DebugBullshit" unique_id=248634356]
 layout_mode = 3
@@ -114,5 +117,11 @@ metadata/_custom_type_script = "uid://dme6dy3oa41bv"
 script = ExtResource("10_yoq75")
 metadata/_custom_type_script = "uid://dc2mngbtkwvoc"
 
-[node name="StatusEffectsHandler" type="Node" parent="." unique_id=1452556040]
+[node name="HealthComponent" type="Node" parent="." unique_id=1458181398 node_paths=PackedStringArray("hurtbox")]
+script = ExtResource("12_rdi2b")
+hurtbox = NodePath("../InteractionArea")
+metadata/_custom_type_script = "uid://22436r0fxyq0"
+
+[node name="StatusEffectsHandler" type="Node" parent="." unique_id=1020411891]
 script = ExtResource("14_o3h8g")
+metadata/_custom_type_script = "uid://mooii5d2x7aq"

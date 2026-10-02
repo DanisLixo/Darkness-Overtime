@@ -9,6 +9,7 @@ signal effect_deleted(effect:StatusEffect)
 @onready var parent: Node2D = get_parent()
 
 var effects: Dictionary[StatusEffect, StringName]
+var items : Array[ItemData]
 var components : Dictionary[StringName, Node]
 
 var value_defaults : Dictionary[StringName, Variant] = {
@@ -54,8 +55,8 @@ func update_effects(new_effects : Array[StatusEffect] = []) -> void:
 		
 	_rebuild_static()
 		
-func set_default_value(name:StringName, value:Variant):
-	value_defaults.set(name, value)
+func set_default_value(value_name:StringName, value:Variant):
+	value_defaults.set(value_name, value)
 	_rebuild_static()
 
 func override_action(type: StatusEffect.ActionType) -> Dictionary[StringName, Variant]:
@@ -70,6 +71,10 @@ func delete_effect(effect:StatusEffect):
 	effect_deleted.emit(effect)
 	effects.erase(effect)
 	_rebuild_static()
+
+func add_item(item_data: ItemData):
+	items.append(item_data)
+	update_effects(item_data.status_effects)
 
 func _rebuild_static() -> void:
 	value_statics = value_defaults.duplicate(true)

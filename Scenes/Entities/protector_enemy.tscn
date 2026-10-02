@@ -1,12 +1,17 @@
 [gd_scene format=3 uid="uid://c136mk6dvliay"]
 
 [ext_resource type="Script" uid="uid://crvewqiil5aa7" path="res://Scenes/Entities/protector_enemy.gd" id="1_fsq2d"]
-[ext_resource type="SpriteFrames" uid="uid://cmb0w2rjyedk0" path="res://AssetsOld/Fla's/placeholder.res" id="1_r8lax"]
+[ext_resource type="SpriteFrames" uid="uid://dstbpjjwgdoyc" path="res://Assets/Sprites/burnice_frames.res" id="2_i5s7n"]
 [ext_resource type="Script" uid="uid://d3h5v51k4ds7" path="res://Scripts/States/StateMachine.gd" id="2_idqco"]
 [ext_resource type="Script" uid="uid://22436r0fxyq0" path="res://Scripts/Components/health_component.gd" id="3_3e5jl"]
+[ext_resource type="Script" uid="uid://ivjfsws13mv2" path="res://Scripts/behaviour_tree/bt_parallel.gd" id="3_dtb8m"]
+[ext_resource type="Script" uid="uid://bjed0dunvyovu" path="res://Scripts/behaviour_tree/bt_sequence.gd" id="3_p3p3h"]
+[ext_resource type="Script" uid="uid://c2ix8bdvegxs0" path="res://Scripts/behaviour_tree/bt_root.gd" id="3_s2r0h"]
 [ext_resource type="Script" uid="uid://dme6dy3oa41bv" path="res://Scripts/Components/Movement/movement_component.gd" id="4_q1r2j"]
 [ext_resource type="Script" uid="uid://dtb4omvtcjdxc" path="res://Scripts/States/Enemies/Chase.gd" id="4_r55xy"]
+[ext_resource type="Script" uid="uid://bvn2q28wgvnak" path="res://Scripts/behaviour_tree/bt_method_call.gd" id="5_dtb8m"]
 [ext_resource type="Script" uid="uid://5i164ln224uq" path="res://Scripts/Components/hitbox_component.gd" id="5_fsq2d"]
+[ext_resource type="Script" uid="uid://yqgpcfj24t35" path="res://Scripts/behaviour_tree/bt_condition.gd" id="5_kh57i"]
 [ext_resource type="Script" uid="uid://b5nmyl0tesyfg" path="res://Scripts/States/Enemies/Protect.gd" id="5_r55xy"]
 [ext_resource type="Script" uid="uid://dnx14uq16xs8b" path="res://Scripts/Components/Movement/movement_stats.gd" id="8_mhewb"]
 [ext_resource type="Script" uid="uid://qe1ln67biqwt" path="res://Scenes/Entities/navigation_component.gd" id="9_ykooa"]
@@ -47,11 +52,57 @@ state_machine = NodePath("StateMachine")
 movement_component = NodePath("MovementComponent")
 protect_area = NodePath("ProtectArea")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1841793169]
-modulate = Color(0.30980393, 1, 1, 1)
-position = Vector2(-48, -120)
-sprite_frames = ExtResource("1_r8lax")
-animation = &"walk_front"
+[node name="BTRoot" type="Node" parent="." unique_id=1227821619]
+script = ExtResource("3_s2r0h")
+metadata/_custom_type_script = "uid://c2ix8bdvegxs0"
+
+[node name="BTParallel" type="Node" parent="BTRoot" unique_id=1450869052]
+script = ExtResource("3_dtb8m")
+success_policy = 1
+metadata/_custom_type_script = "uid://ivjfsws13mv2"
+
+[node name="BTSequence" type="Node" parent="BTRoot/BTParallel" unique_id=1973641274]
+script = ExtResource("3_p3p3h")
+metadata/_custom_type_script = "uid://bjed0dunvyovu"
+
+[node name="BTCondition" type="Node" parent="BTRoot/BTParallel/BTSequence" unique_id=1408506996 node_paths=PackedStringArray("node")]
+script = ExtResource("5_kh57i")
+node = NodePath("../../../../HealthComponent")
+operator = 4
+variable = &"current_health"
+var_type = 2
+truthy_value = 50
+metadata/_custom_type_script = "uid://yqgpcfj24t35"
+
+[node name="BTMethodCall" type="Node" parent="BTRoot/BTParallel/BTSequence" unique_id=1785431550 node_paths=PackedStringArray("node")]
+script = ExtResource("5_dtb8m")
+node = NodePath("../../../../HealthComponent")
+method = &"change_health"
+arg_infos = Array[Dictionary]([{
+"class_name": &"",
+"hint": 0,
+"hint_string": "",
+"name": "amount",
+"type": 2,
+"usage": 0
+}])
+arg_values = {
+"amount": -10
+}
+metadata/_custom_type_script = "uid://bvn2q28wgvnak"
+
+[node name="Legs" type="AnimatedSprite2D" parent="." unique_id=841862360]
+position = Vector2(-84, -144)
+sprite_frames = ExtResource("2_i5s7n")
+animation = &"guard_legs-idle"
+autoplay = "guard_legs-idle"
+centered = false
+
+[node name="Body" type="AnimatedSprite2D" parent="." unique_id=1842930841]
+position = Vector2(-107, -267)
+sprite_frames = ExtResource("2_i5s7n")
+animation = &"guard_legs-idle"
+autoplay = "guard_idle"
 centered = false
 
 [node name="StateMachine" type="Node" parent="." unique_id=1804540504 node_paths=PackedStringArray("initial_state")]
@@ -61,14 +112,16 @@ metadata/_custom_type_script = "uid://d3h5v51k4ds7"
 
 [node name="Chase" type="Node" parent="StateMachine" unique_id=730187573 node_paths=PackedStringArray("sprite", "movement_component", "navigation_component")]
 script = ExtResource("4_r55xy")
-sprite = NodePath("../../AnimatedSprite2D")
+sprite = NodePath("../../Legs")
 movement_component = NodePath("../../MovementComponent")
 navigation_component = NodePath("../../NavigationComponent")
 metadata/_custom_type_script = "uid://bxd23uucghluo"
 
-[node name="Protect" type="Node" parent="StateMachine" unique_id=199076967 node_paths=PackedStringArray("sprite", "movement_component", "navigation_component")]
+[node name="Protect" type="Node" parent="StateMachine" unique_id=199076967 node_paths=PackedStringArray("legs_sprite", "body_sprite", "health_component", "movement_component", "navigation_component")]
 script = ExtResource("5_r55xy")
-sprite = NodePath("../../AnimatedSprite2D")
+legs_sprite = NodePath("../../Legs")
+body_sprite = NodePath("../../Body")
+health_component = NodePath("../../HealthComponent")
 movement_component = NodePath("../../MovementComponent")
 navigation_component = NodePath("../../NavigationComponent")
 metadata/_custom_type_script = "uid://bxd23uucghluo"
@@ -118,6 +171,7 @@ shape = SubResource("CircleShape2D_xt12r")
 debug_color = Color(0, 0.6372506, 0.39858016, 0.41960785)
 
 [node name="NavigationComponent" type="NavigationAgent2D" parent="." unique_id=423962155 node_paths=PackedStringArray("timer")]
+avoidance_enabled = true
 debug_enabled = true
 debug_use_custom = true
 debug_path_custom_line_width = 1.0

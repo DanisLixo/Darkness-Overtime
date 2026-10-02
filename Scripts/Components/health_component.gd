@@ -8,6 +8,7 @@ class_name HealthComponent
 
 signal changed_health
 signal killed
+
 var current_health : int = max_health
 
 func _ready() -> void:

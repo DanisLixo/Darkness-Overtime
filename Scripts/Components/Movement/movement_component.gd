@@ -12,7 +12,6 @@ var effects_handler : StatusEffectsHandler = null
 
 var override_values : Dictionary[StringName, Variant]
 var input_direction : Vector2 = Vector2.ZERO
-var direction : Vector2i = Vector2i.ZERO
 
 var can_run : bool = true
 
@@ -25,13 +24,11 @@ var is_running : bool = false
 var global_position_z : float = 0.0
 var velocity_z : float = 0.0
 
+func get_face_direction() -> Vector2i:
+	return Vector2i(sign(input_direction.x) * int(input_direction.y == 0), sign(input_direction.y))
+
 func _ready() -> void:
 	add_to_group(&"StatusAffectable")
-
-func _register_values() -> Dictionary[StringName, Variant]:
-	var default_values : Dictionary[StringName, Variant]
-
-	return default_values
 	
 func move_direction(running: bool, new_input_direction: Vector2) -> void:
 	if effects_handler:
@@ -39,14 +36,6 @@ func move_direction(running: bool, new_input_direction: Vector2) -> void:
 		override_values = effects_handler.override_action(StatusEffect.ActionType.MOVE)
 		ground_acceleration(running)
 		deceleration()
-
-func move_tween(position:Vector2, is_sprint:bool = false):
-	if effects_handler:
-		override_values = movement_stats.get_overrides(StatusEffect.ActionType.MOVE)
-	#var cur_speed = sprint_speed if is_sprint and sprint_speed != 0 else speed
-	#var tween = create_tween()
-	#tween.tween_property(parent, "position", position, cur_speed)
-	#return tween
 	
 func ground_acceleration(running: bool) -> void:
 	var target_accel = override_values.get(&"MovementStats.walk_acceleration")

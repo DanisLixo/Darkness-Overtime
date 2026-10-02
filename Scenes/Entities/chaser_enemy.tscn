@@ -97,6 +97,7 @@ position = Vector2(0, -71)
 shape = SubResource("CapsuleShape2D_qgdlh")
 
 [node name="NavigationComponent" type="NavigationAgent2D" parent="." unique_id=1477568832 node_paths=PackedStringArray("timer")]
+avoidance_enabled = true
 debug_enabled = true
 debug_use_custom = true
 debug_path_custom_line_width = 1.0

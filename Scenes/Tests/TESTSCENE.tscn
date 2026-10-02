@@ -55,11 +55,11 @@ position = Vector2(709, 446)
 
 [node name="HealthBar" parent="." unique_id=1568179962 instance=ExtResource("7_lt624")]
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=965768456]
-navigation_polygon = SubResource("NavigationPolygon_xt12r")
-
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="NavigationRegion2D" unique_id=449851384]
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="." unique_id=449851384]
 position = Vector2(543, 424)
-radius = 214.15
+radius = 263.63
 affect_navigation_mesh = true
 carve_navigation_mesh = true
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=965768456]
+navigation_polygon = SubResource("NavigationPolygon_xt12r")

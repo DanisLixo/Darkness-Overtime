@@ -1,16 +1,16 @@
-##ItemComponent, includes a StatusEffectResource and an Icon, should be paired with a Sprite2D and a PlayerDetectorArea
-class_name ItemComponent
+##ItemComponent, includes a StatusEffect and an Icon, should be paired with a Sprite2D
 extends Area2D
 
-@export var effects: Array[StatusEffect]
-@export var icon: Texture2D = preload("res://AssetsOld/Sprites/UI/Items/PlaceholderBurger/Icon.png")
+@export var item_data : ItemData = ItemData.new()
 
 func _ready() -> void:
 	set_collision_layer_value(1, false)
-	set_collision_mask_value(2, true)
-	body_entered.connect(on_player_entered.bind())
+	set_collision_mask_value(1, true)
+	set_collision_layer_value(6, true)
+	body_entered.connect(on_body_entered.bind())
 	add_to_group("Items")
 	
-func on_player_entered(player: Player) -> void:
-	player.effects_handler.update_effects(effects)
+func on_body_entered(body: CharacterBody2D) -> void:
+	if "effects_handler" in body:
+		body.effects_handler.add_item(item_data)
 	get_parent().queue_free()
