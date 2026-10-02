@@ -45,7 +45,8 @@ func _variable_changed() -> void:
 		return
 
 	var info := get_script_var(node, variable)
-
+	if variable in node and info.is_empty():
+		info = node.get_property_list().filter(func(p): return p.name == variable)[0]
 	if !info.is_empty():
 		var new_type : int = info[&"type"]
 		if new_type != var_type:

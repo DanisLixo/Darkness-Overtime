@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://c2ix8bdvegxs0" path="res://Scripts/behaviour_tree/bt_root.gd" id="3_s2r0h"]
 [ext_resource type="Script" uid="uid://dme6dy3oa41bv" path="res://Scripts/Components/Movement/movement_component.gd" id="4_q1r2j"]
 [ext_resource type="Script" uid="uid://dtb4omvtcjdxc" path="res://Scripts/States/Enemies/Chase.gd" id="4_r55xy"]
-[ext_resource type="Script" uid="uid://bvn2q28wgvnak" path="res://Scripts/behaviour_tree/bt_method_call.gd" id="5_dtb8m"]
 [ext_resource type="Script" uid="uid://5i164ln224uq" path="res://Scripts/Components/hitbox_component.gd" id="5_fsq2d"]
 [ext_resource type="Script" uid="uid://yqgpcfj24t35" path="res://Scripts/behaviour_tree/bt_condition.gd" id="5_kh57i"]
 [ext_resource type="Script" uid="uid://b5nmyl0tesyfg" path="res://Scripts/States/Enemies/Protect.gd" id="5_r55xy"]
@@ -65,31 +64,10 @@ metadata/_custom_type_script = "uid://ivjfsws13mv2"
 script = ExtResource("3_p3p3h")
 metadata/_custom_type_script = "uid://bjed0dunvyovu"
 
-[node name="BTCondition" type="Node" parent="BTRoot/BTParallel/BTSequence" unique_id=1408506996 node_paths=PackedStringArray("node")]
+[node name="BTCondition" type="Node" parent="BTRoot/BTParallel/BTSequence" unique_id=462846185 node_paths=PackedStringArray("node")]
 script = ExtResource("5_kh57i")
-node = NodePath("../../../../HealthComponent")
-operator = 4
-variable = &"current_health"
-var_type = 2
-truthy_value = 50
+node = NodePath("../../../../Legs")
 metadata/_custom_type_script = "uid://yqgpcfj24t35"
-
-[node name="BTMethodCall" type="Node" parent="BTRoot/BTParallel/BTSequence" unique_id=1785431550 node_paths=PackedStringArray("node")]
-script = ExtResource("5_dtb8m")
-node = NodePath("../../../../HealthComponent")
-method = &"change_health"
-arg_infos = Array[Dictionary]([{
-"class_name": &"",
-"hint": 0,
-"hint_string": "",
-"name": "amount",
-"type": 2,
-"usage": 0
-}])
-arg_values = {
-"amount": -10
-}
-metadata/_custom_type_script = "uid://bvn2q28wgvnak"
 
 [node name="Legs" type="AnimatedSprite2D" parent="." unique_id=841862360]
 position = Vector2(-84, -144)
