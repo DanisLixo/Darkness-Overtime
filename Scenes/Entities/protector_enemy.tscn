@@ -80,7 +80,7 @@ var_type = 5
 truthy_value = Vector2(0, 0)
 metadata/_custom_type_script = "uid://yqgpcfj24t35"
 
-[node name="BTMethodCall" type="Node" parent="BTRoot/BTParallel/BTFallback/MoveAnimation" unique_id=1127094346 node_paths=PackedStringArray("node")]
+[node name="PlayLegsMove" type="Node" parent="BTRoot/BTParallel/BTFallback/MoveAnimation" unique_id=1127094346 node_paths=PackedStringArray("node")]
 script = ExtResource("5_dtb8m")
 node = NodePath("../../../../../Legs")
 method = &"play"
@@ -112,7 +112,7 @@ arg_values = {
 "arguments/name": &"",
 "custom_speed": 1.0,
 "from_end": false,
-"name": &""
+"name": &"guard_legs-idle"
 }
 metadata/_custom_type_script = "uid://bvn2q28wgvnak"
 

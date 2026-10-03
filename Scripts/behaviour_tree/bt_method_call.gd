@@ -39,13 +39,6 @@ func _method_changed() -> void:
 			
 	if !arg_infos.is_empty() or method == &"":
 		notify_property_list_changed()
-		
-	for m in node.get_method_list():
-		if m.name != method:
-			continue
-		
-	if !arg_infos.is_empty() or method == &"":
-		notify_property_list_changed()
 
 func _build_arg_info(a : Dictionary) -> Dictionary:
 	var info := {
