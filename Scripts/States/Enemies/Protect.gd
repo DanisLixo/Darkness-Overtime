@@ -26,6 +26,7 @@ func process(_delta: float) -> void:
 			current_animation = &"guard_shield-idle"
 			body_sprite.play(current_animation)
 		legs_sprite.play(&"guard_legs-walk")
+		
 
 func hit_received():
 	if current_animation == &"guard_shield-idle":

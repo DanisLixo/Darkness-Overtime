@@ -28,8 +28,22 @@ func _method_changed() -> void:
 			if m.name != method:
 				continue
 			arg_infos.assign(m.args)
+			for i in m.args.size():
+				var a : Dictionary = m.args[i]
+				if has_arg_default(m, i):
+					set("arguments/" + a.name, get_arg_default(m, i))
+					arg_values["arguments/" + a.name] = get_arg_default(m, i)
+				else:
+					arg_values[a.name] = null if a.type == TYPE_NIL else type_convert(null, a.type)
 			break
-
+			
+	if !arg_infos.is_empty() or method == &"":
+		notify_property_list_changed()
+		
+	for m in node.get_method_list():
+		if m.name != method:
+			continue
+		
 	if !arg_infos.is_empty() or method == &"":
 		notify_property_list_changed()
 
@@ -70,6 +84,21 @@ func _is_node_class(cls : String) -> bool:
 			var base : String = c.base
 			return base == "Node" or _is_node_class(base)
 	return false
+	
+func get_method_info(obj : Object, method_name : StringName) -> Dictionary:
+	for m in obj.get_method_list():
+		if m.name == method_name:
+			return m
+	return {}
+
+func has_arg_default(m : Dictionary, i : int) -> bool:
+	return i >= m.args.size() - m.default_args.size()
+
+func get_arg_default(m : Dictionary, i : int) -> Variant:
+	var first_default : int = m.args.size() - m.default_args.size()
+	if i < first_default:
+		return null
+	return m.default_args[i - first_default]
 	
 func _get(property : StringName) -> Variant:
 	if property.begins_with("arguments/"):
