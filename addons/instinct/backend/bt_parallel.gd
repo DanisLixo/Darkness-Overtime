@@ -1,9 +1,10 @@
+@icon("../icons/bt_parallel.svg")
 class_name BTParallel
-extends BehaviorTree
+extends BTControlFlow
 
 enum Policy {
-	REQUIRE_ALL, # Succeeds if ALL children succeed; Fails if ANY child fails
-	REQUIRE_ONE  # Succeeds if ANY child succeeds; Fails if ALL children fail
+	REQUIRE_ALL,
+	REQUIRE_ONE 
 }
 
 @export var success_policy: Policy = Policy.REQUIRE_ALL
@@ -22,6 +23,7 @@ func _tick(delta: float) -> TickReturn:
 		var status = child._tick(delta)
 		child_statuses[child] = status
 		
+		
 		if status == TickReturn.SUCCESS:
 			success_count += 1
 		elif status == TickReturn.FAILURE:
@@ -31,7 +33,6 @@ func _tick(delta: float) -> TickReturn:
 		return TickReturn.SUCCESS
 	if success_policy == Policy.REQUIRE_ALL and success_count == children.size():
 		return TickReturn.SUCCESS
-		
 	if failure_policy == Policy.REQUIRE_ONE and failure_count > 0:
 		return TickReturn.FAILURE
 	if failure_policy == Policy.REQUIRE_ALL and failure_count == children.size():

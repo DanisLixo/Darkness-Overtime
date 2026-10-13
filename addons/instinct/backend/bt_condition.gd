@@ -1,11 +1,18 @@
 @tool
+@icon("../icons/bt_condition.svg")
+##Runs a standard condition on a singular value from a node and returns [enum SUCCESS] or [enum FAILURE]
+##
+##The (second) most crucial node of [BehaviorTree]s, checks if a condition is true and returns 
+##[enum SUCCESS] if true and [enum FAILURE] if false and never returns [enum RUNNING]
 class_name BTCondition
-extends BehaviorTree
+extends BTLeaf
 
+##Sized down Variant.Operator enum with only conditional operators
 enum Operator {
 	EQUAL, NOT_EQUAL, LESS, LESS_EQUAL, GREATER, GREATER_EQUAL
 }
 
+##Callables for conditional operators
 var operator_callables : Dictionary[Operator, Callable] = {
 	Operator.EQUAL: func(a, b) -> bool: return a == b,
 	Operator.NOT_EQUAL: func(a, b) -> bool: return a != b,
@@ -15,15 +22,22 @@ var operator_callables : Dictionary[Operator, Callable] = {
 	Operator.GREATER_EQUAL: func(a, b) -> bool: return a >= b,
 }
 
+##The node to get the variable from
 @export var node : Node:
 	set(new_value):
 		node = new_value
+		variable = &""
+
+##The conditional to check the variable
 @export var operator : Operator = Operator.EQUAL
+
+##The variable to check for a conditional
 @export var variable : StringName: 
 	set(new_value):
 		variable = new_value
 		_variable_changed()
 
+##The value that will be checked against
 var truthy_value : Variant
 
 @export_storage var var_hint_string : String = ""
@@ -93,7 +107,6 @@ func get_script_var(node_to_eval: Object, var_name: StringName) -> Dictionary:
 		var found_value : Array[Dictionary] = script.get_script_property_list().filter(func(p):
 			return p.name == var_name)
 		if !found_value.is_empty():
-			print(found_value[0])
 			return found_value[0]
 	return {}
 

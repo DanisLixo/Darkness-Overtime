@@ -1,5 +1,6 @@
+@icon("../icons/bt_cooldown.svg")
 class_name BTCooldown
-extends BehaviorTree
+extends BTWrapper
 
 @export var cooldown_time : float = 1.
 
@@ -13,7 +14,7 @@ func _tick(delta : float) -> TickReturn:
 			time_transcurred = 0
 			on_cooldown = false
 	if not on_cooldown:
-		var ret_val = children[0]._tick(delta)
+		var ret_val = child._tick(delta)
 		if ret_val == TickReturn.SUCCESS:
 			on_cooldown = true
 			return TickReturn.SUCCESS

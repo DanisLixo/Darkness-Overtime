@@ -1,8 +1,14 @@
 @tool
+@icon("../icons/bt_method_call.svg")
+##[BTLeaf] that calls a method from any [Node]
 class_name BTMethodCall
-extends BehaviorTree
+extends BTLeaf
 
-@export var node : Node
+@export var node : Node:
+	set(new_value):
+		node = new_value
+		method = &""
+		
 @export var method : StringName:
 	set(new_value):
 		method = new_value
@@ -22,7 +28,6 @@ func _tick(delta : float) -> TickReturn:
 func _method_changed() -> void:
 	arg_infos = []
 	arg_values = {}
-
 	if node and method != &"":
 		for m in node.get_method_list():
 			if m.name != method:
@@ -37,6 +42,12 @@ func _method_changed() -> void:
 					arg_values[a.name] = null if a.type == TYPE_NIL else type_convert(null, a.type)
 			break
 			
+			
+	if node is AnimatedSprite2D and method == &"play":
+		var info = node.get_property_list().filter(func(p): return p.name == &"animation")[0]
+		arg_infos[0]["hint"] = info["hint"]
+		arg_infos[0]["hint_string"] = info["hint_string"]
+		
 	if !arg_infos.is_empty() or method == &"":
 		notify_property_list_changed()
 

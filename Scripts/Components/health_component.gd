@@ -9,7 +9,7 @@ class_name HealthComponent
 signal changed_health
 signal killed
 
-var current_health : int = max_health
+var current_health : int = 0
 
 func _ready() -> void:
 	add_to_group(&"StatusAffectable")
