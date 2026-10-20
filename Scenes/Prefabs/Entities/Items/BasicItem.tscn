@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://ulah8awu31xa"]
+
+[ext_resource type="Script" uid="uid://d2ftvd0uv662o" path="res://Scripts/Classes/Components/Entities/ItemComponent.gd" id="1_2lubl"]
+[ext_resource type="Script" uid="uid://bjuwrcol7rb16" path="res://Scripts/Classes/Components/StatusEffects/StaticAdd.gd" id="2_aotko"]
+[ext_resource type="Script" uid="uid://cqfknksh4c5cl" path="res://Scripts/Classes/Components/StatusEffect.gd" id="2_n5cg3"]
+[ext_resource type="Script" uid="uid://by2ejlua7j85j" path="res://Scripts/Classes/Components/Stats/ComponentStats.gd" id="3_n5cg3"]
+[ext_resource type="Script" uid="uid://dnx14uq16xs8b" path="res://Scripts/Classes/Components/Stats/MovementStats.gd" id="4_68dl8"]
+[ext_resource type="Script" uid="uid://drgbyh4pt18p6" path="res://Scripts/Classes/Components/StatusEffects/StaticMult.gd" id="5_em7se"]
+[ext_resource type="Texture2D" uid="uid://dy8ofnetytmfk" path="res://Assets/Sprites/UI/Items/PlaceholderBurger/Icon.png" id="6_f6177"]
+
+[sub_resource type="Resource" id="Resource_u7sbh"]
+script = ExtResource("4_68dl8")
+walk_max_speed = 300.0
+walk_acceleration = 50.0
+metadata/_custom_type_script = "uid://dnx14uq16xs8b"
+
+[sub_resource type="Resource" id="Resource_ksbbd"]
+script = ExtResource("2_aotko")
+static_additions = Array[ExtResource("3_n5cg3")]([SubResource("Resource_u7sbh")])
+metadata/_custom_type_script = "uid://bjuwrcol7rb16"
+
+[sub_resource type="Resource" id="Resource_so34g"]
+script = ExtResource("4_68dl8")
+walk_deceleration = -0.5
+metadata/_custom_type_script = "uid://dnx14uq16xs8b"
+
+[sub_resource type="Resource" id="Resource_j3pel"]
+script = ExtResource("5_em7se")
+static_multipliers = Array[ExtResource("3_n5cg3")]([SubResource("Resource_so34g")])
+metadata/_custom_type_script = "uid://drgbyh4pt18p6"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_34jd6"]
+size = Vector2(84, 74)
+
+[node name="ItemTest" type="Node2D" unique_id=10505298]
+
+[node name="ItemComponent" type="Area2D" parent="." unique_id=1389581518]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_2lubl")
+effects = Array[ExtResource("2_n5cg3")]([SubResource("Resource_ksbbd"), SubResource("Resource_j3pel")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemComponent" unique_id=1763615221]
+position = Vector2(-1, -37)
+shape = SubResource("RectangleShape2D_34jd6")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1782809448]
+position = Vector2(-46, -75)
+texture = ExtResource("6_f6177")
+centered = false

@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://hqp6mnchgo70"]
+
+[ext_resource type="Texture2D" uid="uid://55w2c2jjcyf1" path="res://icon.svg" id="1_pnhhn"]
+
+[node name="Gun" type="Node3D" unique_id=1485845476]
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1080965017]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("1_pnhhn")
+
+[node name="Marker3D" type="Marker3D" parent="Sprite3D" unique_id=1149227647]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0311565, 0, 0)
